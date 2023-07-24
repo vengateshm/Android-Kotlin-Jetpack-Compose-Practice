@@ -13,7 +13,12 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
+    <!--Deprecated since Android 13+-->
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
+    <!--From 13 (SDK 33 Tiramisu) onwards-->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <application
         android:name=".AndroidKotlinComposePracticeApp"
         android:allowBackup="true"
@@ -173,6 +178,9 @@
             android:exported="true" />
         <activity
             android:name=".graph_ql_app.GraphQLActivity"
+            android:exported="true" />
+        <activity
+            android:name=".content_provider.ContentProviderSampleActivity"
             android:exported="true" />
 
         <meta-data
