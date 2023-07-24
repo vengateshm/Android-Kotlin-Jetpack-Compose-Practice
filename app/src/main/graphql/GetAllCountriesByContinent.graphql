@@ -1,0 +1,7 @@
+query GetCountriesByContinent($countryInput: CountryFilterInput){
+    countries(filter: $countryInput){
+        name
+        capital
+        currency
+    }
+}

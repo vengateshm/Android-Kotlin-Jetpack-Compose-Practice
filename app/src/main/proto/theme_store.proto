@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option java_package = "dev.vengateshm.android_kotlin_compose_practice";
+option java_multiple_files = true;
+
+message ThemeStore {
+    bool is_dark = 1;
+}

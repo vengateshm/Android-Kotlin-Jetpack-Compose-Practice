@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+Metadata for the first Glance widget.
+At the moment, specifying a layout from the android:initialLayout is needed.
+-->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/todo_list"
+    android:initialLayout="@layout/widget_loading"
+    android:minWidth="180dp"
+    android:minHeight="180dp"
+    android:previewImage="@drawable/todo_list_glance_widget_preview"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen" />

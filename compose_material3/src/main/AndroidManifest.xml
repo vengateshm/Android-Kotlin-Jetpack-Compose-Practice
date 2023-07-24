@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <activity
+            android:name=".ComposeMaterial3Activity"
+            android:exported="true" />
+        <activity
+            android:name=".message_bar.MessageBarActivity"
+            android:exported="true" />
+        <activity
+            android:name=".expandable_list.ExpandableListActivity"
+            android:exported="true" />
+    </application>
+</manifest>

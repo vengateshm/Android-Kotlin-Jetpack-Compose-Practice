@@ -1,0 +1,305 @@
+{
+  "name": "action_button",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "qL45q5mduGgaqGgt6JotQ8",
+    "node": "1:35",
+    "version": "2559702477"
+  },
+  "default": "Primary",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "vector",
+        "id": "ButtonBackground"
+      },
+      {
+        "type": "text",
+        "id": "text"
+      },
+      {
+        "type": "group",
+        "id": "check"
+      }
+    ],
+    "modes": {
+      "Primary": {
+        "rules": [
+          {
+            "id": "top_level",
+            "tap-handler": "$onClick",
+            "is-structured": "false",
+            "children": [
+              "ButtonBackground",
+              "text",
+              "check"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "ButtonBackground",
+            "border-radius": "31.0",
+            "drop-shadow": {
+              "color": {
+                "alpha": "0.24705882352941178",
+                "hue": "0.0",
+                "saturation": "0.0",
+                "value": "0.0"
+              },
+              "blur": "4.0",
+              "offset-x": "0.0",
+              "offset-y": "4.0",
+              "spread": "0.0",
+              "blend-mode": "normal"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "button_background.svg"
+          },
+          {
+            "id": "text",
+            "margin": {
+              "left": "105.0",
+              "top": "16.0",
+              "right": "65.0",
+              "bottom": "16.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.0"
+            },
+            "text-content": "$text",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "20.0",
+            "line-height": "1.2569999694824219",
+            "typeface": "Source Code Pro"
+          },
+          {
+            "id": "check",
+            "margin": {
+              "left": "67.0",
+              "top": "17.0",
+              "right": "223.0",
+              "bottom": "16.0"
+            },
+            "is-structured": "false",
+            "children": "$icon",
+            "clip-content": "false"
+          }
+        ]
+      },
+      "Secondary": {
+        "rules": [
+          {
+            "id": "top_level",
+            "tap-handler": "$onClick",
+            "is-structured": "false",
+            "children": [
+              "ButtonBackground",
+              "text",
+              "check"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "ButtonBackground",
+            "border-radius": "31.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "button_background1.svg"
+          },
+          {
+            "id": "text",
+            "margin": {
+              "left": "105.0",
+              "top": "16.0",
+              "right": "65.0",
+              "bottom": "16.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "143.40248962655602",
+              "saturation": "1.0",
+              "value": "0.9450980392156862"
+            },
+            "text-content": "$text",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "20.0",
+            "line-height": "1.2569999694824219",
+            "typeface": "Source Code Pro"
+          },
+          {
+            "id": "check",
+            "margin": {
+              "left": "67.0",
+              "top": "17.0",
+              "right": "223.0",
+              "bottom": "16.0"
+            },
+            "is-structured": "false",
+            "children": "$icon",
+            "clip-content": "false"
+          }
+        ]
+      }
+    }
+  },
+  "parameters": {
+    "onClick": {
+      "data-type": "void-callback",
+      "required": false,
+      "description": ""
+    },
+    "text": {
+      "data-type": "text",
+      "required": false,
+      "description": ""
+    },
+    "icon": {
+      "data-type": "list-item",
+      "required": false,
+      "description": ""
+    }
+  },
+  "previews": [
+    {
+      "design": "Primary",
+      "size": {
+        "width": 314.0,
+        "height": 57.0
+      },
+      "parameters": {
+        "text": "Hello World!",
+        "icon": [
+          {
+            "type": "vector",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            }
+          },
+          {
+            "type": "vector",
+            "margin": {
+              "left": "3.8499984741210938",
+              "top": "5.975006103515625",
+              "right": "3.850006103515625",
+              "bottom": "6.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "vector-content": "check.svg"
+          }
+        ]
+      }
+    },
+    {
+      "design": "Secondary",
+      "size": {
+        "width": 314.0,
+        "height": 57.0
+      },
+      "parameters": {
+        "text": "Hello World!",
+        "icon": [
+          {
+            "type": "vector",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            }
+          },
+          {
+            "type": "vector",
+            "margin": {
+              "left": "3.8499984741210938",
+              "top": "5.975006103515625",
+              "right": "3.850006103515625",
+              "bottom": "6.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": 1.0
+              }
+            },
+            "vector-content": "check1.svg"
+          }
+        ]
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

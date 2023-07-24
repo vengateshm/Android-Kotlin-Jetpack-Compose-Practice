@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <application
+        android:name=".AndroidKotlinComposePracticeApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ComposePractice"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".drag_and_drop.DragAndDropActivity"
+            android:exported="true" />
+
+        <receiver android:name=".picture_in_picture.PipActivity$MyReceiver" />
+
+        <activity
+            android:name=".picture_in_picture.PipActivity"
+            android:configChanges="screenSize|screenLayout|smallestScreenSize|orientation"
+            android:exported="true"
+            android:label="PictureInPictureMode"
+            android:supportsPictureInPicture="true" />
+        <activity
+            android:name=".pagination_vanilla.PVActivity"
+            android:exported="false" />
+        <activity
+            android:name=".downloadable_fonts.DownloadableFontActivity"
+            android:exported="false" />
+        <activity
+            android:name=".pagination.ui.PagedUserListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".coroutines_cancellation.CoroutinesCancellationActivity"
+            android:exported="false" />
+        <activity
+            android:name="dev.vengateshm.android_kotlin_compose_practice.meditation_ui.MeditationHomeActivity"
+            android:exported="false" />
+        <!--
+        <activity
+            android:name=".datastore_protobufs.DatastoreProtobufActivity"
+            android:exported="false"
+            android:label="@string/title_activity_datastore_protobuf"
+            android:theme="@style/Theme.ComposePractice" />
+        -->
+        <!-- <activity -->
+        <!-- android:name=".compose_states.ComposeStatesActivity" -->
+        <!-- android:exported="false" /> -->
+        <service
+            android:name="dev.vengateshm.android_kotlin_compose_practice.stopwatch.service.StopWatchService"
+            android:enabled="true"
+            android:exported="false" />
+        <service
+            android:name="dev.vengateshm.android_kotlin_compose_practice.location_updates.LocationService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:theme="@style/Theme.ComposePractice.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".crypto.CryptoActivity" />
+        <activity
+            android:name=".animations.ComposeAnimationActivity"
+            android:exported="true" />
+        <activity android:name=".flow_lifecycle.FlowLifeCycleActivity" />
+        <activity
+            android:name=".navigation_deeplink.NavDeepLinkSampleActivity"
+            android:exported="true">
+            <intent-filter>
+                <data
+                    android:host="dev-vengateshm.com"
+                    android:scheme="https" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".stopwatch.StopWatchActivity" />
+        <activity android:name=".location_updates.LocationUpdatesActivity" />
+        <activity android:name=".di.SampleDiActivity" />
+        <activity android:name=".recomposition_debugging.RecompositionDebuggingActivity" />
+        <activity android:name=".compose_optimization.ComposeOptimizationActivity" />
+
+        <activity
+            android:name=".custom_composables.CustomComposablesActivity"
+            android:exported="true" />
+        <activity
+            android:name=".compose_testing.ComposeTestingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".compose_states.ComposeStatesActivity"
+            android:exported="true" />
+        <activity
+            android:name=".custom_shapes.CustomShapesActivity"
+            android:exported="true" />
+        <activity
+            android:name="dev.vengateshm.compose_material3.ComposeMaterial3Activity"
+            android:exported="true" />
+        <activity
+            android:name=".functional_programming.FunctionalProgrammingActivity"
+            android:exported="true" />
+        <activity
+            android:name=".avoid_duplication.AvoidDuplicationActivity"
+            android:exported="true" />
+        <activity
+            android:name=".lottie_animation.LottieAnimationActivity"
+            android:exported="true" />
+        <activity
+            android:name=".games.TicTacToeActivity"
+            android:exported="true" />
+        <activity
+            android:name="dev.vengateshm.compose_material3.message_bar.MessageBarActivity"
+            android:exported="true" />
+        <activity
+            android:name=".compose_apis.ComposeApisActivity"
+            android:exported="true" />
+        <activity
+            android:name=".search_functionality.SearchFunctionalityActivity"
+            android:exported="true" />
+        <activity
+            android:name="dev.vengateshm.compose_material3.expandable_list.ExpandableListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".nested_navigation.NestedNavigationActivity"
+            android:exported="true" />
+        <activity
+            android:name=".custom_layouts.CustomLayoutActivity"
+            android:exported="true" />
+        <activity
+            android:name=".navigate_back_with_result.NavigateBackWithResultActivity"
+            android:exported="true" />
+        <activity
+            android:name=".sharing_data_btw_screens.SharingDataActivity"
+            android:exported="true" />
+        <activity
+            android:name=".compose_performance.ComposePerformanceSampleActivity"
+            android:exported="true" />
+        <activity
+            android:name=".local_notification.LocalNotificationActivity"
+            android:exported="true" />
+
+        <receiver android:name=".local_notification.CounterNotificationReceiver" />
+
+        <activity
+            android:name=".ktor_client_sample.KtorClientSampleActivity"
+            android:exported="true" />
+        <activity
+            android:name=".performance_tips.PerformanceTipsActivity"
+            android:exported="true" />
+        <activity
+            android:name=".graph_ql_app.GraphQLActivity"
+            android:exported="true" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="${MAPS_API_KEY}" />
+    </application>
+
+</manifest>
