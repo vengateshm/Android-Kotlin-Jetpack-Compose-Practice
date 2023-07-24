@@ -18,7 +18,8 @@ class ComposeApisActivity : ComponentActivity() {
 //                    Screen()
 //                    Parent()
 //                    ProduceStateSample()
-                    ProduceStateSampleLive()
+//                    ProduceStateSampleLive()
+                    DisposableStateScreen()
                 }
             }
         }
