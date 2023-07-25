@@ -195,6 +195,9 @@
         <activity
             android:name=".bluetooth.presentation.BluetoothActivity"
             android:exported="true" />
+        <activity
+            android:name=".modifiers.ModifiersSampleActivity"
+            android:exported="true" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

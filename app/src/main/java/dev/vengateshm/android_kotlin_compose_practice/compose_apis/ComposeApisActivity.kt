@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
 
 class ComposeApisActivity : ComponentActivity() {
@@ -19,15 +20,9 @@ class ComposeApisActivity : ComponentActivity() {
 //                    Parent()
 //                    ProduceStateSample()
 //                    ProduceStateSampleLive()
-                    //DisposableStateScreen()
-                    PerformOnLifeCycle(
-                        lifecycleOwner = lifecycleOwner,
-                        onStart = {
-                            println("onStart Event")
-                        },
-                        onResume = {
-                            println("onResume Event")
-                        })
+//                    DisposableStateScreen()
+//                    PerformOnLifeCycle(lifecycleOwner = lifecycleOwner, onStart = { println("onStart Event") }, onResume = { println("onResume Event") })
+                    SnapShotFlowSample()
                 }
             }
         }
