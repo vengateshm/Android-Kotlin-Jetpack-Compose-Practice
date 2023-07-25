@@ -19,6 +19,16 @@
         android:maxSdkVersion="32" />
     <!--From 13 (SDK 33 Tiramisu) onwards-->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+
+    <uses-permission
+        android:name="android.permission.BLUETOOTH"
+        android:maxSdkVersion="30" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission
+        android:name="android.permission.BLUETOOTH_SCAN"
+        android:usesPermissionFlags="neverForLocation" />
+
+    <uses-feature android:name="android.hardware.bluetooth" />
     <application
         android:name=".AndroidKotlinComposePracticeApp"
         android:allowBackup="true"
@@ -181,6 +191,9 @@
             android:exported="true" />
         <activity
             android:name=".content_provider.ContentProviderSampleActivity"
+            android:exported="true" />
+        <activity
+            android:name=".bluetooth.presentation.BluetoothActivity"
             android:exported="true" />
 
         <meta-data
