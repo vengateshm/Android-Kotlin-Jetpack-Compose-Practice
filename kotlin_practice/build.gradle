@@ -10,6 +10,10 @@ java {
 
 dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2"
+    implementation "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5"
     implementation "io.arrow-kt:arrow-core:1.2.0"
     implementation "io.arrow-kt:arrow-fx-coroutines:1.2.0"
+    implementation "com.google.guava:guava:32.1.1-jre"
+
+    testImplementation 'junit:junit:4.13.2'
 }
