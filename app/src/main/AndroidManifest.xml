@@ -198,6 +198,9 @@
         <activity
             android:name=".modifiers.ModifiersSampleActivity"
             android:exported="true" />
+        <activity
+            android:name=".number_guessing_game.NumberGuessingActivity"
+            android:exported="true" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
