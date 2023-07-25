@@ -2,14 +2,18 @@ package dev.vengateshm.kotlin_practice.coroutines
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.merge
+import kotlinx.coroutines.flow.retryWhen
 import kotlinx.coroutines.flow.zip
 import kotlinx.coroutines.runBlocking
+import java.io.IOException
 import kotlin.math.pow
 import kotlin.random.Random
 
@@ -59,6 +63,21 @@ fun main() {
         merge(f1, f2).collect {
             println(it)
         }
+
+        retrySampleFlow()
+            .retryWhen{cause: Throwable, attempt: Long ->
+                if(cause is Exception && attempt<3){
+                    println(attempt)
+                    return@retryWhen true
+                }
+                false
+            }
+            .catch {
+                println(it)
+            }
+            .collect {
+                println(it)
+            }
     }
 }
 
@@ -83,4 +102,12 @@ fun processData(data: List<Float>) = flow {
         }
         emit(processed++)
     }
+}
+
+fun retrySampleFlow() = flow<Int> {
+    println("Called")
+    10/0
+    emit(1)
+    emit(2)
+    emit(3)
 }
