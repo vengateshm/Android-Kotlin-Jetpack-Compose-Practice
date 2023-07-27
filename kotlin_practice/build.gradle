@@ -14,6 +14,7 @@ dependencies {
     implementation "io.arrow-kt:arrow-core:1.2.0"
     implementation "io.arrow-kt:arrow-fx-coroutines:1.2.0"
     implementation "com.google.guava:guava:32.1.1-jre"
-
+    // https://mvnrepository.com/artifact/uy.kohesive.klutter/klutter-core
+    implementation 'uy.kohesive.klutter:klutter-core:3.0.0'
     testImplementation 'junit:junit:4.13.2'
 }
