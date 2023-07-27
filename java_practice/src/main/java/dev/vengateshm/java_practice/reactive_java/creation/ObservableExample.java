@@ -1,4 +1,4 @@
-package dev.vengateshm.java_practice.reactive_java;
+package dev.vengateshm.java_practice.reactive_java.creation;
 
 import io.reactivex.rxjava3.annotations.NonNull;
 import io.reactivex.rxjava3.core.Observable;

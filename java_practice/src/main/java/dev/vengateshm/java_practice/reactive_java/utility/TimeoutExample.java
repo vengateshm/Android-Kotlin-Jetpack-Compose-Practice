@@ -1,4 +1,4 @@
-package dev.vengateshm.java_practice.reactive_java;
+package dev.vengateshm.java_practice.reactive_java.utility;
 
 import java.util.concurrent.TimeUnit;
 
