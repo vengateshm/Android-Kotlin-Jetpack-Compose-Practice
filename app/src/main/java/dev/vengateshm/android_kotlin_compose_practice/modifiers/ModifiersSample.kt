@@ -22,8 +22,8 @@ val color1 = Color(0xFFE91E63)
 fun ModifiersSample() {
     var changeColor by remember { mutableStateOf(false) }
 
-    LaunchedEffect(true){
-        snapshotFlow {  }
+    LaunchedEffect(true) {
+        snapshotFlow { }
         delay(5000L)
         changeColor = true
     }

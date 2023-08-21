@@ -6,9 +6,9 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import app.cash.turbine.test
-import dev.vengateshm.android_kotlin_compose_practice.room_testing.Stock
-import dev.vengateshm.android_kotlin_compose_practice.room_testing.StockDao
-import dev.vengateshm.android_kotlin_compose_practice.room_testing.StockDb
+import dev.vengateshm.android_kotlin_compose_practice.room_db.StockDao
+import dev.vengateshm.android_kotlin_compose_practice.room_db.StockDb
+import dev.vengateshm.android_kotlin_compose_practice.room_db.StockEntity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.After
@@ -20,7 +20,7 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 @SmallTest
 @OptIn(ExperimentalCoroutinesApi::class)
-class StockDaoTest {
+class StockEntityDaoTest {
 
     @get: Rule
     val dispatcherRule = TestDispatcherRule()
@@ -39,8 +39,8 @@ class StockDaoTest {
 
     @Test
     fun addItem_shouldReturn_theItem_inFlow() = runTest {
-        val item1 = Stock(uid = 1, name = "Apple", symbol = "APPL")
-        val item2 = Stock(uid = 2, name = "Microsoft", symbol = "MST")
+        val item1 = StockEntity(uid = 1, name = "Apple", symbol = "APPL")
+        val item2 = StockEntity(uid = 2, name = "Microsoft", symbol = "MST")
         stockDao.addStock(item1)
         stockDao.addStock(item2)
 
@@ -54,8 +54,8 @@ class StockDaoTest {
 
     @Test
     fun deletedItem_shouldNot_be_present_inFlow() = runTest {
-        val item1 = Stock(uid = 1, name = "Apple", symbol = "APPL")
-        val item2 = Stock(uid = 2, name = "Microsoft", symbol = "MST")
+        val item1 = StockEntity(uid = 1, name = "Apple", symbol = "APPL")
+        val item2 = StockEntity(uid = 2, name = "Microsoft", symbol = "MST")
         stockDao.addStock(item1)
         stockDao.addStock(item2)
         stockDao.removeStock(item2)
@@ -69,9 +69,9 @@ class StockDaoTest {
 
     @Test
     fun updateItem_shouldReturn_theItem_inFlow() = runTest {
-        val item1 = Stock(uid = 1, name = "Apple", symbol = "APPL")
-        val item2 = Stock(uid = 2, name = "Microsoft", symbol = "MST")
-        val item3 = Stock(uid = 2, name = "Google", symbol = "ALP")
+        val item1 = StockEntity(uid = 1, name = "Apple", symbol = "APPL")
+        val item2 = StockEntity(uid = 2, name = "Microsoft", symbol = "MST")
+        val item3 = StockEntity(uid = 2, name = "Google", symbol = "ALP")
         stockDao.addStock(item1)
         stockDao.addStock(item2)
         stockDao.addStock(item3)
@@ -85,9 +85,9 @@ class StockDaoTest {
 
     @Test
     fun search_by_query_should_return_matching_stocks() = runTest {
-        val item1 = Stock(uid = 1, name = "Apple", symbol = "APPL")
-        val item2 = Stock(uid = 2, name = "Microsoft", symbol = "MST")
-        val item3 = Stock(uid = 3, name = "Google", symbol = "ALP")
+        val item1 = StockEntity(uid = 1, name = "Apple", symbol = "APPL")
+        val item2 = StockEntity(uid = 2, name = "Microsoft", symbol = "MST")
+        val item3 = StockEntity(uid = 3, name = "Google", symbol = "ALP")
         stockDao.addStock(item1)
         stockDao.addStock(item2)
         stockDao.addStock(item3)

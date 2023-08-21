@@ -23,7 +23,7 @@ val Vanilla = Color(0xFFe1d89f)
 @Composable
 fun ChatMessage(
     message: BluetoothMessage,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(
         modifier = modifier

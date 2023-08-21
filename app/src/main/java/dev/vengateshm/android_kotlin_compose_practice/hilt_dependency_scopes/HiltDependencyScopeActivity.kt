@@ -44,7 +44,7 @@ class HiltDependencyScopeActivity : ComponentActivity() {
                         }
                     }
                     composable("start_screen") {
-                        
+
                     }
                 }
             }

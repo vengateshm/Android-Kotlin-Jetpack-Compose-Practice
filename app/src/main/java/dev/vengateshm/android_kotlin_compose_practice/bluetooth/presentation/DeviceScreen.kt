@@ -24,7 +24,7 @@ fun DeviceScreen(
     onStartScan: () -> Unit,
     onStopScan: () -> Unit,
     onStartServer: () -> Unit,
-    onDeviceClick: (BluetoothDevice) -> Unit
+    onDeviceClick: (BluetoothDevice) -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -60,7 +60,7 @@ fun BluetoothDeviceList(
     pairedDevices: List<BluetoothDevice>,
     scannedDevices: List<BluetoothDevice>,
     onClick: (BluetoothDevice) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     LazyColumn(
         modifier = modifier

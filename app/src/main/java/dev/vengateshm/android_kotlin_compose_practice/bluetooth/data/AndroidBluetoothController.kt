@@ -135,7 +135,7 @@ class AndroidBluetoothController(private val context: Context) : BluetoothContro
 
     override fun startBluetoothServer(): Flow<ConnectionResult> {
         return flow {
-            if(!hasPermission(Manifest.permission.BLUETOOTH_CONNECT)) {
+            if (!hasPermission(Manifest.permission.BLUETOOTH_CONNECT)) {
                 throw SecurityException("No BLUETOOTH_CONNECT permission")
             }
 
@@ -145,10 +145,10 @@ class AndroidBluetoothController(private val context: Context) : BluetoothContro
             )
 
             var shouldLoop = true
-            while(shouldLoop) {
+            while (shouldLoop) {
                 currentClientSocket = try {
                     currentServerSocket?.accept()
-                } catch(e: IOException) {
+                } catch (e: IOException) {
                     shouldLoop = false
                     null
                 }
@@ -163,11 +163,11 @@ class AndroidBluetoothController(private val context: Context) : BluetoothContro
     }
 
     override suspend fun trySendMessage(message: String): BluetoothMessage? {
-        if(!hasPermission(Manifest.permission.BLUETOOTH_CONNECT)) {
+        if (!hasPermission(Manifest.permission.BLUETOOTH_CONNECT)) {
             return null
         }
 
-        if(dataTransferService == null) {
+        if (dataTransferService == null) {
             return null
         }
 
@@ -184,7 +184,7 @@ class AndroidBluetoothController(private val context: Context) : BluetoothContro
 
     override fun connectToDevice(device: BluetoothDevice): Flow<ConnectionResult> {
         return flow {
-            if(!hasPermission(Manifest.permission.BLUETOOTH_CONNECT)) {
+            if (!hasPermission(Manifest.permission.BLUETOOTH_CONNECT)) {
                 throw SecurityException("No BLUETOOTH_CONNECT permission")
             }
 
@@ -206,7 +206,7 @@ class AndroidBluetoothController(private val context: Context) : BluetoothContro
                                 .map { ConnectionResult.TransferSucceeded(it) }
                         )
                     }
-                } catch(e: IOException) {
+                } catch (e: IOException) {
                     socket.close()
                     currentClientSocket = null
                     emit(ConnectionResult.Error("Connection was interrupted"))

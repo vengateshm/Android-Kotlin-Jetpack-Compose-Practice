@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 fun ChatScreen(
     state: BluetoothUiState,
     onDisconnect: () -> Unit,
-    onSendMessage: (String) -> Unit
+    onSendMessage: (String) -> Unit,
 ) {
     val message = rememberSaveable {
         mutableStateOf("")
@@ -67,7 +67,7 @@ fun ChatScreen(
                         message = message,
                         modifier = Modifier
                             .align(
-                                if(message.isFromLocalUser) Alignment.End else Alignment.Start
+                                if (message.isFromLocalUser) Alignment.End else Alignment.Start
                             )
                     )
                 }

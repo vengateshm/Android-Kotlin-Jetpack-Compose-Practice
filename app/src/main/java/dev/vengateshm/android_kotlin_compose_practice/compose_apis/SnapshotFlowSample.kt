@@ -21,8 +21,8 @@ fun SnapShotFlowSample() {
         }
             .debounce(500)
             .collect {
-            println("Offset $it")
-        }
+                println("Offset $it")
+            }
     }
     LazyColumn(
         state = lazyListState

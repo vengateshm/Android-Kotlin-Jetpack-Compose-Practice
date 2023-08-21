@@ -6,7 +6,7 @@ class Person(val name: String) {
     }
 }
 
-infix fun Person.welcomeMessage(emoji:String){
+infix fun Person.welcomeMessage(emoji: String) {
     println("Welcome ${this.name} $emoji")
 }
 

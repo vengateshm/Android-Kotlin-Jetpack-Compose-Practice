@@ -23,8 +23,6 @@ import androidx.compose.ui.unit.dp
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import coil.compose.AsyncImage
-import dev.vengateshm.android_kotlin_compose_practice.utils.REQUEST_CODE_POST_NOTIFICATIONS
-import dev.vengateshm.android_kotlin_compose_practice.utils.requestPostNotificationsPermission
 import java.util.Calendar
 
 class ContentProviderSampleActivity : ComponentActivity() {
@@ -37,7 +35,10 @@ class ContentProviderSampleActivity : ComponentActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             val permission = android.Manifest.permission.READ_MEDIA_IMAGES
             val isGranted =
-                ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
+                ContextCompat.checkSelfPermission(
+                    this,
+                    permission
+                ) == PackageManager.PERMISSION_GRANTED
             if (!isGranted) {
                 // Request the permission.
                 ActivityCompat.requestPermissions(
@@ -49,7 +50,10 @@ class ContentProviderSampleActivity : ComponentActivity() {
         } else {
             val permission = android.Manifest.permission.READ_EXTERNAL_STORAGE
             val isGranted =
-                ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED
+                ContextCompat.checkSelfPermission(
+                    this,
+                    permission
+                ) == PackageManager.PERMISSION_GRANTED
             if (!isGranted) {
                 // Request the permission.
                 ActivityCompat.requestPermissions(

@@ -27,9 +27,6 @@ import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
 import dev.vengateshm.android_kotlin_compose_practice.utils.requestPostNotificationsPermission
 
 class MainActivity : ComponentActivity() {

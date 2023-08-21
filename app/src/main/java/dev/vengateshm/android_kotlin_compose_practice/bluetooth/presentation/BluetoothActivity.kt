@@ -86,7 +86,7 @@ class BluetoothActivity : ComponentActivity() {
                 }
 
                 LaunchedEffect(key1 = state.isConnected) {
-                    if(state.isConnected) {
+                    if (state.isConnected) {
                         Toast.makeText(
                             applicationContext,
                             "You're connected!",
@@ -109,6 +109,7 @@ class BluetoothActivity : ComponentActivity() {
                                 Text(text = "Connecting...")
                             }
                         }
+
                         state.isConnected -> {
                             ChatScreen(
                                 state = state,
@@ -116,6 +117,7 @@ class BluetoothActivity : ComponentActivity() {
                                 onSendMessage = viewModel::sendMessage
                             )
                         }
+
                         else -> {
                             DeviceScreen(
                                 state = state,

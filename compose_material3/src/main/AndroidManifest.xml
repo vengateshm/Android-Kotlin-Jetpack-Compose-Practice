@@ -11,5 +11,8 @@
         <activity
             android:name=".expandable_list.ExpandableListActivity"
             android:exported="true" />
+        <activity
+            android:name=".bottom_sheet.BottomSheetActivity"
+            android:exported="true" />
     </application>
 </manifest>

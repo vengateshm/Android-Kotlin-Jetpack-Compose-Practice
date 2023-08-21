@@ -66,13 +66,13 @@ fun Screen2(navController: NavHostController) {
 
     BackHandler(
         enabled = true,
-    onBack = {
-        navController.previousBackStackEntry
-            ?.savedStateHandle?.also {
-                it["my_text"] = text
-            }
-        navController.popBackStack()
-    })
+        onBack = {
+            navController.previousBackStackEntry
+                ?.savedStateHandle?.also {
+                    it["my_text"] = text
+                }
+            navController.popBackStack()
+        })
 
     Column(
         modifier = Modifier.fillMaxWidth()

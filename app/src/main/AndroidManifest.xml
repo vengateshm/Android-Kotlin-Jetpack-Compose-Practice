@@ -201,6 +201,15 @@
         <activity
             android:name=".number_guessing_game.NumberGuessingActivity"
             android:exported="true" />
+        <activity
+            android:name=".pie_chart.PieChartActivity"
+            android:exported="true" />
+        <activity
+            android:name="dev.vengateshm.compose_material3.bottom_sheet.BottomSheetActivity"
+            android:exported="true" />
+        <activity
+            android:name=".room_db.RoomDbSampleActivity"
+            android:exported="true" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

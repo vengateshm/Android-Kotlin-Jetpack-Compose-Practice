@@ -1,14 +1,8 @@
 package dev.vengateshm.glance_app_widget.service
 
 import android.app.Service
-import android.appwidget.AppWidgetManager
-import android.content.ComponentName
 import android.content.Intent
 import android.os.IBinder
-import android.preference.PreferenceManager
-import com.google.gson.Gson
-import dev.vengateshm.glance_app_widget.receiver.COVID19WidgetReceiver
-import dev.vengateshm.glance_app_widget.utils.SUMMARY_RESPONSE_KEY
 import dev.vengateshm.glance_app_widget.utils.startForegroundWithNotification
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

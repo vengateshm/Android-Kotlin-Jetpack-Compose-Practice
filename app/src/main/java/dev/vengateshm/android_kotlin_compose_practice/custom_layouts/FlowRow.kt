@@ -37,7 +37,7 @@ fun FlowRow(
                 }
             }
 
-            if(currentGroup.isNotEmpty()){
+            if (currentGroup.isNotEmpty()) {
                 println("Left over placeables size ${currentGroup.size}")
                 groupedPlaceables.add(currentGroup)
             }

@@ -3,7 +3,6 @@ package dev.vengateshm.kotlin_practice
 import com.google.common.collect.ImmutableList
 import com.google.common.collect.ImmutableSet
 import kotlinx.collections.immutable.PersistentList
-import kotlinx.collections.immutable.immutableListOf
 import kotlinx.collections.immutable.persistentListOf
 import org.junit.Assert.assertEquals
 import org.junit.Rule
@@ -13,7 +12,7 @@ import org.junit.rules.ExpectedException
 class ImmutableCollectionsTest {
     @Rule
     @JvmField
-    var ee : ExpectedException = ExpectedException.none()
+    var ee: ExpectedException = ExpectedException.none()
 
     @Test
     fun givenReadOnlyList_whenCastToMutableList_checkNewElementsAdded() {
@@ -30,8 +29,8 @@ class ImmutableCollectionsTest {
     }
 
     @Test
-    fun givenMutableList_whenCopiedAndAddTried_checkExceptionThrown(){
-        val mutableList : List<String> = listOf("I", "Am", "Definitely", "Immutable")
+    fun givenMutableList_whenCopiedAndAddTried_checkExceptionThrown() {
+        val mutableList: List<String> = listOf("I", "Am", "Definitely", "Immutable")
         (mutableList as MutableList<String>)[2] = "100% Not"
         assertEquals(listOf("I", "Am", "100% Not", "Immutable"), mutableList)
         val list: List<String> = ImmutableList.copyOf(mutableList)
@@ -40,10 +39,10 @@ class ImmutableCollectionsTest {
     }
 
     @Test
-    fun givenImmutableSetBuilder_whenAddTried_checkExceptionThrown(){
-        val mutableList : List<String> = ArrayList(listOf("Hello", "Baeldung"))
+    fun givenImmutableSetBuilder_whenAddTried_checkExceptionThrown() {
+        val mutableList: List<String> = ArrayList(listOf("Hello", "Baeldung"))
         val set: ImmutableSet<String> = ImmutableSet.builder<String>()
-            .add("I","am","immutable")
+            .add("I", "am", "immutable")
             .addAll(mutableList)
             .build()
         assertEquals(setOf("Hello", "Baeldung", "I", "am", "immutable"), set)
@@ -52,7 +51,7 @@ class ImmutableCollectionsTest {
     }
 
     @Test
-    fun givenKICLList_whenAddTried_checkExceptionThrown(){
+    fun givenKICLList_whenAddTried_checkExceptionThrown() {
         val list: PersistentList<String> = persistentListOf("I", "am", "immutable")
         val result = list.add("My new item")
         assertEquals(listOf("I", "am", "immutable"), list)

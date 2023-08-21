@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
-import dev.vengateshm.android_kotlin_compose_practice.nested_navigation.onboarding.OnboardingViewModel
 
 /*@Composable
 fun NavBackStackEntry.sharedViewModel(navController: NavController): OnboardingViewModel {
