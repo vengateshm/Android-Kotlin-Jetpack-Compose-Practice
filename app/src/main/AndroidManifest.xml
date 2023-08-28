@@ -210,6 +210,12 @@
         <activity
             android:name=".room_db.RoomDbSampleActivity"
             android:exported="true" />
+        <activity
+            android:name=".compose_modifiers.ComposeModifiersActivity"
+            android:exported="true" />
+        <activity
+            android:name=".camerax.CameraXActivity"
+            android:exported="true" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
