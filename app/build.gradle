@@ -171,6 +171,9 @@ dependencies {
     implementation "androidx.camera:camera-lifecycle:${camerax_version}"
     implementation "androidx.camera:camera-view:${camerax_version}"
 
+    //Google play ad services
+    implementation 'com.google.android.gms:play-services-ads:22.3.0'
+
     implementation project(':compose_material3')
     implementation project(':common_lib')
     implementation project(':glance_app_widget')
