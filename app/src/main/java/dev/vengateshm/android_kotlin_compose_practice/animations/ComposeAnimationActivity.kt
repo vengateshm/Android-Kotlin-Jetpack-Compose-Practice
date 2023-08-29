@@ -37,7 +37,10 @@ class ComposeAnimationActivity : ComponentActivity() {
                 val width = displayMetrics.widthPixels
                 val height = displayMetrics.heightPixels
 //                InfiniteFloatTransition(width,height)
-                InfiniteColorTransition()
+//                InfiniteColorTransition()
+//                MovingObjectAnimation()
+//                ButtonTextScaleSample()
+                BallDropAnimation()
             }
         }
     }
