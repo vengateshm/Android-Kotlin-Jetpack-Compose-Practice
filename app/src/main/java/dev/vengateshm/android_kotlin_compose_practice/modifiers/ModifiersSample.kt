@@ -43,3 +43,7 @@ fun ModifiersSample() {
 inline fun Modifier.thenIf(predicate: Boolean, modify: () -> Modifier): Modifier {
     return this.then(if (predicate) modify() else Modifier)
 }
+
+inline fun Modifier.thenWith(modify: () -> Modifier): Modifier {
+    return this.then(modify())
+}
