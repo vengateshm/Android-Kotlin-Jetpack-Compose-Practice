@@ -11,7 +11,10 @@ class ModifiersSampleActivity : ComponentActivity() {
 
         setContent {
             MaterialTheme {
-                ModifiersSample()
+//                ModifiersSample()
+//                DraggableText()
+//                DraggableBoxLowLevel()
+                AnchoredDraggableSample()
             }
         }
     }
