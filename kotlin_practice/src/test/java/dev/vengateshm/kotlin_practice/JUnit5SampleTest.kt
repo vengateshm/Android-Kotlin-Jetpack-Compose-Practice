@@ -1,11 +1,16 @@
 package dev.vengateshm.kotlin_practice
 
+import dev.vengateshm.kotlin_practice.converters.ArrayConverter
+import dev.vengateshm.kotlin_practice.converters.DateConverter
 import dev.vengateshm.kotlin_practice.junit5.JUnit5Sample
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.converter.ConvertWith
+import org.junit.jupiter.params.provider.CsvFileSource
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
+import java.util.Date
 
 class JUnit5SampleTest {
 
@@ -47,12 +52,21 @@ class JUnit5SampleTest {
         Assertions.assertEquals(result, sut.areaOfRectangle(width, height))
     }
 
+    @ParameterizedTest
+    @CsvFileSource(resources = ["/junit5csvfilesourcesample.csv"], numLinesToSkip = 1)
+    fun testCsvFileSource(
+        @ConvertWith(DateConverter::class) date: Date,
+        @ConvertWith(ArrayConverter::class) array: IntArray,
+    ) {
+        // Your test logic here
+        println("Date: $date, Array: ${array.joinToString(", ")}")
+    }
+
     companion object {
         @JvmStatic
         fun rectangleTestData(): Array<Array<Any>> {
             return arrayOf(
-                arrayOf(3.0, 2.0, 6.0),
-                arrayOf(4.0, 2.0, 8.0)
+                arrayOf(3.0, 2.0, 6.0), arrayOf(4.0, 2.0, 8.0)
             )
         }
     }
