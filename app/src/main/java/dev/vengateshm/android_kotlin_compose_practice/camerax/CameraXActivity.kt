@@ -38,6 +38,7 @@ import java.util.concurrent.Executors
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 
+/*
 class CameraXActivity : ComponentActivity() {
 
     private val registerForActivityResult =
@@ -134,4 +135,4 @@ suspend fun Context.cameraProvider() = suspendCoroutine { continuation ->
         },
         ContextCompat.getMainExecutor(this)
     )
-}
+}*/

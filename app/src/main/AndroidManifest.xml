@@ -233,6 +233,9 @@
         <activity
             android:name=".custom_progress_bar.CustomProgressBarActivity"
             android:exported="true" />
+        <activity
+            android:name=".window_inset.WindowInsetSampleActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
