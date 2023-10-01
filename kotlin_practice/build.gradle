@@ -16,7 +16,7 @@ dependencies {
     implementation "com.google.guava:guava:32.1.1-jre"
     // https://mvnrepository.com/artifact/uy.kohesive.klutter/klutter-core
     implementation 'uy.kohesive.klutter:klutter-core:3.0.0'
-    
+
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.9.2'
