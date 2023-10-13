@@ -240,6 +240,12 @@
         <activity
             android:name=".window_inset.WindowInsetSampleActivity"
             android:exported="true" />
+        <activity
+            android:name=".navigation_animation.NavigationAnimationActivity"
+            android:exported="true" />
+        <activity
+            android:name=".mvi.ModelViewIntentSampleActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
