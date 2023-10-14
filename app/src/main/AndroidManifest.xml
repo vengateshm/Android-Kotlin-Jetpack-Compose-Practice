@@ -246,6 +246,9 @@
         <activity
             android:name=".mvi.ModelViewIntentSampleActivity"
             android:exported="true" />
+        <activity
+            android:name=".games.color_finder.ColorFinderActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
