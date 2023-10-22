@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.DETECT_SCREEN_CAPTURE" />
 
     <!--Location-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -248,6 +249,9 @@
             android:exported="true" />
         <activity
             android:name=".games.color_finder.ColorFinderActivity"
+            android:exported="true" />
+        <activity
+            android:name=".tablayout_lazycolumn_sync.TabLayoutLazyColumnActivity"
             android:exported="true" />
     </application>
 
