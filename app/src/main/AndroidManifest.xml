@@ -253,6 +253,9 @@
         <activity
             android:name=".tablayout_lazycolumn_sync.TabLayoutLazyColumnActivity"
             android:exported="true" />
+        <activity
+            android:name=".image_loader.ImageLoaderActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
