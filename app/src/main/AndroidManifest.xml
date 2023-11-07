@@ -256,6 +256,9 @@
         <activity
             android:name=".image_loader.ImageLoaderActivity"
             android:exported="true" />
+        <activity
+            android:name=".one_off_events.OneOffEventsActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
