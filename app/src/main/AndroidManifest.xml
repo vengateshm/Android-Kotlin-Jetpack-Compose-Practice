@@ -259,8 +259,12 @@
         <activity
             android:name=".one_off_events.OneOffEventsActivity"
             android:exported="true" />
-        <activity android:name=".gestures.GesturesSampleActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".gestures.GesturesSampleActivity"
+            android:exported="true" />
+        <activity
+            android:name=".coil_image_caching.CoilImageCachingActivity"
+            android:exported="true" />
     </application>
 
 </manifest>
