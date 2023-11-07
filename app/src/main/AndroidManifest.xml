@@ -259,6 +259,8 @@
         <activity
             android:name=".one_off_events.OneOffEventsActivity"
             android:exported="true" />
+        <activity android:name=".gestures.GesturesSampleActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
