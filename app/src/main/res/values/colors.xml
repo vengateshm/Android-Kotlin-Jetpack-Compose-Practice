@@ -14,4 +14,8 @@
     <color name="widget_gradient_end_color">#FE6197</color>
     <color name="widget_divider_color">#FFFFFF</color>
     <color name="appwidget_background">@color/white</color>
+    
+    <!--Splash screen-->
+    <color name="splash_screen_bg_color">#FAC8D9</color>
+    <color name="splash_screen_icon_bg_color">#F7B0C9</color>
 </resources>

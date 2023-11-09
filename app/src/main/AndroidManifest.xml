@@ -93,7 +93,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.ComposePractice.NoActionBar">
+            android:theme="@style/Theme.App.Starting.IconBackground">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
