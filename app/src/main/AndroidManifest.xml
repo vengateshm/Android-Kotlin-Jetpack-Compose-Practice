@@ -265,6 +265,8 @@
         <activity
             android:name=".coil_image_caching.CoilImageCachingActivity"
             android:exported="true" />
+        <activity android:name=".multiple_backstacks.MultipleBackStacksActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
