@@ -1,4 +1,4 @@
-package dev.vengateshm.android_kotlin_compose_practice.core
+package dev.vengateshm.android_kotlin_compose_practice.utils
 
 import android.content.res.Resources
 import androidx.compose.ui.unit.Dp
