@@ -192,6 +192,10 @@ dependencies {
     //Play services
     implementation 'com.google.android.gms:play-services-ads:22.4.0'
 
+    // Arrow
+    implementation(platform("io.arrow-kt:arrow-stack:1.2.0-RC"))
+    implementation("io.arrow-kt:arrow-core")
+
     testImplementation 'junit:junit:4.13.2'
     testImplementation "androidx.room:room-testing:2.5.2"
 

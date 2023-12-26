@@ -2,6 +2,7 @@ package dev.vengateshm.android_kotlin_compose_practice.coroutines_cancellation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.viewModels
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineExceptionHandler
@@ -13,6 +14,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
 
 class CoroutinesCancellationActivity : ComponentActivity() {
+
+    val viewModel : CoroutineCancellationViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -21,7 +24,8 @@ class CoroutinesCancellationActivity : ComponentActivity() {
 //        scenario3()
 //        scenario4()
 //        scenario5()
-        scenario6()
+//        scenario6()
+        viewModel.getData()
     }
 
     private fun scenario6() {
