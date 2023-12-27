@@ -28,7 +28,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import dev.vengateshm.android_kotlin_compose_practice.core.toDp
+import dev.vengateshm.android_kotlin_compose_practice.utils.toDp
 
 @Composable
 fun ParallaxComponent() {
