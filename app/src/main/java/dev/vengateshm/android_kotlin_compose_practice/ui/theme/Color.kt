@@ -90,3 +90,7 @@ data class ColorSet(
     val primaryVariant: Color,
     val secondary: Color,
 )
+
+val Custard = Color(0xFFEED971)
+val RoyalBlue = Color(0xFF234E70)
+val Citrine = Color(0xFF3A6B35)
