@@ -14,7 +14,9 @@ class ModifiersSampleActivity : ComponentActivity() {
 //                ModifiersSample()
 //                DraggableText()
 //                DraggableBoxLowLevel()
-                AnchoredDraggableSample()
+//                AnchoredDraggableSample()
+//                MarqueeModifier()
+                MagnifierModifier()
             }
         }
     }
