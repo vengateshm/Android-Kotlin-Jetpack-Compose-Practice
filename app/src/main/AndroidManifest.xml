@@ -12,6 +12,8 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.DETECT_SCREEN_CAPTURE" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <!--Location-->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -271,6 +273,18 @@
         <activity
             android:name=".games.GamesActivity"
             android:exported="true" />
+        <activity
+            android:name="dev.vengateshm.android_kotlin_compose_practice.doze_mode_test.DozeModeTestActivity"
+            android:exported="true" />
+        <!-- Register AlarmReceiver -->
+        <receiver
+            android:name=".doze_mode_test.AlarmReceiver"
+            android:enabled="true"
+            android:exported="false"> <!-- Set exported to false to prevent external access -->
+            <intent-filter>
+                <action android:name="dev.vengateshm.android_kotlin_compose_practice.ALARM_TRIGGER" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
