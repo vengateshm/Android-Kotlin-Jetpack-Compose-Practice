@@ -92,8 +92,10 @@
             android:exported="false"
             android:foregroundServiceType="location" />
 
+<!--        android:windowSoftInputMode="adjustResize"-->
         <activity
             android:name=".MainActivity"
+            android:windowSoftInputMode="adjustNothing"
             android:exported="true"
             android:theme="@style/Theme.App.Starting.IconBackground">
             <intent-filter>
