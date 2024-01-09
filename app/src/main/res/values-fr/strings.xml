@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="apple">Pomme</string>
+    <string name="banana">Banane</string>
+    <string name="citrus">Agrume</string>
+    <string name="change_language">Changer la Langue.</string>
+</resources>

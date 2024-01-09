@@ -1,4 +1,8 @@
 <resources>
-    <string name="app_name">AndroidKotlinComposePractice</string>
-    <string name="description">user image</string>
+    <string name="app_name" translatable="false">AndroidKotlinComposePractice</string>
+    <string name="description" translatable="false">user image</string>
+    <string name="apple">Apple</string>
+    <string name="banana">Banana</string>
+    <string name="citrus">Citrus</string>
+    <string name="change_language">Change Language</string>
 </resources>
