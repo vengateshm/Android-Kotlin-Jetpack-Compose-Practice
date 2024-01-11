@@ -1,4 +1,4 @@
-package dev.vengateshm.android_kotlin_compose_practice.text_field_transformation
+package dev.vengateshm.android_kotlin_compose_practice.text_field_composable
 
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Text
