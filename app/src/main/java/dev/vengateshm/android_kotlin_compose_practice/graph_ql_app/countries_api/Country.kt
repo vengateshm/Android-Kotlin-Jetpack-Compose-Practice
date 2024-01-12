@@ -1,4 +1,4 @@
-package dev.vengateshm.android_kotlin_compose_practice.graph_ql_app
+package dev.vengateshm.android_kotlin_compose_practice.graph_ql_app.countries_api
 
 import dev.vengateshm.android_kotlin_compose_practice.GetCountriesByContinentQuery
 

@@ -12,7 +12,7 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.DETECT_SCREEN_CAPTURE" />
-    <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <!--Location-->
@@ -92,12 +92,12 @@
             android:exported="false"
             android:foregroundServiceType="location" />
 
-<!--        android:windowSoftInputMode="adjustResize"-->
+        <!--        android:windowSoftInputMode="adjustResize"-->
         <activity
             android:name=".MainActivity"
-            android:windowSoftInputMode="adjustNothing"
             android:exported="true"
-            android:theme="@style/Theme.App.Starting.IconBackground">
+            android:theme="@style/Theme.App.Starting.IconBackground"
+            android:windowSoftInputMode="adjustNothing">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -196,7 +196,7 @@
             android:name=".performance_tips.PerformanceTipsActivity"
             android:exported="true" />
         <activity
-            android:name=".graph_ql_app.GraphQLActivity"
+            android:name=".graph_ql_app.countries_api.GraphQLActivity"
             android:exported="true" />
         <activity
             android:name=".content_provider.ContentProviderSampleActivity"
@@ -277,6 +277,9 @@
             android:exported="true" />
         <activity
             android:name="dev.vengateshm.android_kotlin_compose_practice.doze_mode_test.DozeModeTestActivity"
+            android:exported="true" />
+        <activity
+            android:name=".graph_ql_app.rickandmorty_api.RickAndMortyApiActivity"
             android:exported="true" />
         <!-- Register AlarmReceiver -->
         <receiver
