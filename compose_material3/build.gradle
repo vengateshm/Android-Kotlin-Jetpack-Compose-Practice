@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -61,6 +62,8 @@ dependencies {
     def material3_version = "1.2.0-alpha05"
     implementation "androidx.compose.material3:material3:$material3_version"
     implementation "androidx.compose.material3:material3-window-size-class:$material3_version"
+
+    implementation "androidx.navigation:navigation-compose:2.7.6"
 
     // FlowLayout
     implementation "com.google.accompanist:accompanist-flowlayout:0.23.1"

@@ -57,7 +57,7 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.12.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.2'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.7.0'
     implementation 'androidx.activity:activity-compose:1.8.2'
 
     // Splash screen
@@ -90,10 +90,10 @@ dependencies {
     // Constraint layout
     implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
 
-    implementation 'androidx.lifecycle:lifecycle-runtime-compose:2.6.2'
+    implementation 'androidx.lifecycle:lifecycle-runtime-compose:2.7.0'
 
     // ViewModel
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0'
 
     implementation 'com.google.android.material:material:1.11.0'
     implementation "com.google.maps.android:maps-compose:1.0.0"
