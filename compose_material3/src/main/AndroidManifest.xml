@@ -14,5 +14,8 @@
         <activity
             android:name=".bottom_sheet.BottomSheetActivity"
             android:exported="true" />
+        <activity
+            android:name=".list_detail.ListDetailActivity"
+            android:exported="true" />
     </application>
 </manifest>

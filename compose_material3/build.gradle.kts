@@ -63,10 +63,11 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
     debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
 
-    // Compose Material3 Theming
+    // Compose Material3
     val material3Version = "1.2.0-beta02"
     implementation("androidx.compose.material3:material3:$material3Version")
     implementation("androidx.compose.material3:material3-window-size-class:$material3Version")
+    implementation("androidx.compose.material3:material3-adaptive:1.0.0-alpha04")
 
     implementation("androidx.navigation:navigation-compose:2.7.6")
 
