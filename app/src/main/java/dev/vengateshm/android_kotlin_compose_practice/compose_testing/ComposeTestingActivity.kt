@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 class ComposeTestingActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -21,7 +20,8 @@ class ComposeTestingActivity : ComponentActivity() {
             MaterialTheme {
                 Surface(color = MaterialTheme.colors.background) {
                     Box(
-                        modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center,
                     ) {
                         FavouriteButton(modifier = Modifier.size(width = 100.dp, height = 60.dp))
                     }

@@ -26,7 +26,6 @@ import kotlin.random.Random
 private val LOG_TAG = "RecompositionDebugging"
 
 class RecompositionDebuggingActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -42,14 +41,14 @@ class RecompositionDebuggingActivity : ComponentActivity() {
 fun ScreenContent() {
     Log.i(LOG_TAG, "Inside ScreenContent composable")
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
         var color1 by remember {
             mutableStateOf(Color.White)
         }
         val color1Animated by animateColorAsState(
             targetValue = color1,
-            animationSpec = tween(durationMillis = 1000)
+            animationSpec = tween(durationMillis = 1000),
         )
         var color2 by remember {
             mutableStateOf(Color.White)
@@ -58,23 +57,26 @@ fun ScreenContent() {
             mutableStateOf(Color.White)
         }
         Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
 //                .background(color1Animated)
-                .background(color1)
+                    .background(color1),
         )
         Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .background(color2)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .background(color2),
         )
         Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
-                .background(color3)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .weight(1f)
+                    .background(color3),
         )
         Button(onClick = {
             when (Random.nextInt(3)) {

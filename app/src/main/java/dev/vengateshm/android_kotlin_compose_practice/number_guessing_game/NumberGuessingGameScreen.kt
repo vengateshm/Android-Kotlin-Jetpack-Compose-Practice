@@ -31,7 +31,7 @@ fun NumberGuessingGameScreen(viewModel: NumberGuessingViewModel) {
         gameState = gameState,
         onUserInputChanged = viewModel::onUserEnteredNumber,
         onSubmit = viewModel::submit,
-        onGuessAgain = viewModel::reset
+        onGuessAgain = viewModel::reset,
     )
 }
 
@@ -45,10 +45,12 @@ fun NumberGuessingGame(
     val focusRequester = remember { FocusRequester() }
     if (gameState.gameStatus == GameStatus.WON || gameState.gameStatus == GameStatus.LOST) {
         Box(
-            modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center,
         ) {
             WinOrLose(
-                message = gameState.responseMessageToUser, onGuessAgain = onGuessAgain
+                message = gameState.responseMessageToUser,
+                onGuessAgain = onGuessAgain,
             )
         }
     } else {
@@ -66,7 +68,7 @@ fun NumberGuessingGame(
             if (gameState.enteredNumberList.isNotEmpty()) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     gameState.enteredNumberList.forEach {
                         Text(text = "$it")
@@ -74,14 +76,16 @@ fun NumberGuessingGame(
                 }
             }
             TextField(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .focusRequester(focusRequester = focusRequester),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .focusRequester(focusRequester = focusRequester),
                 value = gameState.userInput,
                 onValueChange = { onUserInputChanged(it) },
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Number
-                )
+                keyboardOptions =
+                    KeyboardOptions(
+                        keyboardType = KeyboardType.Number,
+                    ),
             )
             Button(modifier = Modifier.fillMaxWidth(), onClick = {
                 onSubmit()
@@ -102,7 +106,8 @@ fun WinOrLose(
 ) {
     Column {
         Text(
-            text = message, fontSize = 32.sp
+            text = message,
+            fontSize = 32.sp,
         )
         Button(onClick = {
             onGuessAgain()

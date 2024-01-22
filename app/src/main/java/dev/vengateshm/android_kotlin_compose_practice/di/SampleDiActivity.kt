@@ -16,7 +16,6 @@ import dev.vengateshm.android_kotlin_compose_practice.ui.theme.AndroidKotlinComp
 
 @AndroidEntryPoint
 class SampleDiActivity : ComponentActivity() {
-
     private val TAG = "SampleDiActivity"
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,22 +23,25 @@ class SampleDiActivity : ComponentActivity() {
 
         setContent {
             AndroidKotlinComposePracticeTheme {
-                val factory = EntryPointAccessors
-                    .fromActivity(
-                        LocalContext.current as Activity,
-                        ViewModelFactoryProvider::class.java
-                    ).sampleViewModelProviderFactory()
+                val factory =
+                    EntryPointAccessors
+                        .fromActivity(
+                            LocalContext.current as Activity,
+                            ViewModelFactoryProvider::class.java,
+                        ).sampleViewModelProviderFactory()
                 Log.i(TAG, "FACTORY - $factory")
-                val viewModel: SampleViewModel = viewModel(
-                    factory =
-                    SampleViewModel.provideSampleViewModelFactory(factory, "Hello")
-                )
+                val viewModel: SampleViewModel =
+                    viewModel(
+                        factory =
+                            SampleViewModel.provideSampleViewModelFactory(factory, "Hello"),
+                    )
                 Log.i(TAG, "VIEWMODEL - $viewModel")
                 val count by viewModel.clickCount
                 Button(
                     onClick = {
                         viewModel.updateClickCount()
-                    }) {
+                    },
+                ) {
                     Text(text = "Click $count")
                 }
             }

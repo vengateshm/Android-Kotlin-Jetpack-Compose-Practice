@@ -8,7 +8,6 @@ class DefaultPaginator<Key, Item>(
     private inline val onError: suspend (Throwable?) -> Unit,
     private inline val onSuccess: suspend (items: List<Item>, newKey: Key) -> Unit,
 ) : Paginator<Key, Item> {
-
     private var currentKey = initialKey
     private var isRequestInProgress = false
 
@@ -18,11 +17,12 @@ class DefaultPaginator<Key, Item>(
         onLoadUpdated(true)
         val result = onRequest(currentKey)
         isRequestInProgress = false
-        val items = result.getOrElse {
-            onError(it)
-            onLoadUpdated(false)
-            return
-        }
+        val items =
+            result.getOrElse {
+                onError(it)
+                onLoadUpdated(false)
+                return
+            }
         currentKey = getNextKey(items)
         onSuccess(items, currentKey)
         onLoadUpdated(false)

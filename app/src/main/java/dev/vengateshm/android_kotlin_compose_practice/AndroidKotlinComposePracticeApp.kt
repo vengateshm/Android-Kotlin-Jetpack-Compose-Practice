@@ -18,24 +18,24 @@ import java.io.StringWriter
 import java.lang.Character.LINE_SEPARATOR
 import kotlin.system.exitProcess
 
-
 @HiltAndroidApp
 class AndroidKotlinComposePracticeApp : Application(), ImageLoaderFactory {
     override fun onCreate() {
         super.onCreate()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                "location_channel_id",
-                "Location updates",
-                NotificationManager.IMPORTANCE_LOW
-            )
+            val channel =
+                NotificationChannel(
+                    "location_channel_id",
+                    "Location updates",
+                    NotificationManager.IMPORTANCE_LOW,
+                )
             val notificationManager =
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
 
-        Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
+        Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
             handleUncaughtException(throwable)
         }
     }

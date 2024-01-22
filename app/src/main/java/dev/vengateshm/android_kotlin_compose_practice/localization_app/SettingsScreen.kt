@@ -32,26 +32,28 @@ fun SettingsScreen() {
     var canShowDialog by remember { mutableStateOf(false) }
     Column(modifier = Modifier.fillMaxSize()) {
         Text(
-            modifier = Modifier
-                .clickable {
-                    canShowDialog = true
-                }
-                .padding(16.dp),
-            text = stringResource(
-                id = R.string.change_language
-            ),
-            style = MaterialTheme.typography.body1
+            modifier =
+                Modifier
+                    .clickable {
+                        canShowDialog = true
+                    }
+                    .padding(16.dp),
+            text =
+                stringResource(
+                    id = R.string.change_language,
+                ),
+            style = MaterialTheme.typography.body1,
         )
     }
     if (canShowDialog) {
         LanguageChangeDialog(
             onLanguageSelected = { locale ->
-                //LocaleContextWrapper.wrap(context!!.baseContext, locale)
-                LocaleHelper.setLocale(context!!.baseContext,locale)
+                // LocaleContextWrapper.wrap(context!!.baseContext, locale)
+                LocaleHelper.setLocale(context!!.baseContext, locale)
             },
             onDismiss = {
                 canShowDialog = false
-            }
+            },
         )
     }
 }
@@ -59,39 +61,43 @@ fun SettingsScreen() {
 @Composable
 fun LanguageChangeDialog(
     onLanguageSelected: (Locale) -> Unit,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
 ) {
     val locales = remember { listOf(Locale("en"), Locale("fr")) }
     Dialog(
         onDismissRequest = { onDismiss() },
-        properties = DialogProperties(
-            dismissOnClickOutside = true,
-            dismissOnBackPress = true
-        )
+        properties =
+            DialogProperties(
+                dismissOnClickOutside = true,
+                dismissOnBackPress = true,
+            ),
     ) {
         Card(
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth()
-                .height(200.dp),
+            modifier =
+                Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth()
+                    .height(200.dp),
             elevation = 8.dp,
-            shape = RoundedCornerShape(16.dp)
+            shape = RoundedCornerShape(16.dp),
         ) {
             LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
+                modifier =
+                    Modifier
+                        .fillMaxSize(),
             ) {
                 items(locales) { locale ->
                     Text(
                         text = locale.displayLanguage,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clickable {
-                                onLanguageSelected(locale)
-                                onDismiss()
-                            }
-                            .padding(16.dp),
-                        style = MaterialTheme.typography.body1
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .clickable {
+                                    onLanguageSelected(locale)
+                                    onDismiss()
+                                }
+                                .padding(16.dp),
+                        style = MaterialTheme.typography.body1,
                     )
                 }
             }

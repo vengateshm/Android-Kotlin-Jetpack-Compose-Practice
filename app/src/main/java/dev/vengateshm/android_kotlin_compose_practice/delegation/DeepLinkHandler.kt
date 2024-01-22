@@ -8,7 +8,5 @@ interface DeepLinkHandler {
 
 class DeepLinkHandlerImpl : DeepLinkHandler {
     override fun handleDeepLink(intent: Intent?) {
-
     }
-
 }

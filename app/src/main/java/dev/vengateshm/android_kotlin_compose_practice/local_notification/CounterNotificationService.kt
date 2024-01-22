@@ -18,32 +18,35 @@ class CounterNotificationService(
         builder.setSmallIcon(R.drawable.ic_circle_notification)
 
         val intent = Intent(context, LocalNotificationActivity::class.java)
-        val pendingIntent = PendingIntent.getActivity(
-            context,
-            1,
-            intent,
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0
-        )
+        val pendingIntent =
+            PendingIntent.getActivity(
+                context,
+                1,
+                intent,
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0,
+            )
         builder.setContentIntent(pendingIntent)
 
         // Create the pending intents for the increment and decrement actions.
-        val incrementAction = PendingIntent.getBroadcast(
-            context,
-            1,
-            Intent(context, CounterNotificationReceiver::class.java).apply {
-                action = "increment"
-            },
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0
-        )
+        val incrementAction =
+            PendingIntent.getBroadcast(
+                context,
+                1,
+                Intent(context, CounterNotificationReceiver::class.java).apply {
+                    action = "increment"
+                },
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0,
+            )
 
-        val decrementAction = PendingIntent.getBroadcast(
-            context,
-            1,
-            Intent(context, CounterNotificationReceiver::class.java).apply {
-                action = "decrement"
-            },
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0
-        )
+        val decrementAction =
+            PendingIntent.getBroadcast(
+                context,
+                1,
+                Intent(context, CounterNotificationReceiver::class.java).apply {
+                    action = "decrement"
+                },
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE else 0,
+            )
 
         builder.addAction(R.drawable.ic_add, "Increment", incrementAction)
         builder.addAction(R.drawable.ic_remove, "Decrement", decrementAction)

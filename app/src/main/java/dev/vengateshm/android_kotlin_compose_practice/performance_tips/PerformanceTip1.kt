@@ -42,29 +42,31 @@ fun PerfTip1() {
     }
 }
 
-val reusableModifier = Modifier
-    .padding(bottom = 6.dp)
-    .fillMaxWidth()
-    .clip(CircleShape)
-    .onSizeChanged {
-        println("On size changed")
-        for (i: Int in 0..1000000) {
-            val x = (i * i)
-                .toDouble()
-                .pow(5.0)
-            val y = x + 1
+val reusableModifier =
+    Modifier
+        .padding(bottom = 6.dp)
+        .fillMaxWidth()
+        .clip(CircleShape)
+        .onSizeChanged {
+            println("On size changed")
+            for (i: Int in 0..1000000) {
+                val x =
+                    (i * i)
+                        .toDouble()
+                        .pow(5.0)
+                val y = x + 1
+            }
+            IntOffset(0, 0)
         }
-        IntOffset(0, 0)
-    }
 
 @Composable
 fun Name(list: List<String>) {
-    LazyColumn() {
+    LazyColumn {
         items(list) {
             Text(
                 text = it,
                 modifier = reusableModifier,
-                fontSize = 25.sp
+                fontSize = 25.sp,
             )
         }
     }

@@ -19,7 +19,7 @@ fun AlarmScreen() {
     val context = LocalContext.current
     Box(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Button(
             onClick = { setAlarm(context) },
@@ -32,25 +32,32 @@ fun AlarmScreen() {
 fun setAlarm(context: Context) {
     val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
     val intent = Intent(context, AlarmReceiver::class.java)
-    val pendingIntent = PendingIntent.getBroadcast(
-        context,
-        1,
-        intent,
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
-            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT else 0
-    )
+    val pendingIntent =
+        PendingIntent.getBroadcast(
+            context,
+            1,
+            intent,
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+            } else {
+                0
+            },
+        )
 
     val triggerAtMillis = System.currentTimeMillis() + 10000 // 10 seconds
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && alarmManager.canScheduleExactAlarms()) {
         alarmManager.setExactAndAllowWhileIdle(
-            AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent
+            AlarmManager.RTC_WAKEUP,
+            triggerAtMillis,
+            pendingIntent,
         )
     } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         alarmManager.setExactAndAllowWhileIdle(
-            AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent
+            AlarmManager.RTC_WAKEUP,
+            triggerAtMillis,
+            pendingIntent,
         )
     } else {
-
     }
 }

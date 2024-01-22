@@ -25,7 +25,7 @@ fun Service.startForegroundWithNotification(
                 channelName = channelName,
                 contentTitle = contentTitle,
                 contentText = contentText,
-                smallIcon = null
+                smallIcon = smallIcon
             )
         )
     }

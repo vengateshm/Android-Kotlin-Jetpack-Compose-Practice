@@ -10,7 +10,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class FunctionalProgrammingViewModel : ViewModel() {
-
     var result by mutableStateOf<NetworkOperation<List<String>>>(NetworkOperation.None())
 
     fun fetchData() {

@@ -14,8 +14,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.supervisorScope
 
 class CoroutinesCancellationActivity : ComponentActivity() {
+    val viewModel: CoroutineCancellationViewModel by viewModels()
 
-    val viewModel : CoroutineCancellationViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,17 +30,19 @@ class CoroutinesCancellationActivity : ComponentActivity() {
 
     private fun scenario6() {
         lifecycleScope.launch {
-            val job = launch {
-                try {
-                    delay(500L)
-                } catch (e: Exception) {
-                    // Catch Specific exception or rethrow
-                    if (e is CancellationException)
-                        throw e
-                    e.printStackTrace()
+            val job =
+                launch {
+                    try {
+                        delay(500L)
+                    } catch (e: Exception) {
+                        // Catch Specific exception or rethrow
+                        if (e is CancellationException) {
+                            throw e
+                        }
+                        e.printStackTrace()
+                    }
+                    println("S6. Coroutine 1 finished")
                 }
-                println("S6. Coroutine 1 finished")
-            }
             delay(300L)
             job.cancel()
         }
@@ -50,9 +52,10 @@ class CoroutinesCancellationActivity : ComponentActivity() {
         // Adding handler won't make app crash but other independent coroutines will not run
         // cancels whole scope
         // So to use supervisor job
-        val handler = CoroutineExceptionHandler { _, throwable ->
-            println("caught exception $throwable")
-        }
+        val handler =
+            CoroutineExceptionHandler { _, throwable ->
+                println("caught exception $throwable")
+            }
         CoroutineScope(Dispatchers.Main + handler).launch {
             supervisorScope {
                 launch {
@@ -69,9 +72,10 @@ class CoroutinesCancellationActivity : ComponentActivity() {
 
     private fun scenario4() {
         // Better way to use CoroutineExceptionHandler
-        val handler = CoroutineExceptionHandler { _, throwable ->
-            println("caught exception $throwable")
-        }
+        val handler =
+            CoroutineExceptionHandler { _, throwable ->
+                println("caught exception $throwable")
+            }
         lifecycleScope.launch(handler) {
             launch {
                 delay(2000)
@@ -130,12 +134,13 @@ class CoroutinesCancellationActivity : ComponentActivity() {
     private fun scenario3() {
         // Async block propagate exception on await call
         val strDeferred =
-            lifecycleScope./*launch*/async {// Since its launch exception propagated and thrown immediately, replace with async for no exception
-                val result = async {
-                    delay(500L)
-                    throw Exception("error")
-                    "Hello!"
-                }
+            lifecycleScope./*launch*/async { // Since its launch exception propagated and thrown immediately, replace with async for no exception
+                val result =
+                    async {
+                        delay(500L)
+                        throw Exception("error")
+                        "Hello!"
+                    }
                 println(result.await())
             }
 

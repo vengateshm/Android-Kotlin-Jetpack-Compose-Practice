@@ -19,13 +19,14 @@ class CustomLayoutActivity : ComponentActivity() {
 
         setContent {
             MaterialTheme {
-                FlowRow() {
+                FlowRow {
                     repeat(25) {
                         Box(
-                            modifier = Modifier
-                                .width(Random.nextInt(50, 200).dp)
-                                .height(100.dp)
-                                .background(color = Color(Random.nextLong(0XFFFFFFFF))),
+                            modifier =
+                                Modifier
+                                    .width(Random.nextInt(50, 200).dp)
+                                    .height(100.dp)
+                                    .background(color = Color(Random.nextLong(0XFFFFFFFF))),
                         )
                     }
                 }

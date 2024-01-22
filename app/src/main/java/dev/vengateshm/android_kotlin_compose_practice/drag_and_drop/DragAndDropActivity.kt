@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 
 class DragAndDropActivity : ComponentActivity() {
-
     private val viewModel = MainViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {

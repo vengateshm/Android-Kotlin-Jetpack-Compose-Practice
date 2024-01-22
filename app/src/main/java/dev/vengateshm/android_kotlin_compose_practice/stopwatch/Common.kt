@@ -1,6 +1,10 @@
 package dev.vengateshm.android_kotlin_compose_practice.stopwatch
 
-fun formatTime(hours: String, minutes: String, seconds: String): String {
+fun formatTime(
+    hours: String,
+    minutes: String,
+    seconds: String,
+): String {
     return "$hours:$minutes:$seconds"
 }
 

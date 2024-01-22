@@ -7,19 +7,22 @@ import dev.vengateshm.android_kotlin_compose_practice.ThemeStore
 import java.io.InputStream
 import java.io.OutputStream
 
-object ThemeStoreSerializer : Serializer<ThemeStore> {
-    override val defaultValue: ThemeStore
-        get() = ThemeStore.getDefaultInstance()
+object ThemeStoreSerializer : Serializer<dev.vengateshm.android_kotlin_compose_practice.ThemeStore> {
+    override val defaultValue: dev.vengateshm.android_kotlin_compose_practice.ThemeStore
+        get() = dev.vengateshm.android_kotlin_compose_practice.ThemeStore.getDefaultInstance()
 
-    override suspend fun readFrom(input: InputStream): ThemeStore {
+    override suspend fun readFrom(input: InputStream): dev.vengateshm.android_kotlin_compose_practice.ThemeStore {
         try {
-            return ThemeStore.parseFrom(input)
+            return dev.vengateshm.android_kotlin_compose_practice.ThemeStore.parseFrom(input)
         } catch (exp: InvalidProtocolBufferException) {
             throw CorruptionException("Cannot read protobuf", exp)
         }
     }
 
-    override suspend fun writeTo(t: ThemeStore, output: OutputStream) {
+    override suspend fun writeTo(
+        t: dev.vengateshm.android_kotlin_compose_practice.ThemeStore,
+        output: OutputStream,
+    ) {
         t.writeTo(output)
     }
 }

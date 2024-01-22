@@ -29,7 +29,8 @@ fun NestedLazyColumn() {
                     Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
                 })
             }
-        })
+        },
+    )
 }
 
 @Composable
@@ -40,20 +41,23 @@ fun NestedLazyColumnListItem(
     Text(
         text = nestedLazyColumnData.headerName,
         style = TextStyle(color = Color.Black, fontSize = 20.sp),
-        modifier = Modifier.padding(8.dp)
+        modifier = Modifier.padding(8.dp),
     )
     FlowColumn {
         nestedLazyColumnData.list.forEach { data ->
             Text(
                 text = data.toString(),
-                style = TextStyle(
-                    color = Color.Blue,
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold
-                ),
-                modifier = Modifier
-                    .padding(8.dp)
-                    .clickable { onItemClick(data.toString()) })
+                style =
+                    TextStyle(
+                        color = Color.Blue,
+                        fontSize = 18.sp,
+                        fontWeight = FontWeight.Bold,
+                    ),
+                modifier =
+                    Modifier
+                        .padding(8.dp)
+                        .clickable { onItemClick(data.toString()) },
+            )
         }
     }
 }

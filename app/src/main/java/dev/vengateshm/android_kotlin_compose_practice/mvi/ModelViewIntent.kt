@@ -45,8 +45,11 @@ sealed class HomeScreenIntent {
 // State
 sealed class HomeScreenState {
     data object Idle : HomeScreenState()
+
     data object Loading : HomeScreenState()
+
     data class AndroidStudioVersions(val versions: List<AndroidStudioVersion>) : HomeScreenState()
+
     data class Error(val error: String) : HomeScreenState()
 }
 
@@ -63,7 +66,7 @@ class AndroidStudioVersionsRepository {
             AndroidStudioVersion("Flamingo"),
             AndroidStudioVersion("Giraffe"),
             AndroidStudioVersion("Hedge Hog"),
-            AndroidStudioVersion("Iguana")
+            AndroidStudioVersion("Iguana"),
         )
     }
 }
@@ -73,7 +76,6 @@ class HomeScreenViewModel(
     private val repository: AndroidStudioVersionsRepository =
         AndroidStudioVersionsRepository(),
 ) : ViewModel() {
-
     private val userIntent = Channel<HomeScreenIntent>(capacity = Channel.UNLIMITED)
     val state = mutableStateOf<HomeScreenState>(HomeScreenState.Idle)
 
@@ -101,18 +103,18 @@ class HomeScreenViewModel(
     private fun fetchVersions() {
         viewModelScope.launch {
             state.value = HomeScreenState.Loading
-            state.value = try {
-                HomeScreenState.AndroidStudioVersions(repository.getVersions())
-            } catch (e: Exception) {
-                HomeScreenState.Error(e.localizedMessage ?: "Error fetching versions")
-            }
+            state.value =
+                try {
+                    HomeScreenState.AndroidStudioVersions(repository.getVersions())
+                } catch (e: Exception) {
+                    HomeScreenState.Error(e.localizedMessage ?: "Error fetching versions")
+                }
         }
     }
 }
 
 // ModelViewIntentSampleActivity
 class ModelViewIntentSampleActivity : ComponentActivity() {
-
     private val viewModel: HomeScreenViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -131,28 +133,33 @@ class ModelViewIntentSampleActivity : ComponentActivity() {
 @Composable
 fun HomeScreen(viewModel: HomeScreenViewModel) {
     when (val state = viewModel.state.value) {
-        is HomeScreenState.Idle -> IdleUI(onButtonClick = {
-            viewModel.sendIntent(HomeScreenIntent.FetchVersions)
-        })
+        is HomeScreenState.Idle ->
+            IdleUI(onButtonClick = {
+                viewModel.sendIntent(HomeScreenIntent.FetchVersions)
+            })
 
         is HomeScreenState.Loading -> LoadingUI()
         is HomeScreenState.AndroidStudioVersions -> VersionsUI(state.versions)
-        is HomeScreenState.Error -> IdleUI(onButtonClick = {
-            viewModel.sendIntent(HomeScreenIntent.FetchVersions)
-        }, state.error)
+        is HomeScreenState.Error ->
+            IdleUI(onButtonClick = {
+                viewModel.sendIntent(HomeScreenIntent.FetchVersions)
+            }, state.error)
     }
 }
 
 // Idle UI
 @Composable
-fun IdleUI(onButtonClick: () -> Unit, error: String? = null) {
+fun IdleUI(
+    onButtonClick: () -> Unit,
+    error: String? = null,
+) {
     Box(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Column(
             modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             if (error != null) {
                 Text(text = error)
@@ -169,7 +176,7 @@ fun IdleUI(onButtonClick: () -> Unit, error: String? = null) {
 fun LoadingUI() {
     Box(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         CircularProgressIndicator()
     }
@@ -181,21 +188,23 @@ fun VersionsUI(versions: List<AndroidStudioVersion>) {
     LazyColumn(
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
     ) {
         items(versions) { version ->
             Card(
                 modifier = Modifier.fillMaxWidth(),
                 shape = CutCornerShape(topStart = 20.dp, bottomEnd = 20.dp),
                 backgroundColor = Color(0xFFD0E6F1),
-                elevation = 4.dp
+                elevation = 4.dp,
             ) {
                 Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    text = version.name, fontSize = 18.sp,
-                    color = Color(0xFF455A64)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                    text = version.name,
+                    fontSize = 18.sp,
+                    color = Color(0xFF455A64),
                 )
             }
         }

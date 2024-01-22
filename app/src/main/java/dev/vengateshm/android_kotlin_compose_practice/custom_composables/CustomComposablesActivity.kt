@@ -27,7 +27,7 @@ class CustomComposablesActivity : ComponentActivity() {
             MaterialTheme {
                 Box(
                     modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
 //                    Box(
 //                        modifier = Modifier
@@ -54,17 +54,18 @@ fun HexagonProgress() {
     var isScanning by remember { mutableStateOf(false) }
     Box(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         HexagonSection(
             isScanning = isScanning,
             onScanButtonClick = { isScanning = !isScanning },
             color = Color.Magenta,
             backgroundColor = Color.White,
-            modifier = Modifier
-                .padding(15.dp)
-                .fillMaxWidth(0.15f)
-                .aspectRatio(6 / 7f)
+            modifier =
+                Modifier
+                    .padding(15.dp)
+                    .fillMaxWidth(0.15f)
+                    .aspectRatio(6 / 7f),
         )
     }
 }

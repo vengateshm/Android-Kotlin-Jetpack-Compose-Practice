@@ -34,10 +34,10 @@ fun TextFieldV1(
     keyboardActions: KeyboardActions,
     readOnly: Boolean = false,
     height: Dp = 40.dp,
-    trailingIcon: ImageVector? = null
+    trailingIcon: ImageVector? = null,
 ) {
     Column(
-        modifier = modifier
+        modifier = modifier,
     ) {
         Text(text = label)
         Spacer(modifier = Modifier.height(8.dp))
@@ -46,7 +46,7 @@ fun TextFieldV1(
             onValueChange = onValueChange,
             keyboardOptions = keyboardOptions,
             keyboardActions = keyboardActions,
-            readOnly = readOnly
+            readOnly = readOnly,
         ) {
             Row(
                 Modifier
@@ -54,20 +54,23 @@ fun TextFieldV1(
                     .clip(RoundedCornerShape(10.dp))
                     .height(height)
                     .background(color = Color(0XFFEFEEEE)),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Box(
-                    modifier = Modifier.weight(1f)
-                        .padding(horizontal = 10.dp),
-                    contentAlignment = Alignment.CenterStart
+                    modifier =
+                        Modifier
+                            .weight(1f)
+                            .padding(horizontal = 10.dp),
+                    contentAlignment = Alignment.CenterStart,
                 ) {
                     it.invoke()
                 }
                 trailingIcon?.let {
                     IconButton(onClick = { /*TODO*/ }) {
                         Icon(
-                            imageVector = it, contentDescription = null,
-                            tint = Color(0XFF828282)
+                            imageVector = it,
+                            contentDescription = null,
+                            tint = Color(0XFF828282),
                         )
                     }
                 }

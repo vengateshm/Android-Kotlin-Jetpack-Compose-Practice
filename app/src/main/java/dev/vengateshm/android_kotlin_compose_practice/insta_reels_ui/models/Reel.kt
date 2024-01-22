@@ -12,5 +12,5 @@ data class Reel(
     val comment: String,
     val commentsCount: Int,
 ) {
-    fun getVideoUri() = Uri.parse("asset:///${video}")
+    fun getVideoUri() = Uri.parse("asset:///$video")
 }

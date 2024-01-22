@@ -10,28 +10,34 @@ import androidx.core.app.NotificationCompat
 import dev.vengateshm.android_kotlin_compose_practice.R
 
 class AlarmReceiver : BroadcastReceiver() {
-    override fun onReceive(context: Context, intent: Intent) {
-        val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE)
+    override fun onReceive(
+        context: Context,
+        intent: Intent,
+    ) {
+        val notificationManager =
+            context.getSystemService(Context.NOTIFICATION_SERVICE)
 
                 as NotificationManager
         createNotificationChannel(notificationManager)
 
-        val notification = NotificationCompat.Builder(context, "alarm_channel")
-            .setContentTitle("Alarm!")
-            .setContentText("Alarm set.")
-            .setSmallIcon(R.drawable.baseline_alarm_24)
-            .build()
+        val notification =
+            NotificationCompat.Builder(context, "alarm_channel")
+                .setContentTitle("Alarm!")
+                .setContentText("Alarm set.")
+                .setSmallIcon(R.drawable.baseline_alarm_24)
+                .build()
 
         notificationManager.notify(1, notification)
     }
 
     private fun createNotificationChannel(notificationManager: NotificationManager) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                "alarm_channel",
-                "Alarm Channel",
-                NotificationManager.IMPORTANCE_HIGH
-            )
+            val channel =
+                NotificationChannel(
+                    "alarm_channel",
+                    "Alarm Channel",
+                    NotificationManager.IMPORTANCE_HIGH,
+                )
             notificationManager.createNotificationChannel(channel)
         }
     }

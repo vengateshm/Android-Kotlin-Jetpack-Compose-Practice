@@ -11,7 +11,6 @@ import dev.vengateshm.android_kotlin_compose_practice.pagination.repository.User
 @InstallIn(SingletonComponent::class)
 @Module
 object AppModule {
-
     @Provides
     fun provideUsersApi(): UserApi = UserApi()
 

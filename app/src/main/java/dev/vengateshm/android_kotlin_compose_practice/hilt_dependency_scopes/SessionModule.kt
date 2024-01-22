@@ -9,7 +9,6 @@ import dagger.hilt.android.scopes.ViewModelScoped
 @Module
 @InstallIn(ViewModelComponent::class)
 object SessionModule {
-
     @Provides
     @ViewModelScoped
     fun provideSessionTimer(): SessionTimer {

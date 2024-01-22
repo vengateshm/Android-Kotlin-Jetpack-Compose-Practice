@@ -13,20 +13,23 @@ import androidx.constraintlayout.compose.ConstraintLayout
 @Composable
 fun GuidelineExample() {
     ConstraintLayout(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = Color.White)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(color = Color.White),
     ) {
         val gTop = createGuidelineFromTop(fraction = 0.5f)
         val button = createRef()
 
         Button(
-            modifier = Modifier.constrainAs(button) {
-                start.linkTo(parent.start)
-                top.linkTo(gTop)
-                end.linkTo(parent.end)
-            },
-            onClick = { }) {
+            modifier =
+                Modifier.constrainAs(button) {
+                    start.linkTo(parent.start)
+                    top.linkTo(gTop)
+                    end.linkTo(parent.end)
+                },
+            onClick = { },
+        ) {
             Text(text = "I am at 50% of the screen height")
         }
     }

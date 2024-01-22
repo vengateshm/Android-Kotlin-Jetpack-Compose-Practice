@@ -1,6 +1,10 @@
 package dev.vengateshm.android_kotlin_compose_practice.maps_spot_finder.data
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 @Dao

@@ -25,17 +25,18 @@ fun RgbSelector(
 ) {
     Column(
         modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Box(
-            modifier = Modifier
-                .size(100.dp)
-                .background(color)
+            modifier =
+                Modifier
+                    .size(100.dp)
+                    .background(color),
         )
         Spacer(modifier = Modifier.height(16.dp))
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
+            horizontalArrangement = Arrangement.SpaceEvenly,
         ) {
             Button(onClick = {
                 onColorClick(Color.Red)

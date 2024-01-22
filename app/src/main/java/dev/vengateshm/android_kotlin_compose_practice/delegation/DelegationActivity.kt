@@ -6,7 +6,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import dev.vengateshm.android_kotlin_compose_practice.ui.theme.ProductSansFontTheme
 
-class DelegationActivity : ComponentActivity(), AnalyticsLogger by AnalyticsLoggerImpl(),
+class DelegationActivity :
+    ComponentActivity(),
+    AnalyticsLogger by AnalyticsLoggerImpl(),
     DeepLinkHandler by DeepLinkHandlerImpl() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -15,7 +17,6 @@ class DelegationActivity : ComponentActivity(), AnalyticsLogger by AnalyticsLogg
 
         setContent {
             ProductSansFontTheme {
-
             }
         }
     }

@@ -17,9 +17,10 @@ import kotlin.math.roundToInt
 
 @Composable
 fun PerfTip3() {
-    var count = remember {
-        mutableStateOf(0)
-    }
+    var count =
+        remember {
+            mutableStateOf(0)
+        }
     LaunchedEffect(key1 = true) {
         for (i: Int in 0..10000) {
             delay(5)
@@ -29,7 +30,7 @@ fun PerfTip3() {
 
     Column(
         modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         ProgressComposable(progress = count)
     }
@@ -37,12 +38,13 @@ fun PerfTip3() {
 
 @Composable
 fun ProgressComposable(progress: State<Int>) {
-    val progressState = remember {
-        derivedStateOf {
-            // Emits if value different from last one
-            (progress.value / 100f).roundToInt()
+    val progressState =
+        remember {
+            derivedStateOf {
+                // Emits if value different from last one
+                (progress.value / 100f).roundToInt()
+            }
         }
-    }
     println("Progress Composition: ${progressState.value}")
     Text(text = "Progress: ${progressState.value} %", fontSize = 25.sp)
 }

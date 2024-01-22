@@ -16,21 +16,24 @@ import dev.vengateshm.android_kotlin_compose_practice.ui.theme.AndroidKotlinComp
 
 @AndroidEntryPoint
 class StopWatchActivity : ComponentActivity() {
-
     private var isBound by mutableStateOf(false)
     private lateinit var stopWatchService: StopWatchService
 
-    private val connection = object : ServiceConnection {
-        override fun onServiceConnected(className: ComponentName?, binder: IBinder?) {
-            val ser = binder as StopWatchService.StopWatchBinder
-            stopWatchService = binder.getService()
-            isBound = true
-        }
+    private val connection =
+        object : ServiceConnection {
+            override fun onServiceConnected(
+                className: ComponentName?,
+                binder: IBinder?,
+            ) {
+                val ser = binder as StopWatchService.StopWatchBinder
+                stopWatchService = binder.getService()
+                isBound = true
+            }
 
-        override fun onServiceDisconnected(p0: ComponentName?) {
-            isBound = false
+            override fun onServiceDisconnected(p0: ComponentName?) {
+                isBound = false
+            }
         }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

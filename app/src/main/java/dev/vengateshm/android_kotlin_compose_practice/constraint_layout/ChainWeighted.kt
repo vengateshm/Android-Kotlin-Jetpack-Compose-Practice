@@ -16,49 +16,61 @@ import androidx.constraintlayout.compose.Dimension
 @Composable
 fun ChainWeighted() {
     ConstraintLayout(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = Color.White)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(color = Color.White),
     ) {
         val (box1, box2, box3) = createRefs()
 
-        Box(modifier = Modifier
-            .size(0.dp)
-            .background(color = Color.Cyan)
-            .constrainAs(box1) {
-                start.linkTo(parent.start)
-                top.linkTo(parent.top)
-                bottom.linkTo(parent.bottom)
-                width = Dimension.fillToConstraints
-                height = Dimension.fillToConstraints
-                horizontalChainWeight = 1f
-            })
-        Box(modifier = Modifier
-            .size(0.dp)
-            .background(color = Color.Black)
-            .constrainAs(box2) {
-                start.linkTo(parent.start)
-                top.linkTo(parent.top)
-                bottom.linkTo(parent.bottom)
-                width = Dimension.fillToConstraints
-                height = Dimension.fillToConstraints
-                horizontalChainWeight = 2f
-            })
-        Box(modifier = Modifier
-            .size(0.dp)
-            .background(color = Color.Magenta)
-            .constrainAs(box3) {
-                start.linkTo(parent.start)
-                top.linkTo(parent.top)
-                bottom.linkTo(parent.bottom)
-                width = Dimension.fillToConstraints
-                height = Dimension.fillToConstraints
-                horizontalChainWeight = 1f
-            })
+        Box(
+            modifier =
+                Modifier
+                    .size(0.dp)
+                    .background(color = Color.Cyan)
+                    .constrainAs(box1) {
+                        start.linkTo(parent.start)
+                        top.linkTo(parent.top)
+                        bottom.linkTo(parent.bottom)
+                        width = Dimension.fillToConstraints
+                        height = Dimension.fillToConstraints
+                        horizontalChainWeight = 1f
+                    },
+        )
+        Box(
+            modifier =
+                Modifier
+                    .size(0.dp)
+                    .background(color = Color.Black)
+                    .constrainAs(box2) {
+                        start.linkTo(parent.start)
+                        top.linkTo(parent.top)
+                        bottom.linkTo(parent.bottom)
+                        width = Dimension.fillToConstraints
+                        height = Dimension.fillToConstraints
+                        horizontalChainWeight = 2f
+                    },
+        )
+        Box(
+            modifier =
+                Modifier
+                    .size(0.dp)
+                    .background(color = Color.Magenta)
+                    .constrainAs(box3) {
+                        start.linkTo(parent.start)
+                        top.linkTo(parent.top)
+                        bottom.linkTo(parent.bottom)
+                        width = Dimension.fillToConstraints
+                        height = Dimension.fillToConstraints
+                        horizontalChainWeight = 1f
+                    },
+        )
 
         createHorizontalChain(
-            box1, box2, box3,
-            chainStyle = ChainStyle.SpreadInside
+            box1,
+            box2,
+            box3,
+            chainStyle = ChainStyle.SpreadInside,
         )
         /*createVerticalChain(
             box1, box2, box3,

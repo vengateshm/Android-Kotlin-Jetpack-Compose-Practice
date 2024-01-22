@@ -20,7 +20,7 @@ class NestedNavigationActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = AppScreen.Onboarding.name
+                    startDestination = AppScreen.Onboarding.name,
                 ) {
                     composable(route = AppScreen.Home.name) {
                         HomeScreen(navController = navController)
@@ -31,6 +31,3 @@ class NestedNavigationActivity : ComponentActivity() {
         }
     }
 }
-
-
-

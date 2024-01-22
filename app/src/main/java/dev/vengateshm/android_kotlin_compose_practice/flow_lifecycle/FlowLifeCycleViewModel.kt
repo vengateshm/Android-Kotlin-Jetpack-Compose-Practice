@@ -14,24 +14,26 @@ private const val KEY = "kCounter"
 
 class FlowLifeCycleViewModel(private val savedStateHandle: SavedStateHandle) : ViewModel() {
     var value = savedStateHandle[KEY] ?: 0 // Handle process death
-    val counter = flow {
-        while (true) {
-            emit(value++)
-            savedStateHandle[KEY] = value
-            Log.i("COUNTER_VALUE", "$value")
-            delay(1000L)
+    val counter =
+        flow {
+            while (true) {
+                emit(value++)
+                savedStateHandle[KEY] = value
+                Log.i("COUNTER_VALUE", "$value")
+                delay(1000L)
+            }
         }
-    }
 
     //    val stateFlowVariable = savedStateHandle.getStateFlow(KEY, 0)// Hot so if activity / fragment goes to pause state it will continue emitting
-    val stateFlowVariable = savedStateHandle.getStateFlow(KEY, 0)
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 0),
-            // 0 stops immediately, prevents emitting if activity, fragment onPause
-            // 5000 screen rotation
-            initialValue = 0
-        )
+    val stateFlowVariable =
+        savedStateHandle.getStateFlow(KEY, 0)
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 0),
+                // 0 stops immediately, prevents emitting if activity, fragment onPause
+                // 5000 screen rotation
+                initialValue = 0,
+            )
 
     init {
         viewModelScope.launch {

@@ -24,24 +24,26 @@ fun LocalizationApp() {
     val navController = rememberNavController()
     val navBackStackEntryState by navController.currentBackStackEntryAsState()
 
-    val items = remember {
-        listOf(
-            BottomNavItemContent(
-                name = Screen.List.name,
-                icon = Icons.Default.List
-            ),
-            BottomNavItemContent(
-                name = Screen.Settings.name,
-                icon = Icons.Default.Settings
+    val items =
+        remember {
+            listOf(
+                BottomNavItemContent(
+                    name = Screen.List.name,
+                    icon = Icons.Default.List,
+                ),
+                BottomNavItemContent(
+                    name = Screen.Settings.name,
+                    icon = Icons.Default.Settings,
+                ),
             )
-        )
-    }
+        }
 
     Scaffold(
         bottomBar = {
             BottomNavigation {
                 items.forEach { item ->
-                    val isSelected = item.name.lowercase() ==
+                    val isSelected =
+                        item.name.lowercase() ==
                             navBackStackEntryState?.destination?.route
                     BottomNavigationItem(
                         selected = isSelected,
@@ -57,17 +59,18 @@ fun LocalizationApp() {
                         icon = {
                             Icon(
                                 imageVector = item.icon,
-                                contentDescription = "${item.name} icon"
+                                contentDescription = "${item.name} icon",
                             )
-                        })
+                        },
+                    )
                 }
             }
-        }
+        },
     ) { paddingValues ->
         NavHost(
             modifier = Modifier.padding(paddingValues),
             navController = navController,
-            startDestination = Screen.List.name
+            startDestination = Screen.List.name,
         ) {
             composable(Screen.List.name) {
                 ListScreen()
@@ -81,6 +84,7 @@ fun LocalizationApp() {
 
 sealed class Screen(val name: String) {
     data object List : Screen("list")
+
     data object Settings : Screen("settings")
 }
 

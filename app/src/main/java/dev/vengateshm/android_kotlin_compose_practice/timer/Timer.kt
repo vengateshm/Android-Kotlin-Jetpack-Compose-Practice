@@ -53,7 +53,7 @@ fun Timer(
     }
     LaunchedEffect(key1 = currentTime, key2 = isTimerRunning) {
         if (currentTime > 0 && isTimerRunning) {
-            //delay(100L)
+            // delay(100L)
             currentTime -= 100L
             value = currentTime / totalTime.toFloat()
         } /*else if (currentTime == 0L) {
@@ -63,10 +63,11 @@ fun Timer(
     }
     Box(
         contentAlignment = Alignment.Center,
-        modifier = modifier
-            .onSizeChanged {
-                size = it
-            }
+        modifier =
+            modifier
+                .onSizeChanged {
+                    size = it
+                },
     ) {
         Canvas(modifier = modifier) {
             drawArc(
@@ -75,7 +76,7 @@ fun Timer(
                 sweepAngle = 250f,
                 useCenter = false,
                 size = Size(size.width.toFloat(), size.height.toFloat()),
-                style = Stroke(strokeWidth.toPx(), cap = StrokeCap.Round)
+                style = Stroke(strokeWidth.toPx(), cap = StrokeCap.Round),
             )
             drawArc(
                 color = activeBarColor,
@@ -83,7 +84,7 @@ fun Timer(
                 sweepAngle = 250f * value,
                 useCenter = false,
                 size = Size(size.width.toFloat(), size.height.toFloat()),
-                style = Stroke(strokeWidth.toPx(), cap = StrokeCap.Round)
+                style = Stroke(strokeWidth.toPx(), cap = StrokeCap.Round),
             )
             val center = Offset(size.width / 2f, size.height / 2f)
             val beta = (250f * value + 145f) * (PI / 180f).toFloat()
@@ -95,7 +96,7 @@ fun Timer(
                 pointMode = PointMode.Points,
                 color = handleColor,
                 strokeWidth = (strokeWidth * 3f).toPx(),
-                cap = StrokeCap.Round
+                cap = StrokeCap.Round,
             )
         }
         Text(
@@ -113,18 +114,25 @@ fun Timer(
                 }
             },
             modifier = Modifier.align(Alignment.BottomCenter),
-            colors = ButtonDefaults.buttonColors(
-                backgroundColor = if (!isTimerRunning || currentTime <= 0L) {
-                    Color.Green
-                } else {
-                    Color.Red
-                }
-            )
+            colors =
+                ButtonDefaults.buttonColors(
+                    backgroundColor =
+                        if (!isTimerRunning || currentTime <= 0L) {
+                            Color.Green
+                        } else {
+                            Color.Red
+                        },
+                ),
         ) {
             Text(
-                text = if (isTimerRunning && currentTime >= 0L) "Stop"
-                else if (!isTimerRunning && currentTime >= 0L) "Start"
-                else "Restart"
+                text =
+                    if (isTimerRunning && currentTime >= 0L) {
+                        "Stop"
+                    } else if (!isTimerRunning && currentTime >= 0L) {
+                        "Start"
+                    } else {
+                        "Restart"
+                    },
             )
         }
     }

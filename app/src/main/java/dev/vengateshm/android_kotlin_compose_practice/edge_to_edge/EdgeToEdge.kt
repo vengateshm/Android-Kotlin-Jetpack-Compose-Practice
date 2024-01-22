@@ -38,11 +38,12 @@ fun EdgeToEdge() {
         activity.enableEdgeToEdge(
             SystemBarStyle.light(
                 Color.parseColor("#FFF39BA1"),
-                Color.parseColor("#FFF82B39")
-            ), SystemBarStyle.light(
+                Color.parseColor("#FFF82B39"),
+            ),
+            SystemBarStyle.light(
                 Color.parseColor("#FFF39BA1"),
-                Color.parseColor("#FFF82B39")
-            )
+                Color.parseColor("#FFF82B39"),
+            ),
         )
         delay(1000L)
         padSafely = true
@@ -50,30 +51,38 @@ fun EdgeToEdge() {
 
     Scaffold {
         Column(
-            modifier = Modifier
-                .padding(top = it.calculateTopPadding())
-                .padding(bottom = it.calculateBottomPadding())
-                .safePadModifier(padSafely)
-                .fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally
+            modifier =
+                Modifier
+                    .padding(top = it.calculateTopPadding())
+                    .padding(bottom = it.calculateBottomPadding())
+                    .safePadModifier(padSafely)
+                    .fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
-                text = "Header", fontSize = 24.sp
+                text = "Header",
+                fontSize = 24.sp,
             )
             Spacer(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(weight = 1f)
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .weight(weight = 1f),
             )
             Text(
-                text = "Footer", fontSize = 24.sp
+                text = "Footer",
+                fontSize = 24.sp,
             )
         }
     }
 }
 
 fun Modifier.safePadModifier(isSafe: Boolean): Modifier {
-    return if (isSafe) this
-        .navigationBarsPadding()
-        .statusBarsPadding()
-    else this
+    return if (isSafe) {
+        this
+            .navigationBarsPadding()
+            .statusBarsPadding()
+    } else {
+        this
+    }
 }

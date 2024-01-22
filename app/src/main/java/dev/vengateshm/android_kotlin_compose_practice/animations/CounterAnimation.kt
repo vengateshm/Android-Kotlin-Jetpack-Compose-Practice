@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.sp
 fun CounterAnimation() {
     Box(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         var count by remember { mutableStateOf(0) }
         AnimatedContent(
@@ -41,24 +41,25 @@ fun CounterAnimation() {
                 println("target state $targetState")
                 if (targetState > initialState) {
                     slideInVertically(initialOffsetY = { it }) + fadeIn() with
-                            slideOutVertically(targetOffsetY = { -it }) + fadeOut()
+                        slideOutVertically(targetOffsetY = { -it }) + fadeOut()
                 } else {
                     slideInVertically(initialOffsetY = { -it }) + fadeIn() with
-                            slideOutVertically(targetOffsetY = { it }) + fadeOut()
+                        slideOutVertically(targetOffsetY = { it }) + fadeOut()
                 }.using(SizeTransform(clip = false))
-            }
+            },
         ) { targetCount ->
             Text(
                 text = "$targetCount",
-                fontSize = 150.sp
+                fontSize = 150.sp,
             )
         }
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(50.dp)
-                .align(Alignment.BottomCenter),
-            horizontalArrangement = Arrangement.SpaceAround
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(50.dp)
+                    .align(Alignment.BottomCenter),
+            horizontalArrangement = Arrangement.SpaceAround,
         ) {
             Button(onClick = { count++ }) {
                 Text(text = "+")

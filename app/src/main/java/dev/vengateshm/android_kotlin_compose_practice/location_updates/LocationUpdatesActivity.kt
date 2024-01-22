@@ -28,7 +28,7 @@ class LocationUpdatesActivity : ComponentActivity() {
                 Manifest.permission.ACCESS_COARSE_LOCATION,
                 Manifest.permission.ACCESS_FINE_LOCATION,
             ),
-            0
+            0,
         )
 
         setContent {
@@ -36,7 +36,7 @@ class LocationUpdatesActivity : ComponentActivity() {
                 Column(
                     modifier = Modifier.fillMaxSize(),
                     verticalArrangement = Arrangement.Center,
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     Button(
                         onClick = {
@@ -44,11 +44,12 @@ class LocationUpdatesActivity : ComponentActivity() {
                                 action = LocationService.ACTION_START
                                 startService(this)
                             }
-                        }) {
+                        },
+                    ) {
                         Text(text = "START")
                     }
                     Spacer(
-                        modifier = Modifier.height(16.dp)
+                        modifier = Modifier.height(16.dp),
                     )
                     Button(
                         onClick = {
@@ -56,7 +57,8 @@ class LocationUpdatesActivity : ComponentActivity() {
                                 action = LocationService.ACTION_STOP
                                 startService(this)
                             }
-                        }) {
+                        },
+                    ) {
                         Text(text = "STOP")
                     }
                 }

@@ -38,15 +38,16 @@ fun BannerAd() {
         AndroidView(
             modifier = Modifier.fillMaxWidth(),
             factory = { context ->
-                val adView = AdManagerAdView(context)
-                    .apply {
-                        setAdSize(AdSize.BANNER)
-                        adUnitId = "/6499/example/banner"
-                    }
+                val adView =
+                    AdManagerAdView(context)
+                        .apply {
+                            setAdSize(AdSize.BANNER)
+                            adUnitId = "/6499/example/banner"
+                        }
                 val adRequest = AdManagerAdRequest.Builder().build()
                 adView.loadAd(adRequest)
                 adView
-            }
+            },
         )
     }
 }

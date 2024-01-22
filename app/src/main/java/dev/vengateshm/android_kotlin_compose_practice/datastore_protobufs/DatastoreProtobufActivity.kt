@@ -29,13 +29,12 @@ import dev.vengateshm.android_kotlin_compose_practice.ui.theme.AndroidKotlinComp
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-val Context.protoDatastore: DataStore<ThemeStore> by dataStore(
+val Context.protoDatastore: DataStore<dev.vengateshm.android_kotlin_compose_practice.ThemeStore> by dataStore(
     fileName = "theme_store.pb",
-    serializer = ThemeStoreSerializer
+    serializer = ThemeStoreSerializer,
 )
 
 class DatastoreProtobufActivity : ComponentActivity() {
-
     private lateinit var repo: ProtoDataStoreRepo
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +45,7 @@ class DatastoreProtobufActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    color = MaterialTheme.colors.background,
                 ) {
                     ThemedScreen(repo)
                 }
@@ -74,24 +73,29 @@ fun ThemedScreen(repo: ProtoDataStoreRepo) {
 }
 
 @Composable
-fun ThemedComponent(isDark: Boolean, onChangeTheme: (Boolean) -> Unit) {
+fun ThemedComponent(
+    isDark: Boolean,
+    onChangeTheme: (Boolean) -> Unit,
+) {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                color = if (isDark) Color.Black else Color.White
-            ),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(
+                    color = if (isDark) Color.Black else Color.White,
+                ),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
             text = if (isDark) "Dark Theme" else "Light Theme",
-            color = if (isDark) Color.White else Color.Black
+            color = if (isDark) Color.White else Color.Black,
         )
         Button(
             onClick = {
                 onChangeTheme.invoke(isDark.not())
-            }) {
+            },
+        ) {
             Text(text = "Change Theme")
         }
     }

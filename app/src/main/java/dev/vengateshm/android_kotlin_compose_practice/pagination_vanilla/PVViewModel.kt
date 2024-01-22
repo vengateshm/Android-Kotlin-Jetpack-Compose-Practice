@@ -20,28 +20,30 @@ class PVViewModel : ViewModel() {
 
     private val repository = Repository()
 
-    private val paginator = DefaultPaginator(
-        initialKey = state.page,
-        onLoadUpdated = {
-            state = state.copy(isLoading = it)
-        },
-        onRequest = { nextKey ->
-            repository.getItems(nextKey, 20)
-        },
-        getNextKey = {
-            state.page + 1
-        },
-        onError = {
-            state = state.copy(error = it?.localizedMessage)
-        },
-        onSuccess = { items, newKey ->
-            state = state.copy(
-                items = state.items + items,
-                page = newKey,
-                endReached = items.isEmpty()
-            )
-        }
-    )
+    private val paginator =
+        DefaultPaginator(
+            initialKey = state.page,
+            onLoadUpdated = {
+                state = state.copy(isLoading = it)
+            },
+            onRequest = { nextKey ->
+                repository.getItems(nextKey, 20)
+            },
+            getNextKey = {
+                state.page + 1
+            },
+            onError = {
+                state = state.copy(error = it?.localizedMessage)
+            },
+            onSuccess = { items, newKey ->
+                state =
+                    state.copy(
+                        items = state.items + items,
+                        page = newKey,
+                        endReached = items.isEmpty(),
+                    )
+            },
+        )
 
     init {
         loadNextItems()

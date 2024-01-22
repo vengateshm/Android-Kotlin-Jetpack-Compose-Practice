@@ -40,12 +40,12 @@ fun UploadImage(viewModel: KtorClientViewModel) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         AsyncImage(
             modifier = Modifier.aspectRatio(1f),
             model = "file:///android_asset/sample_image.jpg",
-            contentDescription = ""
+            contentDescription = "",
         )
         Button(onClick = {
             val file = File(context.cacheDir, "temp_image.jpg")
@@ -72,13 +72,13 @@ fun DownloadedImage(viewModel: KtorClientViewModel) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         if (viewModel.downloadedFile.value != null) {
             AsyncImage(
                 modifier = Modifier.aspectRatio(1f),
                 model = viewModel.downloadedFile.value,
-                contentDescription = ""
+                contentDescription = "",
             )
         }
         Button(onClick = {

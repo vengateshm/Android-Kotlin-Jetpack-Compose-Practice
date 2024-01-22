@@ -64,7 +64,7 @@ fun DrawerAppContent() {
                     coroutineScope.launch {
                         drawerState.close()
                     }
-                }
+                },
             )
         },
         content = {
@@ -74,8 +74,10 @@ fun DrawerAppContent() {
                     coroutineScope.launch {
                         drawerState.open()
                     }
-                })
-        })
+                },
+            )
+        },
+    )
 }
 
 @Composable
@@ -88,40 +90,47 @@ fun DrawerContent(
         for (index in DrawerAppScreen.values().indices) {
             val screen = getScreenBasedOnIndex(index)
             Column(
-                modifier = Modifier.clickable(
-                    onClick = {
-                        onDrawerClose()
-                        onDrawerItemClick(getScreenBasedOnIndex(index))
-                    }
-                ),
+                modifier =
+                    Modifier.clickable(
+                        onClick = {
+                            onDrawerClose()
+                            onDrawerItemClick(getScreenBasedOnIndex(index))
+                        },
+                    ),
                 content = {
                     Surface(
                         modifier = Modifier.fillMaxWidth(),
-                        color = if (drawerAppScreen == screen) {
-                            MaterialTheme.colors.secondary
-                        } else {
-                            MaterialTheme.colors.surface
-                        }
+                        color =
+                            if (drawerAppScreen == screen) {
+                                MaterialTheme.colors.secondary
+                            } else {
+                                MaterialTheme.colors.surface
+                            },
                     ) {
                         Text(
                             text = screen.name,
-                            modifier = Modifier.padding(16.dp)
+                            modifier = Modifier.padding(16.dp),
                         )
                     }
-                })
+                },
+            )
         }
     }
 }
 
-fun getScreenBasedOnIndex(index: Int) = when (index) {
-    0 -> DrawerAppScreen.Home
-    1 -> DrawerAppScreen.Settings
-    2 -> DrawerAppScreen.Help
-    else -> DrawerAppScreen.Home
-}
+fun getScreenBasedOnIndex(index: Int) =
+    when (index) {
+        0 -> DrawerAppScreen.Home
+        1 -> DrawerAppScreen.Settings
+        2 -> DrawerAppScreen.Help
+        else -> DrawerAppScreen.Home
+    }
 
 @Composable
-fun BodyContent(drawerAppScreen: DrawerAppScreen, openDrawer: () -> Unit) {
+fun BodyContent(
+    drawerAppScreen: DrawerAppScreen,
+    openDrawer: () -> Unit,
+) {
     when (drawerAppScreen) {
         DrawerAppScreen.Home -> {
             Home(openDrawer = openDrawer)
@@ -140,7 +149,7 @@ fun BodyContent(drawerAppScreen: DrawerAppScreen, openDrawer: () -> Unit) {
 enum class DrawerAppScreen {
     Home,
     Settings,
-    Help
+    Help,
 }
 
 @Composable
@@ -154,11 +163,11 @@ fun Home(openDrawer: () -> Unit) {
                 IconButton(onClick = openDrawer) {
                     Icon(imageVector = Icons.Filled.Menu, contentDescription = "Menu")
                 }
-            }
+            },
         )
         Surface(
             color = Color(0xFFffd7d7.toInt()),
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         ) {
             Column(
                 modifier = Modifier.fillMaxSize(),
@@ -166,7 +175,7 @@ fun Home(openDrawer: () -> Unit) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 content = {
                     Text(text = "Home")
-                }
+                },
             )
         }
     }
@@ -181,11 +190,11 @@ fun Settings(openDrawer: () -> Unit) {
                 IconButton(onClick = openDrawer) {
                     Icon(imageVector = Icons.Filled.Menu, contentDescription = "Menu")
                 }
-            }
+            },
         )
         Surface(
             color = Color(0xFFffd7d7.toInt()),
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         ) {
             Column(
                 modifier = Modifier.fillMaxSize(),
@@ -193,7 +202,7 @@ fun Settings(openDrawer: () -> Unit) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 content = {
                     Text(text = "Settings")
-                }
+                },
             )
         }
     }
@@ -208,11 +217,11 @@ fun Help(openDrawer: () -> Unit) {
                 IconButton(onClick = openDrawer) {
                     Icon(imageVector = Icons.Filled.Menu, contentDescription = "Menu")
                 }
-            }
+            },
         )
         Surface(
             color = Color(0xFFffd7d7.toInt()),
-            modifier = Modifier.weight(1f)
+            modifier = Modifier.weight(1f),
         ) {
             Column(
                 modifier = Modifier.fillMaxSize(),
@@ -220,7 +229,7 @@ fun Help(openDrawer: () -> Unit) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 content = {
                     Text(text = "Help")
-                }
+                },
             )
         }
     }

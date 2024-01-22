@@ -50,7 +50,7 @@ fun HexagonSection(
 ) {
     Box(
         modifier = modifier,
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         if (isScanning) {
             HexagonLoader(
@@ -58,7 +58,7 @@ fun HexagonSection(
                 backgroundColor = backgroundColor,
                 isFilled = false,
                 modifier = Modifier.fillMaxSize(),
-                shouldAnimateLoadingBar = true
+                shouldAnimateLoadingBar = true,
             )
         } else {
             HexagonLoader(
@@ -66,7 +66,7 @@ fun HexagonSection(
                 backgroundColor = backgroundColor,
                 isFilled = false,
                 modifier = Modifier.fillMaxSize(),
-                shouldAnimateLoadingBar = false
+                shouldAnimateLoadingBar = false,
             )
         }
         HexagonLoader(
@@ -78,7 +78,7 @@ fun HexagonSection(
             icon = Icons.Default.Search,
             onClick = {
                 onScanButtonClick()
-            }
+            },
         )
     }
 }
@@ -113,14 +113,16 @@ fun HexagonLoader(
             animate(
                 initialValue = 0f,
                 targetValue = 360f,
-                animationSpec = infiniteRepeatable(
-                    animation = tween(
-                        durationMillis = 1000,
-                        delayMillis = 0,
-                        easing = LinearEasing,
+                animationSpec =
+                    infiniteRepeatable(
+                        animation =
+                            tween(
+                                durationMillis = 1000,
+                                delayMillis = 0,
+                                easing = LinearEasing,
+                            ),
+                        repeatMode = RepeatMode.Restart,
                     ),
-                    repeatMode = RepeatMode.Restart
-                )
             ) { value, _ ->
                 animationRotation = value
             }
@@ -129,48 +131,51 @@ fun HexagonLoader(
 
     Box(
         modifier = modifier,
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Canvas(
-            modifier = Modifier
-                .fillMaxSize()
-                .pointerInput(true) {
-                    detectTapGestures(
-                        onTap = {
-                            if (onClick == null) {
-                                return@detectTapGestures
-                            }
-                            onClick()
-                            clickAnimationOffset = it
-                            coroutineScope.launch {
-                                animate(
-                                    initialValue = 0f,
-                                    targetValue = canvasSize.height * 2,
-                                    animationSpec = tween(
-                                        durationMillis = 200
-                                    )
-                                ) { value, _ ->
-                                    animationRadius = value
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .pointerInput(true) {
+                        detectTapGestures(
+                            onTap = {
+                                if (onClick == null) {
+                                    return@detectTapGestures
                                 }
-                                animationRadius = 0f
-                            }
-                        }
-                    )
-                }
+                                onClick()
+                                clickAnimationOffset = it
+                                coroutineScope.launch {
+                                    animate(
+                                        initialValue = 0f,
+                                        targetValue = canvasSize.height * 2,
+                                        animationSpec =
+                                            tween(
+                                                durationMillis = 200,
+                                            ),
+                                    ) { value, _ ->
+                                        animationRadius = value
+                                    }
+                                    animationRadius = 0f
+                                }
+                            },
+                        )
+                    },
         ) {
             val height = size.height
             val width = size.width
             canvasSize = Size(width, height)
 
-            val path = Path().apply {
-                moveTo(width / 2f, 0f)
-                lineTo(width, height / 4)
-                lineTo(width, height / 4 * 3)
-                lineTo(width / 2, height)
-                lineTo(0f, height / 4 * 3)
-                lineTo(0f, height / 4)
-                close()
-            }
+            val path =
+                Path().apply {
+                    moveTo(width / 2f, 0f)
+                    lineTo(width, height / 4)
+                    lineTo(width, height / 4 * 3)
+                    lineTo(width / 2, height)
+                    lineTo(0f, height / 4 * 3)
+                    lineTo(0f, height / 4)
+                    close()
+                }
 
             if (shouldAnimateLoadingBar) {
                 clipPath(path) {
@@ -178,19 +183,21 @@ fun HexagonLoader(
                         drawArc(
                             startAngle = 0f,
                             sweepAngle = 150f,
-                            brush = Brush.sweepGradient(
-                                colors = listOf(
-                                    backgroundColor,
-                                    backgroundColor,
-                                    hexagonColor.copy(alpha = 0.5f),
-                                    hexagonColor.copy(alpha = 0.5f),
-                                    hexagonColor,
-                                    hexagonColor,
-                                    hexagonColor,
-                                )
-                            ),
+                            brush =
+                                Brush.sweepGradient(
+                                    colors =
+                                        listOf(
+                                            backgroundColor,
+                                            backgroundColor,
+                                            hexagonColor.copy(alpha = 0.5f),
+                                            hexagonColor.copy(alpha = 0.5f),
+                                            hexagonColor,
+                                            hexagonColor,
+                                            hexagonColor,
+                                        ),
+                                ),
                             useCenter = true,
-                            size = canvasSize * 1.1f
+                            size = canvasSize * 1.1f,
                         )
                     }
                 }
@@ -198,9 +205,14 @@ fun HexagonLoader(
                 drawPath(
                     path = path,
                     color = hexagonColor,
-                    style = if (isFilled) Fill else Stroke(
-                        width = 1.dp.toPx()
-                    )
+                    style =
+                        if (isFilled) {
+                            Fill
+                        } else {
+                            Stroke(
+                                width = 1.dp.toPx(),
+                            )
+                        },
                 )
             }
 
@@ -208,7 +220,7 @@ fun HexagonLoader(
                 drawCircle(
                     color = Color.White.copy(alpha = 0.2f),
                     radius = animationRadius + 0.1f,
-                    center = clickAnimationOffset
+                    center = clickAnimationOffset,
                 )
             }
         }
@@ -217,7 +229,7 @@ fun HexagonLoader(
                 modifier = Modifier.fillMaxSize(fraction = 0.4f),
                 imageVector = icon,
                 tint = iconTint,
-                contentDescription = "hexagon_icon"
+                contentDescription = "hexagon_icon",
             )
         }
     }
@@ -227,11 +239,12 @@ fun HexagonLoader(
 @Composable
 fun HexagonPreview() {
     Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(color = Color.White)
-            .aspectRatio(6 / 7f)
-            .padding(all = 16.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .background(color = Color.White)
+                .aspectRatio(6 / 7f)
+                .padding(all = 16.dp),
     ) {
         HexagonLoader(
             hexagonColor = Color.Blue,
@@ -239,9 +252,8 @@ fun HexagonPreview() {
             isFilled = true,
             icon = Icons.Default.Search,
             onClick = {
-
             },
-            shouldAnimateLoadingBar = true
+            shouldAnimateLoadingBar = true,
         )
     }
 }

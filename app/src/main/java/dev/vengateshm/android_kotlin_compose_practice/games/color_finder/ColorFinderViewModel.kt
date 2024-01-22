@@ -7,14 +7,15 @@ import androidx.lifecycle.ViewModel
 const val GAME_TIME_IN_SECS = 30L
 
 class ColorFinderViewModel : ViewModel() {
-    val gameState = mutableStateOf(
-        GameState(
-            score = 0,
-            lifeCount = 5,
-            timeLeft = GAME_TIME_IN_SECS,
-            colorNameAndList = ColorFinderUtils.getColorNameAndList()
+    val gameState =
+        mutableStateOf(
+            GameState(
+                score = 0,
+                lifeCount = 5,
+                timeLeft = GAME_TIME_IN_SECS,
+                colorNameAndList = ColorFinderUtils.getColorNameAndList(),
+            ),
         )
-    )
 
     private var countDownTimer: CountDownTimer? = null
 
@@ -23,18 +24,20 @@ class ColorFinderViewModel : ViewModel() {
     }
 
     private fun startCountdownTimer() {
-        countDownTimer = object : CountDownTimer(GAME_TIME_IN_SECS * 1000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                val updatedGameState = gameState.value.copy(timeLeft = millisUntilFinished / 1000)
-                gameState.value = updatedGameState
-            }
+        countDownTimer =
+            object : CountDownTimer(GAME_TIME_IN_SECS * 1000, 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    val updatedGameState =
+                        gameState.value.copy(timeLeft = millisUntilFinished / 1000)
+                    gameState.value = updatedGameState
+                }
 
-            override fun onFinish() {
-                val updatedGameState = gameState.value.copy(timeLeft = 0)
-                gameState.value = updatedGameState
-                countDownTimer = null
-            }
-        }.start()
+                override fun onFinish() {
+                    val updatedGameState = gameState.value.copy(timeLeft = 0)
+                    gameState.value = updatedGameState
+                    countDownTimer = null
+                }
+            }.start()
     }
 
     override fun onCleared() {
@@ -51,27 +54,29 @@ class ColorFinderViewModel : ViewModel() {
     fun onBoxClicked(isCorrect: Boolean) {
         var score = gameState.value.score
         var lifeCount = gameState.value.lifeCount
-        if (isCorrect)
+        if (isCorrect) {
             score += 100
-        else {
+        } else {
             score -= 50
             lifeCount -= 1
         }
-        gameState.value = gameState.value.copy(
-            score = score,
-            lifeCount = lifeCount,
-            colorNameAndList = ColorFinderUtils.getColorNameAndList()
-        )
+        gameState.value =
+            gameState.value.copy(
+                score = score,
+                lifeCount = lifeCount,
+                colorNameAndList = ColorFinderUtils.getColorNameAndList(),
+            )
     }
 
     fun resetGame() {
         // Reset the game state and start a new countdown timer
-        val updatedGameState = GameState(
-            score = 0,
-            lifeCount = 5,
-            timeLeft = GAME_TIME_IN_SECS,
-            colorNameAndList = ColorFinderUtils.getColorNameAndList()
-        )
+        val updatedGameState =
+            GameState(
+                score = 0,
+                lifeCount = 5,
+                timeLeft = GAME_TIME_IN_SECS,
+                colorNameAndList = ColorFinderUtils.getColorNameAndList(),
+            )
         gameState.value = updatedGameState
         startCountdownTimer()
     }

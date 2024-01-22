@@ -33,41 +33,43 @@ fun ChatBubble(message: String) {
     Column(modifier = Modifier.fillMaxWidth(0.7f)) {
         // Can be box or row
         Box(
-            modifier = Modifier
-                .padding(start = 4.dp)
-                .size(8.dp)
-                // Can be background with shape or drawbehind
-                .drawBehind {
-                    val path = Path()
-                    val width = size.width
-                    val height = size.height
-                    path.apply {
-                        moveTo(x = width / 2, y = 0f)
-                        lineTo(x = width, y = height)
-                        lineTo(x = 0f, y = height)
-                    }
-                    drawPath(path = path, color = Color.LightGray)
-                }
+            modifier =
+                Modifier
+                    .padding(start = 4.dp)
+                    .size(8.dp)
+                    // Can be background with shape or drawbehind
+                    .drawBehind {
+                        val path = Path()
+                        val width = size.width
+                        val height = size.height
+                        path.apply {
+                            moveTo(x = width / 2, y = 0f)
+                            lineTo(x = width, y = height)
+                            lineTo(x = 0f, y = height)
+                        }
+                        drawPath(path = path, color = Color.LightGray)
+                    },
 //                .background(
 //                    color = Color.LightGray,
 //                    shape = TriangleShape()
 //                )
         ) {
-
         }
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(
-                    color = Color.LightGray,
-                    shape = RoundedCornerShape(4.dp)
-                )
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .background(
+                        color = Color.LightGray,
+                        shape = RoundedCornerShape(4.dp),
+                    ),
         ) {
             Text(
                 text = message,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp)
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
             )
         }
     }

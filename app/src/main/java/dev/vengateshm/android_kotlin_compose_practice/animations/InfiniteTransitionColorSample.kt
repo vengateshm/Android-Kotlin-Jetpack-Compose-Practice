@@ -25,25 +25,28 @@ fun InfiniteColorTransition() {
     val color by infiniteTransition.animateColor(
         initialValue = Color(0XFFFFEB3B),
         targetValue = Color(0XFFFB8C00),
-        animationSpec = infiniteRepeatable(
-            animation = tween(
-                durationMillis = 7000,
-                easing = LinearEasing
+        animationSpec =
+            infiniteRepeatable(
+                animation =
+                    tween(
+                        durationMillis = 7000,
+                        easing = LinearEasing,
+                    ),
+                repeatMode = RepeatMode.Reverse,
             ),
-            repeatMode = RepeatMode.Reverse
-        )
     )
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
         Box(
-            modifier = Modifier
-                .size(100.dp)
-                .clip(
-                    RoundedCornerShape(8.dp)
-                )
-                .background(color = color)
+            modifier =
+                Modifier
+                    .size(100.dp)
+                    .clip(
+                        RoundedCornerShape(8.dp),
+                    )
+                    .background(color = color),
         )
     }
 }

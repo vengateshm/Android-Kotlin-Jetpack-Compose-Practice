@@ -29,7 +29,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 
-
 @Composable
 fun ArcProgressBar(
     modifier: Modifier = Modifier,
@@ -40,7 +39,6 @@ fun ArcProgressBar(
     progress: Float = 0f,
     animationDurationInMillis: Int = 1000,
 ) {
-
     val currentProgress by rememberUpdatedState(newValue = progress)
 
     val progressAnimatable = remember { Animatable(currentProgress) }
@@ -50,13 +48,15 @@ fun ArcProgressBar(
     LaunchedEffect(key1 = progress) {
         progressAnimatable.animateTo(
             targetValue = currentProgress,
-            animationSpec = repeatable(
-                iterations = 1,
-                animation = tween(
-                    durationMillis = animationDurationInMillis,
-                    easing = LinearEasing
-                )
-            )
+            animationSpec =
+                repeatable(
+                    iterations = 1,
+                    animation =
+                        tween(
+                            durationMillis = animationDurationInMillis,
+                            easing = LinearEasing,
+                        ),
+                ),
         )
     }
 
@@ -67,7 +67,6 @@ fun ArcProgressBar(
     }
 
     Canvas(modifier = modifier.fillMaxSize()) {
-
         val size = minOf(size.width, size.height)
         val arcRadius = size / 2 - strokeWidth / 2
         val center = Offset(size / 2, size / 2)
@@ -77,14 +76,14 @@ fun ArcProgressBar(
             startAngle = startAngle,
             sweepAngle = 180f,
             useCenter = false,
-            style = Stroke(width = strokeWidth, cap = StrokeCap.Round)
+            style = Stroke(width = strokeWidth, cap = StrokeCap.Round),
         )
         drawArc(
             color = progressColor,
             startAngle = startAngle,
             sweepAngle = progressAnimatable.value * 180f,
             useCenter = false,
-            style = Stroke(width = strokeWidth, cap = StrokeCap.Round)
+            style = Stroke(width = strokeWidth, cap = StrokeCap.Round),
         )
 
         // Thumb touches top of the arc
@@ -105,33 +104,37 @@ fun ArcProgressBar(
         val thumbRadius = strokeWidth
         val thumbAngle = startAngle + progressAnimatable.value * 180f
         val thumbX =
-            center.x + (arcRadius + strokeWidth / 2) * kotlin.math.cos(Math.toRadians(thumbAngle.toDouble()))
-                .toFloat()
+            center.x + (arcRadius + strokeWidth / 2) *
+                kotlin.math.cos(Math.toRadians(thumbAngle.toDouble()))
+                    .toFloat()
         val thumbY =
-            center.y + (arcRadius + strokeWidth / 2) * kotlin.math.sin(Math.toRadians(thumbAngle.toDouble()))
-                .toFloat()
+            center.y + (arcRadius + strokeWidth / 2) *
+                kotlin.math.sin(Math.toRadians(thumbAngle.toDouble()))
+                    .toFloat()
         drawCircle(
             color = progressColor,
             radius = thumbRadius,
-            center = Offset(thumbX, thumbY)
+            center = Offset(thumbX, thumbY),
         )
 
 //
 
         val lineAngle = startAngle + progressAnimatable.value * 180f
         val lineEndX =
-            center.x + (arcRadius - strokeWidth) * kotlin.math.cos(Math.toRadians(lineAngle.toDouble()))
-                .toFloat()
+            center.x + (arcRadius - strokeWidth) *
+                kotlin.math.cos(Math.toRadians(lineAngle.toDouble()))
+                    .toFloat()
         val lineEndY =
-            center.y + (arcRadius - strokeWidth) * kotlin.math.sin(Math.toRadians(lineAngle.toDouble()))
-                .toFloat()
+            center.y + (arcRadius - strokeWidth) *
+                kotlin.math.sin(Math.toRadians(lineAngle.toDouble()))
+                    .toFloat()
 
         // Draw a line from the center circle to the arc
         drawLine(
             color = progressColor,
             start = center,
             end = Offset(lineEndX, lineEndY),
-            strokeWidth = strokeWidth
+            strokeWidth = strokeWidth,
         )
 
         // Draw a triangle needle
@@ -159,7 +162,7 @@ fun ArcProgressBarPreview() {
         backgroundColor = Color(0xFFFFAB91), // Light Peach-Orange
         progressColor = Color(0xFFFF7043), // Salmon-Orange
         strokeWidth = 16f,
-        progress = 0.3f
+        progress = 0.3f,
     )
 }
 
@@ -169,7 +172,7 @@ fun ArcProgressBarSample() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         ArcProgressBar(
             modifier = Modifier.size(200.dp),
@@ -177,14 +180,14 @@ fun ArcProgressBarSample() {
             progressColor = Color(0xFFFF7043), // Salmon-Orange
             strokeWidth = 32f,
             startAngle = 180f,
-            progress = progress
+            progress = progress,
         )
         Slider(
             value = progress,
             onValueChange = { newProgress ->
                 progress = newProgress
             },
-            valueRange = 0f..1f
+            valueRange = 0f..1f,
         )
     }
 }

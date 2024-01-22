@@ -19,25 +19,28 @@ data class Product(val name: String, val price: Double)
 
 @Composable
 fun KSPSamplesTester() {
-    val product = remember {
-        Product("Philips Sound bar", 20000.0)
-    }
+    val product =
+        remember {
+            Product("Philips Sound bar", 20000.0)
+        }
     val jsonString = remember { mutableStateOf("") }
     LaunchedEffect(Unit) {
         delay(1000)
-        jsonString.value = product.toJson()
+        // jsonString.value = product.toJson()
     }
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Text(text = jsonString.value)
     }
 }
 
-@Preview(showBackground = true,
-    showSystemUi = true)
+@Preview(
+    showBackground = true,
+    showSystemUi = true,
+)
 @Composable
 fun KSPSamplesTesterPreview() {
     KSPSamplesTester()

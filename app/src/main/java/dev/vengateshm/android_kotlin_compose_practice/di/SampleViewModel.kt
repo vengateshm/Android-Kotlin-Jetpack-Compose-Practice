@@ -8,37 +8,38 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 
-class SampleViewModel @AssistedInject constructor(
-    private val sampleRepo: SampleRepo,
-    @Assisted private val text: String,
-) : ViewModel() {
+class SampleViewModel
+    @AssistedInject
+    constructor(
+        private val sampleRepo: SampleRepo,
+        @Assisted private val text: String,
+    ) : ViewModel() {
+        var clickCount = mutableStateOf(0)
+            private set
 
-    var clickCount = mutableStateOf(0)
-        private set
+        fun updateClickCount() {
+            clickCount.value = clickCount.value + 1
+        }
 
-    fun updateClickCount() {
-        clickCount.value = clickCount.value + 1
-    }
+        init {
+            Log.i("SampleViewModel", text)
+        }
 
-    init {
-        Log.i("SampleViewModel", text)
-    }
+        @AssistedFactory
+        interface Factory {
+            fun create(text: String): SampleViewModel
+        }
 
-    @AssistedFactory
-    interface Factory {
-        fun create(text: String): SampleViewModel
-    }
-
-    companion object {
-        fun provideSampleViewModelFactory(
-            factory: Factory,
-            text: String,
-        ): ViewModelProvider.Factory {
-            return object : ViewModelProvider.Factory {
-                override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                    return factory.create(text) as T
+        companion object {
+            fun provideSampleViewModelFactory(
+                factory: Factory,
+                text: String,
+            ): ViewModelProvider.Factory {
+                return object : ViewModelProvider.Factory {
+                    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                        return factory.create(text) as T
+                    }
                 }
             }
         }
     }
-}

@@ -86,19 +86,21 @@ fun AudioPlayer(mediaPlayer: MediaPlayer) {
     val viewModel: AudioPlayerViewModel = viewModel()
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                brush = Brush.verticalGradient(
-                    colors = listOf(getRandomColor(), getRandomColor())
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(
+                    brush =
+                        Brush.verticalGradient(
+                            colors = listOf(getRandomColor(), getRandomColor()),
+                        ),
                 )
-            )
-            .padding(horizontal = 10.dp)
+                .padding(horizontal = 10.dp),
     ) {
         TopAppBar()
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(10.dp)
+            modifier = Modifier.padding(10.dp),
         ) {
             Spacer(modifier = Modifier.weight(1f))
             Spacer(modifier = Modifier.height(30.dp))
@@ -106,18 +108,19 @@ fun AudioPlayer(mediaPlayer: MediaPlayer) {
                 painter = painterResource(id = R.drawable.music),
                 contentDescription = "Image Banner",
                 contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .sizeIn(maxWidth = 300.dp, maxHeight = 300.dp)
-                    .aspectRatio(1f)
-                    .clip(RoundedCornerShape(10.dp))
-                    .weight(10f)
+                modifier =
+                    Modifier
+                        .sizeIn(maxWidth = 300.dp, maxHeight = 300.dp)
+                        .aspectRatio(1f)
+                        .clip(RoundedCornerShape(10.dp))
+                        .weight(10f),
             )
             Spacer(modifier = Modifier.height(30.dp))
             SongDetail("Track Name", "Artists")
             Spacer(modifier = Modifier.height(35.dp))
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.weight(10f)
+                modifier = Modifier.weight(10f),
             ) {
                 PlayerSlider(mediaPlayer)
                 Spacer(modifier = Modifier.height(40.dp))
@@ -135,7 +138,7 @@ fun TopAppBar() {
             Icon(
                 imageVector = Icons.Default.ArrowBack,
                 contentDescription = "Back Icon",
-                tint = Color.White
+                tint = Color.White,
             )
         }
         Spacer(modifier = Modifier.weight(1f))
@@ -143,28 +146,31 @@ fun TopAppBar() {
             Icon(
                 imageVector = Icons.Default.List,
                 contentDescription = "Add List",
-                tint = Color.White
+                tint = Color.White,
             )
         }
         IconButton(onClick = { /*TODO*/ }) {
             Icon(
                 imageVector = Icons.Default.MoreVert,
                 contentDescription = "More Icon",
-                tint = Color.White
+                tint = Color.White,
             )
         }
     }
 }
 
 @Composable
-fun SongDetail(trackName: String, artists: String) {
+fun SongDetail(
+    trackName: String,
+    artists: String,
+) {
     Text(
         text = trackName,
         style = MaterialTheme.typography.h5,
         maxLines = 1,
         overflow = TextOverflow.Ellipsis,
         color = Color.White,
-        fontWeight = FontWeight.Bold
+        fontWeight = FontWeight.Bold,
     )
 
     // ???
@@ -173,7 +179,7 @@ fun SongDetail(trackName: String, artists: String) {
             text = artists,
             style = MaterialTheme.typography.body2,
             maxLines = 1,
-            color = Color.White
+            color = Color.White,
         )
     }
 }
@@ -185,12 +191,14 @@ fun PlayerSlider(mediaPlayer: MediaPlayer) {
 
     Column(modifier = Modifier.fillMaxWidth()) {
         Slider(
-            value = currentMediaTimeInMillis.value!!.toFloat(), onValueChange = {},
+            value = currentMediaTimeInMillis.value!!.toFloat(),
+            onValueChange = {},
             valueRange = 0f..mediaPlayer.duration.toFloat(),
-            colors = SliderDefaults.colors(
-                thumbColor = Color.White,
-                activeTickColor = Color.White
-            )
+            colors =
+                SliderDefaults.colors(
+                    thumbColor = Color.White,
+                    activeTickColor = Color.White,
+                ),
         )
 
         val currentTimeInMinutes = (currentMediaTimeInMillis.value!! / 1000) / 60.0
@@ -202,12 +210,12 @@ fun PlayerSlider(mediaPlayer: MediaPlayer) {
         Row(modifier = Modifier.fillMaxWidth()) {
             Text(
                 text = "${frmt.format(currentTimeInMinutes)} s",
-                color = Color.White
+                color = Color.White,
             )
             Spacer(modifier = Modifier.weight(1f))
             Text(
                 text = "${frmt.format(durationInMinutes)} s",
-                color = Color.White
+                color = Color.White,
             )
         }
     }
@@ -228,18 +236,19 @@ fun PlayerControls(
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceEvenly
+        horizontalArrangement = Arrangement.SpaceEvenly,
     ) {
-        val buttonModifier = Modifier
-            .size(sideButtonSize)
-            .semantics { role = Role.Button }
+        val buttonModifier =
+            Modifier
+                .size(sideButtonSize)
+                .semantics { role = Role.Button }
 
         Image(
             imageVector = Icons.Filled.SkipPrevious,
             contentDescription = "Skip Previous",
             contentScale = ContentScale.Fit,
             colorFilter = ColorFilter.tint(Color.White),
-            modifier = buttonModifier
+            modifier = buttonModifier,
         )
 
         Image(
@@ -247,38 +256,40 @@ fun PlayerControls(
             contentDescription = "Replay 10 sec",
             contentScale = ContentScale.Fit,
             colorFilter = ColorFilter.tint(Color.White),
-            modifier = buttonModifier
+            modifier = buttonModifier,
         )
 
         Image(
-            imageVector = if (isAudioCompleted.value == false) {
-                if (audioFlag.value) {
-                    Icons.Filled.PlayCircleFilled
+            imageVector =
+                if (isAudioCompleted.value == false) {
+                    if (audioFlag.value) {
+                        Icons.Filled.PlayCircleFilled
+                    } else {
+                        Icons.Filled.PauseCircleFilled
+                    }
                 } else {
-                    Icons.Filled.PauseCircleFilled
-                }
-            } else {
-                Icons.Filled.PlayCircleFilled
-            },
+                    Icons.Filled.PlayCircleFilled
+                },
             contentDescription = "Play / Pause Icon",
             contentScale = ContentScale.Fit,
             colorFilter = ColorFilter.tint(Color.White),
-            modifier = Modifier
-                .size(playerButtonSize)
-                .semantics { role = Role.Button }
-                .clickable {
-                    if (audioFlag.value) {
-                        mediaPlayer.start()
-                        coroutineScope.launch {
-                            delay(1000)
-                            viewModel.initMediaTimer(mediaPlayer)
+            modifier =
+                Modifier
+                    .size(playerButtonSize)
+                    .semantics { role = Role.Button }
+                    .clickable {
+                        if (audioFlag.value) {
+                            mediaPlayer.start()
+                            coroutineScope.launch {
+                                delay(1000)
+                                viewModel.initMediaTimer(mediaPlayer)
+                            }
+                            audioFlag.value = false
+                        } else {
+                            audioFlag.value = true
+                            mediaPlayer.pause()
                         }
-                        audioFlag.value = false
-                    } else {
-                        audioFlag.value = true
-                        mediaPlayer.pause()
-                    }
-                }
+                    },
         )
 
         Image(
@@ -286,7 +297,7 @@ fun PlayerControls(
             contentDescription = "Forward 10 sec",
             contentScale = ContentScale.Fit,
             colorFilter = ColorFilter.tint(Color.White),
-            modifier = buttonModifier
+            modifier = buttonModifier,
         )
 
         Image(
@@ -294,7 +305,7 @@ fun PlayerControls(
             contentDescription = "Skip Next",
             contentScale = ContentScale.Fit,
             colorFilter = ColorFilter.tint(Color.White),
-            modifier = buttonModifier
+            modifier = buttonModifier,
         )
     }
 }

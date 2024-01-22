@@ -29,40 +29,44 @@ fun AnchoredDraggableSample() {
     val squareSize = 48.dp
 
     val density = LocalDensity.current
-    val anchors = with(density) {
-        DraggableAnchors {
-            DragValue.Start at 0f
-            DragValue.Center at 24.dp.toPx()
-            DragValue.End at 96.dp.toPx()
+    val anchors =
+        with(density) {
+            DraggableAnchors {
+                DragValue.Start at 0f
+                DragValue.Center at 24.dp.toPx()
+                DragValue.End at 96.dp.toPx()
+            }
         }
-    }
 
-    val state = remember {
-        AnchoredDraggableState(
-            initialValue = DragValue.Start,
-            anchors = anchors,
-            positionalThreshold = { distance ->
-                distance * 0.5f
-            },
-            velocityThreshold = {
-                with(density) { 48.dp.toPx() }
-            }, animationSpec = tween()
-        )
-    }
+    val state =
+        remember {
+            AnchoredDraggableState(
+                initialValue = DragValue.Start,
+                anchors = anchors,
+                positionalThreshold = { distance ->
+                    distance * 0.5f
+                },
+                velocityThreshold = {
+                    with(density) { 48.dp.toPx() }
+                },
+                animationSpec = tween(),
+            )
+        }
 
     Box(
-        modifier = Modifier
-            .width(width)
-            .anchoredDraggable(
-                state = state,
-                orientation = Orientation.Horizontal
-            )
+        modifier =
+            Modifier
+                .width(width)
+                .anchoredDraggable(
+                    state = state,
+                    orientation = Orientation.Horizontal,
+                ),
     ) {
         Box(
             Modifier
                 .offset { IntOffset(state.offset.roundToInt(), 0) }
                 .size(squareSize)
-                .background(color = Color.LightGray)
+                .background(color = Color.LightGray),
         )
     }
 }

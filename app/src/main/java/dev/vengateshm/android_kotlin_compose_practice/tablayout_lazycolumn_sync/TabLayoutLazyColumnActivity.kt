@@ -37,7 +37,7 @@ class TabLayoutLazyColumnActivity : ComponentActivity() {
                 Surface {
                     TabLayoutLazyColumn(
                         categories = ListData.categories,
-                        items = ListData.items
+                        items = ListData.items,
                     )
                 }
             }
@@ -46,7 +46,10 @@ class TabLayoutLazyColumnActivity : ComponentActivity() {
 }
 
 @Composable
-fun TabLayoutLazyColumn(categories: List<Category>, items: List<Item>) {
+fun TabLayoutLazyColumn(
+    categories: List<Category>,
+    items: List<Item>,
+) {
     var selectedTabIndex by remember { mutableIntStateOf(0) }
     val lazyListState = rememberLazyListState()
     val scope = rememberCoroutineScope()
@@ -72,7 +75,7 @@ fun TabLayoutLazyColumn(categories: List<Category>, items: List<Item>) {
     Column(modifier = Modifier.fillMaxSize()) {
         TabRow(
             modifier = Modifier.fillMaxWidth(),
-            selectedTabIndex = selectedTabIndex
+            selectedTabIndex = selectedTabIndex,
         ) {
             categories.forEachIndexed { index, category ->
                 Tab(
@@ -83,22 +86,22 @@ fun TabLayoutLazyColumn(categories: List<Category>, items: List<Item>) {
                         scope.launch {
                             val scrollToIndex = items.indexOfFirst { it.category == category.name }
                             if (scrollToIndex != -1) {
-                                //lazyListState.scrollToItem(scrollToIndex)
+                                // lazyListState.scrollToItem(scrollToIndex)
                                 lazyListState.animateScrollToItem(scrollToIndex)
                             }
                         }
-                    }
+                    },
                 )
             }
         }
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
-            state = lazyListState
+            state = lazyListState,
         ) {
             items(items) { item ->
                 Text(
                     modifier = Modifier.padding(32.dp),
-                    text = item.name
+                    text = item.name,
                 )
             }
         }
@@ -106,39 +109,41 @@ fun TabLayoutLazyColumn(categories: List<Category>, items: List<Item>) {
 }
 
 object ListData {
-    val categories = listOf(
-        Category("Category 1"),
-        Category("Category 2"),
-        Category("Category 3"),
-        Category("Category 4"),
-        Category("Category 5")
-    )
+    val categories =
+        listOf(
+            Category("Category 1"),
+            Category("Category 2"),
+            Category("Category 3"),
+            Category("Category 4"),
+            Category("Category 5"),
+        )
 
-    val items = listOf(
-        Item("Item 1", "Category 1"),
-        Item("Item 2", "Category 1"),
-        Item("Item 3", "Category 1"),
-        Item("Item 4", "Category 1"),
-        Item("Item 5", "Category 1"),
-        Item("Item 6", "Category 2"),
-        Item("Item 7", "Category 2"),
-        Item("Item 8", "Category 2"),
-        Item("Item 9", "Category 2"),
-        Item("Item 10", "Category 2"),
-        Item("Item 11", "Category 3"),
-        Item("Item 12", "Category 3"),
-        Item("Item 13", "Category 3"),
-        Item("Item 14", "Category 3"),
-        Item("Item 15", "Category 3"),
-        Item("Item 16", "Category 4"),
-        Item("Item 17", "Category 4"),
-        Item("Item 18", "Category 4"),
-        Item("Item 19", "Category 4"),
-        Item("Item 20", "Category 4"),
-        Item("Item 21", "Category 5"),
-        Item("Item 22", "Category 5"),
-        Item("Item 23", "Category 5"),
-        Item("Item 24", "Category 5"),
-        Item("Item 25", "Category 5"),
-    )
+    val items =
+        listOf(
+            Item("Item 1", "Category 1"),
+            Item("Item 2", "Category 1"),
+            Item("Item 3", "Category 1"),
+            Item("Item 4", "Category 1"),
+            Item("Item 5", "Category 1"),
+            Item("Item 6", "Category 2"),
+            Item("Item 7", "Category 2"),
+            Item("Item 8", "Category 2"),
+            Item("Item 9", "Category 2"),
+            Item("Item 10", "Category 2"),
+            Item("Item 11", "Category 3"),
+            Item("Item 12", "Category 3"),
+            Item("Item 13", "Category 3"),
+            Item("Item 14", "Category 3"),
+            Item("Item 15", "Category 3"),
+            Item("Item 16", "Category 4"),
+            Item("Item 17", "Category 4"),
+            Item("Item 18", "Category 4"),
+            Item("Item 19", "Category 4"),
+            Item("Item 20", "Category 4"),
+            Item("Item 21", "Category 5"),
+            Item("Item 22", "Category 5"),
+            Item("Item 23", "Category 5"),
+            Item("Item 24", "Category 5"),
+            Item("Item 25", "Category 5"),
+        )
 }

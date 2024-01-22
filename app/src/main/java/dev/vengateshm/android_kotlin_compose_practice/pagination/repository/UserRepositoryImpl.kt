@@ -7,7 +7,10 @@ import kotlinx.coroutines.delay
 class UserRepositoryImpl(
     private val api: UserApi,
 ) : UserRepository {
-    override suspend fun getUsers(page: Int, limit: Int): UsersResponse {
+    override suspend fun getUsers(
+        page: Int,
+        limit: Int,
+    ): UsersResponse {
         delay(3000L)
         return api.getUsers(page, limit)
     }

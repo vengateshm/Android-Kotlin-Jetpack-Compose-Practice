@@ -8,7 +8,6 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 
-
 @Composable
 fun TermsAcknowledgeText(
     annotatedString: AnnotatedString = getTermsAcknowledgeString(),
@@ -31,19 +30,19 @@ fun TermsAcknowledgeText(
 }
 
 // Create your annotated string
-fun getTermsAcknowledgeString() = buildAnnotatedString {
-    append("I agree to ")
-    pushStringAnnotation(tag = "privacy", "privacy")
-    withStyle(SpanStyle(color = Color.Blue)) {
-        append("privacy")
+fun getTermsAcknowledgeString() =
+    buildAnnotatedString {
+        append("I agree to ")
+        pushStringAnnotation(tag = "privacy", "privacy")
+        withStyle(SpanStyle(color = Color.Blue)) {
+            append("privacy")
+        }
+        pop()
+        append(" and ")
+        pushStringAnnotation(tag = "policy", "privacy")
+        withStyle(SpanStyle(color = Color.Blue)) {
+            append("policy")
+        }
+        pop()
+        append(" terms.")
     }
-    pop()
-    append(" and ")
-    pushStringAnnotation(tag = "policy", "privacy")
-    withStyle(SpanStyle(color = Color.Blue)) {
-        append("policy")
-    }
-    pop()
-    append(" terms.")
-}
-

@@ -11,7 +11,6 @@ abstract class AndroidSensor(
     private val sensorFeature: String,
     sensorType: Int,
 ) : MeasurableSensor(sensorType), SensorEventListener {
-
     private lateinit var sensorManager: SensorManager
     private var sensor: Sensor? = null
 
@@ -22,7 +21,7 @@ abstract class AndroidSensor(
         if (!doesSensorExist) {
             return
         }
-        //(context.getSystemService(SensorManager::class.java) as SensorManager).getSensorList(Sensor.TYPE_ALL)
+        // (context.getSystemService(SensorManager::class.java) as SensorManager).getSensorList(Sensor.TYPE_ALL)
         if (!::sensorManager.isInitialized && sensor == null) {
             sensorManager = context.getSystemService(SensorManager::class.java) as SensorManager
             sensor = sensorManager.getDefaultSensor(sensorType)

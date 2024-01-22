@@ -14,9 +14,10 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun PerfTip2() {
-    val nameList = remember {
-        mutableStateListOf("Name 1", "Name 2")
-    }
+    val nameList =
+        remember {
+            mutableStateListOf("Name 1", "Name 2")
+        }
     Column(modifier = Modifier.fillMaxSize()) {
         Button(onClick = {
             nameList.add(0, "Name 3")

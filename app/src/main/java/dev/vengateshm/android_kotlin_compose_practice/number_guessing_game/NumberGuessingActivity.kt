@@ -7,7 +7,6 @@ import androidx.activity.viewModels
 import androidx.compose.material.MaterialTheme
 
 class NumberGuessingActivity : ComponentActivity() {
-
     private val viewModel by viewModels<NumberGuessingViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -22,7 +22,6 @@ import java.io.File
 class KtorClientViewModel(
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO,
 ) : ViewModel() {
-
     var isUploading = mutableStateOf(false)
     var transferred = mutableStateOf("")
     var downloadedFile = mutableStateOf<File?>(null)
@@ -34,16 +33,23 @@ class KtorClientViewModel(
                 setBody(
                     MultiPartFormDataContent(
                         formData {
-                            append("image", file.readBytes(), Headers.build {
-                                append(
-                                    HttpHeaders.ContentType, "images/*"
-                                )
-                                append(
-                                    HttpHeaders.ContentDisposition, "filename=sample.jpg"
-                                )
-                            })
-                        }, boundary = "WebAppBoundary"
-                    )
+                            append(
+                                "image",
+                                file.readBytes(),
+                                Headers.build {
+                                    append(
+                                        HttpHeaders.ContentType,
+                                        "images/*",
+                                    )
+                                    append(
+                                        HttpHeaders.ContentDisposition,
+                                        "filename=sample.jpg",
+                                    )
+                                },
+                            )
+                        },
+                        boundary = "WebAppBoundary",
+                    ),
                 )
                 onUpload { bytesSentTotal, contentLength ->
                     transferred.value = "Uploaded ${"%.2f".format(bytesSentTotal.toMB())}/${

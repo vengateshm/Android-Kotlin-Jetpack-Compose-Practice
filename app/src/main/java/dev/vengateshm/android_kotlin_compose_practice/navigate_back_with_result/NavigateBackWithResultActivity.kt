@@ -31,7 +31,7 @@ class NavigateBackWithResultActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = "screen1"
+                    startDestination = "screen1",
                 ) {
                     composable("screen1") {
                         val value = it.savedStateHandle.get<String>("my_text")
@@ -47,9 +47,12 @@ class NavigateBackWithResultActivity : ComponentActivity() {
 }
 
 @Composable
-fun Screen1(navController: NavController, value: String?) {
+fun Screen1(
+    navController: NavController,
+    value: String?,
+) {
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         if (value != null) {
             Text(text = "Entered value : $value")
@@ -72,17 +75,18 @@ fun Screen2(navController: NavHostController) {
                     it["my_text"] = text
                 }
             navController.popBackStack()
-        })
+        },
+    )
 
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         TextField(
             value = text,
             onValueChange = {
                 text = it
             },
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
         )
         Button(onClick = {
             navController.previousBackStackEntry

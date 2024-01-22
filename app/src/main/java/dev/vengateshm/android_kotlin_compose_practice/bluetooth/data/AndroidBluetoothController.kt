@@ -38,7 +38,6 @@ import java.util.UUID
 @RequiresApi(Build.VERSION_CODES.M)
 @SuppressLint("MissingPermission")
 class AndroidBluetoothController(private val context: Context) : BluetoothController {
-
     private val bluetoothManager by lazy {
         context.getSystemService(Context.BLUETOOTH_SERVICE) as BluetoothManager
     }
@@ -60,27 +59,28 @@ class AndroidBluetoothController(private val context: Context) : BluetoothContro
     override val errors: SharedFlow<String>
         get() = _errors.asSharedFlow()
 
+    private val btDeviceFoundReceiver =
+        BTDeviceFoundReceiver { device ->
+            _scannedDevices.update { devices ->
+                val newDevice = device.toBluetoothDeviceDomain()
+                if (newDevice in devices) {
+                    devices
+                } else {
+                    devices + newDevice
+                }
+            }
+        }
 
-    private val btDeviceFoundReceiver = BTDeviceFoundReceiver { device ->
-        _scannedDevices.update { devices ->
-            val newDevice = device.toBluetoothDeviceDomain()
-            if (newDevice in devices) {
-                devices
+    private val bluetoothStateReceiver =
+        BluetoothStateReceiver { isConnected, bluetoothDevice ->
+            if (bluetoothAdapter?.bondedDevices?.contains(bluetoothDevice) == true) {
+                _isConnected.update { isConnected }
             } else {
-                devices + newDevice
+                CoroutineScope(Dispatchers.IO).launch {
+                    _errors.emit("Can't connect to a non-paired device.")
+                }
             }
         }
-    }
-
-    private val bluetoothStateReceiver = BluetoothStateReceiver { isConnected, bluetoothDevice ->
-        if (bluetoothAdapter?.bondedDevices?.contains(bluetoothDevice) == true) {
-            _isConnected.update { isConnected }
-        } else {
-            CoroutineScope(Dispatchers.IO).launch {
-                _errors.emit("Can't connect to a non-paired device.")
-            }
-        }
-    }
 
     private var currentServerSocket: BluetoothServerSocket? = null
     private var currentClientSocket: BluetoothSocket? = null
@@ -95,7 +95,7 @@ class AndroidBluetoothController(private val context: Context) : BluetoothContro
                 addAction(BluetoothAdapter.ACTION_CONNECTION_STATE_CHANGED)
                 addAction(android.bluetooth.BluetoothDevice.ACTION_ACL_CONNECTED)
                 addAction(android.bluetooth.BluetoothDevice.ACTION_ACL_DISCONNECTED)
-            }
+            },
         )
     }
 
@@ -118,7 +118,7 @@ class AndroidBluetoothController(private val context: Context) : BluetoothContro
 
         context.registerReceiver(
             btDeviceFoundReceiver,
-            IntentFilter(android.bluetooth.BluetoothDevice.ACTION_FOUND)
+            IntentFilter(android.bluetooth.BluetoothDevice.ACTION_FOUND),
         )
 
         updatePairedDevices()
@@ -139,19 +139,21 @@ class AndroidBluetoothController(private val context: Context) : BluetoothContro
                 throw SecurityException("No BLUETOOTH_CONNECT permission")
             }
 
-            currentServerSocket = bluetoothAdapter?.listenUsingRfcommWithServiceRecord(
-                "chat_service",
-                UUID.fromString(SERVICE_UUID)
-            )
+            currentServerSocket =
+                bluetoothAdapter?.listenUsingRfcommWithServiceRecord(
+                    "chat_service",
+                    UUID.fromString(SERVICE_UUID),
+                )
 
             var shouldLoop = true
             while (shouldLoop) {
-                currentClientSocket = try {
-                    currentServerSocket?.accept()
-                } catch (e: IOException) {
-                    shouldLoop = false
-                    null
-                }
+                currentClientSocket =
+                    try {
+                        currentServerSocket?.accept()
+                    } catch (e: IOException) {
+                        shouldLoop = false
+                        null
+                    }
                 emit(ConnectionResult.ConnectionEstablished)
                 currentClientSocket?.let {
                     currentServerSocket?.close()
@@ -171,11 +173,12 @@ class AndroidBluetoothController(private val context: Context) : BluetoothContro
             return null
         }
 
-        val bluetoothMessage = BluetoothMessage(
-            message = message,
-            senderName = bluetoothAdapter?.name ?: "Unknown name",
-            isFromLocalUser = true
-        )
+        val bluetoothMessage =
+            BluetoothMessage(
+                message = message,
+                senderName = bluetoothAdapter?.name ?: "Unknown name",
+                isFromLocalUser = true,
+            )
 
         dataTransferService?.sendMessage(bluetoothMessage.toByteArray())
 
@@ -188,11 +191,12 @@ class AndroidBluetoothController(private val context: Context) : BluetoothContro
                 throw SecurityException("No BLUETOOTH_CONNECT permission")
             }
 
-            currentClientSocket = bluetoothAdapter
-                ?.getRemoteDevice(device.address)
-                ?.createRfcommSocketToServiceRecord(
-                    UUID.fromString(SERVICE_UUID)
-                )
+            currentClientSocket =
+                bluetoothAdapter
+                    ?.getRemoteDevice(device.address)
+                    ?.createRfcommSocketToServiceRecord(
+                        UUID.fromString(SERVICE_UUID),
+                    )
             stopDiscovery()
 
             currentClientSocket?.let { socket ->
@@ -203,7 +207,7 @@ class AndroidBluetoothController(private val context: Context) : BluetoothContro
                         dataTransferService = it
                         emitAll(
                             it.listenForIncomingMessages()
-                                .map { ConnectionResult.TransferSucceeded(it) }
+                                .map { ConnectionResult.TransferSucceeded(it) },
                         )
                     }
                 } catch (e: IOException) {
@@ -226,7 +230,7 @@ class AndroidBluetoothController(private val context: Context) : BluetoothContro
 
     override fun release() {
         context.unregisterReceiver(
-            btDeviceFoundReceiver
+            btDeviceFoundReceiver,
         )
         context.unregisterReceiver(bluetoothStateReceiver)
         closeConnection()

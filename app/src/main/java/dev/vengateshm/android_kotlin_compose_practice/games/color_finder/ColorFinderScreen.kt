@@ -66,17 +66,19 @@ fun ColorFinderScreen(viewModel: ColorFinderViewModel) {
             onRestartClicked = {
                 gameOverDialogVisible.value = false
                 viewModel.resetGame()
-            })
+            },
+        )
     }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(16.dp),
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             LifeCountDisplay(lifeCount = state.lifeCount)
             TimerDisplay(timeLeft = state.timeLeft)
@@ -84,20 +86,22 @@ fun ColorFinderScreen(viewModel: ColorFinderViewModel) {
         Spacer(modifier = Modifier.height(16.dp))
         ColorNameDisplay(
             colorName = state.colorNameAndList.colorName,
-            color = state.colorNameAndList.colorNameTextColor
+            color = state.colorNameAndList.colorNameTextColor,
         )
         Spacer(modifier = Modifier.height(16.dp))
         FlowRow(
             modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(16.dp),
             maxItemsInEachRow = 3,
-            horizontalArrangement = Arrangement.SpaceAround
+            horizontalArrangement = Arrangement.SpaceAround,
         ) {
             state.colorNameAndList.colorList.forEach { data ->
-                ColoredBox(data = data,
+                ColoredBox(
+                    data = data,
                     onClick = { clickedColorName ->
                         viewModel.onBoxClicked(clickedColorName == state.colorNameAndList.colorName)
-                    })
+                    },
+                )
             }
         }
     }
@@ -107,7 +111,7 @@ fun ColorFinderScreen(viewModel: ColorFinderViewModel) {
 fun TimerDisplay(timeLeft: Long) {
     Text(
         text = "Time Left: $timeLeft s",
-        fontSize = 20.sp
+        fontSize = 20.sp,
     )
 }
 
@@ -115,7 +119,7 @@ fun TimerDisplay(timeLeft: Long) {
 fun LifeCountDisplay(lifeCount: Int) {
     Text(
         text = "Life Count: $lifeCount",
-        fontSize = 20.sp
+        fontSize = 20.sp,
     )
 }
 
@@ -129,7 +133,7 @@ fun ColorNameDisplay(
         textAlign = TextAlign.Center,
         text = colorName,
         fontSize = 20.sp,
-        color = color
+        color = color,
     )
 }
 
@@ -139,18 +143,22 @@ fun ColoredBox(
     onClick: (String) -> Unit,
 ) {
     Box(
-        modifier = Modifier
-            .size(100.dp)
-            .background(
-                color = data.second,
-                shape = RoundedCornerShape(8.dp)
-            )
-            .clickable { onClick(data.first) }
+        modifier =
+            Modifier
+                .size(100.dp)
+                .background(
+                    color = data.second,
+                    shape = RoundedCornerShape(8.dp),
+                )
+                .clickable { onClick(data.first) },
     )
 }
 
 @Composable
-fun GameOverDialog(score: Int, onRestartClicked: () -> Unit) {
+fun GameOverDialog(
+    score: Int,
+    onRestartClicked: () -> Unit,
+) {
     AlertDialog(
         onDismissRequest = { /* Dismiss the dialog by clicking outside */ },
         title = { Text(text = "Game Over") },
@@ -159,10 +167,10 @@ fun GameOverDialog(score: Int, onRestartClicked: () -> Unit) {
             Button(
                 onClick = {
                     onRestartClicked()
-                }
+                },
             ) {
                 Text(text = "Restart")
             }
-        }
+        },
     )
 }

@@ -16,7 +16,7 @@ class HexagonShape : Shape {
         density: Density,
     ): Outline {
         return Outline.Generic(
-            path = drawCustomHexagonPath(size)
+            path = drawCustomHexagonPath(size),
         )
     }
 }
@@ -28,7 +28,10 @@ fun drawCustomHexagonPath(size: Size): Path {
     }
 }
 
-fun Path.customHexagon(radius: Float, size: Size) {
+fun Path.customHexagon(
+    radius: Float,
+    size: Size,
+) {
     val triangleHeight = (sqrt(3.0) * radius / 2)
     val centerX = size.width / 2
     val centerY = size.height / 2
@@ -44,14 +47,14 @@ fun Path.customHexagon(radius: Float, size: Size) {
 //    close()
 
     // https://fluttershapemaker.com/
-    moveTo(0f, size.height * 0.4999973f);
+    moveTo(0f, size.height * 0.4999973f)
 
-    lineTo(size.width * 0.2500014f, size.height * 0.06698205f);
-    lineTo(size.width * 0.7500149f, size.height * 0.06698205f);
-    lineTo(size.width, size.height * 0.4999973f);
-    lineTo(size.width * 0.7500149f, size.height * 0.9330125f);
-    lineTo(size.width * 0.2500014f, size.height * 0.9330125f);
-    lineTo(0f, size.height * 0.4999973f);
+    lineTo(size.width * 0.2500014f, size.height * 0.06698205f)
+    lineTo(size.width * 0.7500149f, size.height * 0.06698205f)
+    lineTo(size.width, size.height * 0.4999973f)
+    lineTo(size.width * 0.7500149f, size.height * 0.9330125f)
+    lineTo(size.width * 0.2500014f, size.height * 0.9330125f)
+    lineTo(0f, size.height * 0.4999973f)
 
     close()
 }

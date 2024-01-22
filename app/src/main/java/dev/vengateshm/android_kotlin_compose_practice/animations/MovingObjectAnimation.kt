@@ -6,9 +6,6 @@ import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.keyframes
-import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.spring
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
@@ -35,7 +32,6 @@ import kotlin.math.pow
 
 @Composable
 fun MovingObjectAnimation() {
-
     var isMovingRight by remember { mutableStateOf(false) }
 
     LaunchedEffect(true) {
@@ -56,35 +52,36 @@ fun MovingObjectAnimation() {
     val linearEasingX by animateDpAsState(
         targetValue = if (isMovingRight) targetXTranslation else 0.dp,
         animationSpec = tween(durationMillis = 1000, easing = LinearEasing),
-        label = "linearEasing"
+        label = "linearEasing",
     )
     val easeInOutCubicX by animateDpAsState(
         targetValue = if (isMovingRight) targetXTranslation else 0.dp,
-        animationSpec = tween(
-            durationMillis = 1000,
-            easing = CubicBezierEasing(0.42f, 0f, 0.58f, 1f)
-        ),
-        label = "easeInOutCubic"
+        animationSpec =
+            tween(
+                durationMillis = 1000,
+                easing = CubicBezierEasing(0.42f, 0f, 0.58f, 1f),
+            ),
+        label = "easeInOutCubic",
     )
     val fastOutSlowInEasingX by animateDpAsState(
         targetValue = if (isMovingRight) targetXTranslation else 0.dp,
         animationSpec = tween(durationMillis = 1000, easing = FastOutSlowInEasing),
-        label = "fastOutSlowInEasing"
+        label = "fastOutSlowInEasing",
     )
     val linearOutSlowInEasingX by animateDpAsState(
         targetValue = if (isMovingRight) targetXTranslation else 0.dp,
         animationSpec = tween(durationMillis = 1000, easing = LinearOutSlowInEasing),
-        label = "linearOutSlowInEasing"
+        label = "linearOutSlowInEasing",
     )
     val customEasingX by animateDpAsState(
         targetValue = if (isMovingRight) targetXTranslation else 0.dp,
         animationSpec = tween(durationMillis = 1000, easing = CustomEasing(2f)),
-        label = "customEasing"
+        label = "customEasing",
     )
     val springX by animateDpAsState(
         targetValue = if (isMovingRight) targetXTranslation else 0.dp,
         animationSpec = spring(dampingRatio = 0.8f, stiffness = 150f),
-        label = "spring"
+        label = "spring",
     )
     Column(modifier = Modifier.fillMaxSize()) {
         MovingContent(x = linearEasingX)
@@ -99,14 +96,15 @@ fun MovingObjectAnimation() {
 @Composable
 fun MovingContent(x: Dp) {
     Box(
-        modifier = Modifier
-            .offset(x = x)
-            .size(60.dp)
+        modifier =
+            Modifier
+                .offset(x = x)
+                .size(60.dp),
     ) {
         Image(
             painter = painterResource(id = R.drawable.cycling),
             contentDescription = "",
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier.fillMaxSize(),
         )
     }
 }
@@ -121,5 +119,4 @@ class CustomEasing(private val factor: Float) : Easing {
     override fun transform(fraction: Float): Float {
         return fraction.toDouble().pow(factor.toDouble()).toFloat()
     }
-
 }

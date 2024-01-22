@@ -28,14 +28,15 @@ fun DraggableShape() {
         mutableStateOf(
             Offset(
                 (displayMetrics.widthPixels / 2).toFloat(),
-                (displayMetrics.heightPixels / 2).toFloat()
-            )
+                (displayMetrics.heightPixels / 2).toFloat(),
+            ),
         )
     }
 
     Box(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier =
+            Modifier
+                .fillMaxSize(),
     ) {
         Canvas(
             modifier = Modifier.fillMaxSize(),
@@ -44,32 +45,33 @@ fun DraggableShape() {
                     drawCircle(
                         color = Color.Blue,
                         center = circlePosition,
-                        radius = 100f
+                        radius = 100f,
                     )
                 }
-            }
+            },
         )
         Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .pointerInput(Unit) {
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .pointerInput(Unit) {
 //                    detectTapGestures(
 //                        onDoubleTap = {
 //                            circlePosition += Offset(x = 150f, y = 150f)
 //                        }
 //                    )
-                    detectDragGestures { change, dragAmount ->
-                        if (change.pressed) {  // Check if press is within circle bounds
-                            val pressedOffset = change.position
-                            if (pressedOffset.x in circlePosition.x - touchAreaOffset..circlePosition.x + touchAreaOffset &&
-                                pressedOffset.y in circlePosition.y - touchAreaOffset..circlePosition.y + touchAreaOffset
-                            ) {
-                                circlePosition += dragAmount
+                        detectDragGestures { change, dragAmount ->
+                            if (change.pressed) { // Check if press is within circle bounds
+                                val pressedOffset = change.position
+                                if (pressedOffset.x in circlePosition.x - touchAreaOffset..circlePosition.x + touchAreaOffset &&
+                                    pressedOffset.y in circlePosition.y - touchAreaOffset..circlePosition.y + touchAreaOffset
+                                ) {
+                                    circlePosition += dragAmount
+                                }
                             }
                         }
                     }
-                }
-                .alpha(0f),
+                    .alpha(0f),
         )
     }
 }

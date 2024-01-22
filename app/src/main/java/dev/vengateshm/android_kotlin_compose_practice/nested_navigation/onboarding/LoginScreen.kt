@@ -24,31 +24,34 @@ fun LoginScreen(
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "Login\nNested Navigation"
+            text = "Login\nNested Navigation",
         )
         Button(
             onClick = {
                 onLoginSuccess()
-            }) {
+            },
+        ) {
             Text(
-                text = "Login"
+                text = "Login",
             )
         }
         Button(
             onClick = {
                 navController.navigate(AppScreen.Onboarding.Register.name)
-            }) {
+            },
+        ) {
             Text(
-                text = "Register"
+                text = "Register",
             )
         }
         Button(
-            onClick = { navController.navigate(AppScreen.Onboarding.ForgotPassword.name) }) {
+            onClick = { navController.navigate(AppScreen.Onboarding.ForgotPassword.name) },
+        ) {
             Text(
-                text = "Forgot Password"
+                text = "Forgot Password",
             )
         }
     }

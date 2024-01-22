@@ -36,43 +36,46 @@ import com.google.firebase.ktx.Firebase
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ProduceStateSample() {
-
-    val productListState = produceState(
-        initialValue = ProductListState(
-            isLoading = true,
-            listType = "vertical",
-            products = emptyList()
-        )
-    ) {
-        Firebase.database.reference
-            .child("dynamic_ui")
-            .child("products")
-            .get()
-            .addOnSuccessListener { it1 ->
-                val productList = it1.children.map { it2 ->
-                    Product(
-                        it2.child("id").getValue(Int::class.java) ?: -1,
-                        it2.child("name").getValue(String::class.java) ?: "",
-                        it2.child("description").getValue(String::class.java) ?: "",
-                    )
+    val productListState =
+        produceState(
+            initialValue =
+                ProductListState(
+                    isLoading = true,
+                    listType = "vertical",
+                    products = emptyList(),
+                ),
+        ) {
+            Firebase.database.reference
+                .child("dynamic_ui")
+                .child("products")
+                .get()
+                .addOnSuccessListener { it1 ->
+                    val productList =
+                        it1.children.map { it2 ->
+                            Product(
+                                it2.child("id").getValue(Int::class.java) ?: -1,
+                                it2.child("name").getValue(String::class.java) ?: "",
+                                it2.child("description").getValue(String::class.java) ?: "",
+                            )
+                        }
+                    Firebase.database.reference
+                        .child("dynamic_ui")
+                        .child("list_type")
+                        .get()
+                        .addOnSuccessListener {
+                            value =
+                                ProductListState(
+                                    isLoading = false,
+                                    listType = (if (it.value is String) it.value else "vertical") as String,
+                                    products = productList,
+                                )
+                        }
                 }
-                Firebase.database.reference
-                    .child("dynamic_ui")
-                    .child("list_type")
-                    .get()
-                    .addOnSuccessListener {
-                        value = ProductListState(
-                            isLoading = false,
-                            listType = (if (it.value is String) it.value else "vertical") as String,
-                            products = productList
-                        )
-                    }
-            }
-    }
+        }
     if (productListState.value.isLoading) {
         Box(
             modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             CircularProgressIndicator()
         }
@@ -83,18 +86,19 @@ fun ProduceStateSample() {
                 LazyColumn(
                     modifier = Modifier.fillMaxWidth(),
                     contentPadding = PaddingValues(8.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     items(productListState.value.products) { product ->
                         Card(
                             elevation = 8.dp,
                             shape = RoundedCornerShape(8.dp),
-                            backgroundColor = Color.LightGray
+                            backgroundColor = Color.LightGray,
                         ) {
                             Column(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(8.dp)
+                                modifier =
+                                    Modifier
+                                        .fillMaxWidth()
+                                        .padding(8.dp),
                             ) {
                                 Text(text = product.name)
                                 Text(text = product.description)
@@ -110,16 +114,16 @@ fun ProduceStateSample() {
                     columns = GridCells.Fixed(2),
                     contentPadding = PaddingValues(8.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     items(productListState.value.products) { product ->
                         Card(
                             elevation = 8.dp,
                             shape = RoundedCornerShape(8.dp),
-                            backgroundColor = Color.LightGray
+                            backgroundColor = Color.LightGray,
                         ) {
                             Column(
-                                modifier = Modifier.padding(8.dp)
+                                modifier = Modifier.padding(8.dp),
                             ) {
                                 Text(text = product.name)
                                 Text(text = product.description)
@@ -135,16 +139,16 @@ fun ProduceStateSample() {
                     columns = StaggeredGridCells.Fixed(3),
                     contentPadding = PaddingValues(8.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalItemSpacing = 8.dp
+                    verticalItemSpacing = 8.dp,
                 ) {
                     items(productListState.value.products) { product ->
                         Card(
                             elevation = 8.dp,
                             shape = RoundedCornerShape(8.dp),
-                            backgroundColor = Color.LightGray
+                            backgroundColor = Color.LightGray,
                         ) {
                             Column(
-                                modifier = Modifier.padding(8.dp)
+                                modifier = Modifier.padding(8.dp),
                             ) {
                                 Text(text = product.name)
                                 Text(text = product.description)
@@ -160,58 +164,67 @@ fun ProduceStateSample() {
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ProduceStateSampleLive() {
+    val productListState =
+        produceState(
+            initialValue =
+                ProductListState(
+                    isLoading = true,
+                    listType = "vertical",
+                    products = emptyList(),
+                ),
+        ) {
+            val productsRef = Firebase.database.reference.child("dynamic_ui").child("products")
+            val listTypeRef = Firebase.database.reference.child("dynamic_ui").child("list_type")
+            lateinit var listTypeListener: ValueEventListener
+            val productsListener =
+                object : ValueEventListener {
+                    override fun onDataChange(dataSnapshot: DataSnapshot) {
+                        val productList =
+                            dataSnapshot.children.map { it2 ->
+                                Product(
+                                    it2.child("id").getValue(Int::class.java) ?: -1,
+                                    it2.child("name").getValue(String::class.java) ?: "",
+                                    it2.child("description").getValue(String::class.java) ?: "",
+                                )
+                            }
 
-    val productListState = produceState(
-        initialValue = ProductListState(
-            isLoading = true,
-            listType = "vertical",
-            products = emptyList()
-        )
-    ) {
-        val productsRef = Firebase.database.reference.child("dynamic_ui").child("products")
-        val listTypeRef = Firebase.database.reference.child("dynamic_ui").child("list_type")
-        lateinit var listTypeListener: ValueEventListener
-        val productsListener = object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val productList = dataSnapshot.children.map { it2 ->
-                    Product(
-                        it2.child("id").getValue(Int::class.java) ?: -1,
-                        it2.child("name").getValue(String::class.java) ?: "",
-                        it2.child("description").getValue(String::class.java) ?: "",
-                    )
-                }
+                        listTypeListener =
+                            object : ValueEventListener {
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    value =
+                                        ProductListState(
+                                            isLoading = false,
+                                            listType = (if (snapshot.value is String) snapshot.value else "vertical") as String,
+                                            products = productList,
+                                        )
+                                }
 
-                listTypeListener = object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        value = ProductListState(
-                            isLoading = false,
-                            listType = (if (snapshot.value is String) snapshot.value else "vertical") as String,
-                            products = productList
-                        )
+                                override fun onCancelled(databaseError: DatabaseError) {
+                                    Log.w(
+                                        "ERROR",
+                                        "loadListType:onCancelled",
+                                        databaseError.toException(),
+                                    )
+                                }
+                            }
+                        listTypeRef.addValueEventListener(listTypeListener)
                     }
 
                     override fun onCancelled(databaseError: DatabaseError) {
-                        Log.w("ERROR", "loadListType:onCancelled", databaseError.toException())
+                        Log.w("ERROR", "loadProducts:onCancelled", databaseError.toException())
                     }
                 }
-                listTypeRef.addValueEventListener(listTypeListener)
-            }
+            productsRef.addValueEventListener(productsListener)
 
-            override fun onCancelled(databaseError: DatabaseError) {
-                Log.w("ERROR", "loadProducts:onCancelled", databaseError.toException())
+            awaitDispose {
+                productsRef.removeEventListener(productsListener)
+                listTypeRef.removeEventListener(listTypeListener)
             }
         }
-        productsRef.addValueEventListener(productsListener)
-
-        awaitDispose {
-            productsRef.removeEventListener(productsListener)
-            listTypeRef.removeEventListener(listTypeListener)
-        }
-    }
     if (productListState.value.isLoading) {
         Box(
             modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
+            contentAlignment = Alignment.Center,
         ) {
             CircularProgressIndicator()
         }
@@ -222,18 +235,19 @@ fun ProduceStateSampleLive() {
                 LazyColumn(
                     modifier = Modifier.fillMaxWidth(),
                     contentPadding = PaddingValues(8.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     items(productListState.value.products) { product ->
                         Card(
                             elevation = 8.dp,
                             shape = RoundedCornerShape(8.dp),
-                            backgroundColor = Color.LightGray
+                            backgroundColor = Color.LightGray,
                         ) {
                             Column(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(8.dp)
+                                modifier =
+                                    Modifier
+                                        .fillMaxWidth()
+                                        .padding(8.dp),
                             ) {
                                 Text(text = product.name)
                                 Text(text = product.description)
@@ -249,16 +263,16 @@ fun ProduceStateSampleLive() {
                     columns = GridCells.Fixed(2),
                     contentPadding = PaddingValues(8.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     items(productListState.value.products) { product ->
                         Card(
                             elevation = 8.dp,
                             shape = RoundedCornerShape(8.dp),
-                            backgroundColor = Color.LightGray
+                            backgroundColor = Color.LightGray,
                         ) {
                             Column(
-                                modifier = Modifier.padding(8.dp)
+                                modifier = Modifier.padding(8.dp),
                             ) {
                                 Text(text = product.name)
                                 Text(text = product.description)
@@ -274,16 +288,16 @@ fun ProduceStateSampleLive() {
                     columns = StaggeredGridCells.Fixed(3),
                     contentPadding = PaddingValues(8.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    verticalItemSpacing = 8.dp
+                    verticalItemSpacing = 8.dp,
                 ) {
                     items(productListState.value.products) { product ->
                         Card(
                             elevation = 8.dp,
                             shape = RoundedCornerShape(8.dp),
-                            backgroundColor = Color.LightGray
+                            backgroundColor = Color.LightGray,
                         ) {
                             Column(
-                                modifier = Modifier.padding(8.dp)
+                                modifier = Modifier.padding(8.dp),
                             ) {
                                 Text(text = product.name)
                                 Text(text = product.description)

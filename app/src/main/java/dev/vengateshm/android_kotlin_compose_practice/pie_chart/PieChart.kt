@@ -42,7 +42,6 @@ fun PieChart(
     input: List<PieChartData>,
     centerText: String = "",
 ) {
-
     var circleCenter by remember {
         mutableStateOf(Offset.Zero)
     }
@@ -57,52 +56,58 @@ fun PieChart(
 
     Box(
         modifier = modifier,
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Canvas(
-            modifier = Modifier
-                .fillMaxSize()
-                .pointerInput(true) {
-                    detectTapGestures(
-                        onTap = { offset ->
-                            val tapAngleInDegrees = (
-                                    -atan2(
-                                        x = circleCenter.y - offset.y,
-                                        y = circleCenter.x - offset.x
-                                    ) * (180f / PI).toFloat() - 90f).mod(360f)
-                            val centerClicked = if (tapAngleInDegrees < 90) {
-                                offset.x < circleCenter.x + innerCircleRadius && offset.y < circleCenter.y + innerCircleRadius
-                            } else if (tapAngleInDegrees < 180) {
-                                offset.x > circleCenter.x - innerCircleRadius && offset.y < circleCenter.y + innerCircleRadius
-                            } else if (tapAngleInDegrees < 270) {
-                                offset.x > circleCenter.x - innerCircleRadius && offset.y > circleCenter.y - innerCircleRadius
-                            } else {
-                                offset.x < circleCenter.x + innerCircleRadius && offset.y > circleCenter.y - innerCircleRadius
-                            }
-                            if (centerClicked) {
-                                inputList = inputList.map { it.copy(isTapped = !isCenterTapped) }
-                                isCenterTapped = !isCenterTapped
-                            } else {
-                                val anglePerValue = 360f / input.sumOf { it.value }
-                                var curAngle = 0f
-                                inputList.forEach { pieChartData ->
-                                    curAngle += pieChartData.value * anglePerValue
-                                    if (tapAngleInDegrees < curAngle) {
-                                        val description = pieChartData.description
-                                        inputList = inputList.map {
-                                            if (description == it.description) {
-                                                it.copy(isTapped = !it.isTapped)
-                                            } else {
-                                                it.copy(isTapped = false)
-                                            }
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .pointerInput(true) {
+                        detectTapGestures(
+                            onTap = { offset ->
+                                val tapAngleInDegrees =
+                                    (
+                                        -atan2(
+                                            x = circleCenter.y - offset.y,
+                                            y = circleCenter.x - offset.x,
+                                        ) * (180f / PI).toFloat() - 90f
+                                    ).mod(360f)
+                                val centerClicked =
+                                    if (tapAngleInDegrees < 90) {
+                                        offset.x < circleCenter.x + innerCircleRadius && offset.y < circleCenter.y + innerCircleRadius
+                                    } else if (tapAngleInDegrees < 180) {
+                                        offset.x > circleCenter.x - innerCircleRadius && offset.y < circleCenter.y + innerCircleRadius
+                                    } else if (tapAngleInDegrees < 270) {
+                                        offset.x > circleCenter.x - innerCircleRadius && offset.y > circleCenter.y - innerCircleRadius
+                                    } else {
+                                        offset.x < circleCenter.x + innerCircleRadius && offset.y > circleCenter.y - innerCircleRadius
+                                    }
+                                if (centerClicked) {
+                                    inputList = inputList.map { it.copy(isTapped = !isCenterTapped) }
+                                    isCenterTapped = !isCenterTapped
+                                } else {
+                                    val anglePerValue = 360f / input.sumOf { it.value }
+                                    var curAngle = 0f
+                                    inputList.forEach { pieChartData ->
+                                        curAngle += pieChartData.value * anglePerValue
+                                        if (tapAngleInDegrees < curAngle) {
+                                            val description = pieChartData.description
+                                            inputList =
+                                                inputList.map {
+                                                    if (description == it.description) {
+                                                        it.copy(isTapped = !it.isTapped)
+                                                    } else {
+                                                        it.copy(isTapped = false)
+                                                    }
+                                                }
+                                            return@detectTapGestures
                                         }
-                                        return@detectTapGestures
                                     }
                                 }
-                            }
-                        }
-                    )
-                }) {
+                            },
+                        )
+                    },
+        ) {
             val width = size.width
             val height = size.height
             circleCenter = Offset(width / 2f, height / 2f)
@@ -120,14 +125,16 @@ fun PieChart(
                         startAngle = currentStartAngle,
                         sweepAngle = angleToDraw,
                         useCenter = true,
-                        size = Size(
-                            width = outerCircleRadius * 2f,
-                            height = outerCircleRadius * 2f
-                        ),
-                        topLeft = Offset(
-                            x = (width - outerCircleRadius * 2f) / 2f,
-                            y = (height - outerCircleRadius * 2f) / 2f
-                        )
+                        size =
+                            Size(
+                                width = outerCircleRadius * 2f,
+                                height = outerCircleRadius * 2f,
+                            ),
+                        topLeft =
+                            Offset(
+                                x = (width - outerCircleRadius * 2f) / 2f,
+                                y = (height - outerCircleRadius * 2f) / 2f,
+                            ),
                     )
                     currentStartAngle += angleToDraw
                 }
@@ -152,7 +159,7 @@ fun PieChart(
                                     textSize = 13.sp.toPx()
                                     textAlign = Paint.Align.CENTER
                                     color = Color.White.toArgb()
-                                }
+                                },
                             )
                         }
                     }
@@ -165,7 +172,7 @@ fun PieChart(
                             topLeft = circleCenter,
                             size = Size(12f, outerCircleRadius * 1.2f),
                             color = Color.Gray,
-                            cornerRadius = CornerRadius(15f, 15f)
+                            cornerRadius = CornerRadius(15f, 15f),
                         )
                     }
                     rotate(tabRotation + angleToDraw) {
@@ -173,7 +180,7 @@ fun PieChart(
                             topLeft = circleCenter,
                             size = Size(12f, outerCircleRadius * 1.2f),
                             color = Color.Gray,
-                            cornerRadius = CornerRadius(15f, 15f)
+                            cornerRadius = CornerRadius(15f, 15f),
                         )
                     }
                     rotate(rotateAngle) {
@@ -187,7 +194,7 @@ fun PieChart(
                                     textAlign = Paint.Align.CENTER
                                     color = Color.White.toArgb()
                                     isFakeBoldText = true
-                                }
+                                },
                             )
                         }
                     }
@@ -200,7 +207,7 @@ fun PieChart(
                         topLeft = circleCenter,
                         size = Size(12f, outerCircleRadius * 1.2f),
                         color = Color.Gray,
-                        cornerRadius = CornerRadius(15f, 15f)
+                        cornerRadius = CornerRadius(15f, 15f),
                     )
                 }
             }
@@ -213,24 +220,25 @@ fun PieChart(
                     Paint().apply {
                         color = Color.White.copy(alpha = 0.6f).toArgb()
                         setShadowLayer(10f, 0f, 0f, Color.Gray.toArgb())
-                    }
+                    },
                 )
             }
 
             drawCircle(
                 color = Color.White.copy(alpha = 0.2f),
-                radius = innerCircleRadius + (transparentWidth / 2f)
+                radius = innerCircleRadius + (transparentWidth / 2f),
             )
         }
 
         Text(
-            modifier = Modifier
-                .width(Dp(innerCircleRadius / 1.5f))
-                .padding(25.dp),
+            modifier =
+                Modifier
+                    .width(Dp(innerCircleRadius / 1.5f))
+                    .padding(25.dp),
             text = centerText,
             fontWeight = FontWeight.SemiBold,
             fontSize = 16.sp,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Center,
         )
     }
 }
@@ -248,35 +256,36 @@ fun PieChartPreview() {
     PieChart(input = pieChartDataList)
 }
 
-val pieChartDataList = listOf(
-    PieChartData(
-        color = Color.Black,
-        value = 30,
-        description = "C#",
-        isTapped = false
-    ),
-    PieChartData(
-        color = Color.Blue,
-        value = 50,
-        description = "Rust",
-        isTapped = false
-    ),
-    PieChartData(
-        color = Color.Cyan,
-        value = 12,
-        description = "Kotlin",
-        isTapped = false
-    ),
-    PieChartData(
-        color = Color.Green,
-        value = 50,
-        description = "Java",
-        isTapped = false
-    ),
-    PieChartData(
-        color = Color.Yellow,
-        value = 8,
-        description = "Ruby",
-        isTapped = false
+val pieChartDataList =
+    listOf(
+        PieChartData(
+            color = Color.Black,
+            value = 30,
+            description = "C#",
+            isTapped = false,
+        ),
+        PieChartData(
+            color = Color.Blue,
+            value = 50,
+            description = "Rust",
+            isTapped = false,
+        ),
+        PieChartData(
+            color = Color.Cyan,
+            value = 12,
+            description = "Kotlin",
+            isTapped = false,
+        ),
+        PieChartData(
+            color = Color.Green,
+            value = 50,
+            description = "Java",
+            isTapped = false,
+        ),
+        PieChartData(
+            color = Color.Yellow,
+            value = 8,
+            description = "Ruby",
+            isTapped = false,
+        ),
     )
-)

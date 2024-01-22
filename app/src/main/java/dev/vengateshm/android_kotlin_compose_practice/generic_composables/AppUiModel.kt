@@ -24,28 +24,32 @@ data class Cheese(val id: Int, val name: String) : AppUiModel {
 // Usage
 @Composable
 fun CheeseFactory() {
-    val list = remember {
-        listOf(
-            Cheese(id = 1, "Parmesan"),
-            Cheese(id = 2, "Cheddar")
-        )
-    }
+    val list =
+        remember {
+            listOf(
+                Cheese(id = 1, "Parmesan"),
+                Cheese(id = 2, "Cheddar"),
+            )
+        }
     AppLazyColumn(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 8.dp),
-        items = list
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 8.dp),
+        items = list,
     ) { cheese ->
         Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 8.dp)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp),
         ) {
             Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                text = cheese.name
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                text = cheese.name,
             )
         }
     }

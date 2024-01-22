@@ -23,13 +23,14 @@ class WindowInsetSampleActivity : ComponentActivity() {
 
         setContent {
             MaterialTheme {
-                val colors = remember {
-                    listOf(
-                        Color(0xFFFFC400),
-                        Color(0xFFFF9100),
-                        Color(0xFFFF3D00),
-                    )
-                }
+                val colors =
+                    remember {
+                        listOf(
+                            Color(0xFFFFC400),
+                            Color(0xFFFF9100),
+                            Color(0xFFFF3D00),
+                        )
+                    }
                 var colorIndex by remember { mutableIntStateOf(0) }
                 LaunchedEffect(Unit) {
                     colorIndex += 1
@@ -37,7 +38,7 @@ class WindowInsetSampleActivity : ComponentActivity() {
                 val animatedColor by animateColorAsState(
                     targetValue = colors[colorIndex],
                     animationSpec = tween(1500),
-                    label = "status bar color animation"
+                    label = "status bar color animation",
                 )
                 val window = (LocalContext.current as Activity).window!!
                 LaunchedEffect(colorIndex) {

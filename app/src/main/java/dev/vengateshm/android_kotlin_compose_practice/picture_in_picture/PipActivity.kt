@@ -26,11 +26,10 @@ import dev.vengateshm.android_kotlin_compose_practice.R
 import dev.vengateshm.android_kotlin_compose_practice.utils.toastShort
 
 class PipActivity : ComponentActivity() {
-
     private val isPipSupported by lazy {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             packageManager.hasSystemFeature(
-                PackageManager.FEATURE_PICTURE_IN_PICTURE
+                PackageManager.FEATURE_PICTURE_IN_PICTURE,
             )
         } else {
             false
@@ -51,20 +50,24 @@ class PipActivity : ComponentActivity() {
                             start()
                         }
                     },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .onGloballyPositioned {
-                            videoViewBounds = run {
-                                val boundsInWindow = it
-                                    .boundsInWindow()
-                                Rect(
-                                    boundsInWindow.left.toInt(),
-                                    boundsInWindow.top.toInt(),
-                                    boundsInWindow.right.toInt(),
-                                    boundsInWindow.bottom.toInt()
-                                )
-                            }
-                        })
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .onGloballyPositioned {
+                                videoViewBounds =
+                                    run {
+                                        val boundsInWindow =
+                                            it
+                                                .boundsInWindow()
+                                        Rect(
+                                            boundsInWindow.left.toInt(),
+                                            boundsInWindow.top.toInt(),
+                                            boundsInWindow.right.toInt(),
+                                            boundsInWindow.bottom.toInt(),
+                                        )
+                                    }
+                            },
+                )
             }
         }
     }
@@ -92,7 +95,7 @@ class PipActivity : ComponentActivity() {
                         RemoteAction(
                             Icon.createWithResource(
                                 applicationContext,
-                                R.drawable.ic_baseline_baby_changing_station_24
+                                R.drawable.ic_baseline_baby_changing_station_24,
                             ),
                             "Baby Changing Station",
                             "Baby Changing Station",
@@ -100,10 +103,10 @@ class PipActivity : ComponentActivity() {
                                 applicationContext,
                                 0,
                                 Intent(applicationContext, MyReceiver::class.java),
-                                PendingIntent.FLAG_IMMUTABLE
-                            )
-                        )
-                    )
+                                PendingIntent.FLAG_IMMUTABLE,
+                            ),
+                        ),
+                    ),
                 )
                 .build()
         } else {
@@ -112,7 +115,10 @@ class PipActivity : ComponentActivity() {
     }
 
     class MyReceiver : BroadcastReceiver() {
-        override fun onReceive(context: Context?, intent: Intent?) {
+        override fun onReceive(
+            context: Context?,
+            intent: Intent?,
+        ) {
             context.toastShort("Clicked on PIP Action!")
         }
     }

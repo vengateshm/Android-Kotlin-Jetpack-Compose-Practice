@@ -11,6 +11,7 @@ class QuizViewModel : ViewModel() {
     var currentQuestion by mutableStateOf(questions[0])
     var currentQuestionIndex = 1
     var correctAnswersCount = 0
+
     fun onNextClicked() {
         if (currentQuestionIndex <= questions.size) {
             currentQuestionIndex = currentQuestionIndex.plus(1)
@@ -19,6 +20,7 @@ class QuizViewModel : ViewModel() {
     }
 
     fun isLastQuestion() = currentQuestionIndex == questions.size
+
     fun getProgress() = currentQuestionIndex / questions.size.toFloat()
 
     fun totalCount() = questions.size

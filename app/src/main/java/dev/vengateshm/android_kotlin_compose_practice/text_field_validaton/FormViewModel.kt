@@ -12,22 +12,22 @@ import kotlinx.coroutines.flow.mapLatest
 import kotlinx.coroutines.flow.stateIn
 
 class FormViewModel(
-    private val passwordValidator: FormFieldValidator = PasswordValidator()
+    private val passwordValidator: FormFieldValidator = PasswordValidator(),
 ) : ViewModel() {
     var password by mutableStateOf("")
         private set
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    val passwordValidationState = snapshotFlow {
-        password
-    }
-        .mapLatest { passwordValidator.validate(it) }
-        .stateIn(
-            scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
-            initialValue = FormFieldValidationResult()
-        )
-
+    val passwordValidationState =
+        snapshotFlow {
+            password
+        }
+            .mapLatest { passwordValidator.validate(it) }
+            .stateIn(
+                scope = viewModelScope,
+                started = SharingStarted.WhileSubscribed(stopTimeoutMillis = 5_000),
+                initialValue = FormFieldValidationResult(),
+            )
 
     fun onPasswordChanges(value: String) {
         password = value

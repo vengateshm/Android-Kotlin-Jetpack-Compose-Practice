@@ -24,9 +24,10 @@ fun SpeedoMeter(progress: Int) {
     val degreesMarkerStep = arcDegrees / numberOfMarkers
 
     Canvas(
-        modifier = Modifier
-            .fillMaxWidth()
-            .aspectRatio(1f),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .aspectRatio(1f),
         onDraw = {
             drawIntoCanvas { canvas ->
                 val w = drawContext.size.width
@@ -34,15 +35,17 @@ fun SpeedoMeter(progress: Int) {
                 val centerOffset = Offset(w / 2f, h / 2f)
                 val quarterOffset = Offset(w / 4f, h / 4f)
 
-                val (mainColor, secondaryColor) = when {
-                    progress < 20 -> Color(0XFFD32F2F) to Color(0XFFFFCDD2)
-                    progress < 20 -> Color(0XFFF57C00) to Color(0XFFFFE0B2)
-                    else -> Color(0XFF388E3C) to Color(0XFFC8E6C9)
-                }
+                val (mainColor, secondaryColor) =
+                    when {
+                        progress < 20 -> Color(0XFFD32F2F) to Color(0XFFFFCDD2)
+                        progress < 20 -> Color(0XFFF57C00) to Color(0XFFFFE0B2)
+                        else -> Color(0XFF388E3C) to Color(0XFFC8E6C9)
+                    }
 
-                val paint = Paint().apply {
-                    color = mainColor
-                }
+                val paint =
+                    Paint().apply {
+                        color = mainColor
+                    }
 
                 val centerArcSize = Size(w / 2f, h / 2f)
                 val centerArcStroke = Stroke(20f, 0f, StrokeCap.Round)
@@ -55,7 +58,7 @@ fun SpeedoMeter(progress: Int) {
                     useCenter = false,
                     topLeft = quarterOffset,
                     size = centerArcSize,
-                    style = centerArcStroke
+                    style = centerArcStroke,
                 )
 
                 // Primary arc
@@ -66,7 +69,7 @@ fun SpeedoMeter(progress: Int) {
                     useCenter = false,
                     topLeft = quarterOffset,
                     size = centerArcSize,
-                    style = centerArcStroke
+                    style = centerArcStroke,
                 )
 
                 // Concentric circles in the center
@@ -78,19 +81,20 @@ fun SpeedoMeter(progress: Int) {
                 for ((counter, degrees) in (startStepAngle..(startStepAngle + arcDegrees) step degreesMarkerStep).withIndex()) {
                     val lineEndX = 80f
                     paint.color = mainColor
-                    val lineStartX = if (counter % 5 == 0) {
-                        paint.strokeWidth = 3f
-                        0f
-                    } else {
-                        paint.strokeWidth = 1f
-                        lineEndX * .2f
-                    }
+                    val lineStartX =
+                        if (counter % 5 == 0) {
+                            paint.strokeWidth = 3f
+                            0f
+                        } else {
+                            paint.strokeWidth = 1f
+                            lineEndX * .2f
+                        }
                     canvas.save()
                     canvas.rotate(degrees.toFloat(), w / 2f, h / 2f)
                     canvas.drawLine(
                         Offset(lineStartX, h / 2f),
                         Offset(lineEndX, h / 2f),
-                        paint
+                        paint,
                     )
 
                     if (counter == progress) {
@@ -103,12 +107,13 @@ fun SpeedoMeter(progress: Int) {
                                 lineTo(w / 2, (h / 2) - 5)
                                 close()
                             },
-                            paint
+                            paint,
                         )
                     }
 
                     canvas.restore()
                 }
             }
-        })
+        },
+    )
 }

@@ -33,7 +33,8 @@ class FunctionalProgrammingActivity : ComponentActivity() {
                     }
                     result.onLoading {
                         Box(
-                            modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center
+                            modifier = Modifier.fillMaxSize(),
+                            contentAlignment = Alignment.Center,
                         ) {
                             CircularProgressIndicator()
                         }
@@ -46,7 +47,6 @@ class FunctionalProgrammingActivity : ComponentActivity() {
                             }
                         }
                     }.onFailure {
-
                     }
                 }
             }

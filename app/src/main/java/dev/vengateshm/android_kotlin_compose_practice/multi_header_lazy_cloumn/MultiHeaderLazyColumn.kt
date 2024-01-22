@@ -25,10 +25,10 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun MultiHeaderLazyColumn() {
-
-    val dropDownState = remember {
-        mutableStateMapOf<String, Boolean>()
-    }
+    val dropDownState =
+        remember {
+            mutableStateMapOf<String, Boolean>()
+        }
 
     LaunchedEffect(true) {
         dropDownState.apply {
@@ -44,30 +44,32 @@ fun MultiHeaderLazyColumn() {
             // Header
             item(key = type) {
                 Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .toggleable(
-                            value = dropDownState[type] == true,
-                            onValueChange = {
-                                dropDownState[type] = it
-                            },
-                            role = Role.Button
-                        ),
-                    verticalAlignment = Alignment.CenterVertically
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .toggleable(
+                                value = dropDownState[type] == true,
+                                onValueChange = {
+                                    dropDownState[type] = it
+                                },
+                                role = Role.Button,
+                            ),
+                    verticalAlignment = Alignment.CenterVertically,
                 ) {
                     Text(
                         text = "$type (${items.size})",
                         fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
                     )
                     Spacer(modifier = Modifier.weight(1f))
                     IconButton(
                         onClick = {
                             dropDownState[type] = !dropDownState[type]!!
-                        }) {
+                        },
+                    ) {
                         Icon(
                             imageVector = if (dropDownState[type] == true) Icons.Default.KeyboardArrowDown else Icons.Default.KeyboardArrowUp,
-                            contentDescription = null
+                            contentDescription = null,
                         )
                     }
                 }

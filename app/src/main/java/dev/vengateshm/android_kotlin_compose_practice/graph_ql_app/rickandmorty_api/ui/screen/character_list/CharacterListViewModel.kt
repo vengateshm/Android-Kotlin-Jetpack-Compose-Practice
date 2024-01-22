@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class CharacterListViewModel : ViewModel() {
-
     private val repository = ApolloRickAndMortyRepository()
     private val getCharactersUseCase = GetCharactersUseCase(repository)
 

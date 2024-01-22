@@ -37,63 +37,70 @@ fun ResultScreen(
     onStartAgain: () -> Unit,
 ) {
     val context = LocalContext.current
-    val imageBitmap = remember {
-        val options = BitmapFactory.Options()
-        options.inPreferredConfig = Bitmap.Config.ARGB_8888
-        BitmapFactory.decodeResource(
-            context.resources,
-            R.drawable.quiz_app_bg,
-            options
-        ).asImageBitmap()
-    }
+    val imageBitmap =
+        remember {
+            val options = BitmapFactory.Options()
+            options.inPreferredConfig = Bitmap.Config.ARGB_8888
+            BitmapFactory.decodeResource(
+                context.resources,
+                R.drawable.quiz_app_bg,
+                options,
+            ).asImageBitmap()
+        }
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .drawBehind {
-                drawIntoCanvas {
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .drawBehind {
+                    drawIntoCanvas {
 //                    it.drawImage(imageBitmap, Offset(0f, 0f), Paint())
-                    it.drawImageRect(
-                        imageBitmap,
-                        dstOffset = IntOffset(0, 0),
-                        dstSize = IntSize(width = size.width.toInt(), height = size.height.toInt()),
-                        paint = Paint()
-                    )
-                }
-            },
+                        it.drawImageRect(
+                            imageBitmap,
+                            dstOffset = IntOffset(0, 0),
+                            dstSize = IntSize(width = size.width.toInt(), height = size.height.toInt()),
+                            paint = Paint(),
+                        )
+                    }
+                },
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Image(
-            painter = painterResource(
-                id = R.drawable.ic_trophy
-            ),
-            contentDescription = "Trophy icon"
+            painter =
+                painterResource(
+                    id = R.drawable.ic_trophy,
+                ),
+            contentDescription = "Trophy icon",
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(
-            text = "Hey, Congratulations!", fontSize = 18.sp,
-            color = Color.White
+            text = "Hey, Congratulations!",
+            fontSize = 18.sp,
+            color = Color.White,
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(
-            text = viewModel.enteredName, fontSize = 16.sp,
-            color = Color.White
+            text = viewModel.enteredName,
+            fontSize = 16.sp,
+            color = Color.White,
         )
         Spacer(modifier = Modifier.height(16.dp))
         Text(
             text = "Your score is ${viewModel.correctAnswersCount} out of ${viewModel.totalCount()}",
             fontSize = 16.sp,
-            color = Color(0xFFBBBBBB)
+            color = Color(0xFFBBBBBB),
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
             onClick = {
                 viewModel.reset()
                 onStartAgain()
-            }) {
+            },
+        ) {
             Text(text = "START AGAIN")
         }
     }
@@ -102,5 +109,4 @@ fun ResultScreen(
 @Preview
 @Composable
 fun ResultScreenPreview() {
-
 }

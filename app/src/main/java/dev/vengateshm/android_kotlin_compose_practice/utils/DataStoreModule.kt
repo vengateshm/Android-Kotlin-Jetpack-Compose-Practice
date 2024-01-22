@@ -14,7 +14,9 @@ import javax.inject.Singleton
 object DataStoreModule {
     @Provides
     @Singleton
-    fun provideDataStore(@ApplicationContext context: Context): PreferenceProvider {
+    fun provideDataStore(
+        @ApplicationContext context: Context,
+    ): PreferenceProvider {
         return DataStorePreferenceProviderImpl(context)
     }
 }

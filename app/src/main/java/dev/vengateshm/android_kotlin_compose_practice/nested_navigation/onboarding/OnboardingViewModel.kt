@@ -3,7 +3,6 @@ package dev.vengateshm.android_kotlin_compose_practice.nested_navigation.onboard
 import androidx.lifecycle.ViewModel
 
 class OnboardingViewModel : ViewModel() {
-
     private val _screenVisitCount = mutableMapOf<String, Int>()
     val screenVisitCount: Map<String, Int> = _screenVisitCount
 

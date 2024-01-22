@@ -20,17 +20,16 @@ import dev.vengateshm.android_kotlin_compose_practice.R
 
 @Composable
 fun PinchZoomImage() {
-
     var scale by remember { mutableFloatStateOf(1f) }
     var rotation by remember { mutableFloatStateOf(1f) }
     var offset by remember { mutableStateOf(Offset.Zero) }
 
     BoxWithConstraints(
-        modifier = Modifier
-            .fillMaxWidth()
-            .aspectRatio(800f / 472f)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .aspectRatio(800f / 472f),
     ) {
-
         val transformableState =
             rememberTransformableState { zoomChange, panChange, rotationChange ->
                 scale = (scale * zoomChange).coerceIn(1f, 5f)
@@ -41,25 +40,27 @@ fun PinchZoomImage() {
                 val maxX = extraWidth / 2
                 val maxY = extraHeight / 2
 
-                offset = Offset(
-                    x = (offset.x + scale * panChange.x).coerceIn(-maxX, maxX),
-                    y = (offset.y + scale * panChange.y).coerceIn(-maxY, maxY),
-                )
+                offset =
+                    Offset(
+                        x = (offset.x + scale * panChange.x).coerceIn(-maxX, maxX),
+                        y = (offset.y + scale * panChange.y).coerceIn(-maxY, maxY),
+                    )
             }
 
         Image(
             painter = painterResource(id = R.drawable.ic_illustration_delivery),
             contentDescription = null,
-            modifier = Modifier
-                .fillMaxWidth()
-                .graphicsLayer {
-                    scaleX = scale
-                    scaleY = scale
-                    translationX = offset.x
-                    translationY = offset.y
-                    rotationZ = rotation
-                }
-                .transformable(transformableState)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .graphicsLayer {
+                        scaleX = scale
+                        scaleY = scale
+                        translationX = offset.x
+                        translationY = offset.y
+                        rotationZ = rotation
+                    }
+                    .transformable(transformableState),
         )
     }
 }

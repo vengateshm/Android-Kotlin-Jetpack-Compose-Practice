@@ -16,7 +16,7 @@ fun ForgotPassword(viewModel: OnboardingViewModel) {
     }
     Column(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Text(text = "Forgot Password\nNested Navigation")
     }

@@ -32,7 +32,6 @@ import dev.vengateshm.android_kotlin_compose_practice.ui.theme.WalkthroughScreen
 
 @ExperimentalPagerApi
 class WalkthroughScreenActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -132,10 +131,13 @@ fun OnBoardingPager(
 }
 
 @Composable
-fun PagerIndicator(size: Int, currentPage: Int) {
+fun PagerIndicator(
+    size: Int,
+    currentPage: Int,
+) {
     Row(
         horizontalArrangement = Arrangement.Center,
-        modifier = Modifier.padding(top = 60.dp)
+        modifier = Modifier.padding(top = 60.dp),
     ) {
         repeat(size) {
             Indicator(it == currentPage)
@@ -147,35 +149,38 @@ fun PagerIndicator(size: Int, currentPage: Int) {
 fun Indicator(isSelected: Boolean) {
     val width = animateDpAsState(targetValue = if (isSelected) 25.dp else 10.dp)
     Box(
-        modifier = Modifier
-            .padding(1.dp)
-            .height(10.dp)
-            .width(width.value)
-            .clip(CircleShape)
-            .background(color = if (isSelected) MaterialTheme.colors.primary else Grey300.copy(alpha = 0.3f))
+        modifier =
+            Modifier
+                .padding(1.dp)
+                .height(10.dp)
+                .width(width.value)
+                .clip(CircleShape)
+                .background(color = if (isSelected) MaterialTheme.colors.primary else Grey300.copy(alpha = 0.3f)),
     )
 }
 
 @Composable
 fun BottomSection(currentPage: Int) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 20.dp),
-        horizontalArrangement = if (currentPage != 2) Arrangement.SpaceBetween else Arrangement.Center
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(bottom = 20.dp),
+        horizontalArrangement = if (currentPage != 2) Arrangement.SpaceBetween else Arrangement.Center,
     ) {
         if (currentPage == 2) {
             OutlinedButton(
                 onClick = { },
-                shape = RoundedCornerShape(50)
+                shape = RoundedCornerShape(50),
             ) {
                 Text(
-                    modifier = Modifier.padding(
-                        vertical = 8.dp,
-                        horizontal = 40.dp
-                    ),
+                    modifier =
+                        Modifier.padding(
+                            vertical = 8.dp,
+                            horizontal = 40.dp,
+                        ),
                     text = "Get Started",
-                    color = Grey900
+                    color = Grey900,
                 )
             }
         } else {
@@ -186,13 +191,16 @@ fun BottomSection(currentPage: Int) {
 }
 
 @Composable
-fun SkipNextButton(text: String, modifier: Modifier) {
+fun SkipNextButton(
+    text: String,
+    modifier: Modifier,
+) {
     Text(
         text = text,
         color = Grey300,
         modifier = modifier,
         fontSize = 18.sp,
         style = WalkthroughScreenTypography.body1,
-        fontWeight = FontWeight.Medium
+        fontWeight = FontWeight.Medium,
     )
 }

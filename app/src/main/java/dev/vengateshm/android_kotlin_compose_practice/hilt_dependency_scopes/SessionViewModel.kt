@@ -5,10 +5,12 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SessionViewModel @Inject constructor(
-    private val sessionTimer: SessionTimer,
-) : ViewModel() {
-    override fun onCleared() {
-        super.onCleared()
+class SessionViewModel
+    @Inject
+    constructor(
+        private val sessionTimer: SessionTimer,
+    ) : ViewModel() {
+        override fun onCleared() {
+            super.onCleared()
+        }
     }
-}

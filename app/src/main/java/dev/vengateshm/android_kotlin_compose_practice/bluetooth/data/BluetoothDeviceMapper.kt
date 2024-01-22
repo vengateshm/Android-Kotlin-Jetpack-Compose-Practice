@@ -8,5 +8,5 @@ import dev.vengateshm.android_kotlin_compose_practice.bluetooth.domain.Bluetooth
 fun BluetoothDevice.toBluetoothDeviceDomain() =
     BluetoothDeviceDomain(
         name = this.name,
-        address = this.address
+        address = this.address,
     )

@@ -12,7 +12,7 @@ fun ExternalUser.toUser(): User {
     return User(
         id = id,
         email = email,
-        username = username
+        username = username,
     )
 }
 
@@ -20,6 +20,6 @@ fun User.toExternalUser(): ExternalUser {
     return ExternalUser(
         id = id,
         email = email,
-        username = username
+        username = username,
     )
 }

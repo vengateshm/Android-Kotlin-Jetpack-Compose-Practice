@@ -49,22 +49,23 @@ fun LoginScreen() {
     val upperSectionRatio by animateFloatAsState(
         targetValue = if (isKeyboardVisible) 0f else 0.35f,
         label = "upperSectionRatio_anim",
-        animationSpec = tween(500)
+        animationSpec = tween(500),
     )
 
     GradientBox(modifier = Modifier.fillMaxSize()) {
         Column(
             modifier = Modifier.fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             AnimatedVisibility(visible = !isKeyboardVisible) {
                 Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .fillMaxHeight(0.35f),
-//                    .fillMaxHeight(if (isKeyboardVisible) 0f else 0.35f),
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .fillMaxHeight(0.35f),
+                    //                    .fillMaxHeight(if (isKeyboardVisible) 0f else 0.35f),
 //                        .fillMaxHeight(upperSectionRatio),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
                     Text(
                         text = "Welcome to Jetpack Compose",
@@ -75,28 +76,31 @@ fun LoginScreen() {
                 }
             }
             Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(
-                        color = Color.White,
-                        shape = RoundedCornerShape(topStart = 25.dp, topEnd = 25.dp)
-                    ),
-                horizontalAlignment = Alignment.CenterHorizontally
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .background(
+                            color = Color.White,
+                            shape = RoundedCornerShape(topStart = 25.dp, topEnd = 25.dp),
+                        ),
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Spacer(
-                    modifier = Modifier.fillMaxSize(
-                        fraction = if (isSmallScreenHeight()) 0.05f else 0.1f
-                    )
+                    modifier =
+                        Modifier.fillMaxSize(
+                            fraction = if (isSmallScreenHeight()) 0.05f else 0.1f,
+                        ),
                 )
                 Text(
                     text = "Login",
                     color = Color.Black,
-                    style = MaterialTheme.typography.h5
+                    style = MaterialTheme.typography.h5,
                 )
                 Spacer(
-                    modifier = Modifier.fillMaxSize(
-                        fraction = if (isSmallScreenHeight()) 0.05f else 0.1f
-                    )
+                    modifier =
+                        Modifier.fillMaxSize(
+                            fraction = if (isSmallScreenHeight()) 0.05f else 0.1f,
+                        ),
                 )
                 TextFieldV1(
                     modifier = Modifier.padding(horizontal = 16.dp),
@@ -104,7 +108,7 @@ fun LoginScreen() {
                     value = "",
                     onValueChange = {},
                     keyboardOptions = KeyboardOptions(),
-                    keyboardActions = KeyboardActions()
+                    keyboardActions = KeyboardActions(),
                 )
                 TextFieldV1(
                     modifier = Modifier.padding(horizontal = 16.dp),
@@ -113,54 +117,61 @@ fun LoginScreen() {
                     onValueChange = {},
                     keyboardOptions = KeyboardOptions(),
                     keyboardActions = KeyboardActions(),
-                    trailingIcon = Icons.Default.Lock
+                    trailingIcon = Icons.Default.Lock,
                 )
                 if (isKeyboardVisible) {
                     Button(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(horizontal = 16.dp)
-                            .padding(top = 16.dp)
-                            .clip(RoundedCornerShape(10.dp)),
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 16.dp)
+                                .padding(top = 16.dp)
+                                .clip(RoundedCornerShape(10.dp)),
                         onClick = { /*TODO*/ },
-                        colors = ButtonDefaults
-                            .buttonColors(
-                                backgroundColor = Color(0XFF0054D3),
-                                contentColor = Color.White
-                            )
+                        colors =
+                            ButtonDefaults
+                                .buttonColors(
+                                    backgroundColor = Color(0XFF0054D3),
+                                    contentColor = Color.White,
+                                ),
                     ) {
                         Text(
                             text = "Log In",
-                            style = TextStyle(
-                                fontSize = 18.sp,
-                                fontWeight = FontWeight(500)
-                            )
+                            style =
+                                TextStyle(
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight(500),
+                                ),
                         )
                     }
                 } else {
                     Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(horizontal = 16.dp),
-                        contentAlignment = Alignment.CenterStart
+                        modifier =
+                            Modifier
+                                .fillMaxSize()
+                                .padding(horizontal = 16.dp),
+                        contentAlignment = Alignment.CenterStart,
                     ) {
                         Button(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .clip(RoundedCornerShape(10.dp)),
+                            modifier =
+                                Modifier
+                                    .fillMaxWidth()
+                                    .clip(RoundedCornerShape(10.dp)),
                             onClick = { /*TODO*/ },
-                            colors = ButtonDefaults
-                                .buttonColors(
-                                    backgroundColor = Color(0XFF0054D3),
-                                    contentColor = Color.White
-                                )
+                            colors =
+                                ButtonDefaults
+                                    .buttonColors(
+                                        backgroundColor = Color(0XFF0054D3),
+                                        contentColor = Color.White,
+                                    ),
                         ) {
                             Text(
                                 text = "Log In",
-                                style = TextStyle(
-                                    fontSize = 18.sp,
-                                    fontWeight = FontWeight(500)
-                                )
+                                style =
+                                    TextStyle(
+                                        fontSize = 18.sp,
+                                        fontWeight = FontWeight(500),
+                                    ),
                             )
                         }
                     }
@@ -182,12 +193,13 @@ fun rememberImeState(): State<Boolean> {
     val view = LocalView.current
 
     DisposableEffect(view) {
-        val listener = ViewTreeObserver.OnGlobalLayoutListener {
-            val isKeyboardOpen =
-                ViewCompat.getRootWindowInsets(view)?.isVisible(WindowInsetsCompat.Type.ime())
-                    ?: true
-            imeState.value = isKeyboardOpen
-        }
+        val listener =
+            ViewTreeObserver.OnGlobalLayoutListener {
+                val isKeyboardOpen =
+                    ViewCompat.getRootWindowInsets(view)?.isVisible(WindowInsetsCompat.Type.ime())
+                        ?: true
+                imeState.value = isKeyboardOpen
+            }
         view.viewTreeObserver.addOnGlobalLayoutListener(listener)
         onDispose {
             view.viewTreeObserver.removeOnGlobalLayoutListener(listener)

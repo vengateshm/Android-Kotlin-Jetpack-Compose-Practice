@@ -1,14 +1,17 @@
 package dev.vengateshm.android_kotlin_compose_practice.localization_app
 
 import android.content.Context
-import android.content.res.Configuration
-import java.util.Locale
 import android.content.ContextWrapper
+import android.content.res.Configuration
 import android.os.Build
 import android.os.LocaleList
+import java.util.Locale
 
 object LocaleHelper {
-    fun setLocale(context: Context, locale: Locale) {
+    fun setLocale(
+        context: Context,
+        locale: Locale,
+    ) {
         Locale.setDefault(locale)
         val configuration = Configuration(context.resources.configuration)
         configuration.setLocale(locale)
@@ -17,9 +20,11 @@ object LocaleHelper {
 }
 
 class LocaleContextWrapper(base: Context) : ContextWrapper(base) {
-
     companion object {
-        fun wrap(context: Context, newLocale: Locale): ContextWrapper {
+        fun wrap(
+            context: Context,
+            newLocale: Locale,
+        ): ContextWrapper {
             var updatedContext = context
 
             val configuration = updatedContext.resources.configuration

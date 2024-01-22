@@ -11,6 +11,7 @@ import android.os.IBinder
 import androidx.compose.runtime.mutableStateOf
 import androidx.core.app.NotificationCompat
 import dagger.hilt.android.AndroidEntryPoint
+import dev.vengateshm.android_kotlin_compose_practice.stopwatch.pad
 import dev.vengateshm.android_kotlin_compose_practice.stopwatch.Constants.ACTION_SERVICE_CANCEL
 import dev.vengateshm.android_kotlin_compose_practice.stopwatch.Constants.ACTION_SERVICE_START
 import dev.vengateshm.android_kotlin_compose_practice.stopwatch.Constants.ACTION_SERVICE_STOP
@@ -21,7 +22,6 @@ import dev.vengateshm.android_kotlin_compose_practice.stopwatch.Constants.STOPWA
 import dev.vengateshm.android_kotlin_compose_practice.stopwatch.ServiceHelper
 import dev.vengateshm.android_kotlin_compose_practice.stopwatch.StopWatchState
 import dev.vengateshm.android_kotlin_compose_practice.stopwatch.formatTime
-import dev.vengateshm.android_kotlin_compose_practice.stopwatch.pad
 import java.util.*
 import javax.inject.Inject
 import kotlin.concurrent.fixedRateTimer
@@ -31,7 +31,6 @@ import kotlin.time.ExperimentalTime
 
 @AndroidEntryPoint
 class StopWatchService : Service() {
-
     @Inject
     lateinit var notificationManager: NotificationManager
 
@@ -60,7 +59,11 @@ class StopWatchService : Service() {
         return binder
     }
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+    override fun onStartCommand(
+        intent: Intent?,
+        flags: Int,
+        startId: Int,
+    ): Int {
         when (intent?.getStringExtra(STOPWATCH_STATE)) {
             StopWatchState.Started.name -> {
                 setStopButton()
@@ -104,7 +107,11 @@ class StopWatchService : Service() {
         return super.onStartCommand(intent, flags, startId)
     }
 
-    private fun updateNotification(hours: String, minutes: String, seconds: String) {
+    private fun updateNotification(
+        hours: String,
+        minutes: String,
+        seconds: String,
+    ) {
         notificationManager.notify(
             NOTIFICATION_ID,
             notificationBuilder.setContentText(
@@ -112,8 +119,8 @@ class StopWatchService : Service() {
                     hours = hours,
                     minutes = minutes,
                     seconds = seconds,
-                )
-            ).build()
+                ),
+            ).build(),
         )
     }
 
@@ -125,8 +132,8 @@ class StopWatchService : Service() {
             NotificationCompat.Action(
                 0,
                 "Stop",
-                ServiceHelper.stopPendingIntent(this)
-            )
+                ServiceHelper.stopPendingIntent(this),
+            ),
         )
         notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
     }
@@ -139,8 +146,8 @@ class StopWatchService : Service() {
             NotificationCompat.Action(
                 0,
                 "Resume",
-                ServiceHelper.resumePendingIntent(this)
-            )
+                ServiceHelper.resumePendingIntent(this),
+            ),
         )
         notificationManager.notify(NOTIFICATION_ID, notificationBuilder.build())
     }
@@ -148,11 +155,12 @@ class StopWatchService : Service() {
     @OptIn(ExperimentalTime::class)
     private fun startStopWatch(onTick: (h: String, m: String, s: String) -> Unit) {
         currentState.value = StopWatchState.Started
-        timer = fixedRateTimer(initialDelay = 1000L, period = 1000L) {
-            duration = duration.plus(1.seconds)
-            updateTimeUnits()
-            onTick(hours.value, minutes.value, seconds.value)
-        }
+        timer =
+            fixedRateTimer(initialDelay = 1000L, period = 1000L) {
+                duration = duration.plus(1.seconds)
+                updateTimeUnits()
+                onTick(hours.value, minutes.value, seconds.value)
+            }
     }
 
     private fun stopStopWatch() {
@@ -183,11 +191,12 @@ class StopWatchService : Service() {
 
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                NOTIFICATION_CHANNEL_ID,
-                NOTIFICATION_CHANNEL_NAME,
-                NotificationManager.IMPORTANCE_LOW
-            )
+            val channel =
+                NotificationChannel(
+                    NOTIFICATION_CHANNEL_ID,
+                    NOTIFICATION_CHANNEL_NAME,
+                    NotificationManager.IMPORTANCE_LOW,
+                )
             notificationManager.createNotificationChannel(channel)
         }
     }

@@ -65,7 +65,7 @@ fun UserListScreen(viewModel: UserViewModel) {
                 item {
                     Box(
                         modifier = Modifier.fillMaxSize(),
-                        contentAlignment = Center
+                        contentAlignment = Center,
                     ) {
                         CircularProgressIndicator()
                     }
@@ -73,7 +73,6 @@ fun UserListScreen(viewModel: UserViewModel) {
             }
 
             is LoadState.Error -> {
-
             }
         }
     }
@@ -82,17 +81,19 @@ fun UserListScreen(viewModel: UserViewModel) {
 @Composable
 fun LoaderItem() {
     Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .wrapContentHeight(),
-        contentAlignment = Center
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .wrapContentHeight(),
+        contentAlignment = Center,
     ) {
         CircularProgressIndicator(
-            modifier = Modifier
-                .width(40.dp)
-                .height(40.dp)
-                .padding(8.dp),
-            strokeWidth = 5.dp
+            modifier =
+                Modifier
+                    .width(40.dp)
+                    .height(40.dp)
+                    .padding(8.dp),
+            strokeWidth = 5.dp,
         )
     }
 }
@@ -101,33 +102,37 @@ fun LoaderItem() {
 fun ErrorItem(message: String) {
     Card(
         elevation = 2.dp,
-        modifier = Modifier
-            .padding(6.dp)
-            .fillMaxWidth()
-            .wrapContentHeight()
+        modifier =
+            Modifier
+                .padding(6.dp)
+                .fillMaxWidth()
+                .wrapContentHeight(),
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.Red)
-                .padding(8.dp)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .background(Color.Red)
+                    .padding(8.dp),
         ) {
             Image(
-                modifier = Modifier
-                    .clip(CircleShape)
-                    .width(42.dp)
-                    .height(42.dp),
+                modifier =
+                    Modifier
+                        .clip(CircleShape)
+                        .width(42.dp)
+                        .height(42.dp),
                 painter = painterResource(id = R.drawable.ic_error),
                 contentDescription = "",
-                colorFilter = ColorFilter.tint(Color.White)
+                colorFilter = ColorFilter.tint(Color.White),
             )
             Text(
                 color = Color.White,
                 text = message,
                 fontSize = 16.sp,
-                modifier = Modifier
-                    .padding(start = 12.dp)
-                    .align(CenterVertically)
+                modifier =
+                    Modifier
+                        .padding(start = 12.dp)
+                        .align(CenterVertically),
             )
         }
     }
@@ -137,35 +142,40 @@ fun ErrorItem(message: String) {
 fun UserCard(user: User) {
     Card(
         elevation = 4.dp,
-        modifier = Modifier
-            .padding(6.dp)
-            .fillMaxWidth()
-            .wrapContentHeight()
+        modifier =
+            Modifier
+                .padding(6.dp)
+                .fillMaxWidth()
+                .wrapContentHeight(),
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
         ) {
             AsyncImage(
-                model = ImageRequest.Builder(LocalContext.current)
-                    .data(user.picture)
-                    .crossfade(true)
-                    .build(),
+                model =
+                    ImageRequest.Builder(LocalContext.current)
+                        .data(user.picture)
+                        .crossfade(true)
+                        .build(),
                 placeholder = painterResource(R.drawable.ic_avatar_placeholder),
                 contentDescription = stringResource(R.string.description),
                 contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .clip(CircleShape)
-                    .width(42.dp)
-                    .height(42.dp)
+                modifier =
+                    Modifier
+                        .clip(CircleShape)
+                        .width(42.dp)
+                        .height(42.dp),
             )
             Text(
                 text = user.name,
                 fontSize = 24.sp,
-                modifier = Modifier
-                    .padding(start = 12.dp)
-                    .align(CenterVertically)
+                modifier =
+                    Modifier
+                        .padding(start = 12.dp)
+                        .align(CenterVertically),
             )
         }
     }

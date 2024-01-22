@@ -42,75 +42,99 @@ class NavigationAnimationActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = "screen1"
+                    startDestination = "screen1",
                 ) {
                     composable(
                         route = "screen1",
                         enterTransition = {
-                            val slideIn = slideInHorizontally(
-                                initialOffsetX = { -1000 },
-                                animationSpec = spring(
-                                    dampingRatio = Spring.DampingRatioMediumBouncy,
-                                    stiffness = Spring.StiffnessLow
+                            val slideIn =
+                                slideInHorizontally(
+                                    initialOffsetX = { -1000 },
+                                    animationSpec =
+                                        spring(
+                                            dampingRatio = Spring.DampingRatioMediumBouncy,
+                                            stiffness = Spring.StiffnessLow,
+                                        ),
                                 )
-                            )
-                            val fadeIn = fadeIn(animationSpec = spring(
-                                dampingRatio = Spring.DampingRatioHighBouncy,
-                                stiffness = Spring.StiffnessLow
-                            ))
+                            val fadeIn =
+                                fadeIn(
+                                    animationSpec =
+                                        spring(
+                                            dampingRatio = Spring.DampingRatioHighBouncy,
+                                            stiffness = Spring.StiffnessLow,
+                                        ),
+                                )
                             slideIn + fadeIn
                         },
                         exitTransition = {
-                            val slideOut = slideOutHorizontally(
-                                targetOffsetX = { -1000 },
-                                animationSpec = spring(
-                                    dampingRatio = Spring.DampingRatioMediumBouncy,
-                                    stiffness = Spring.StiffnessLow
+                            val slideOut =
+                                slideOutHorizontally(
+                                    targetOffsetX = { -1000 },
+                                    animationSpec =
+                                        spring(
+                                            dampingRatio = Spring.DampingRatioMediumBouncy,
+                                            stiffness = Spring.StiffnessLow,
+                                        ),
                                 )
-                            )
-                            val fadeOut = fadeOut(animationSpec = spring(
-                                dampingRatio = Spring.DampingRatioHighBouncy,
-                                stiffness = Spring.StiffnessLow
-                            ))
+                            val fadeOut =
+                                fadeOut(
+                                    animationSpec =
+                                        spring(
+                                            dampingRatio = Spring.DampingRatioHighBouncy,
+                                            stiffness = Spring.StiffnessLow,
+                                        ),
+                                )
                             slideOut + fadeOut
-                        }
+                        },
                     ) {
                         Screen1(
                             onViewContactClicked = {
                                 navController.navigate("screen2")
-                            }
+                            },
                         )
                     }
                     composable(
                         route = "screen2",
                         enterTransition = {
-                            val slideIn = slideInHorizontally(
-                                initialOffsetX = { 1000 },
-                                animationSpec = spring(
-                                    dampingRatio = Spring.DampingRatioMediumBouncy,
-                                    stiffness = Spring.StiffnessLow
+                            val slideIn =
+                                slideInHorizontally(
+                                    initialOffsetX = { 1000 },
+                                    animationSpec =
+                                        spring(
+                                            dampingRatio = Spring.DampingRatioMediumBouncy,
+                                            stiffness = Spring.StiffnessLow,
+                                        ),
                                 )
-                            )
-                            val fadeIn = fadeIn(animationSpec = spring(
-                                dampingRatio = Spring.DampingRatioHighBouncy,
-                                stiffness = Spring.StiffnessLow
-                            ))
+                            val fadeIn =
+                                fadeIn(
+                                    animationSpec =
+                                        spring(
+                                            dampingRatio = Spring.DampingRatioHighBouncy,
+                                            stiffness = Spring.StiffnessLow,
+                                        ),
+                                )
                             slideIn + fadeIn
                         },
                         exitTransition = {
-                            val slideOut = slideOutHorizontally(
-                                targetOffsetX = { 1000 },
-                                animationSpec = spring(
-                                    dampingRatio = Spring.DampingRatioMediumBouncy,
-                                    stiffness = Spring.StiffnessLow
+                            val slideOut =
+                                slideOutHorizontally(
+                                    targetOffsetX = { 1000 },
+                                    animationSpec =
+                                        spring(
+                                            dampingRatio = Spring.DampingRatioMediumBouncy,
+                                            stiffness = Spring.StiffnessLow,
+                                        ),
                                 )
-                            )
-                            val fadeOut = fadeOut(animationSpec = spring(
-                                dampingRatio = Spring.DampingRatioHighBouncy,
-                                stiffness = Spring.StiffnessLow
-                            ))
+                            val fadeOut =
+                                fadeOut(
+                                    animationSpec =
+                                        spring(
+                                            dampingRatio = Spring.DampingRatioHighBouncy,
+                                            stiffness = Spring.StiffnessLow,
+                                        ),
+                                )
                             slideOut + fadeOut
-                        }
+                        },
                     ) {
                         Screen2()
                     }
@@ -122,22 +146,22 @@ class NavigationAnimationActivity : ComponentActivity() {
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Screen1(
-    onViewContactClicked: () -> Unit,
-) {
+fun Screen1(onViewContactClicked: () -> Unit) {
     Box(
-        modifier = Modifier
-            .fillMaxSize(), contentAlignment = Alignment.Center
+        modifier =
+            Modifier
+                .fillMaxSize(),
+        contentAlignment = Alignment.Center,
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Text(
                 modifier = Modifier.basicMarquee(),
                 text = "No Recent chats",
-                fontSize = 18.sp
+                fontSize = 18.sp,
             )
             Spacer(modifier = Modifier.height(32.dp))
             Button(onClick = {
@@ -152,19 +176,21 @@ fun Screen1(
 @Composable
 fun Screen2() {
     Box(
-        modifier = Modifier
-            .fillMaxSize(),
-        contentAlignment = Alignment.Center
+        modifier =
+            Modifier
+                .fillMaxSize(),
+        contentAlignment = Alignment.Center,
     ) {
         LazyColumn(modifier = Modifier.fillMaxSize()) {
             repeat(15) { index ->
                 item {
                     Text(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(16.dp),
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(16.dp),
                         text = "Contact $index",
-                        fontSize = 18.sp
+                        fontSize = 18.sp,
                     )
                     Divider()
                 }

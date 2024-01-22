@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 import dev.vengateshm.android_kotlin_compose_practice.ui.theme.AndroidKotlinComposePracticeTheme
 
 class ComposeStatesActivity : ComponentActivity() {
-
     private val viewModel: ComposeStatesViewModel by viewModels()
     private var state by mutableStateOf(0)
 
@@ -27,7 +26,7 @@ class ComposeStatesActivity : ComponentActivity() {
 
         setContent {
             AndroidKotlinComposePracticeTheme {
-                //ComposeStatesScreen(viewModel)
+                // ComposeStatesScreen(viewModel)
                 LaunchedEffectTest()
             }
         }
@@ -72,4 +71,3 @@ class ComposeStatesActivity : ComponentActivity() {
         }
     }
 }
-

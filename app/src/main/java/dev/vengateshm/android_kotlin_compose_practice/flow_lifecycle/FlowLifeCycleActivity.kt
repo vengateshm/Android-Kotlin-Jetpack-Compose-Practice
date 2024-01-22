@@ -14,7 +14,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 class FlowLifeCycleActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -22,9 +21,9 @@ class FlowLifeCycleActivity : ComponentActivity() {
 
         setContent {
             MaterialTheme {
-                //Log.i("Composed", "${i++}")
+                // Log.i("Composed", "${i++}")
                 val viewModel: FlowLifeCycleViewModel = viewModel()
-                //Log.i("viewModel", viewModel.toString())
+                // Log.i("viewModel", viewModel.toString())
 //                val state = viewModel.counter.collectAsState(initial = 0)
 //                val state = viewModel.counter.collectAsStateWithLifecycle(initialValue = 0)
                 val state =

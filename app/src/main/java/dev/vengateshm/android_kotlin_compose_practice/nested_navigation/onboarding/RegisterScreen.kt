@@ -16,7 +16,7 @@ fun RegisterScreen(viewModel: OnboardingViewModel) {
     }
     Column(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Text(text = "Register\nNested Navigation")
     }

@@ -28,10 +28,11 @@ fun ListScreen() {
         items(ids) { id ->
             Text(
                 text = stringResource(id = id),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                style = MaterialTheme.typography.h4
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                style = MaterialTheme.typography.h4,
             )
         }
     }

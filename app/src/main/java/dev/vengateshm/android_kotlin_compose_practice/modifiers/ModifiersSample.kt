@@ -28,19 +28,25 @@ fun ModifiersSample() {
         changeColor = true
     }
 
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .thenIf(changeColor) {
-            Modifier.background(color1)
-        }) {
+    Box(
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .thenIf(changeColor) {
+                    Modifier.background(color1)
+                },
+    ) {
         Text(
             text = "Modifiers Sample",
-            color = contentColorFor(color1)
+            color = contentColorFor(color1),
         )
     }
 }
 
-inline fun Modifier.thenIf(predicate: Boolean, modify: () -> Modifier): Modifier {
+inline fun Modifier.thenIf(
+    predicate: Boolean,
+    modify: () -> Modifier,
+): Modifier {
     return this.then(if (predicate) modify() else Modifier)
 }
 

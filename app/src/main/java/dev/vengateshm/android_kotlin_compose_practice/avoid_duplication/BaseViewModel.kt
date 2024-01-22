@@ -16,6 +16,7 @@ abstract class BaseViewModel<S, E> : ViewModel() {
     val uiEvent = _uiEvent.receiveAsFlow()
 
     abstract fun defaultState(): S
+
     abstract fun onEvent(event: E)
 
     protected fun sendEvent(uiEvent: UiEvent) {

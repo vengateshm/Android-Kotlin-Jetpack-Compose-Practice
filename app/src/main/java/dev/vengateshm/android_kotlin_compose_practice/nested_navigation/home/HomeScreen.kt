@@ -12,7 +12,7 @@ import androidx.navigation.NavHostController
 fun HomeScreen(navController: NavHostController) {
     Column(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Text(text = "Home\nNested Navigation")
     }

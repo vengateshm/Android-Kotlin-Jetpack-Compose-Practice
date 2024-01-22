@@ -22,7 +22,7 @@ fun <S, E> BaseScreenComposable(
             when (uiEvent) {
                 is UiEvent.Error -> {
                     scaffoldState.snackbarHostState.showSnackbar(
-                        message = uiEvent.message
+                        message = uiEvent.message,
                     )
                 }
 
@@ -34,7 +34,7 @@ fun <S, E> BaseScreenComposable(
     }
 
     Scaffold(
-        scaffoldState = scaffoldState
+        scaffoldState = scaffoldState,
     ) {
         Box(modifier = Modifier.padding(it)) {
             content()

@@ -4,5 +4,5 @@ enum class StopWatchState {
     Idle,
     Started,
     Stopped,
-    Canceled
+    Canceled,
 }

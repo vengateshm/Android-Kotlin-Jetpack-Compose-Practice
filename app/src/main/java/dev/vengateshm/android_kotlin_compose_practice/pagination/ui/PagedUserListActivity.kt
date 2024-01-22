@@ -13,7 +13,6 @@ import dev.vengateshm.android_kotlin_compose_practice.ui.theme.ProductSansFontTh
 
 @AndroidEntryPoint
 class PagedUserListActivity : ComponentActivity() {
-
     private val viewModel by viewModels<UserViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +22,7 @@ class PagedUserListActivity : ComponentActivity() {
             ProductSansFontTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    color = MaterialTheme.colors.background,
                 ) {
                     UserListScreen(viewModel = viewModel)
                 }

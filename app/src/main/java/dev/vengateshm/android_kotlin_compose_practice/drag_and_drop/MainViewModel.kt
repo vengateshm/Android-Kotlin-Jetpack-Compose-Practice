@@ -18,11 +18,12 @@ class MainViewModel : ViewModel() {
         private set
 
     init {
-        items = listOf(
-            Person("Mike", "1", Color.Gray),
-            Person("Larry", "2", Color.Blue),
-            Person("Samantha", "3", Color.Green),
-        )
+        items =
+            listOf(
+                Person("Mike", "1", Color.Gray),
+                Person("Larry", "2", Color.Blue),
+                Person("Samantha", "3", Color.Green),
+            )
     }
 
     fun startDragging() {

@@ -144,7 +144,6 @@ class WhatsAppWidget : GlanceAppWidget() {
     }
 
     private fun sendToTelegram(context: Context, mobileNumber: String) {
-        val message = ""
         context.startActivity(
             Intent(
                 Intent.ACTION_VIEW,

@@ -32,25 +32,25 @@ fun OtpFormField() {
                 text = it
             }
         },
-        maxLines = 1
+        maxLines = 1,
     ) {
         Row(
-            horizontalArrangement = Arrangement.spacedBy(10.dp)
+            horizontalArrangement = Arrangement.spacedBy(10.dp),
         ) {
             repeat(4) { index ->
                 val n = if (index >= text.length) "" else text[index].toString()
                 Column(
                     verticalArrangement = Arrangement.spacedBy(6.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     Text(text = n)
                     Box(
-                        modifier = Modifier
-                            .width(40.dp)
-                            .height(2.dp)
-                            .background(color = Color.Gray)
+                        modifier =
+                            Modifier
+                                .width(40.dp)
+                                .height(2.dp)
+                                .background(color = Color.Gray),
                     ) {
-
                     }
                 }
             }

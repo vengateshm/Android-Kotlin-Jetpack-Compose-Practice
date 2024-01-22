@@ -20,7 +20,7 @@ class TimerActivity : ComponentActivity() {
                     totalTime = 60 * 1000L,
                     handleColor = Color.Green,
                     inactiveBarColor = Color.DarkGray,
-                    activeBarColor = Color(0XFF37B900)
+                    activeBarColor = Color(0XFF37B900),
                 )
             }
         }

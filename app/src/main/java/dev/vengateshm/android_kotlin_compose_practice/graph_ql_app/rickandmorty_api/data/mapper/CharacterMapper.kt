@@ -15,7 +15,7 @@ fun CharactersQuery.Characters.toCharacterList(): List<SimpleCharacter> =
         )
     }.orEmpty()
 
-fun CharacterQuery.Character.toCharacter() : Character =
+fun CharacterQuery.Character.toCharacter(): Character =
     Character(
         id = this.id.orEmpty(),
         name = this.name.orEmpty(),

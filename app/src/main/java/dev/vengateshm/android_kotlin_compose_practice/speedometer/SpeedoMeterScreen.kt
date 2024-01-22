@@ -27,26 +27,29 @@ fun SpeedoMeterScreen() {
     var targetValue by remember {
         mutableStateOf(0f)
     }
-    val progress = remember(targetValue) {
-        Animatable(initialValue = 0f)
-    }
+    val progress =
+        remember(targetValue) {
+            Animatable(initialValue = 0f)
+        }
     val scope = rememberCoroutineScope()
 
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Slider(
             value = targetValue,
             onValueChange = {
                 targetValue = it
-            })
+            },
+        )
 
         val intValue = targetValue * 55
         Text(
-            text = "${intValue.toInt()}"
+            text = "${intValue.toInt()}",
         )
         Button(
             onClick = {
@@ -57,12 +60,13 @@ fun SpeedoMeterScreen() {
                             durationMillis = 1000,
                             easing = FastOutLinearInEasing
                         )*/
-                        spring(dampingRatio = Spring.DampingRatioHighBouncy)
+                            spring(dampingRatio = Spring.DampingRatioHighBouncy),
                     )
                 }
-            }) {
+            },
+        ) {
             Text(
-                text = "Go"
+                text = "Go",
             )
         }
         Spacer(modifier = Modifier.height(16.dp))

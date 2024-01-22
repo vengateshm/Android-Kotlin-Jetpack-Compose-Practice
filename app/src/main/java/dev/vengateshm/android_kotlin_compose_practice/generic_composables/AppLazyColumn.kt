@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 fun <T : AppUiModel> AppLazyColumn(
     modifier: Modifier = Modifier,
     items: List<T>,
-    itemContent: @Composable (T) -> Unit
+    itemContent: @Composable (T) -> Unit,
 ) {
     LazyColumn(modifier = modifier) {
         items(items, key = { itemForKey ->
@@ -20,4 +20,3 @@ fun <T : AppUiModel> AppLazyColumn(
         }
     }
 }
-

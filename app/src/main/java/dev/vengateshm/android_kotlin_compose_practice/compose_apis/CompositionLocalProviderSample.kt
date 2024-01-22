@@ -21,9 +21,10 @@ fun CounterButton() {
 
 @Composable
 fun MyComposable() {
-    val state = remember {
-        mutableStateOf(0)
-    }
+    val state =
+        remember {
+            mutableStateOf(0)
+        }
     CompositionLocalProvider(LocalCounter provides state) {
         Column {
             CounterButton()

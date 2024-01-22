@@ -30,19 +30,21 @@ class DefaultLocationClient(
             if (!isGpsDisabled && !isNetworkEnabled) {
                 throw LocationClient.LocationException("GPS is disabled")
             }
-            val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, interval)
-                .setWaitForAccurateLocation(false)
-                .build()
-            val locationCallback = object : LocationCallback() {
-                override fun onLocationResult(locationResult: LocationResult) {
-                    super.onLocationResult(locationResult)
-                    locationResult.locations.lastOrNull()?.let { location ->
-                        launch {
-                            send(location)
+            val locationRequest =
+                LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, interval)
+                    .setWaitForAccurateLocation(false)
+                    .build()
+            val locationCallback =
+                object : LocationCallback() {
+                    override fun onLocationResult(locationResult: LocationResult) {
+                        super.onLocationResult(locationResult)
+                        locationResult.locations.lastOrNull()?.let { location ->
+                            launch {
+                                send(location)
+                            }
                         }
                     }
                 }
-            }
             client.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
             awaitClose {
                 client.removeLocationUpdates(locationCallback)

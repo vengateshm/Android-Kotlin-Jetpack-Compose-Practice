@@ -25,7 +25,7 @@ fun SnapShotFlowSample() {
             }
     }
     LazyColumn(
-        state = lazyListState
+        state = lazyListState,
     ) {
         items(100) {
             Column(modifier = Modifier.fillMaxWidth()) {

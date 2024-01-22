@@ -11,7 +11,6 @@ class ConstraintLayoutSampleActivity : ComponentActivity() {
 
         setContent {
             MaterialTheme {
-
             }
         }
     }

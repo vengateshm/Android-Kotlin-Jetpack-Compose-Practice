@@ -34,35 +34,38 @@ class SearchFunctionalityActivity : ComponentActivity() {
                 val isSearching by viewModel.isSearching.collectAsStateWithLifecycle()
                 val persons by viewModel.persons.collectAsStateWithLifecycle()
                 Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(16.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxSize()
+                            .padding(16.dp),
                 ) {
                     TextField(
                         modifier = Modifier.fillMaxWidth(),
                         value = searchText,
                         onValueChange = viewModel::onSearchTextChanged,
-                        placeholder = { Text(text = "Search") }
+                        placeholder = { Text(text = "Search") },
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     if (isSearching) {
                         Box(modifier = Modifier.fillMaxSize()) {
                             CircularProgressIndicator(
-                                modifier = Modifier.align(Alignment.Center)
+                                modifier = Modifier.align(Alignment.Center),
                             )
                         }
                     } else {
                         LazyColumn(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .weight(1f)
+                            modifier =
+                                Modifier
+                                    .fillMaxWidth()
+                                    .weight(1f),
                         ) {
                             items(persons, key = { it.hashCode() }) { person ->
                                 Text(
                                     text = "${person.firstName} ${person.lastName}",
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                        .padding(vertical = 16.dp)
+                                    modifier =
+                                        Modifier
+                                            .fillMaxWidth()
+                                            .padding(vertical = 16.dp),
                                 )
                             }
                         }

@@ -11,16 +11,18 @@ fun rememberWindowInfo(): WindowInfo {
     return WindowInfo(
         screenWidth = configuration.screenWidthDp.dp,
         screenHeight = configuration.screenHeightDp.dp,
-        screenWidthType = when {
-            configuration.screenWidthDp < 600 -> WindowInfo.WindowType.Compact
-            configuration.screenWidthDp < 840 -> WindowInfo.WindowType.Medium
-            else -> WindowInfo.WindowType.Expanded
-        },
-        screenHeightType = when {
-            configuration.screenHeightDp < 480 -> WindowInfo.WindowType.Compact
-            configuration.screenHeightDp < 900 -> WindowInfo.WindowType.Medium
-            else -> WindowInfo.WindowType.Expanded
-        },
+        screenWidthType =
+            when {
+                configuration.screenWidthDp < 600 -> WindowInfo.WindowType.Compact
+                configuration.screenWidthDp < 840 -> WindowInfo.WindowType.Medium
+                else -> WindowInfo.WindowType.Expanded
+            },
+        screenHeightType =
+            when {
+                configuration.screenHeightDp < 480 -> WindowInfo.WindowType.Compact
+                configuration.screenHeightDp < 900 -> WindowInfo.WindowType.Medium
+                else -> WindowInfo.WindowType.Expanded
+            },
     )
 }
 
@@ -32,7 +34,9 @@ data class WindowInfo(
 ) {
     sealed class WindowType {
         object Compact : WindowType()
+
         object Medium : WindowType()
+
         object Expanded : WindowType()
     }
 }

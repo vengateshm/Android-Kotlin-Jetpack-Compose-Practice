@@ -11,13 +11,15 @@ import dev.vengateshm.android_kotlin_compose_practice.pagination.repository.User
 import javax.inject.Inject
 
 @HiltViewModel
-class UserViewModel @Inject constructor(
-    private val userRepository: UserRepository,
-) : ViewModel() {
-
-    val userListPager = Pager(
-        config = PagingConfig(pageSize = 10)
-    ) {
-        UserDataSource(userRepository)
-    }.flow.cachedIn(viewModelScope)
-}
+class UserViewModel
+    @Inject
+    constructor(
+        private val userRepository: UserRepository,
+    ) : ViewModel() {
+        val userListPager =
+            Pager(
+                config = PagingConfig(pageSize = 10),
+            ) {
+                UserDataSource(userRepository)
+            }.flow.cachedIn(viewModelScope)
+    }

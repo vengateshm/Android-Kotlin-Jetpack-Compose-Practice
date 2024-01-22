@@ -16,7 +16,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 
 @Composable
 fun FormComposable(viewModel: FormViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
-
     val passwordValidationResult by viewModel.passwordValidationState.collectAsStateWithLifecycle()
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -32,7 +31,7 @@ fun FormComposable(viewModel: FormViewModel = androidx.lifecycle.viewmodel.compo
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = error.message,
-                    color = Color.Red
+                    color = Color.Red,
                 )
             }
         }

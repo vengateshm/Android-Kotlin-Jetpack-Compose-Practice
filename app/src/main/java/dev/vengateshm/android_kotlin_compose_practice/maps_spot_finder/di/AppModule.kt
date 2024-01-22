@@ -14,13 +14,13 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object AppModule {
-
     @Singleton
     @Provides
     fun provideParkingSpotDatabase(app: Application): ParkingSpotDatabase {
         return Room.databaseBuilder(
-            app, ParkingSpotDatabase::class.java,
-            "parking_spots.db"
+            app,
+            ParkingSpotDatabase::class.java,
+            "parking_spots.db",
         )
             .build()
     }

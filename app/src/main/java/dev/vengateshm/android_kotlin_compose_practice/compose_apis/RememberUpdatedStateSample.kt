@@ -27,7 +27,7 @@ fun Screen() {
 @Composable
 fun Header(number: Int) {
     val updatedNumber by rememberUpdatedState(newValue = number)
-    //println("Header (Re)composed $number")
+    // println("Header (Re)composed $number")
     println("Header (Re)composed $updatedNumber")
     LaunchedEffect(key1 = Unit) {
         // Adding a delay of 5 seconds. If button clicked multiple times
@@ -35,7 +35,7 @@ fun Header(number: Int) {
         // below println prints 0 instead latest value
         // because launched effect reads the initial stale value
         delay(5000L)
-        //println("Effect called $number")
+        // println("Effect called $number")
         println("Effect called $updatedNumber")
     }
     Text(text = "$number")
@@ -49,11 +49,12 @@ fun Parent() {
             value++
         }
     }
-    val lambda: () -> Unit = if (counter % 2 == 0) {
-        { println("Even : $counter") }
-    } else {
-        { println("Odd : $counter") }
-    }
+    val lambda: () -> Unit =
+        if (counter % 2 == 0) {
+            { println("Even : $counter") }
+        } else {
+            { println("Odd : $counter") }
+        }
     Child(lambda)
 }
 

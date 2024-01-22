@@ -33,7 +33,7 @@ class LocalNotificationActivity : ComponentActivity() {
                 context = this,
                 channelId = COUNTER_NOT_CHANNEL_ID,
                 channelName = COUNTER_NOT_CHANNEL_NAME,
-                importance = NotificationManager.IMPORTANCE_HIGH
+                importance = NotificationManager.IMPORTANCE_HIGH,
             )
         }
 
@@ -45,7 +45,7 @@ class LocalNotificationActivity : ComponentActivity() {
                 Column(
                     modifier = Modifier.fillMaxSize(),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(30.dp)
+                    verticalArrangement = Arrangement.spacedBy(30.dp),
                 ) {
                     Text(text = "Counter value ${counterState.value}")
                     Button(onClick = {
@@ -65,11 +65,12 @@ class LocalNotificationActivity : ComponentActivity() {
         importance: Int,
     ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val notificationChannel = NotificationChannel(
-                channelId,
-                channelName,
-                importance
-            )
+            val notificationChannel =
+                NotificationChannel(
+                    channelId,
+                    channelName,
+                    importance,
+                )
             notificationChannel.enableLights(true)
             notificationChannel.lightColor = Color.RED
 

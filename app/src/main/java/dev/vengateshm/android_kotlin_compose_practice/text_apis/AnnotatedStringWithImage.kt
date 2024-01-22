@@ -27,31 +27,34 @@ fun AnnotatedStringWithImage() {
     Column(modifier = Modifier.fillMaxSize()) {
         Text(
             text = annotatedString,
-            inlineContent = inlineContentMap
+            inlineContent = inlineContentMap,
         )
     }
 }
 
-val annotatedString = buildAnnotatedString {
-    append("Android\n")
-    append("Kotlin\n")
-    append("Jetpack Compose\n")
-    append("Practice")
-    append("\n")
-    appendInlineContent(id = "imageId")
-}
-
-val inlineContentMap = mapOf(
-    "imageId" to InlineTextContent(
-        Placeholder(20.sp, 20.sp, PlaceholderVerticalAlign.TextCenter)
-    ) {
-        Image(
-            imageVector = rememberAndroid(),
-            modifier = Modifier.fillMaxSize(),
-            contentDescription = ""
-        )
+val annotatedString =
+    buildAnnotatedString {
+        append("Android\n")
+        append("Kotlin\n")
+        append("Jetpack Compose\n")
+        append("Practice")
+        append("\n")
+        appendInlineContent(id = "imageId")
     }
-)
+
+val inlineContentMap =
+    mapOf(
+        "imageId" to
+            InlineTextContent(
+                Placeholder(20.sp, 20.sp, PlaceholderVerticalAlign.TextCenter),
+            ) {
+                Image(
+                    imageVector = rememberAndroid(),
+                    modifier = Modifier.fillMaxSize(),
+                    contentDescription = "",
+                )
+            },
+    )
 
 @Composable
 fun rememberAndroid(): ImageVector {
@@ -61,7 +64,7 @@ fun rememberAndroid(): ImageVector {
             defaultWidth = 40.0.dp,
             defaultHeight = 40.0.dp,
             viewportWidth = 40.0f,
-            viewportHeight = 40.0f
+            viewportHeight = 40.0f,
         ).apply {
             path(
                 fill = SolidColor(Color.Black),
@@ -72,7 +75,7 @@ fun rememberAndroid(): ImageVector {
                 strokeLineCap = StrokeCap.Butt,
                 strokeLineJoin = StrokeJoin.Miter,
                 strokeLineMiter = 1f,
-                pathFillType = PathFillType.NonZero
+                pathFillType = PathFillType.NonZero,
             ) {
                 moveTo(1.958f, 29.833f)
                 quadToRelative(0.334f, -4.333f, 2.667f, -8.041f)

@@ -33,19 +33,23 @@ class CoilImageCachingActivity : ComponentActivity() {
             MaterialTheme {
                 Column(modifier = Modifier.fillMaxSize()) {
                     AsyncImage(
-                        model = imageUrl, contentDescription = null,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .aspectRatio(1280f / 850f)
+                        model = imageUrl,
+                        contentDescription = null,
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .aspectRatio(1280f / 850f),
                     )
                     SubcomposeAsyncImage(
-                        model = imageUrl2, contentDescription = null,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .aspectRatio(1280f / 1280f),
+                        model = imageUrl2,
+                        contentDescription = null,
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .aspectRatio(1280f / 1280f),
                         loading = {
                             CircularProgressIndicator()
-                        }
+                        },
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Button(onClick = {

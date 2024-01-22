@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 fun MyDetailComposable(data: String) {
     Box(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Text(text = data)
     }

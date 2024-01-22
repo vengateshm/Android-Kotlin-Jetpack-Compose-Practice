@@ -53,7 +53,7 @@ class OneOffEventsActivity : ComponentActivity() {
 
                         LoginPage(
                             state = viewModel.loginState,
-                            onLoginClicked = viewModel::onLoginClicked
+                            onLoginClicked = viewModel::onLoginClicked,
                         )
                     }
                     composable("profile-page") {
@@ -71,13 +71,16 @@ class OneOffEventsActivity : ComponentActivity() {
 }
 
 @Composable
-fun <T> ObserveOneOffEvents(flow: Flow<T>, onEvent: (T) -> Unit) {
+fun <T> ObserveOneOffEvents(
+    flow: Flow<T>,
+    onEvent: (T) -> Unit,
+) {
     val lifecycleOwner = LocalLifecycleOwner.current
     LaunchedEffect(flow, lifecycleOwner.lifecycle) {
         lifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-            //flow.collect(onEvent)
+            // flow.collect(onEvent)
             // To prevent event loss using channel use
-            withContext(Dispatchers.Main.immediate){
+            withContext(Dispatchers.Main.immediate) {
                 flow.collect(onEvent)
             }
         }
@@ -85,11 +88,14 @@ fun <T> ObserveOneOffEvents(flow: Flow<T>, onEvent: (T) -> Unit) {
 }
 
 @Composable
-fun LoginPage(state: LoginState, onLoginClicked: () -> Unit) {
+fun LoginPage(
+    state: LoginState,
+    onLoginClicked: () -> Unit,
+) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Button(onClick = onLoginClicked) {
             Text(text = "Login")
@@ -105,7 +111,7 @@ fun ProfilePage() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(text = "Profile")
     }

@@ -16,7 +16,6 @@ import dev.vengateshm.android_kotlin_compose_practice.stopwatch.ServiceHelper
 @Module
 @InstallIn(ServiceComponent::class)
 object NotificationModule {
-
     @ServiceScoped
     @Provides
     fun provides(

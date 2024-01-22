@@ -9,6 +9,5 @@ import dev.vengateshm.common_lib.PreferenceProvider
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "app_prefs")
 
 class DataStorePreferenceProviderImpl(private val context: Context) : PreferenceProvider {
-
     override fun prefsDatastore(): DataStore<Preferences> = context.dataStore
 }

@@ -28,51 +28,54 @@ import coil.request.ImageRequest
 @Composable
 fun CharacterScreen(
     viewModel: CharacterViewModel = androidx.lifecycle.viewmodel.compose.viewModel(),
-    onNavigateBack: () -> Unit
+    onNavigateBack: () -> Unit,
 ) {
-
     val context = LocalContext.current
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     Scaffold(
         topBar = {
-            TopAppBar(title = { /*TODO*/ },
+            TopAppBar(
+                title = { /*TODO*/ },
                 navigationIcon = {
                     IconButton(onClick = { onNavigateBack() }) {
                         Icon(
                             imageVector = Icons.Default.ArrowBackIos,
-                            contentDescription = "navigate back"
+                            contentDescription = "navigate back",
                         )
                     }
-                })
-        }
+                },
+            )
+        },
     ) { padding ->
         Column(
             modifier = Modifier.padding(padding),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             AsyncImage(
-                model = ImageRequest.Builder(context)
-                    .data(state.character?.image)
-                    .crossfade(true)
-                    .build(),
+                model =
+                    ImageRequest.Builder(context)
+                        .data(state.character?.image)
+                        .crossfade(true)
+                        .build(),
                 modifier = Modifier.size(250.dp),
-                contentDescription = null
+                contentDescription = null,
             )
             Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 8.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
             ) {
                 Text(
                     text = state.character?.name.orEmpty(),
                     fontSize = 16.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
                 )
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceAround
+                    horizontalArrangement = Arrangement.SpaceAround,
                 ) {
                     Text(text = state.character?.species.orEmpty(), fontSize = 14.sp)
                     Text(text = state.character?.species.orEmpty(), fontSize = 14.sp)

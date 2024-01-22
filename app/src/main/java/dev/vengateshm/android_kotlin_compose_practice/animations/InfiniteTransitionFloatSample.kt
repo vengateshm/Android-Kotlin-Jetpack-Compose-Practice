@@ -17,51 +17,62 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
 @Composable
-fun InfiniteFloatTransition(width: Int, height: Int) {
+fun InfiniteFloatTransition(
+    width: Int,
+    height: Int,
+) {
     val transition = rememberInfiniteTransition()
     val x1 by transition.animateFloat(
         initialValue = 100f,
         targetValue = width.toFloat() - 100f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(
-                durationMillis = 7000,
-                easing = LinearEasing
+        animationSpec =
+            infiniteRepeatable(
+                animation =
+                    tween(
+                        durationMillis = 7000,
+                        easing = LinearEasing,
+                    ),
+                repeatMode = RepeatMode.Reverse,
             ),
-            repeatMode = RepeatMode.Reverse
-        )
     )
     val y1 by transition.animateFloat(
         initialValue = 100f,
         targetValue = height.toFloat() - 100f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(
-                durationMillis = 6000,
-                easing = LinearEasing
+        animationSpec =
+            infiniteRepeatable(
+                animation =
+                    tween(
+                        durationMillis = 6000,
+                        easing = LinearEasing,
+                    ),
+                repeatMode = RepeatMode.Reverse,
             ),
-            repeatMode = RepeatMode.Reverse
-        )
     )
 
     Box(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier =
+            Modifier
+                .fillMaxSize(),
     ) {
         Canvas(
-            modifier = Modifier
-                .fillMaxSize()
+            modifier =
+                Modifier
+                    .fillMaxSize(),
         ) {
             drawCircle(
-                brush = Brush.linearGradient(
-                    colors = listOf(
-                        Color(0XFF8E24AA),
-                        Color(0XFF9C27B0),
-                        Color(0XFFD1C4E9),
+                brush =
+                    Brush.linearGradient(
+                        colors =
+                            listOf(
+                                Color(0XFF8E24AA),
+                                Color(0XFF9C27B0),
+                                Color(0XFFD1C4E9),
+                            ),
+                        start = Offset(x1 - 100, y1),
+                        end = Offset(x1 + 100, y1),
                     ),
-                    start = Offset(x1 - 100, y1),
-                    end = Offset(x1 + 100, y1)
-                ),
                 radius = 100f,
-                center = Offset(x1, y1)
+                center = Offset(x1, y1),
             )
         }
     }

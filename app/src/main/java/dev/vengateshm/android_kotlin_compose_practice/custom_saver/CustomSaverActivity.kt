@@ -30,9 +30,10 @@ class CustomSaverActivity : ComponentActivity() {
 // Usage
 @Composable
 fun BookItem() {
-    val book = rememberSaveable(stateSaver = BookSaverMapApproach) {
-        mutableStateOf(Book("A123", "Title 1", 4.6))
-    }
+    val book =
+        rememberSaveable(stateSaver = BookSaverMapApproach) {
+            mutableStateOf(Book("A123", "Title 1", 4.6))
+        }
 
     Column(modifier = Modifier.fillMaxWidth()) {
         Text(text = book.value.isbn)
@@ -51,7 +52,7 @@ object BookSaverMapApproach : Saver<Book, Map<String, Any>> {
         return Book(
             isbn = value["isbn"] as String,
             title = value["title"] as String,
-            rating = value["rating"] as Double
+            rating = value["rating"] as Double,
         )
     }
 
@@ -59,7 +60,7 @@ object BookSaverMapApproach : Saver<Book, Map<String, Any>> {
         return mapOf(
             "isbn" to value.isbn,
             "title" to value.title,
-            "rating" to value.rating
+            "rating" to value.rating,
         )
     }
 }

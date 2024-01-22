@@ -35,33 +35,35 @@ fun MainScreen(mainViewModel: MainViewModel) {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(50.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(20.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             mainViewModel.items.forEach { person ->
                 DragTarget(
                     dataToDrop = person,
-                    viewModel = mainViewModel
+                    viewModel = mainViewModel,
                 ) {
                     Box(
-                        modifier = Modifier
-                            .size(Dp(screenWidth / 5f))
-                            .clip(RoundedCornerShape(15.dp))
-                            .shadow(5.dp, RoundedCornerShape(15.dp))
-                            .background(person.backgroundColor, RoundedCornerShape(15.dp)),
-                        contentAlignment = Alignment.Center
+                        modifier =
+                            Modifier
+                                .size(Dp(screenWidth / 5f))
+                                .clip(RoundedCornerShape(15.dp))
+                                .shadow(5.dp, RoundedCornerShape(15.dp))
+                                .background(person.backgroundColor, RoundedCornerShape(15.dp)),
+                        contentAlignment = Alignment.Center,
                     ) {
                         Text(
                             text = person.name,
                             style = MaterialTheme.typography.body1,
                             color = Color.White,
-                            fontWeight = FontWeight.SemiBold
+                            fontWeight = FontWeight.SemiBold,
                         )
                     }
                 }
@@ -69,11 +71,12 @@ fun MainScreen(mainViewModel: MainViewModel) {
         }
         AnimatedVisibility(
             visible = mainViewModel.isCurrentlyDragging,
-            enter = slideInHorizontally(initialOffsetX = { it })
+            enter = slideInHorizontally(initialOffsetX = { it }),
         ) {
             DropItem<Person>(
-                modifier = Modifier
-                    .size(Dp(screenWidth / 3.5f))
+                modifier =
+                    Modifier
+                        .size(Dp(screenWidth / 3.5f)),
             ) { isInBound, data ->
                 if (data != null) {
                     LaunchedEffect(key1 = data) {
@@ -82,54 +85,58 @@ fun MainScreen(mainViewModel: MainViewModel) {
                 }
                 if (isInBound) {
                     Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .border(1.dp, color = Color.Red, shape = RoundedCornerShape(15.dp))
-                            .background(
-                                color = Color.Gray.copy(alpha = 0.5f),
-                                RoundedCornerShape(15.dp)
-                            ),
-                        contentAlignment = Alignment.Center
+                        modifier =
+                            Modifier
+                                .fillMaxSize()
+                                .border(1.dp, color = Color.Red, shape = RoundedCornerShape(15.dp))
+                                .background(
+                                    color = Color.Gray.copy(alpha = 0.5f),
+                                    RoundedCornerShape(15.dp),
+                                ),
+                        contentAlignment = Alignment.Center,
                     ) {
                         Text(
                             text = "Add person",
                             style = MaterialTheme.typography.body1,
-                            color = Color.Black
+                            color = Color.Black,
                         )
                     }
                 } else {
                     Box(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .border(1.dp, color = Color.White, shape = RoundedCornerShape(15.dp))
-                            .background(
-                                color = Color.Black.copy(alpha = 0.6f),
-                                RoundedCornerShape(15.dp)
-                            ),
-                        contentAlignment = Alignment.Center
+                        modifier =
+                            Modifier
+                                .fillMaxSize()
+                                .border(1.dp, color = Color.White, shape = RoundedCornerShape(15.dp))
+                                .background(
+                                    color = Color.Black.copy(alpha = 0.6f),
+                                    RoundedCornerShape(15.dp),
+                                ),
+                        contentAlignment = Alignment.Center,
                     ) {
                         Text(
                             text = "Add person",
                             style = MaterialTheme.typography.body1,
-                            color = Color.White
+                            color = Color.White,
                         )
                     }
                 }
             }
         }
         Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(30.dp),
-            contentAlignment = Alignment.Center
+            modifier =
+                Modifier
+                    .fillMaxSize()
+                    .padding(30.dp),
+            contentAlignment = Alignment.Center,
         ) {
             Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp)
-                    .padding(bottom = 100.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(20.dp)
+                        .padding(bottom = 100.dp),
                 horizontalAlignment = Alignment.Start,
-                verticalArrangement = Arrangement.spacedBy(10.dp)
+                verticalArrangement = Arrangement.spacedBy(10.dp),
             ) {
                 Text(
                     text = "Added Persons",
@@ -137,7 +144,7 @@ fun MainScreen(mainViewModel: MainViewModel) {
                     style = MaterialTheme.typography.h6,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.fillMaxWidth(),
-                    textAlign = TextAlign.Start
+                    textAlign = TextAlign.Start,
                 )
                 mainViewModel.addedPersons.forEach {
                     Text(

@@ -13,24 +13,24 @@ import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 
 class CreditCardVisualTransformation : VisualTransformation {
-
     override fun filter(text: AnnotatedString): TransformedText {
         val formatted = formatCardNumberWithHyphens(text.text)
         println("Formatted text : $formatted")
-        val offsetTranslator = object : OffsetMapping {
-            override fun originalToTransformed(offset: Int): Int {
-                val formattedLength = formatted.length
-                val transformedOffset =
-                    if (offset <= formattedLength) offset + formattedLength - text.length else offset
-                println("Length : $formattedLength Original offset : $offset Transformed offset : $transformedOffset")
-                return transformedOffset
-            }
+        val offsetTranslator =
+            object : OffsetMapping {
+                override fun originalToTransformed(offset: Int): Int {
+                    val formattedLength = formatted.length
+                    val transformedOffset =
+                        if (offset <= formattedLength) offset + formattedLength - text.length else offset
+                    println("Length : $formattedLength Original offset : $offset Transformed offset : $transformedOffset")
+                    return transformedOffset
+                }
 
-            override fun transformedToOriginal(offset: Int): Int {
-                val formattedLength = formatted.length
-                return if (offset <= formattedLength) offset else offset - formattedLength + text.length
+                override fun transformedToOriginal(offset: Int): Int {
+                    val formattedLength = formatted.length
+                    return if (offset <= formattedLength) offset else offset - formattedLength + text.length
+                }
             }
-        }
         return TransformedText(AnnotatedString(formatted), offsetTranslator)
     }
 }
@@ -47,11 +47,12 @@ fun CreditCardTextField() {
             }
         },
         visualTransformation = CreditCardVisualTransformation(),
-        keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Number
-        ),
+        keyboardOptions =
+            KeyboardOptions(
+                keyboardType = KeyboardType.Number,
+            ),
         placeholder = { Text(text = "XXXX-XXXX-XXXX-XXXX") },
-        maxLines = 1
+        maxLines = 1,
     )
 }
 

@@ -26,7 +26,6 @@ import coil.compose.AsyncImage
 import java.util.Calendar
 
 class ContentProviderSampleActivity : ComponentActivity() {
-
     private val viewModel = viewModels<ContentProviderViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,14 +36,14 @@ class ContentProviderSampleActivity : ComponentActivity() {
             val isGranted =
                 ContextCompat.checkSelfPermission(
                     this,
-                    permission
+                    permission,
                 ) == PackageManager.PERMISSION_GRANTED
             if (!isGranted) {
                 // Request the permission.
                 ActivityCompat.requestPermissions(
                     this as Activity,
                     arrayOf(permission),
-                    115
+                    115,
                 )
             }
         } else {
@@ -52,39 +51,41 @@ class ContentProviderSampleActivity : ComponentActivity() {
             val isGranted =
                 ContextCompat.checkSelfPermission(
                     this,
-                    permission
+                    permission,
                 ) == PackageManager.PERMISSION_GRANTED
             if (!isGranted) {
                 // Request the permission.
                 ActivityCompat.requestPermissions(
                     this as Activity,
                     arrayOf(permission),
-                    115
+                    115,
                 )
             }
         }
 
         // Columns
-        val projection = arrayOf(
-            MediaStore.Images.Media._ID,
-            MediaStore.Images.Media.DISPLAY_NAME,
-            MediaStore.Images.Media.DATE_TAKEN,
-        )
+        val projection =
+            arrayOf(
+                MediaStore.Images.Media._ID,
+                MediaStore.Images.Media.DISPLAY_NAME,
+                MediaStore.Images.Media.DATE_TAKEN,
+            )
         // Query
         val selection = "${MediaStore.Images.Media.DATE_TAKEN} >= ?"
-        val selectionArgs = arrayOf(
-            Calendar.getInstance()
-                .apply {
-                    add(Calendar.DAY_OF_YEAR, -30)
-                }.timeInMillis.toString()
-        )
+        val selectionArgs =
+            arrayOf(
+                Calendar.getInstance()
+                    .apply {
+                        add(Calendar.DAY_OF_YEAR, -30)
+                    }.timeInMillis.toString(),
+            )
         val sortOrder = "${MediaStore.Images.Media.DATE_TAKEN} DESC"
         contentResolver.query(
             MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
             projection,
             selection,
             selectionArgs,
-            sortOrder
+            sortOrder,
         )?.use { cursor ->
             val idColumn = cursor.getColumnIndex(MediaStore.Images.Media._ID)
             val nameColumn = cursor.getColumnIndex(MediaStore.Images.Media.DISPLAY_NAME)
@@ -95,17 +96,18 @@ class ContentProviderSampleActivity : ComponentActivity() {
                 val id = cursor.getLong(idColumn)
                 val name = cursor.getString(nameColumn)
                 val dateTaken = cursor.getInt(dateTakenColumn)
-                val uri = ContentUris.withAppendedId(
-                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                    id
-                )
+                val uri =
+                    ContentUris.withAppendedId(
+                        MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+                        id,
+                    )
                 images.add(
                     Image(
                         id = id,
                         name = name,
                         dateTaken = dateTaken,
-                        uri = uri
-                    )
+                        uri = uri,
+                    ),
                 )
             }
             viewModel.value.updateImages(images)
@@ -114,16 +116,16 @@ class ContentProviderSampleActivity : ComponentActivity() {
         setContent {
             MaterialTheme {
                 LazyColumn(
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize(),
                 ) {
                     items(viewModel.value.images.value) { image ->
                         Column(
                             modifier = Modifier.fillMaxWidth(),
-                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                            verticalArrangement = Arrangement.spacedBy(8.dp),
                         ) {
                             AsyncImage(model = image.uri, contentDescription = null)
                             Text(
-                                text = image.name
+                                text = image.name,
                             )
                         }
                     }

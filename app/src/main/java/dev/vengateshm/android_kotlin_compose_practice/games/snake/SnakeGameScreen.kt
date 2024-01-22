@@ -43,16 +43,16 @@ import dev.vengateshm.android_kotlin_compose_practice.ui.theme.RoyalBlue
 @Composable
 fun SnakeGameScreen(
     state: SnakeGameState,
-    onSnakeGameEvent: (SnakeGameEvent) -> Unit
+    onSnakeGameEvent: (SnakeGameEvent) -> Unit,
 ) {
-
     val foodImageBitmap = ImageBitmap.imageResource(id = R.drawable.img_apple)
-    val snakeImageBitmap = when (state.direction) {
-        Direction.RIGHT -> ImageBitmap.imageResource(id = R.drawable.img_snake_head)
-        Direction.LEFT -> ImageBitmap.imageResource(id = R.drawable.img_snake_head2)
-        Direction.UP -> ImageBitmap.imageResource(id = R.drawable.img_snake_head3)
-        Direction.DOWN -> ImageBitmap.imageResource(id = R.drawable.img_snake_head4)
-    }
+    val snakeImageBitmap =
+        when (state.direction) {
+            Direction.RIGHT -> ImageBitmap.imageResource(id = R.drawable.img_snake_head)
+            Direction.LEFT -> ImageBitmap.imageResource(id = R.drawable.img_snake_head2)
+            Direction.UP -> ImageBitmap.imageResource(id = R.drawable.img_snake_head3)
+            Direction.DOWN -> ImageBitmap.imageResource(id = R.drawable.img_snake_head4)
+        }
 
     val context = LocalContext.current
     val foodSoundMP = remember { MediaPlayer.create(context, R.raw.food) }
@@ -72,35 +72,37 @@ fun SnakeGameScreen(
 
     Box(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.SpaceBetween
+            verticalArrangement = Arrangement.SpaceBetween,
         ) {
             Card(
-                modifier = Modifier
-                    .padding(8.dp)
-                    .fillMaxWidth()
+                modifier =
+                    Modifier
+                        .padding(8.dp)
+                        .fillMaxWidth(),
             ) {
                 Text(
                     modifier = Modifier.padding(16.dp),
                     text = "Score: ${state.snake.size - 1}", // Subtract 1 as initial size not considered
-                    style = MaterialTheme.typography.h4
+                    style = MaterialTheme.typography.h4,
                 )
             }
             Canvas(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1f)
-                    .pointerInput(state.gameState) {
-                        if (state.gameState != GameState.STARTED) {
-                            return@pointerInput
-                        }
-                        detectTapGestures { offset ->
-                            onSnakeGameEvent(SnakeGameEvent.UpdateDirection(offset, size.width))
-                        }
-                    }
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(1f)
+                        .pointerInput(state.gameState) {
+                            if (state.gameState != GameState.STARTED) {
+                                return@pointerInput
+                            }
+                            detectTapGestures { offset ->
+                                onSnakeGameEvent(SnakeGameEvent.UpdateDirection(offset, size.width))
+                            }
+                        },
             ) {
                 val cellSize = size.width / 20
                 drawGameBoard(
@@ -108,28 +110,29 @@ fun SnakeGameScreen(
                     cellColor = Custard,
                     borderCellColor = RoyalBlue,
                     gridWidth = 20,
-                    gridHeight = 20
+                    gridHeight = 20,
                 )
                 drawFood(
                     foodImage = foodImageBitmap,
                     cellSize = cellSize.toInt(),
-                    coordinate = state.food
+                    coordinate = state.food,
                 )
                 drawSnake(
                     snakeHeadImage = snakeImageBitmap,
                     cellSize = cellSize,
-                    snake = state.snake
+                    snake = state.snake,
                 )
             }
             Row(
-                modifier = Modifier
-                    .padding(8.dp)
-                    .fillMaxWidth()
+                modifier =
+                    Modifier
+                        .padding(8.dp)
+                        .fillMaxWidth(),
             ) {
                 Button(
                     modifier = Modifier.weight(1f),
                     onClick = { onSnakeGameEvent(SnakeGameEvent.ResetGame) },
-                    enabled = state.gameState == GameState.PAUSED || state.isGameOver
+                    enabled = state.gameState == GameState.PAUSED || state.isGameOver,
                 ) {
                     Text(text = if (state.isGameOver) "Reset" else "New Game")
                 }
@@ -142,14 +145,15 @@ fun SnakeGameScreen(
                             GameState.STARTED -> onSnakeGameEvent(SnakeGameEvent.PauseGame)
                         }
                     },
-                    enabled = !state.isGameOver
+                    enabled = !state.isGameOver,
                 ) {
                     Text(
-                        text = when (state.gameState) {
-                            GameState.IDLE -> "Start"
-                            GameState.STARTED -> "Pause"
-                            GameState.PAUSED -> "Resume"
-                        }
+                        text =
+                            when (state.gameState) {
+                                GameState.IDLE -> "Start"
+                                GameState.STARTED -> "Pause"
+                                GameState.PAUSED -> "Resume"
+                            },
                     )
                 }
             }
@@ -158,7 +162,7 @@ fun SnakeGameScreen(
             Text(
                 modifier = Modifier.padding(16.dp),
                 text = "Game Over",
-                style = MaterialTheme.typography.h5
+                style = MaterialTheme.typography.h5,
             )
         }
     }
@@ -175,11 +179,16 @@ fun DrawScope.drawGameBoard(
         for (j in 0 until gridHeight) {
             val isBorderCell = (i == 0 || j == 0 || i == gridWidth - 1 || j == gridHeight - 1)
             drawRect(
-                color = if (isBorderCell) borderCellColor
-                else if ((i + j) % 2 == 0) cellColor
-                else cellColor.copy(alpha = 0.5f),
+                color =
+                    if (isBorderCell) {
+                        borderCellColor
+                    } else if ((i + j) % 2 == 0) {
+                        cellColor
+                    } else {
+                        cellColor.copy(alpha = 0.5f)
+                    },
                 topLeft = Offset(x = i * cellSize, y = j * cellSize),
-                size = Size(cellSize, cellSize)
+                size = Size(cellSize, cellSize),
             )
         }
     }
@@ -188,22 +197,23 @@ fun DrawScope.drawGameBoard(
 fun DrawScope.drawFood(
     foodImage: ImageBitmap,
     cellSize: Int,
-    coordinate: Coordinate
+    coordinate: Coordinate,
 ) {
     drawImage(
         image = foodImage,
-        dstOffset = IntOffset(
-            x = (coordinate.x * cellSize),
-            y = (coordinate.y * cellSize)
-        ),
-        dstSize = IntSize(cellSize, cellSize)
+        dstOffset =
+            IntOffset(
+                x = (coordinate.x * cellSize),
+                y = (coordinate.y * cellSize),
+            ),
+        dstSize = IntSize(cellSize, cellSize),
     )
 }
 
 fun DrawScope.drawSnake(
     snakeHeadImage: ImageBitmap,
     cellSize: Float,
-    snake: List<Coordinate>
+    snake: List<Coordinate>,
 ) {
     val cellSizeInt = cellSize.toInt()
     snake.forEachIndexed { index, coordinate ->
@@ -211,20 +221,22 @@ fun DrawScope.drawSnake(
         if (index == 0) {
             drawImage(
                 image = snakeHeadImage,
-                dstOffset = IntOffset(
-                    x = (coordinate.x * cellSizeInt),
-                    y = (coordinate.y * cellSizeInt)
-                ),
-                dstSize = IntSize(cellSizeInt, cellSizeInt)
+                dstOffset =
+                    IntOffset(
+                        x = (coordinate.x * cellSizeInt),
+                        y = (coordinate.y * cellSizeInt),
+                    ),
+                dstSize = IntSize(cellSizeInt, cellSizeInt),
             )
         } else {
             drawCircle(
                 color = Citrine,
-                center = Offset(
-                    x = (coordinate.x * cellSize) + radius,
-                    y = (coordinate.y * cellSize) + radius
-                ),
-                radius = radius
+                center =
+                    Offset(
+                        x = (coordinate.x * cellSize) + radius,
+                        y = (coordinate.y * cellSize) + radius,
+                    ),
+                radius = radius,
             )
         }
     }

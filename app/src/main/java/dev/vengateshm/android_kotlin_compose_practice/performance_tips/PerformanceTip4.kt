@@ -13,13 +13,14 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun PerfTip4() {
-    var count = remember {
-        mutableStateOf(0)
-    }
+    var count =
+        remember {
+            mutableStateOf(0)
+        }
 
     Column(
         modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Button(onClick = {
             count.value++

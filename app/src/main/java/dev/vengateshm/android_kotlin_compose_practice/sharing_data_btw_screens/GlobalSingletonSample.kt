@@ -21,7 +21,8 @@ import javax.inject.Singleton
 fun GlobalSingletonSample() {
     val navController = rememberNavController()
     NavHost(
-        navController = navController, startDestination = "screen1"
+        navController = navController,
+        startDestination = "screen1",
     ) {
         composable("screen1") {
             val viewModel = hiltViewModel<Screen1ViewModel>()
@@ -55,16 +56,21 @@ fun Screen1(
 }
 
 @HiltViewModel
-class Screen1ViewModel @Inject constructor(private val globalState: GlobalState) : ViewModel() {
-    val count = globalState.globalCounter
+class Screen1ViewModel
+    @Inject
+    constructor(private val globalState: GlobalState) : ViewModel() {
+        val count = globalState.globalCounter
 
-    fun inc() {
-        globalState.incrementCounter()
+        fun inc() {
+            globalState.incrementCounter()
+        }
     }
-}
 
 @Composable
-fun Screen2(count: Int, viewModel: Screen2ViewModel) {
+fun Screen2(
+    count: Int,
+    viewModel: Screen2ViewModel,
+) {
     Column {
         Text(text = "Screen2 $count")
         Button(onClick = { viewModel.inc() }) {
@@ -74,20 +80,24 @@ fun Screen2(count: Int, viewModel: Screen2ViewModel) {
 }
 
 @HiltViewModel
-class Screen2ViewModel @Inject constructor(private val globalState: GlobalState) : ViewModel() {
-    val count = globalState.globalCounter
+class Screen2ViewModel
+    @Inject
+    constructor(private val globalState: GlobalState) : ViewModel() {
+        val count = globalState.globalCounter
 
-    fun inc() {
-        globalState.incrementCounter()
+        fun inc() {
+            globalState.incrementCounter()
+        }
     }
-}
 
 @Singleton
-class GlobalState @Inject constructor() {
-    private val _globalCounter = MutableStateFlow(0)
-    val globalCounter = _globalCounter.asStateFlow()
+class GlobalState
+    @Inject
+    constructor() {
+        private val _globalCounter = MutableStateFlow(0)
+        val globalCounter = _globalCounter.asStateFlow()
 
-    fun incrementCounter() {
-        _globalCounter.value++
+        fun incrementCounter() {
+            _globalCounter.value++
+        }
     }
-}

@@ -9,7 +9,6 @@ import java.net.URL
 import kotlin.concurrent.thread
 
 object ImageLoader {
-
     private val handler = Handler(Looper.getMainLooper())
 
     fun loadImage(

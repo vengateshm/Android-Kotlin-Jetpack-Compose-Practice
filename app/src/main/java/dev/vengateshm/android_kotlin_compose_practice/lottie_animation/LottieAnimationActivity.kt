@@ -40,51 +40,55 @@ class LottieAnimationActivity : ComponentActivity() {
 fun Loader() {
     val compositionResult: LottieCompositionResult =
         rememberLottieComposition(
-            spec = LottieCompositionSpec.RawRes(R.raw.compass)
+            spec = LottieCompositionSpec.RawRes(R.raw.compass),
         ) // Animation file can be added in assets folder too
 
     val progress by animateLottieCompositionAsState(
         composition = compositionResult.value,
         isPlaying = true,
         iterations = LottieConstants.IterateForever,
-        speed = 2.0f
+        speed = 2.0f,
     )
 
     val color by derivedStateOf { Color.Green }
 
-    val dynamicProperties = rememberLottieDynamicProperties(
-        rememberLottieDynamicProperty(
-            property = LottieProperty.COLOR,
-            value = color.toArgb(),
-            keyPath = arrayOf(
-                "donut",
-                "Group 1",
-                "Fill 1"
-            )
-        ),
-        rememberLottieDynamicProperty(
-            property = LottieProperty.COLOR,
-            value = color.toArgb(),
-            keyPath = arrayOf(
-                "compass needle",
-                "Shape 1",
-                "Fill 1"
-            )
-        ),
-        rememberLottieDynamicProperty(
-            property = LottieProperty.OPACITY,
-            value = 50,
-            keyPath = arrayOf(
-                "compass needle",
-                "Shape 1",
-                "Fill 1"
-            )
+    val dynamicProperties =
+        rememberLottieDynamicProperties(
+            rememberLottieDynamicProperty(
+                property = LottieProperty.COLOR,
+                value = color.toArgb(),
+                keyPath =
+                    arrayOf(
+                        "donut",
+                        "Group 1",
+                        "Fill 1",
+                    ),
+            ),
+            rememberLottieDynamicProperty(
+                property = LottieProperty.COLOR,
+                value = color.toArgb(),
+                keyPath =
+                    arrayOf(
+                        "compass needle",
+                        "Shape 1",
+                        "Fill 1",
+                    ),
+            ),
+            rememberLottieDynamicProperty(
+                property = LottieProperty.OPACITY,
+                value = 50,
+                keyPath =
+                    arrayOf(
+                        "compass needle",
+                        "Shape 1",
+                        "Fill 1",
+                    ),
+            ),
         )
-    )
 
     LottieAnimation(
         composition = compositionResult.value,
         progress = progress,
-        dynamicProperties = dynamicProperties
+        dynamicProperties = dynamicProperties,
     )
 }

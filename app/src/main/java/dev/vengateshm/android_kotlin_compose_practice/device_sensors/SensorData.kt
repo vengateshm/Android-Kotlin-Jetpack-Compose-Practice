@@ -15,16 +15,17 @@ fun SensorData() {
     val viewModel = viewModel<SensorDataViewModel>()
     val isDark = viewModel.isDark
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(
-                color = if (isDark) Color.DarkGray else Color.White
-            ),
-        contentAlignment = Alignment.Center
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(
+                    color = if (isDark) Color.DarkGray else Color.White,
+                ),
+        contentAlignment = Alignment.Center,
     ) {
         Text(
             color = if (isDark) Color.White else Color.DarkGray,
-            text = if (isDark) "Devil dark" else "Angel White"
+            text = if (isDark) "Devil dark" else "Angel White",
         )
     }
 }

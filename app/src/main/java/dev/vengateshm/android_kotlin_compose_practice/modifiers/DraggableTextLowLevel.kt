@@ -24,16 +24,19 @@ fun DraggableBoxLowLevel() {
         var offsetX by remember { mutableFloatStateOf(0f) }
         var offsetY by remember { mutableFloatStateOf(0f) }
 
-        Box(modifier = Modifier
-            .offset { IntOffset(x = offsetX.roundToInt(), y = offsetY.roundToInt()) }
-            .background(color = Color.Gray)
-            .size(50.dp)
-            .pointerInput(Unit) {
-                detectDragGestures { change, dragAmount ->
-                    change.consume()
-                    offsetX += dragAmount.x
-                    offsetY += dragAmount.y
-                }
-            })
+        Box(
+            modifier =
+                Modifier
+                    .offset { IntOffset(x = offsetX.roundToInt(), y = offsetY.roundToInt()) }
+                    .background(color = Color.Gray)
+                    .size(50.dp)
+                    .pointerInput(Unit) {
+                        detectDragGestures { change, dragAmount ->
+                            change.consume()
+                            offsetX += dragAmount.x
+                            offsetY += dragAmount.y
+                        }
+                    },
+        )
     }
 }

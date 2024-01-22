@@ -40,8 +40,8 @@ fun ContinentListScreen() {
         val continentsList = repository.getContinents()
         continents = continentsList
         Log.d("Continents : ", "$continentsList")
-        //val countries = repository.getCountriesByContinent("OC")
-        //Log.d("Countries : ", "$countries")
+        // val countries = repository.getCountriesByContinent("OC")
+        // Log.d("Countries : ", "$countries")
     }
     ContinentList(continents = continents)
 }

@@ -21,10 +21,11 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-
 @Composable
-fun AutoRefreshTimeText(timeStampInMillis: Long, refreshTimeInMillis: Long = 10_000) {
-
+fun AutoRefreshTimeText(
+    timeStampInMillis: Long,
+    refreshTimeInMillis: Long = 10_000,
+) {
     var formattedTime by remember(key1 = timeStampInMillis) {
         mutableStateOf(formatTime(timeStampInMillis))
     }
@@ -33,12 +34,13 @@ fun AutoRefreshTimeText(timeStampInMillis: Long, refreshTimeInMillis: Long = 10_
 
     // Refreshing every X milliseconds using
     DisposableEffect(timeStampInMillis) {
-        val refreshJob = coroutineScope.launch {
-            while (true) {
-                delay(refreshTimeInMillis)
-                formattedTime = formatTime(timeStampInMillis)
+        val refreshJob =
+            coroutineScope.launch {
+                while (true) {
+                    delay(refreshTimeInMillis)
+                    formattedTime = formatTime(timeStampInMillis)
+                }
             }
-        }
 
         onDispose {
             refreshJob.cancel()
@@ -79,10 +81,10 @@ fun AutoRefreshTimeTextSample() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         AutoRefreshTimeText(
-            timeStampInMillis = timeStampInMillis
+            timeStampInMillis = timeStampInMillis,
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(onClick = { timeStampInMillis = System.currentTimeMillis() }) {

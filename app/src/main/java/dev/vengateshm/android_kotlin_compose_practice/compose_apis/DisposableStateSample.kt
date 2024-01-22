@@ -26,20 +26,24 @@ import androidx.lifecycle.LifecycleOwner
 
 @Composable
 fun DisposableStateScreen() {
-    SystemBroadcastReceiver(systemAction = BluetoothAdapter.ACTION_STATE_CHANGED,
+    SystemBroadcastReceiver(
+        systemAction = BluetoothAdapter.ACTION_STATE_CHANGED,
         onSystemEvent = { receivedIntent ->
             val action = receivedIntent?.action ?: return@SystemBroadcastReceiver
             if (action == BluetoothAdapter.ACTION_STATE_CHANGED) {
                 println("Bluetooth state changed")
             }
-        })
-    SystemBroadcastReceiver(systemAction = WifiManager.WIFI_STATE_CHANGED_ACTION,
+        },
+    )
+    SystemBroadcastReceiver(
+        systemAction = WifiManager.WIFI_STATE_CHANGED_ACTION,
         onSystemEvent = { receivedIntent ->
             val action = receivedIntent?.action ?: return@SystemBroadcastReceiver
             if (action == WifiManager.WIFI_STATE_CHANGED_ACTION) {
                 println("WiFi state changed")
             }
-        })
+        },
+    )
     val context = LocalContext.current
     var receivedText by remember { mutableStateOf("") }
     SystemBroadcastReceiver(systemAction = "CUSTOM_BROADCAST", onSystemEvent = { receivedIntent ->
@@ -51,9 +55,11 @@ fun DisposableStateScreen() {
     SendBroadCast(text = {
         receivedText
     }) {
-        context.sendBroadcast(Intent("CUSTOM_BROADCAST").apply {
-            putExtra("KEY_TEXT", "Hola! ❤️")
-        })
+        context.sendBroadcast(
+            Intent("CUSTOM_BROADCAST").apply {
+                putExtra("KEY_TEXT", "Hola! ❤️")
+            },
+        )
     }
 }
 
@@ -81,11 +87,15 @@ fun SystemBroadcastReceiver(
     val currentSystemEvent by rememberUpdatedState(newValue = onSystemEvent)
     DisposableEffect(context, systemAction) {
         val intentFilter = IntentFilter(systemAction)
-        val receiver = object : BroadcastReceiver() {
-            override fun onReceive(p0: Context?, p1: Intent?) {
-                currentSystemEvent(p1)
+        val receiver =
+            object : BroadcastReceiver() {
+                override fun onReceive(
+                    p0: Context?,
+                    p1: Intent?,
+                ) {
+                    currentSystemEvent(p1)
+                }
             }
-        }
         context.registerReceiver(receiver, intentFilter)
         onDispose {
             context.unregisterReceiver(receiver)
@@ -100,13 +110,14 @@ fun PerformOnLifeCycle(
     onResume: () -> Unit = {},
 ) {
     DisposableEffect(lifecycleOwner) {
-        val observer = LifecycleEventObserver { _, event ->
-            when (event) {
-                Lifecycle.Event.ON_START -> onStart()
-                Lifecycle.Event.ON_RESUME -> onResume()
-                else -> Log.i("OBSERVER", "Lifecycle: ${event.name}")
+        val observer =
+            LifecycleEventObserver { _, event ->
+                when (event) {
+                    Lifecycle.Event.ON_START -> onStart()
+                    Lifecycle.Event.ON_RESUME -> onResume()
+                    else -> Log.i("OBSERVER", "Lifecycle: ${event.name}")
+                }
             }
-        }
         lifecycleOwner.lifecycle.addObserver(observer)
         onDispose {
             lifecycleOwner.lifecycle.removeObserver(observer)

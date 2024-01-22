@@ -14,13 +14,14 @@ val GC2 = Color(0XFF59C1BD)
 @Composable
 fun GradientBox(
     modifier: Modifier = Modifier,
-    content: @Composable BoxScope.() -> Unit
+    content: @Composable BoxScope.() -> Unit,
 ) {
     Box(
-        modifier = modifier
-            .background(
-                brush = Brush.linearGradient(listOf(GC1, GC2))
-            )
+        modifier =
+            modifier
+                .background(
+                    brush = Brush.linearGradient(listOf(GC1, GC2)),
+                ),
     ) {
         content()
     }

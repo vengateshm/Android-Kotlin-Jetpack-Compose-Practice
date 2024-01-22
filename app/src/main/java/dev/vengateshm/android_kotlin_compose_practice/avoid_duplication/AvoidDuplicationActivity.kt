@@ -21,18 +21,18 @@ class AvoidDuplicationActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = "mylist"
+                    startDestination = "mylist",
                 ) {
                     composable("mylist") {
                         val viewModel = hiltViewModel<MyListViewModel>()
                         val state = viewModel.state.collectAsStateWithLifecycle()
                         BaseScreenComposable(
                             navController = navController,
-                            viewModel = viewModel
+                            viewModel = viewModel,
                         ) {
                             MyListComposable(
                                 list = state.value.list,
-                                onEvent = viewModel::onEvent
+                                onEvent = viewModel::onEvent,
                             )
                         }
                     }

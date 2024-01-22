@@ -19,8 +19,9 @@ fun NavBackStackEntry.sharedViewModel(navController: NavController): OnboardingV
 @Composable
 inline fun <reified T : ViewModel> NavBackStackEntry.sharedViewModel(navController: NavController): T {
     val route = this.destination.parent?.route ?: return viewModel()
-    val parentEntry = remember(this) {
-        navController.getBackStackEntry(route)
-    }
+    val parentEntry =
+        remember(this) {
+            navController.getBackStackEntry(route)
+        }
     return viewModel(viewModelStoreOwner = parentEntry)
 }

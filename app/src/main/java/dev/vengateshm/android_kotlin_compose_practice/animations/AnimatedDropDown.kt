@@ -40,50 +40,59 @@ fun AnimatedDropDown(
         mutableStateOf(initiallyOpened)
     }
 
-    val alpha = animateFloatAsState(
-        targetValue = if (isOpen) 1f else 0f,
-        animationSpec = tween(
-            durationMillis = 300
+    val alpha =
+        animateFloatAsState(
+            targetValue = if (isOpen) 1f else 0f,
+            animationSpec =
+                tween(
+                    durationMillis = 300,
+                ),
         )
-    )
 
-    val rotateX = animateFloatAsState(
-        targetValue = if (isOpen) 0f else -90f,
-        animationSpec = tween(
-            durationMillis = 300
+    val rotateX =
+        animateFloatAsState(
+            targetValue = if (isOpen) 0f else -90f,
+            animationSpec =
+                tween(
+                    durationMillis = 300,
+                ),
         )
-    )
 
     Column(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier.fillMaxWidth(),
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 text = text,
                 color = Color.DarkGray,
-                fontSize = 16.sp
+                fontSize = 16.sp,
             )
             Icon(
-                modifier = Modifier
-                    .clickable {
-                        isOpen = !isOpen
-                    }
-                    .scale(1f, if (isOpen) -1f else 1f),
-                imageVector = Icons.Default.ArrowDropDown,// Can check isOpen and change the icon
-                contentDescription = "Open or close the drop down")
+                modifier =
+                    Modifier
+                        .clickable {
+                            isOpen = !isOpen
+                        }
+                        .scale(1f, if (isOpen) -1f else 1f),
+                imageVector = Icons.Default.ArrowDropDown, // Can check isOpen and change the icon
+                contentDescription = "Open or close the drop down",
+            )
         }
         Spacer(modifier = Modifier.height(10.dp))
-        Box(modifier = Modifier
-            .fillMaxWidth()
-            .graphicsLayer {
-                transformOrigin = TransformOrigin(0.5f, 0f)
-                rotationX = rotateX.value
-            }
-            .alpha(alpha.value)) {
+        Box(
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .graphicsLayer {
+                        transformOrigin = TransformOrigin(0.5f, 0f)
+                        rotationX = rotateX.value
+                    }
+                    .alpha(alpha.value),
+        ) {
             content()
         }
     }

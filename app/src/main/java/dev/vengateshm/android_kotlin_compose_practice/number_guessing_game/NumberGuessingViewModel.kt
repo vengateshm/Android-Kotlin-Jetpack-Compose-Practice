@@ -14,7 +14,7 @@ class NumberGuessingViewModel : ViewModel() {
             it.copy(
                 userInput = value,
                 userInputValidationResult = "",
-                responseMessageToUser = ""
+                responseMessageToUser = "",
             )
         }
     }
@@ -22,17 +22,18 @@ class NumberGuessingViewModel : ViewModel() {
     fun submit() {
         val currentState = _gameState.value
         // Validation
-        val enteredNumber = try {
-            currentState.userInput.toInt()
-        } catch (e: Exception) {
-            0
-        }
+        val enteredNumber =
+            try {
+                currentState.userInput.toInt()
+            } catch (e: Exception) {
+                0
+            }
 
         if (enteredNumber !in 1..99) {
             _gameState.update { state ->
                 state.copy(
                     userInputValidationResult = "Entered number is not in between 1 and 99",
-                    gameStatus = GameStatus.PROGRESS
+                    gameStatus = GameStatus.PROGRESS,
                 )
             }
             return
@@ -40,13 +41,14 @@ class NumberGuessingViewModel : ViewModel() {
 
         val newAttemptsRemaining = currentState.attemptsRemaining - 1
 
-        val (gameStatus, responseMessageToUser) = when {
-            newAttemptsRemaining == 0 -> GameStatus.LOST to "You lost!"
-            currentState.magicNumber == enteredNumber -> GameStatus.WON to "You won!"
-            currentState.magicNumber > enteredNumber -> GameStatus.PROGRESS to "You guessed number lesser than the magic number!"
-            currentState.magicNumber < enteredNumber -> GameStatus.PROGRESS to "You guessed number higher than the magic number!"
-            else -> GameStatus.PROGRESS to ""
-        }
+        val (gameStatus, responseMessageToUser) =
+            when {
+                newAttemptsRemaining == 0 -> GameStatus.LOST to "You lost!"
+                currentState.magicNumber == enteredNumber -> GameStatus.WON to "You won!"
+                currentState.magicNumber > enteredNumber -> GameStatus.PROGRESS to "You guessed number lesser than the magic number!"
+                currentState.magicNumber < enteredNumber -> GameStatus.PROGRESS to "You guessed number higher than the magic number!"
+                else -> GameStatus.PROGRESS to ""
+            }
 
         _gameState.update { state ->
             state.copy(
@@ -55,7 +57,7 @@ class NumberGuessingViewModel : ViewModel() {
                 userInputValidationResult = "",
                 responseMessageToUser = responseMessageToUser,
                 gameStatus = gameStatus,
-                enteredNumberList = state.enteredNumberList.plus(enteredNumber)
+                enteredNumberList = state.enteredNumberList.plus(enteredNumber),
             )
         }
     }

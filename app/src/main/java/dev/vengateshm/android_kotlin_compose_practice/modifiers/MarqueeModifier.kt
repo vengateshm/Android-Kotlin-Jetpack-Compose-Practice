@@ -16,7 +16,7 @@ fun MarqueeModifier() {
         Text(
             text = "Lorem ipsum dolor sit, Lorem ipsum dolor sit, Lorem ipsum dolor sit, Lorem ipsum dolor sit, Lorem ipsum dolor sit, Lorem ipsum dolor sit, Lorem ipsum dolor sit",
             maxLines = 1,
-            modifier = Modifier.basicMarquee()
+            modifier = Modifier.basicMarquee(),
         )
     }
 }

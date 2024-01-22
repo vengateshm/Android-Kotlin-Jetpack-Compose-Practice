@@ -5,8 +5,10 @@ import android.content.Context
 import android.content.Intent
 
 class CounterNotificationReceiver : BroadcastReceiver() {
-
-    override fun onReceive(context: Context?, intent: Intent?) {
+    override fun onReceive(
+        context: Context?,
+        intent: Intent?,
+    ) {
         val action = intent?.action
         if (action == "increment") {
             // Increment the counter value.

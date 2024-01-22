@@ -19,9 +19,10 @@ import kotlinx.coroutines.launch
  * It might affect previews.
  * */
 
-val LocalSnackBarHostState = compositionLocalOf {
-    SnackbarHostState()
-}
+val LocalSnackBarHostState =
+    compositionLocalOf {
+        SnackbarHostState()
+    }
 
 // App Root
 @Composable
@@ -31,12 +32,11 @@ fun CompositionLocalSample() {
         Scaffold(
             snackbarHost = {
                 SnackbarHost(hostState = LocalSnackBarHostState.current)
-            }
+            },
         ) { padding ->
             Box(modifier = Modifier.padding(padding)) {
                 MyScreen()
             }
-
         }
     }
 }

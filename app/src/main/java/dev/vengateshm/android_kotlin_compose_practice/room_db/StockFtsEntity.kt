@@ -7,7 +7,7 @@ import androidx.room.Fts4
 const val STOCK_FTS_TBL_NAME = "STOCK_FTS_TBL"
 
 @Entity(tableName = STOCK_FTS_TBL_NAME)
-//@Fts3
+// @Fts3
 @Fts4(contentEntity = StockEntity::class)
 data class StockFtsEntity(
     @ColumnInfo(name = "name") val name: String,

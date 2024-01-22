@@ -15,7 +15,9 @@ import javax.inject.Singleton
 object BlueToothAppModule {
     @Provides
     @Singleton
-    fun provideBluetoothController(@ApplicationContext context: Context): BluetoothController {
+    fun provideBluetoothController(
+        @ApplicationContext context: Context,
+    ): BluetoothController {
         return AndroidBluetoothController(context)
     }
 }

@@ -45,8 +45,9 @@ val horizontalPadding = 12.dp
 @Composable
 fun ReelsView() {
     Box(
-        modifier = Modifier
-            .background(color = Color.Black)
+        modifier =
+            Modifier
+                .background(color = Color.Black),
     ) {
         ReelsList()
         ReelsHeader()
@@ -59,14 +60,15 @@ fun ReelsList() {
     LazyColumn {
         items(reelList.size) { index ->
             Box(
-                modifier = Modifier
-                    .fillParentMaxSize()
+                modifier =
+                    Modifier
+                        .fillParentMaxSize(),
             ) {
-
                 // Bottom controls
                 Column(
-                    modifier = Modifier
-                        .align(Alignment.BottomStart)
+                    modifier =
+                        Modifier
+                            .align(Alignment.BottomStart),
                 ) {
                     ReelFooter(reelList[index])
                     Divider()
@@ -79,41 +81,46 @@ fun ReelsList() {
 @Composable
 fun ReelFooter(reel: Reel) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(
-                start = 18.dp,
-                bottom = 18.dp
-            ),
-        verticalAlignment = Alignment.Bottom
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(
+                    start = 18.dp,
+                    bottom = 18.dp,
+                ),
+        verticalAlignment = Alignment.Bottom,
     ) {
         FooterUserData(
             reel = reel,
-            modifier = Modifier.weight(8f)
+            modifier = Modifier.weight(8f),
         )
 
         FooterUserAction(
             reel = reel,
-            modifier = Modifier.weight(2f)
+            modifier = Modifier.weight(2f),
         )
     }
 }
 
 @Composable
-fun FooterUserData(reel: Reel, modifier: Modifier) {
+fun FooterUserData(
+    reel: Reel,
+    modifier: Modifier,
+) {
     Column(
         modifier = modifier,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             GlideImage(
                 imageModel = reel.userImage,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .size(28.dp)
-                    .background(color = Color.Gray, shape = CircleShape)
-                    .clip(CircleShape),
-                contentDescription = null
+                modifier =
+                    Modifier
+                        .size(28.dp)
+                        .background(color = Color.Gray, shape = CircleShape)
+                        .clip(CircleShape),
+                contentDescription = null,
             )
 
             Spacer(modifier = Modifier.width(horizontalPadding))
@@ -121,7 +128,7 @@ fun FooterUserData(reel: Reel, modifier: Modifier) {
             Text(
                 text = reel.userName,
                 color = Color.White,
-                style = MaterialTheme.typography.subtitle2
+                style = MaterialTheme.typography.subtitle2,
             )
 
             Spacer(modifier = Modifier.width(horizontalPadding))
@@ -136,15 +143,17 @@ fun FooterUserData(reel: Reel, modifier: Modifier) {
                 text = "Follow",
                 color = Color.White,
                 style = MaterialTheme.typography.subtitle2,
-                modifier = Modifier
-                    .border(
-                        1.dp, shape = RoundedCornerShape(2.dp),
-                        color = Color.White
-                    )
-                    .padding(
-                        horizontal = 8.dp,
-                        vertical = 4.dp
-                    )
+                modifier =
+                    Modifier
+                        .border(
+                            1.dp,
+                            shape = RoundedCornerShape(2.dp),
+                            color = Color.White,
+                        )
+                        .padding(
+                            horizontal = 8.dp,
+                            vertical = 4.dp,
+                        ),
             )
         }
 
@@ -153,39 +162,42 @@ fun FooterUserData(reel: Reel, modifier: Modifier) {
         Spacer(modifier = Modifier.height(horizontalPadding))
 
         Row(
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(reel.userName, color = Color.White)
             Spacer(modifier = Modifier.width(horizontalPadding))
             Canvas(modifier = Modifier.size(5.dp), onDraw = {
                 drawCircle(
                     color = Color.White,
-                    radius = 2f
+                    radius = 2f,
                 )
             })
             Spacer(modifier = Modifier.width(horizontalPadding))
             Text(
                 text = "Original Audio",
-                color = Color.White
+                color = Color.White,
             )
         }
     }
 }
 
 @Composable
-fun FooterUserAction(reel: Reel, modifier: Modifier) {
+fun FooterUserAction(
+    reel: Reel,
+    modifier: Modifier,
+) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier
+        modifier = modifier,
     ) {
         UserActionWithText(
             drawableRes = R.drawable.ic_outlined_favorite,
-            label = reel.likesCount.toString()
+            label = reel.likesCount.toString(),
         )
         Spacer(modifier = Modifier.height(24.dp))
         UserActionWithText(
             drawableRes = R.drawable.ic_outlined_comment,
-            label = reel.commentsCount.toString()
+            label = reel.commentsCount.toString(),
         )
         Spacer(modifier = Modifier.height(24.dp))
         UserAction(drawableRes = R.drawable.ic_dm)
@@ -194,65 +206,73 @@ fun FooterUserAction(reel: Reel, modifier: Modifier) {
         Spacer(modifier = Modifier.height(24.dp))
         GlideImage(
             imageModel = reel.userImage,
-            modifier = Modifier
-                .size(28.dp)
-                .background(color = Color.Gray, shape = RoundedCornerShape(6.dp))
-                .clip(RoundedCornerShape(6.dp)),
-            contentDescription = null
+            modifier =
+                Modifier
+                    .size(28.dp)
+                    .background(color = Color.Gray, shape = RoundedCornerShape(6.dp))
+                    .clip(RoundedCornerShape(6.dp)),
+            contentDescription = null,
         )
     }
 }
 
 @Composable
-fun UserAction(@DrawableRes drawableRes: Int) {
+fun UserAction(
+    @DrawableRes drawableRes: Int,
+) {
     Icon(
         bitmap = ImageBitmap.imageResource(id = drawableRes),
         tint = Color.White,
         modifier = Modifier.size(16.dp),
-        contentDescription = null
+        contentDescription = null,
     )
 }
 
 @Composable
-fun UserActionWithText(@DrawableRes drawableRes: Int, label: String) {
+fun UserActionWithText(
+    @DrawableRes drawableRes: Int,
+    label: String,
+) {
     Icon(
         bitmap = ImageBitmap.imageResource(id = drawableRes),
         tint = Color.White,
         modifier = Modifier.size(28.dp),
-        contentDescription = null
+        contentDescription = null,
     )
     Spacer(modifier = Modifier.height(6.dp))
     Text(
         text = label,
         color = Color.White,
         fontSize = 13.sp,
-        fontWeight = FontWeight.SemiBold
+        fontWeight = FontWeight.SemiBold,
     )
 }
 
 @Composable
 fun ReelsHeader() {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(
-                horizontal = horizontalPadding,
-                vertical = verticalPadding
-            ),
-        horizontalArrangement = Arrangement.SpaceBetween
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(
+                    horizontal = horizontalPadding,
+                    vertical = verticalPadding,
+                ),
+        horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(
             text = "Reels",
             color = Color.White,
             fontWeight = FontWeight.SemiBold,
-            fontSize = 21.sp
+            fontSize = 21.sp,
         )
         Icon(
             bitmap = ImageBitmap.imageResource(id = R.drawable.ic_outlined_camera),
             tint = Color.White,
-            modifier = Modifier
-                .size(24.dp),
-            contentDescription = "Camera Icon"
+            modifier =
+                Modifier
+                    .size(24.dp),
+            contentDescription = "Camera Icon",
         )
     }
 }

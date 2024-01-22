@@ -13,7 +13,7 @@ import kotlinx.coroutines.withTimeout
 import kotlin.random.Random
 import kotlin.system.measureTimeMillis
 
-fun main(args: Array<String>) {
+fun main() {
 //    measureCoroutineExecutionTime()
 //    measureCoroutineExecutionTimeSynchronous()
 //    catchExceptionOfLaunchCoroutineBuilder()

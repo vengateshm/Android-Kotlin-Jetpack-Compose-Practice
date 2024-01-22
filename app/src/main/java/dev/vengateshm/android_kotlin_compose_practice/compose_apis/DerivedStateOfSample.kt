@@ -60,39 +60,42 @@ fun DerivedStateOfDemo() {
     val context = LocalContext.current
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Button(
             onClick = {
                 dateDialogState.show()
-            }) {
+            },
+        ) {
             Text(
-                text = "Pick date"
+                text = "Pick date",
             )
         }
         Spacer(
-            modifier = Modifier.height(16.dp)
+            modifier = Modifier.height(16.dp),
         )
         Text(
-            text = formattedDate
+            text = formattedDate,
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             onClick = {
                 timeDialogState.show()
-            }) {
+            },
+        ) {
             Text(
-                text = "Pick time"
+                text = "Pick time",
             )
         }
         Spacer(
-            modifier = Modifier.height(16.dp)
+            modifier = Modifier.height(16.dp),
         )
         Text(
-            text = formattedTime
+            text = formattedTime,
         )
     }
     MaterialDialog(
@@ -102,7 +105,7 @@ fun DerivedStateOfDemo() {
                 Toast.makeText(context, "Clicked OK", Toast.LENGTH_SHORT).show()
             }
             negativeButton(text = "CANCEL")
-        }
+        },
     ) {
         datepicker(
             initialDate = LocalDate.now(),
@@ -110,7 +113,7 @@ fun DerivedStateOfDemo() {
             colors = DatePickerDefaults.colors(),
             allowedDateValidator = {
                 it.dayOfMonth % 2 == 0
-            }
+            },
         ) {
             pickedDate = it
         }
@@ -122,13 +125,13 @@ fun DerivedStateOfDemo() {
                 Toast.makeText(context, "Clicked OK", Toast.LENGTH_SHORT).show()
             }
             negativeButton(text = "CANCEL")
-        }
+        },
     ) {
         timepicker(
             initialTime = LocalTime.now(),
             title = "Pick a time",
             colors = TimePickerDefaults.colors(),
-            timeRange = LocalTime.MIDNIGHT..LocalTime.NOON
+            timeRange = LocalTime.MIDNIGHT..LocalTime.NOON,
         ) {
             pickedTime = it
         }

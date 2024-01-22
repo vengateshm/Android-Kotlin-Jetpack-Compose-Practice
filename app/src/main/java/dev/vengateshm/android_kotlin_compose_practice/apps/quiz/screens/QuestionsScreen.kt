@@ -53,20 +53,22 @@ fun QuestionsScreen(
     var evaluateLastQuestion by remember { mutableStateOf(false) }
 
     LaunchedEffect(question) {
-        questionButtonState = if (viewModel.isLastQuestion()) {
-            FINISH
-        } else {
-            SUBMIT
-        }
+        questionButtonState =
+            if (viewModel.isLastQuestion()) {
+                FINISH
+            } else {
+                SUBMIT
+            }
         selectedOption = -1
         evaluateLastQuestion = false
     }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = Color.White)
-            .padding(16.dp),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(color = Color.White)
+                .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top,
     ) {
@@ -75,11 +77,13 @@ fun QuestionsScreen(
         Image(
             modifier = Modifier.size(width = 200.dp, height = 100.dp),
             painter = painterResource(id = question.image),
-            contentDescription = "${question.correctAnswer} flag image"
+            contentDescription = "${question.correctAnswer} flag image",
         )
         Spacer(modifier = Modifier.height(16.dp))
         LinearProgressIndicator(
-            modifier = Modifier.fillMaxWidth(), progress = progress, strokeCap = StrokeCap.Round
+            modifier = Modifier.fillMaxWidth(),
+            progress = progress,
+            strokeCap = StrokeCap.Round,
         )
         Spacer(modifier = Modifier.height(16.dp))
         OptionButtons(
@@ -88,9 +92,10 @@ fun QuestionsScreen(
             onOptionSelected = {
                 selectedOption = it
                 questionButtonState = if (viewModel.isLastQuestion()) FINISH else SUBMIT
-            }, selectedOption = selectedOption,
+            },
+            selectedOption = selectedOption,
             questionButtonState = questionButtonState,
-            evaluateLastQuestion = evaluateLastQuestion
+            evaluateLastQuestion = evaluateLastQuestion,
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(modifier = Modifier.fillMaxWidth(), onClick = {
@@ -137,147 +142,169 @@ fun OptionButtons(
     questionButtonState: QuestionButtonState,
     evaluateLastQuestion: Boolean,
 ) {
-    Text(modifier = Modifier
-        .fillMaxWidth()
-        .clickable {
-            onOptionSelected(1)
-        }
-        .thenWith {
-            if (questionButtonState == GO_TO_NEXT_QUESTION || evaluateLastQuestion) {
-                if (1 == selectedOption) {
-                    Modifier.background(
-                        color = if (1 == question.correctAnswer) Color.Green else Color.Red,
-                        shape = RoundedCornerShape(4.dp)
-                    )
-                } else {
-                    if (1 == question.correctAnswer && selectedOption != -1) {
-                        Modifier.background(
-                            color = Color.Green, shape = RoundedCornerShape(4.dp)
-                        )
+    Text(
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .clickable {
+                    onOptionSelected(1)
+                }
+                .thenWith {
+                    if (questionButtonState == GO_TO_NEXT_QUESTION || evaluateLastQuestion) {
+                        if (1 == selectedOption) {
+                            Modifier.background(
+                                color = if (1 == question.correctAnswer) Color.Green else Color.Red,
+                                shape = RoundedCornerShape(4.dp),
+                            )
+                        } else {
+                            if (1 == question.correctAnswer && selectedOption != -1) {
+                                Modifier.background(
+                                    color = Color.Green,
+                                    shape = RoundedCornerShape(4.dp),
+                                )
+                            } else {
+                                Modifier.border(
+                                    width = 1.dp,
+                                    color = Color.LightGray,
+                                    shape = RoundedCornerShape(4.dp),
+                                )
+                            }
+                        }
                     } else {
                         Modifier.border(
                             width = 1.dp,
-                            color = Color.LightGray,
-                            shape = RoundedCornerShape(4.dp)
+                            color = if (1 == selectedOption) MaterialTheme.colors.primary else Color.LightGray,
+                            shape = RoundedCornerShape(4.dp),
                         )
                     }
-                }
-            } else {
-                Modifier.border(
-                    width = 1.dp,
-                    color = if (1 == selectedOption) MaterialTheme.colors.primary else Color.LightGray,
-                    shape = RoundedCornerShape(4.dp)
-                )
-            }
-        }, text = question.optionOne, textAlign = TextAlign.Center
+                },
+        text = question.optionOne,
+        textAlign = TextAlign.Center,
     )
     Spacer(modifier = Modifier.height(spacedBy))
-    Text(modifier = Modifier
-        .fillMaxWidth()
-        .clickable {
-            onOptionSelected(2)
-        }
-        .thenWith {
-            if (questionButtonState == GO_TO_NEXT_QUESTION || evaluateLastQuestion) {
-                if (2 == selectedOption) {
-                    Modifier.background(
-                        color = if (2 == question.correctAnswer) Color.Green else Color.Red,
-                        shape = RoundedCornerShape(4.dp)
-                    )
-                } else {
-                    if (2 == question.correctAnswer && selectedOption != -1) {
-                        Modifier.background(
-                            color = Color.Green, shape = RoundedCornerShape(4.dp)
-                        )
+    Text(
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .clickable {
+                    onOptionSelected(2)
+                }
+                .thenWith {
+                    if (questionButtonState == GO_TO_NEXT_QUESTION || evaluateLastQuestion) {
+                        if (2 == selectedOption) {
+                            Modifier.background(
+                                color = if (2 == question.correctAnswer) Color.Green else Color.Red,
+                                shape = RoundedCornerShape(4.dp),
+                            )
+                        } else {
+                            if (2 == question.correctAnswer && selectedOption != -1) {
+                                Modifier.background(
+                                    color = Color.Green,
+                                    shape = RoundedCornerShape(4.dp),
+                                )
+                            } else {
+                                Modifier.border(
+                                    width = 1.dp,
+                                    color = Color.LightGray,
+                                    shape = RoundedCornerShape(4.dp),
+                                )
+                            }
+                        }
                     } else {
                         Modifier.border(
                             width = 1.dp,
-                            color = Color.LightGray,
-                            shape = RoundedCornerShape(4.dp)
+                            color = if (2 == selectedOption) MaterialTheme.colors.primary else Color.LightGray,
+                            shape = RoundedCornerShape(4.dp),
                         )
                     }
-                }
-            } else {
-                Modifier.border(
-                    width = 1.dp,
-                    color = if (2 == selectedOption) MaterialTheme.colors.primary else Color.LightGray,
-                    shape = RoundedCornerShape(4.dp)
-                )
-            }
-        }, text = question.optionTwo, textAlign = TextAlign.Center
+                },
+        text = question.optionTwo,
+        textAlign = TextAlign.Center,
     )
     Spacer(modifier = Modifier.height(spacedBy))
-    Text(modifier = Modifier
-        .fillMaxWidth()
-        .clickable {
-            onOptionSelected(3)
-        }
-        .thenWith {
-            if (questionButtonState == GO_TO_NEXT_QUESTION || evaluateLastQuestion) {
-                if (3 == selectedOption) {
-                    Modifier.background(
-                        color = if (3 == question.correctAnswer) Color.Green else Color.Red,
-                        shape = RoundedCornerShape(4.dp)
-                    )
-                } else {
-                    if (3 == question.correctAnswer && selectedOption != -1) {
-                        Modifier.background(
-                            color = Color.Green, shape = RoundedCornerShape(4.dp)
-                        )
+    Text(
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .clickable {
+                    onOptionSelected(3)
+                }
+                .thenWith {
+                    if (questionButtonState == GO_TO_NEXT_QUESTION || evaluateLastQuestion) {
+                        if (3 == selectedOption) {
+                            Modifier.background(
+                                color = if (3 == question.correctAnswer) Color.Green else Color.Red,
+                                shape = RoundedCornerShape(4.dp),
+                            )
+                        } else {
+                            if (3 == question.correctAnswer && selectedOption != -1) {
+                                Modifier.background(
+                                    color = Color.Green,
+                                    shape = RoundedCornerShape(4.dp),
+                                )
+                            } else {
+                                Modifier.border(
+                                    width = 1.dp,
+                                    color = Color.LightGray,
+                                    shape = RoundedCornerShape(4.dp),
+                                )
+                            }
+                        }
                     } else {
                         Modifier.border(
                             width = 1.dp,
-                            color = Color.LightGray,
-                            shape = RoundedCornerShape(4.dp)
+                            color = if (3 == selectedOption) MaterialTheme.colors.primary else Color.LightGray,
+                            shape = RoundedCornerShape(4.dp),
                         )
                     }
-                }
-            } else {
-                Modifier.border(
-                    width = 1.dp,
-                    color = if (3 == selectedOption) MaterialTheme.colors.primary else Color.LightGray,
-                    shape = RoundedCornerShape(4.dp)
-                )
-            }
-        }, text = question.optionThree, textAlign = TextAlign.Center
+                },
+        text = question.optionThree,
+        textAlign = TextAlign.Center,
     )
     Spacer(modifier = Modifier.height(spacedBy))
-    Text(modifier = Modifier
-        .fillMaxWidth()
-        .clickable {
-            onOptionSelected(4)
-        }
-        .thenWith {
-            if (questionButtonState == GO_TO_NEXT_QUESTION || evaluateLastQuestion) {
-                if (4 == selectedOption) {
-                    Modifier.background(
-                        color = if (4 == question.correctAnswer) Color.Green else Color.Red,
-                        shape = RoundedCornerShape(4.dp)
-                    )
-                } else {
-                    if (4 == question.correctAnswer && selectedOption != -1) {
-                        Modifier.background(
-                            color = Color.Green, shape = RoundedCornerShape(4.dp)
-                        )
+    Text(
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .clickable {
+                    onOptionSelected(4)
+                }
+                .thenWith {
+                    if (questionButtonState == GO_TO_NEXT_QUESTION || evaluateLastQuestion) {
+                        if (4 == selectedOption) {
+                            Modifier.background(
+                                color = if (4 == question.correctAnswer) Color.Green else Color.Red,
+                                shape = RoundedCornerShape(4.dp),
+                            )
+                        } else {
+                            if (4 == question.correctAnswer && selectedOption != -1) {
+                                Modifier.background(
+                                    color = Color.Green,
+                                    shape = RoundedCornerShape(4.dp),
+                                )
+                            } else {
+                                Modifier.border(
+                                    width = 1.dp,
+                                    color = Color.LightGray,
+                                    shape = RoundedCornerShape(4.dp),
+                                )
+                            }
+                        }
                     } else {
                         Modifier.border(
                             width = 1.dp,
-                            color = Color.LightGray,
-                            shape = RoundedCornerShape(4.dp)
+                            color = if (4 == selectedOption) MaterialTheme.colors.primary else Color.LightGray,
+                            shape = RoundedCornerShape(4.dp),
                         )
                     }
-                }
-            } else {
-                Modifier.border(
-                    width = 1.dp,
-                    color = if (4 == selectedOption) MaterialTheme.colors.primary else Color.LightGray,
-                    shape = RoundedCornerShape(4.dp)
-                )
-            }
-        }, text = question.optionFour, textAlign = TextAlign.Center
+                },
+        text = question.optionFour,
+        textAlign = TextAlign.Center,
     )
 }
 
 enum class QuestionButtonState(val value: Int, val text: String) {
-    SUBMIT(0, "SUBMIT"), GO_TO_NEXT_QUESTION(1, "GO TO NEXT QUESTION"), FINISH(2, "FINISH")
+    SUBMIT(0, "SUBMIT"),
+    GO_TO_NEXT_QUESTION(1, "GO TO NEXT QUESTION"),
+    FINISH(2, "FINISH"),
 }

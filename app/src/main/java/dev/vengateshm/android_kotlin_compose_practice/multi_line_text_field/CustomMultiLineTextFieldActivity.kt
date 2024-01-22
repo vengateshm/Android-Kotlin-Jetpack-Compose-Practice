@@ -27,24 +27,27 @@ class CustomMultiLineTextFieldActivity : ComponentActivity() {
             ProductSansFontTheme {
                 var text by remember { mutableStateOf("") }
                 Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(16.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxSize()
+                            .padding(16.dp),
                 ) {
                     CustomMultiLineTextField(
                         value = text,
                         onValueChanged = {
                             text = it
                         },
-                        hintText = """Hello World
+                        hintText =
+                            """Hello World
                         |Hello World
                         |Hello World
-                    """.trimMargin(),
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .clip(RoundedCornerShape(16.dp))
-                            .background(color = Color.LightGray)
-                            .padding(16.dp)
+                            """.trimMargin(),
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(16.dp))
+                                .background(color = Color.LightGray)
+                                .padding(16.dp),
                     )
                 }
             }

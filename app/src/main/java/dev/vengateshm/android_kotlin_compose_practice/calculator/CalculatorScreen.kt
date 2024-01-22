@@ -14,12 +14,13 @@ fun CalculatorScreen(viewModel: CalculatorViewModel) {
     val buttonSpacing = 8.dp
 
     Calculator(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MediumGray)
-            .padding(16.dp),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(MediumGray)
+                .padding(16.dp),
         state = state,
         buttonSpacing = buttonSpacing,
-        onAction = viewModel::onAction
+        onAction = viewModel::onAction,
     )
 }

@@ -38,20 +38,22 @@ fun ImageLoadingSample() {
     var bitmap by remember { mutableStateOf<Bitmap?>(null) }
 
     if (isLoading && bitmap == null) {
-        ImageLoader.loadImage("https://cdn.pixabay.com/photo/2023/09/14/19/14/landscape-8253576_1280.jpg",
+        ImageLoader.loadImage(
+            "https://cdn.pixabay.com/photo/2023/09/14/19/14/landscape-8253576_1280.jpg",
             onSuccess = {
                 isLoading = false
                 bitmap = it
             },
             onFailure = {
                 isLoading = false
-            })
+            },
+        )
     }
 
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         if (bitmap == null && isLoading) {
             CircularProgressIndicator()

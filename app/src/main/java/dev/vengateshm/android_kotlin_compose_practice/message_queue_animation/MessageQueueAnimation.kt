@@ -49,9 +49,10 @@ fun MessageQueueAnimation() {
 
     val scope = rememberCoroutineScope()
 
-    val messageQueue: Queue<Int> = remember {
-        LinkedList()
-    }
+    val messageQueue: Queue<Int> =
+        remember {
+            LinkedList()
+        }
 
     LaunchedEffect(messageCount) {
         if (messageCount <= 0) return@LaunchedEffect
@@ -75,7 +76,7 @@ fun MessageQueueAnimation() {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Button(onClick = {
             messageCount = messageCount.inc()
@@ -85,14 +86,15 @@ fun MessageQueueAnimation() {
         Spacer(modifier = Modifier.height(16.dp))
         AnimatedVisibility(visible = showMessage) {
             Text(
-                modifier = Modifier
-                    .background(
-                        color = Color(0XFFFF0000).copy(alpha = 0.2f),
-                        shape = RoundedCornerShape(8.dp)
-                    )
-                    .padding(8.dp),
+                modifier =
+                    Modifier
+                        .background(
+                            color = Color(0XFFFF0000).copy(alpha = 0.2f),
+                            shape = RoundedCornerShape(8.dp),
+                        )
+                        .padding(8.dp),
                 text = "Message $currentMessageNum",
-                color = Color(0XFFFF0000)
+                color = Color(0XFFFF0000),
             )
         }
     }

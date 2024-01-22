@@ -13,7 +13,10 @@ class AnalyticsLoggerImpl : AnalyticsLogger, LifecycleEventObserver {
         owner.lifecycle.addObserver(this)
     }
 
-    override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+    override fun onStateChanged(
+        source: LifecycleOwner,
+        event: Lifecycle.Event,
+    ) {
         when (event) {
             Lifecycle.Event.ON_RESUME -> print("User entered the screen")
             Lifecycle.Event.ON_PAUSE -> print("User left the screen")

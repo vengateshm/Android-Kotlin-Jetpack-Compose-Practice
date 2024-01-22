@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class SnakeGameViewModel : ViewModel() {
-
     private val _state = MutableStateFlow(SnakeGameState())
     val state = _state.asStateFlow()
 
@@ -32,11 +31,12 @@ class SnakeGameViewModel : ViewModel() {
                 }
                 viewModelScope.launch {
                     while (state.value.gameState == GameState.STARTED) {
-                        val delayMillis = when (state.value.snake.size) {
-                            in 1..5 -> 120L
-                            in 6..10 -> 110L
-                            else -> 100L
-                        }
+                        val delayMillis =
+                            when (state.value.snake.size) {
+                                in 1..5 -> 120L
+                                in 6..10 -> 110L
+                                else -> 100L
+                            }
                         delay(delayMillis)
                         _state.value = updateGame(state.value)
                     }
@@ -49,7 +49,10 @@ class SnakeGameViewModel : ViewModel() {
         }
     }
 
-    private fun updateDirection(offset: Offset, canvasWidth: Int) {
+    private fun updateDirection(
+        offset: Offset,
+        canvasWidth: Int,
+    ) {
         if (!state.value.isGameOver) {
             val cellSize = canvasWidth / state.value.xAxisGridSize
             val tapX = (offset.x / cellSize).toInt()
@@ -58,15 +61,16 @@ class SnakeGameViewModel : ViewModel() {
 
             _state.update {
                 it.copy(
-                    direction = when (state.value.direction) {
-                        Direction.UP, Direction.DOWN -> {
-                            if (tapX < head.x) Direction.LEFT else Direction.RIGHT
-                        }
+                    direction =
+                        when (state.value.direction) {
+                            Direction.UP, Direction.DOWN -> {
+                                if (tapX < head.x) Direction.LEFT else Direction.RIGHT
+                            }
 
-                        Direction.LEFT, Direction.RIGHT -> {
-                            if (tapY < head.y) Direction.UP else Direction.DOWN
-                        }
-                    }
+                            Direction.LEFT, Direction.RIGHT -> {
+                                if (tapY < head.y) Direction.UP else Direction.DOWN
+                            }
+                        },
                 )
             }
         }
@@ -81,15 +85,16 @@ class SnakeGameViewModel : ViewModel() {
         val xAxisGridSize = currentGame.xAxisGridSize
         val yAxisGridSize = currentGame.yAxisGridSize
 
-        //Update movement of snake
-        val newHead = when (currentGame.direction) {
-            Direction.UP -> Coordinate(x = head.x, y = (head.y - 1))
-            Direction.DOWN -> Coordinate(x = head.x, y = (head.y + 1))
-            Direction.LEFT -> Coordinate(x = head.x - 1, y = (head.y))
-            Direction.RIGHT -> Coordinate(x = head.x + 1, y = (head.y))
-        }
+        // Update movement of snake
+        val newHead =
+            when (currentGame.direction) {
+                Direction.UP -> Coordinate(x = head.x, y = (head.y - 1))
+                Direction.DOWN -> Coordinate(x = head.x, y = (head.y + 1))
+                Direction.LEFT -> Coordinate(x = head.x - 1, y = (head.y))
+                Direction.RIGHT -> Coordinate(x = head.x + 1, y = (head.y))
+            }
 
-        //Check if the snake collides with itself or goes out of bounds
+        // Check if the snake collides with itself or goes out of bounds
         if (
             currentGame.snake.contains(newHead) ||
             !isWithinBounds(newHead, xAxisGridSize, yAxisGridSize)
@@ -97,12 +102,16 @@ class SnakeGameViewModel : ViewModel() {
             return currentGame.copy(isGameOver = true)
         }
 
-        //Check if the snake eats the food
+        // Check if the snake eats the food
         var newSnake = mutableListOf(newHead) + currentGame.snake
-        val newFood = if (newHead == currentGame.food) SnakeGameState.generateRandomFoodCoordinate()
-        else currentGame.food
+        val newFood =
+            if (newHead == currentGame.food) {
+                SnakeGameState.generateRandomFoodCoordinate()
+            } else {
+                currentGame.food
+            }
 
-        //Update snake length
+        // Update snake length
         if (newHead != currentGame.food) {
             newSnake = newSnake.toMutableList()
             newSnake.removeAt(newSnake.size - 1)
@@ -114,9 +123,9 @@ class SnakeGameViewModel : ViewModel() {
     private fun isWithinBounds(
         coordinate: Coordinate,
         xAxisGridSize: Int,
-        yAxisGridSize: Int
+        yAxisGridSize: Int,
     ): Boolean {
-        return coordinate.x in 1 until xAxisGridSize - 1
-                && coordinate.y in 1 until yAxisGridSize - 1
+        return coordinate.x in 1 until xAxisGridSize - 1 &&
+            coordinate.y in 1 until yAxisGridSize - 1
     }
 }

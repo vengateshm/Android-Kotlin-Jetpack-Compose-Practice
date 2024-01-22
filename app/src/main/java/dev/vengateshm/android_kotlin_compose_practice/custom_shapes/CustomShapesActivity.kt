@@ -27,17 +27,19 @@ class CustomShapesActivity : ComponentActivity() {
                 LazyColumn(verticalArrangement = Arrangement.spacedBy((-92).dp)) {
                     items(10) {
                         Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
+                            modifier =
+                                Modifier
+                                    .fillMaxWidth(),
                         ) {
                             Box(
-                                modifier = Modifier
-                                    .fillMaxWidth(0.55f)
-                                    .height(200.dp)
-                                    .clip(HexagonShape())
-                                    .background(Color(0xFFFFBF00))
-                                    .align(if (it % 2 == 0) Alignment.End else Alignment.Start),
-                                contentAlignment = Alignment.Center
+                                modifier =
+                                    Modifier
+                                        .fillMaxWidth(0.55f)
+                                        .height(200.dp)
+                                        .clip(HexagonShape())
+                                        .background(Color(0xFFFFBF00))
+                                        .align(if (it % 2 == 0) Alignment.End else Alignment.Start),
+                                contentAlignment = Alignment.Center,
                             ) {
                                 Text(text = "Item $it")
                             }

@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.util.DisplayMetrics
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.animation.*
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.animateIntAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.with
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -52,11 +56,13 @@ fun AnimationSample() {
     Column(modifier = Modifier.fillMaxSize()) {
         var isVisible by remember { mutableStateOf(false) }
         var isRound by remember { mutableStateOf(false) }
-        Button(onClick =
-        {
-            isVisible = !isVisible
-            isRound = !isRound
-        }) {
+        Button(
+            onClick =
+                {
+                    isVisible = !isVisible
+                    isRound = !isRound
+                },
+        ) {
             Text(text = "Toggle")
         }
         /*AnimatedVisibility(visible = isVisible,
@@ -71,15 +77,15 @@ fun AnimationSample() {
         val borderRadius by animateIntAsState(
             targetValue = if (isRound) 100 else 0,
             animationSpec =
-            tween(
-                durationMillis = 3000,
-                delayMillis = 500,
-            )
+                tween(
+                    durationMillis = 3000,
+                    delayMillis = 500,
+                ),
             /*spring(// Changes target value beyond the min max limit
                 dampingRatio = Spring.DampingRatioHighBouncy,
                 stiffness = Spring.StiffnessVeryLow
             )*/
-            /*keyframes {  }*/
+            // keyframes {  }
         )
 
         // Updating multiple items
@@ -130,23 +136,24 @@ fun AnimationSample() {
         }*/
         AnimatedContent(
             targetState = isVisible,
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
             content = { value ->
                 if (value) {
                     Box(
-                        modifier = Modifier
-                            .background(Color.Red)
+                        modifier =
+                            Modifier
+                                .background(Color.Red),
                     ) {
-
                     }
                 } else {
                     Box(
-                        modifier = Modifier
-                            .background(Color.Green)
+                        modifier =
+                            Modifier
+                                .background(Color.Green),
                     ) {
-
                     }
                 }
             },
@@ -156,12 +163,14 @@ fun AnimationSample() {
 //                                    -it
 //                                    -it / 2
                         if (isVisible) it else -it
-                    }
-                ) with slideOutHorizontally {
+                    },
+                ) with
+                    slideOutHorizontally {
 //                                it
 //                                it / 2
-                    if (isVisible) -it else it
-                }
-            })
+                        if (isVisible) -it else it
+                    }
+            },
+        )
     }
 }

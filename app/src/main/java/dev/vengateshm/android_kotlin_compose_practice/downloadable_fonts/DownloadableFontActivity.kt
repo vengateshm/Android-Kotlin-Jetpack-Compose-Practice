@@ -24,60 +24,70 @@ class DownloadableFontActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val provider = GoogleFont.Provider(
-            providerAuthority = "com.google.android.gms.fonts",
-            providerPackage = "com.google.android.gms",
-            certificates = R.array.com_google_android_gms_fonts_certs
-        )
+        val provider =
+            GoogleFont.Provider(
+                providerAuthority = "com.google.android.gms.fonts",
+                providerPackage = "com.google.android.gms",
+                certificates = R.array.com_google_android_gms_fonts_certs,
+            )
 
         val arvo = GoogleFont("Arvo")
         val lobsterTwo = GoogleFont("Lobster Two")
         val ibmPlexSans = GoogleFont("IBM Plex Sans")
 
-        val arvoFF = FontFamily(
-            Font(
-                googleFont = arvo, fontProvider = provider,
-                weight = FontWeight.Bold, style = FontStyle.Italic
+        val arvoFF =
+            FontFamily(
+                Font(
+                    googleFont = arvo,
+                    fontProvider = provider,
+                    weight = FontWeight.Bold,
+                    style = FontStyle.Italic,
+                ),
             )
-        )
-        val lobsterTwoFF = FontFamily(
-            Font(
-                googleFont = lobsterTwo, fontProvider = provider,
-                weight = FontWeight.Normal, style = FontStyle.Normal
+        val lobsterTwoFF =
+            FontFamily(
+                Font(
+                    googleFont = lobsterTwo,
+                    fontProvider = provider,
+                    weight = FontWeight.Normal,
+                    style = FontStyle.Normal,
+                ),
             )
-        )
-        val ibmPlexSansFF = FontFamily(
-            Font(
-                googleFont = ibmPlexSans, fontProvider = provider,
-                weight = FontWeight.Thin, style = FontStyle.Normal
+        val ibmPlexSansFF =
+            FontFamily(
+                Font(
+                    googleFont = ibmPlexSans,
+                    fontProvider = provider,
+                    weight = FontWeight.Thin,
+                    style = FontStyle.Normal,
+                ),
             )
-        )
 
         setContent {
             Column(
                 modifier = Modifier.fillMaxSize(),
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.Center,
             ) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     fontFamily = arvoFF,
                     text = "I am Arvo",
                     fontSize = 20.sp,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     fontFamily = lobsterTwoFF,
                     text = "I am Lobster Two",
                     fontSize = 20.sp,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     fontFamily = ibmPlexSansFF,
                     text = "I am IBM Plex Sans",
                     fontSize = 20.sp,
-                    textAlign = TextAlign.Center
+                    textAlign = TextAlign.Center,
                 )
             }
         }

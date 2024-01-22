@@ -9,15 +9,14 @@ import java.util.UUID
 import kotlin.random.Random
 
 class FeedViewModel : ViewModel() {
-
     var feeds by mutableStateOf(
         (1..3).map {
             VideoFeed(
                 id = UUID.randomUUID().toString(),
                 username = "User $it",
-                backgroundColor = Color(Random.nextLong(0xFFFFFFFF))
+                backgroundColor = Color(Random.nextLong(0xFFFFFFFF)),
             )
-        }
+        },
     )
         private set
 

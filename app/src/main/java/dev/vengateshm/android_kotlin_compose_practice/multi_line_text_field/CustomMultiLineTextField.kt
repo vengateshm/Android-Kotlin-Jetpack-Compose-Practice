@@ -26,16 +26,16 @@ fun CustomMultiLineTextField(
         maxLines = maxLines,
         decorationBox = { innerTextField ->
             Box(
-                modifier = modifier
+                modifier = modifier,
             ) {
                 if (value.isEmpty()) {
                     Text(
                         text = hintText,
-                        color = LocalContentColor.current.copy(alpha = ContentAlpha.medium)
+                        color = LocalContentColor.current.copy(alpha = ContentAlpha.medium),
                     )
                 }
                 innerTextField()
             }
-        }
+        },
     )
 }

@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Card
-import androidx.compose.material.ListItem
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -25,7 +24,7 @@ import coil.request.ImageRequest
 @Composable
 fun CharacterListScreen(
     viewModel: CharacterListViewModel = androidx.lifecycle.viewmodel.compose.viewModel(),
-    onCharacterClicked: (String) -> Unit
+    onCharacterClicked: (String) -> Unit,
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
@@ -33,24 +32,29 @@ fun CharacterListScreen(
     Scaffold { padding ->
         LazyColumn(contentPadding = padding) {
             items(state.characterList) { character ->
-                Card(modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable {
-                        onCharacterClicked(character.id)
-                    }) {
+                Card(
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .clickable {
+                                onCharacterClicked(character.id)
+                            },
+                ) {
                     Row(modifier = Modifier.fillMaxWidth()) {
                         AsyncImage(
-                            model = ImageRequest.Builder(context)
-                                .data(character.image)
-                                .crossfade(true)
-                                .build(),
+                            model =
+                                ImageRequest.Builder(context)
+                                    .data(character.image)
+                                    .crossfade(true)
+                                    .build(),
                             modifier = Modifier.size(64.dp),
-                            contentDescription = null
+                            contentDescription = null,
                         )
                         Column(
-                            modifier = Modifier
-                                .weight(1f)
-                                .padding(horizontal = 8.dp)
+                            modifier =
+                                Modifier
+                                    .weight(1f)
+                                    .padding(horizontal = 8.dp),
                         ) {
                             Text(text = character.name, fontSize = 16.sp)
                             Text(text = character.species, fontSize = 14.sp)
@@ -59,6 +63,5 @@ fun CharacterListScreen(
                 }
             }
         }
-
     }
 }

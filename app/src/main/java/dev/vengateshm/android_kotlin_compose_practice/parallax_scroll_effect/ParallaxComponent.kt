@@ -45,87 +45,104 @@ fun ParallaxComponent() {
         mutableStateOf(0f)
     }
 
-    val nestedScrollConnection = object : NestedScrollConnection {
-        override fun onPreScroll(available: Offset, source: NestedScrollSource): Offset {
-            val delta = available.y
+    val nestedScrollConnection =
+        object : NestedScrollConnection {
+            override fun onPreScroll(
+                available: Offset,
+                source: NestedScrollSource,
+            ): Offset {
+                val delta = available.y
 
-            val layoutInfo = lazyListState.layoutInfo
-            // Check if first item is visible
-            if (lazyListState.firstVisibleItemIndex == 0)
-                return Offset.Zero
-            if (layoutInfo.visibleItemsInfo.lastOrNull()?.index == layoutInfo.totalItemsCount - 1)
-                return Offset.Zero
-            moonScrollOffset += delta * moonScrollSpeed
-            midBgScrollOffset += delta * midBgScrollSpeed
-            return Offset.Zero // Whatever the user scrolls with his finger
+                val layoutInfo = lazyListState.layoutInfo
+                // Check if first item is visible
+                if (lazyListState.firstVisibleItemIndex == 0) {
+                    return Offset.Zero
+                }
+                if (layoutInfo.visibleItemsInfo.lastOrNull()?.index == layoutInfo.totalItemsCount - 1) {
+                    return Offset.Zero
+                }
+                moonScrollOffset += delta * moonScrollSpeed
+                midBgScrollOffset += delta * midBgScrollSpeed
+                return Offset.Zero // Whatever the user scrolls with his finger
+            }
         }
-    }
 
     LazyColumn(
         state = lazyListState,
-        modifier = Modifier
-            .fillMaxWidth()
-            .nestedScroll(nestedScrollConnection),
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .nestedScroll(nestedScrollConnection),
         content = {
             items(10) {
                 Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    text = "Sample Item"
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                    text = "Sample Item",
                 )
             }
             item {
                 Box(
-                    modifier = Modifier
-                        .clipToBounds()
-                        .fillMaxWidth()
-                        .height(imageHeight + midBgScrollOffset.toDp())
-                        .background(
-                            brush = Brush.verticalGradient(
-                                colors = listOf(
-                                    Color(0xFFf36b21),
-                                    Color(0XFFf9a521)
-                                )
-                            )
-                        )
+                    modifier =
+                        Modifier
+                            .clipToBounds()
+                            .fillMaxWidth()
+                            .height(imageHeight + midBgScrollOffset.toDp())
+                            .background(
+                                brush =
+                                    Brush.verticalGradient(
+                                        colors =
+                                            listOf(
+                                                Color(0xFFf36b21),
+                                                Color(0XFFf9a521),
+                                            ),
+                                    ),
+                            ),
                 ) {
                     Image(
                         painter = painterResource(id = dev.vengateshm.android_kotlin_compose_practice.R.drawable.ic_moonbg),
                         contentDescription = "moon",
                         contentScale = ContentScale.FillWidth,
                         alignment = Alignment.BottomCenter,
-                        modifier = Modifier
-                            .matchParentSize()
-                            .graphicsLayer {
-                                translationY = moonScrollOffset
-                            })
+                        modifier =
+                            Modifier
+                                .matchParentSize()
+                                .graphicsLayer {
+                                    translationY = moonScrollOffset
+                                },
+                    )
                     Image(
                         painter = painterResource(id = dev.vengateshm.android_kotlin_compose_practice.R.drawable.ic_midbg),
                         contentDescription = "mid bg",
                         contentScale = ContentScale.FillWidth,
                         alignment = Alignment.BottomCenter,
-                        modifier = Modifier
-                            .matchParentSize()
-                            .graphicsLayer {
-                                translationY = midBgScrollOffset
-                            })
+                        modifier =
+                            Modifier
+                                .matchParentSize()
+                                .graphicsLayer {
+                                    translationY = midBgScrollOffset
+                                },
+                    )
                     Image(
                         painter = painterResource(id = dev.vengateshm.android_kotlin_compose_practice.R.drawable.ic_outerbg),
                         contentDescription = "outer bg",
                         contentScale = ContentScale.FillWidth,
                         alignment = Alignment.BottomCenter,
-                        modifier = Modifier.matchParentSize()
+                        modifier = Modifier.matchParentSize(),
                     )
                 }
             }
             items(20) {
                 Text(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    text = "Sample Item"
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                    text = "Sample Item",
                 )
             }
-        })
+        },
+    )
 }

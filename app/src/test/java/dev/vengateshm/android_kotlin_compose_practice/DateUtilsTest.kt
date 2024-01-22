@@ -33,9 +33,10 @@ class DateUtilsTest {
     fun `string toSystemTime should format time correctly`() {
         val inputTime = "06:30am"
         val formattedTime = inputTime.toSystemTime()
-        val expected = SimpleDateFormat.getTimeInstance(DateFormat.SHORT, Locale.US).format(
-            SimpleDateFormat("hh:mma", Locale.US).parse(inputTime)!!
-        )
+        val expected =
+            SimpleDateFormat.getTimeInstance(DateFormat.SHORT, Locale.US).format(
+                SimpleDateFormat("hh:mma", Locale.US).parse(inputTime)!!,
+            )
 
         assertEquals(expected, formattedTime)
     }
@@ -44,9 +45,10 @@ class DateUtilsTest {
     fun `toSystemTime with custom input format should format time correctly`() {
         val inputTime = "18:45"
         val formattedTime = inputTime.toSystemTime("HH:mm")
-        val expected = SimpleDateFormat.getTimeInstance(DateFormat.SHORT, Locale.US).format(
-            SimpleDateFormat("HH:mm", Locale.US).parse(inputTime)!!
-        )
+        val expected =
+            SimpleDateFormat.getTimeInstance(DateFormat.SHORT, Locale.US).format(
+                SimpleDateFormat("HH:mm", Locale.US).parse(inputTime)!!,
+            )
 
         assertEquals(expected, formattedTime)
     }
@@ -55,9 +57,10 @@ class DateUtilsTest {
     fun `toSystemTime with custom output format should format time correctly`() {
         val inputTime = "03:15 pm"
         val formattedTime = inputTime.toSystemTime("hh:mm a")
-        val expected = SimpleDateFormat.getTimeInstance(DateFormat.SHORT, Locale.US).format(
-            SimpleDateFormat("hh:mm a", Locale.US).parse(inputTime)!!
-        )
+        val expected =
+            SimpleDateFormat.getTimeInstance(DateFormat.SHORT, Locale.US).format(
+                SimpleDateFormat("hh:mm a", Locale.US).parse(inputTime)!!,
+            )
 
         assertEquals(expected, formattedTime)
     }

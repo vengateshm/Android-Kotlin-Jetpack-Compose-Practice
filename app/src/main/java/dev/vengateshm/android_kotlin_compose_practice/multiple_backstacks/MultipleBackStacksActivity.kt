@@ -41,7 +41,6 @@ class MultipleBackStacksActivity : ComponentActivity() {
 
         setContent {
             MaterialTheme {
-
                 val rootNavController = rememberNavController()
                 val navBackStackEntry by rootNavController.currentBackStackEntryAsState()
 
@@ -49,7 +48,8 @@ class MultipleBackStacksActivity : ComponentActivity() {
                     bottomBar = {
                         BottomAppBar {
                             botNavList.forEach { item ->
-                                val isSelected = item.title.lowercase() ==
+                                val isSelected =
+                                    item.title.lowercase() ==
                                         navBackStackEntry?.destination?.route
                                 BottomNavigationItem(
                                     label = { Text(text = item.title) },
@@ -66,17 +66,18 @@ class MultipleBackStacksActivity : ComponentActivity() {
                                     icon = {
                                         Icon(
                                             imageVector = if (isSelected) item.selectedIcon else item.unselectedIcon,
-                                            contentDescription = "${item.title} icon"
+                                            contentDescription = "${item.title} icon",
                                         )
-                                    })
+                                    },
+                                )
                             }
                         }
-                    }
+                    },
                 ) { padding ->
                     NavHost(
                         modifier = Modifier.padding(padding),
                         navController = rootNavController,
-                        startDestination = "home"
+                        startDestination = "home",
                     ) {
                         composable("home") {
                             SubNavHost(title = "home")
@@ -100,12 +101,14 @@ fun SubNavHost(title: String) {
     NavHost(navController = navController, startDestination = "${title}1") {
         for (i in 1..10) {
             composable("$title$i") {
-                GenericScreen(text = "$title$i",
+                GenericScreen(
+                    text = "$title$i",
                     onNextClicked = {
                         if (i < 10) {
                             navController.navigate("$title${i + 1}")
                         }
-                    })
+                    },
+                )
             }
         }
     }
@@ -114,12 +117,12 @@ fun SubNavHost(title: String) {
 @Composable
 fun GenericScreen(
     text: String,
-    onNextClicked: () -> Unit
+    onNextClicked: () -> Unit,
 ) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Text(text = text)
         Spacer(modifier = Modifier.height(16.dp))
@@ -132,23 +135,24 @@ fun GenericScreen(
 data class BotNavItem(
     val title: String,
     val selectedIcon: ImageVector,
-    val unselectedIcon: ImageVector
+    val unselectedIcon: ImageVector,
 )
 
-val botNavList = listOf(
-    BotNavItem(
-        title = "Home",
-        selectedIcon = Icons.Filled.Home,
-        unselectedIcon = Icons.Outlined.Home
-    ),
-    BotNavItem(
-        title = "Chat",
-        selectedIcon = Icons.Filled.Chat,
-        unselectedIcon = Icons.Outlined.Chat
-    ),
-    BotNavItem(
-        title = "Settings",
-        selectedIcon = Icons.Filled.Settings,
-        unselectedIcon = Icons.Outlined.Settings
+val botNavList =
+    listOf(
+        BotNavItem(
+            title = "Home",
+            selectedIcon = Icons.Filled.Home,
+            unselectedIcon = Icons.Outlined.Home,
+        ),
+        BotNavItem(
+            title = "Chat",
+            selectedIcon = Icons.Filled.Chat,
+            unselectedIcon = Icons.Outlined.Chat,
+        ),
+        BotNavItem(
+            title = "Settings",
+            selectedIcon = Icons.Filled.Settings,
+            unselectedIcon = Icons.Outlined.Settings,
+        ),
     )
-)

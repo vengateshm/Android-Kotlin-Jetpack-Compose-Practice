@@ -24,19 +24,20 @@ class PieChartActivity : ComponentActivity() {
         setContent {
             MaterialTheme {
                 Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(color = Color.Gray)
-                        .padding(6.dp),
+                    modifier =
+                        Modifier
+                            .fillMaxSize()
+                            .background(color = Color.Gray)
+                            .padding(6.dp),
                     verticalArrangement = Arrangement.spacedBy(30.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     Text(text = "Preferred Programming Languages")
                     Box(modifier = Modifier.fillMaxSize()) {
                         PieChart(
                             modifier = Modifier.size(400.dp),
                             input = pieChartDataList,
-                            centerText = "150 persons were attended"
+                            centerText = "150 persons were attended",
                         )
                     }
                 }

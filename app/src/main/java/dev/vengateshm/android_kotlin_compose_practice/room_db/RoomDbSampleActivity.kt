@@ -18,12 +18,11 @@ import androidx.compose.ui.unit.dp
 import androidx.room.Room
 
 class RoomDbSampleActivity : ComponentActivity() {
-
     private val stockDb: StockDb by lazy {
         Room.databaseBuilder(
             this@RoomDbSampleActivity,
             StockDb::class.java,
-            "stock-db"
+            "stock-db",
         ).addCallback(StockDbCallback())
             .build()
     }
@@ -31,7 +30,7 @@ class RoomDbSampleActivity : ComponentActivity() {
     private val viewModel: RoomDbSampleViewModel by viewModels(
         factoryProducer = {
             RoomDbSampleViewModelProvider(stockDao = stockDb.itemDao())
-        }
+        },
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,20 +40,20 @@ class RoomDbSampleActivity : ComponentActivity() {
             MaterialTheme {
                 Column(
                     modifier = Modifier.fillMaxSize(),
-                    verticalArrangement = Arrangement.spacedBy(16.dp)
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
                 ) {
                     OutlinedTextField(
                         modifier = Modifier.fillMaxWidth(),
                         value = viewModel.searchQuery,
-                        onValueChange = viewModel::onSearchQueryChanged
+                        onValueChange = viewModel::onSearchQueryChanged,
                     )
                     LazyColumn(
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier.fillMaxSize(),
                     ) {
                         items(viewModel.stocks) { stock ->
                             Column(
                                 modifier = Modifier.fillMaxWidth(),
-                                verticalArrangement = Arrangement.spacedBy(8.dp)
+                                verticalArrangement = Arrangement.spacedBy(8.dp),
                             ) {
                                 Text(text = stock.name)
                                 Text(text = stock.symbol)

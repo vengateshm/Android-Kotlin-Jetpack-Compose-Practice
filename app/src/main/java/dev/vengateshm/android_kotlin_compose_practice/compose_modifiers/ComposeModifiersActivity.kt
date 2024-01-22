@@ -42,7 +42,8 @@ class ComposeModifiersActivity : ComponentActivity() {
                     items = { items.toList() },
                     onItemSelected = {
                         selectedItem = it
-                    })
+                    },
+                )
             }
         }
     }
@@ -71,18 +72,25 @@ fun Content(
                     value = item,
                     onClick = {
                         onItemSelected(it)
-                    })
+                    },
+                )
             }
         }
     }
 }
 
 @Composable
-fun Item(value: String, modifier: Modifier) {
+fun Item(
+    value: String,
+    modifier: Modifier,
+) {
     Text(text = value, modifier = modifier)
 }
 
 @Composable
-fun Item(value: String, onClick: (String) -> Unit) {
+fun Item(
+    value: String,
+    onClick: (String) -> Unit,
+) {
     Text(text = value, modifier = Modifier.clickable { onClick(value) })
 }

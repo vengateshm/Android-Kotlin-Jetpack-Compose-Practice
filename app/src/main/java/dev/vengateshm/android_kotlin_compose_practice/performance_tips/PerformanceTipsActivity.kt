@@ -7,8 +7,8 @@ import androidx.activity.viewModels
 import androidx.compose.material.MaterialTheme
 
 class PerformanceTipsActivity : ComponentActivity() {
+    val viewModel: ContactListViewModel by viewModels()
 
-    val viewModel:ContactListViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

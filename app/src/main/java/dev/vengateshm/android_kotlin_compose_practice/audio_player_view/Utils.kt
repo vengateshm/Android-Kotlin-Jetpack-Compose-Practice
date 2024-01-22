@@ -9,7 +9,7 @@ fun getRandomColor(): Color {
             255,
             Random.nextInt(256),
             Random.nextInt(256),
-            Random.nextInt(256)
-        )
+            Random.nextInt(256),
+        ),
     )
 }

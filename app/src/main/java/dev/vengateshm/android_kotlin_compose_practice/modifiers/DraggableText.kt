@@ -21,15 +21,17 @@ fun DraggableText() {
     var offsetX by remember { mutableFloatStateOf(0f) }
     Box(modifier = Modifier.fillMaxSize()) {
         Text(
-            modifier = Modifier
-                .offset { IntOffset(x = offsetX.roundToInt(), 0) }
-                .draggable(
-                    orientation = Orientation.Horizontal,
-                    state = rememberDraggableState { delta ->
-                        offsetX += delta
-                    }
-                ),
-            text = "Drag Me!"
+            modifier =
+                Modifier
+                    .offset { IntOffset(x = offsetX.roundToInt(), 0) }
+                    .draggable(
+                        orientation = Orientation.Horizontal,
+                        state =
+                            rememberDraggableState { delta ->
+                                offsetX += delta
+                            },
+                    ),
+            text = "Drag Me!",
         )
     }
 }

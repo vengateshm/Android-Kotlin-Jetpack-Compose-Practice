@@ -19,36 +19,37 @@ import com.google.maps.android.compose.MapUiSettings
 import com.google.maps.android.compose.Marker
 
 @Composable
-fun MapScreen(
-    viewModel: MapViewModel = androidx.lifecycle.viewmodel.compose.viewModel(),
-) {
+fun MapScreen(viewModel: MapViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
     val scaffoldState = rememberScaffoldState()
-    val uiSettings = remember {
-        MapUiSettings(zoomControlsEnabled = false)
-    }
+    val uiSettings =
+        remember {
+            MapUiSettings(zoomControlsEnabled = false)
+        }
     Scaffold(
         scaffoldState = scaffoldState,
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {
                     viewModel.onEvent(MapEvent.ToggleFalloutMap)
-                }) {
+                },
+            ) {
                 Icon(
                     imageVector = if (viewModel.state.isFalloutMap) Icons.Default.ToggleOff else Icons.Default.ToggleOn,
-                    contentDescription = "Toggle Fallout map"
+                    contentDescription = "Toggle Fallout map",
                 )
             }
         },
         content = { padding ->
             GoogleMap(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(padding),
+                modifier =
+                    Modifier
+                        .fillMaxSize()
+                        .padding(padding),
                 properties = viewModel.state.properties,
                 uiSettings = uiSettings,
                 onMapLongClick = {
                     viewModel.onEvent(MapEvent.OnMapLongClick(it))
-                }
+                },
             ) {
                 viewModel.state.parkingSpots.forEach { spot ->
                     Marker(
@@ -62,11 +63,13 @@ fun MapScreen(
                             it.showInfoWindow()
                             true
                         },
-                        icon = BitmapDescriptorFactory.defaultMarker(
-                            BitmapDescriptorFactory.HUE_VIOLET
-                        )
+                        icon =
+                            BitmapDescriptorFactory.defaultMarker(
+                                BitmapDescriptorFactory.HUE_VIOLET,
+                            ),
                     )
                 }
             }
-        })
+        },
+    )
 }

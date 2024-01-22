@@ -26,20 +26,23 @@ class PermissionsActivity : ComponentActivity() {
 
         setContent {
             AndroidKotlinComposePracticeTheme {
-                val permissionState = rememberMultiplePermissionsState(
-                    permissions = listOf(
-                        Manifest.permission.CAMERA,
-                        Manifest.permission.RECORD_AUDIO
+                val permissionState =
+                    rememberMultiplePermissionsState(
+                        permissions =
+                            listOf(
+                                Manifest.permission.CAMERA,
+                                Manifest.permission.RECORD_AUDIO,
+                            ),
                     )
-                )
 
                 val lifecycleOwner = LocalLifecycleOwner.current
                 DisposableEffect(key1 = lifecycleOwner, effect = {
-                    val observer = LifecycleEventObserver { _, event ->
-                        if (event == Lifecycle.Event.ON_START) {
-                            permissionState.launchMultiplePermissionRequest()
+                    val observer =
+                        LifecycleEventObserver { _, event ->
+                            if (event == Lifecycle.Event.ON_START) {
+                                permissionState.launchMultiplePermissionRequest()
+                            }
                         }
-                    }
                     lifecycleOwner.lifecycle.addObserver(observer)
                     onDispose {
                         lifecycleOwner.lifecycle.removeObserver(observer)
@@ -49,7 +52,7 @@ class PermissionsActivity : ComponentActivity() {
                 Column(
                     modifier = Modifier.fillMaxSize(),
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
+                    verticalArrangement = Arrangement.Center,
                 ) {
                     permissionState.permissions.forEach { perm ->
                         when (perm.permission) {
@@ -95,5 +98,4 @@ class PermissionsActivity : ComponentActivity() {
 }
 
 @ExperimentalPermissionsApi
-fun PermissionState.isPermanentlyDenied(): Boolean =
-    shouldShowRationale.not() && hasPermission.not()
+fun PermissionState.isPermanentlyDenied(): Boolean = shouldShowRationale.not() && hasPermission.not()

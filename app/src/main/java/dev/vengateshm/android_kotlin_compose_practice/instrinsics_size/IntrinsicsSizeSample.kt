@@ -20,29 +20,35 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun TwoTexts(modifier: Modifier = Modifier, text1: String, text2: String) {
+fun TwoTexts(
+    modifier: Modifier = Modifier,
+    text1: String,
+    text2: String,
+) {
     Row(modifier = modifier.height(IntrinsicSize.Min)) {
         Text(
-            modifier = Modifier
-                .padding(start = 4.dp)
-                .wrapContentWidth(Alignment.Start),
-            text = text1
+            modifier =
+                Modifier
+                    .padding(start = 4.dp)
+                    .wrapContentWidth(Alignment.Start),
+            text = text1,
         )
         Spacer(modifier = Modifier.width(16.dp))
         Divider(
             color = Color.Black,
-            modifier = Modifier
-                .padding(vertical = 4.dp)
-                .fillMaxHeight()
-                .width(1.dp)
+            modifier =
+                Modifier
+                    .padding(vertical = 4.dp)
+                    .fillMaxHeight()
+                    .width(1.dp),
         )
         Spacer(modifier = Modifier.width(16.dp))
         Text(
-            modifier = Modifier
-                .padding(end = 4.dp)
-                .wrapContentWidth(Alignment.End),
-
-            text = text2
+            modifier =
+                Modifier
+                    .padding(end = 4.dp)
+                    .wrapContentWidth(Alignment.End),
+            text = text2,
         )
     }
 }

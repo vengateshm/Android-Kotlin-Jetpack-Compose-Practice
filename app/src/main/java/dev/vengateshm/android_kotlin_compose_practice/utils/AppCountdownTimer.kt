@@ -3,7 +3,6 @@ package dev.vengateshm.android_kotlin_compose_practice.utils
 import android.os.CountDownTimer
 
 class AppCountdownTimer {
-
     private var countDownTimer: CountDownTimer? = null
     private var isTimerRunning = false
     private var onTick: ((ms: Long) -> Unit)? = null
@@ -18,21 +17,23 @@ class AppCountdownTimer {
     }
 
     fun onTick() = onTick
+
     fun finish() = onFinish
 
     fun start(totalTimeInMillis: Long) {
         resetTimer()
-        countDownTimer = object : CountDownTimer(totalTimeInMillis, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                isTimerRunning = true
-                onTick()?.invoke(millisUntilFinished)
-            }
+        countDownTimer =
+            object : CountDownTimer(totalTimeInMillis, 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    isTimerRunning = true
+                    onTick()?.invoke(millisUntilFinished)
+                }
 
-            override fun onFinish() {
-                isTimerRunning = false
-                finish()?.invoke()
+                override fun onFinish() {
+                    isTimerRunning = false
+                    finish()?.invoke()
+                }
             }
-        }
         countDownTimer?.start()
     }
 

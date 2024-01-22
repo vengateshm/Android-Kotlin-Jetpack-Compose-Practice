@@ -13,20 +13,26 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 
 @Composable
-fun MyListComposable(list: List<String>, onEvent: (MyListEvent) -> Unit) {
+fun MyListComposable(
+    list: List<String>,
+    onEvent: (MyListEvent) -> Unit,
+) {
     LaunchedEffect(key1 = Unit) {
         delay(5000L)
         onEvent(MyListEvent.GetMyList)
     }
     Column(modifier = Modifier.fillMaxSize()) {
         list.forEach {
-            Text(text = it,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable {
-                        onEvent.invoke(MyListEvent.MoveToDetail(data = it))
-                    }
-                    .padding(16.dp))
+            Text(
+                text = it,
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            onEvent.invoke(MyListEvent.MoveToDetail(data = it))
+                        }
+                        .padding(16.dp),
+            )
         }
     }
 }

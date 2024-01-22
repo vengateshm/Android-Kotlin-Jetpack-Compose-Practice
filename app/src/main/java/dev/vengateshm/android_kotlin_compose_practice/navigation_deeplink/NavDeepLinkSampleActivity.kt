@@ -31,12 +31,12 @@ class NavDeepLinkSampleActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = "home"
+                    startDestination = "home",
                 ) {
                     composable("home") {
                         Box(
                             modifier = Modifier.fillMaxSize(),
-                            contentAlignment = Alignment.Center
+                            contentAlignment = Alignment.Center,
                         ) {
                             Button(onClick = {
                                 navController.navigate("detail")
@@ -47,23 +47,25 @@ class NavDeepLinkSampleActivity : ComponentActivity() {
                     }
                     composable(
                         route = "detail",
-                        deepLinks = listOf(
-                            navDeepLink {
-                                uriPattern = "https://dev-vengateshm.com/{id}"
-                                action = Intent.ACTION_VIEW
-                            }
-                        ),
-                        arguments = listOf(
-                            navArgument("id") {
-                                type = NavType.IntType
-                                defaultValue = -1
-                            }
-                        )
+                        deepLinks =
+                            listOf(
+                                navDeepLink {
+                                    uriPattern = "https://dev-vengateshm.com/{id}"
+                                    action = Intent.ACTION_VIEW
+                                },
+                            ),
+                        arguments =
+                            listOf(
+                                navArgument("id") {
+                                    type = NavType.IntType
+                                    defaultValue = -1
+                                },
+                            ),
                     ) {
                         val id = it.arguments?.getInt("id")
                         Box(
                             modifier = Modifier.fillMaxSize(),
-                            contentAlignment = Alignment.Center
+                            contentAlignment = Alignment.Center,
                         ) {
                             Text(text = "The id is $id")
                         }

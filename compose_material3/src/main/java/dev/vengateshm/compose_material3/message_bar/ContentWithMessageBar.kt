@@ -181,7 +181,6 @@ internal fun BoxScope.MessageBar(
     horizontalPadding: Dp,
 ) {
     val clipboardManager = LocalClipboardManager.current
-    val context = LocalContext.current
 
     Row(
         modifier = Modifier

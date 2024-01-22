@@ -22,7 +22,7 @@ class UserDataSource(
             LoadResult.Page(
                 data = response.users,
                 prevKey = null,
-                nextKey = if (response.users.isEmpty()) null else response.page + 1
+                nextKey = if (response.users.isEmpty()) null else response.page + 1,
             )
         } catch (e: Exception) {
             LoadResult.Error(e)

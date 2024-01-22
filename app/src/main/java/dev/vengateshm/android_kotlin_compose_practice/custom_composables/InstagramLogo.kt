@@ -17,35 +17,38 @@ import androidx.compose.ui.unit.dp
 fun InstagramLogo() {
     val colors = listOf(Color.Yellow, Color.Red, Color.Magenta)
     Canvas(
-        modifier = Modifier
-            .size(100.dp)
-            .padding(15.dp)
+        modifier =
+            Modifier
+                .size(100.dp)
+                .padding(15.dp),
     ) {
         drawRoundRect(
             brush = Brush.linearGradient(colors),
             cornerRadius = CornerRadius(40f),
-            style = Stroke(width = 15f)
+            style = Stroke(width = 15f),
         )
         drawCircle(
             brush = Brush.linearGradient(colors),
             style = Stroke(width = 15f),
-            radius = 45f
+            radius = 45f,
         )
         drawCircle(
             brush = Brush.linearGradient(colors),
             radius = 13f,
-            center = Offset(
-                x = size.width * 0.8f,
-                y = size.height * 0.2f
-            )
+            center =
+                Offset(
+                    x = size.width * 0.8f,
+                    y = size.height * 0.2f,
+                ),
         )
         drawCircle(
             color = Color.White,
             radius = 4f,
-            center = Offset(
-                x = size.width * 0.8f,
-                y = size.height * 0.2f
-            )
+            center =
+                Offset(
+                    x = size.width * 0.8f,
+                    y = size.height * 0.2f,
+                ),
         )
     }
 }

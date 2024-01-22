@@ -14,11 +14,13 @@ import kotlin.math.pow
 
 @Composable
 fun PerfTip5() {
-    val count = remember {
-        mutableStateOf(0)
-    }
+    val count =
+        remember {
+            mutableStateOf(0)
+        }
     Column(
-        modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Button(onClick = {
             count.value++

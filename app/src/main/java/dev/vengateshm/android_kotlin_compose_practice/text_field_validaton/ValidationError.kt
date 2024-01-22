@@ -4,7 +4,7 @@ data class ValidationError(val message: String)
 
 data class FormFieldValidationResult(
     val hasError: Boolean = false,
-    val errors: List<ValidationError> = emptyList()
+    val errors: List<ValidationError> = emptyList(),
 )
 
 interface FormFieldValidator {

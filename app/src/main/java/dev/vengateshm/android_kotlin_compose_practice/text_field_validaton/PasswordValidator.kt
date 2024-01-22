@@ -1,7 +1,7 @@
 package dev.vengateshm.android_kotlin_compose_practice.text_field_validaton
 
 class PasswordValidator : FormFieldValidator {
-    //private val passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&*!_.]).{8,}$".toRegex()
+    // private val passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&*!_.]).{8,}$".toRegex()
 
     override fun validate(text: String): FormFieldValidationResult {
         val errors = mutableListOf<ValidationError>()

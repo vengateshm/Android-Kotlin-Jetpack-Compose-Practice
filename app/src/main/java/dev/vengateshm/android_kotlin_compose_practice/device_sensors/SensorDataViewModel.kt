@@ -9,15 +9,16 @@ import javax.inject.Inject
 import javax.inject.Named
 
 @HiltViewModel
-class SensorDataViewModel @Inject constructor(
-    @Named("light") private val lightSensor: MeasurableSensor,
-    @Named("step") private val stepDetectorSensor: MeasurableSensor,
-    @Named("orientation") private val screenOrientationSensor: MeasurableSensor,// Top level abstraction, easily replaceable
-) : ViewModel() {
+class SensorDataViewModel
+    @Inject
+    constructor(
+        @Named("light") private val lightSensor: MeasurableSensor,
+        @Named("step") private val stepDetectorSensor: MeasurableSensor,
+        @Named("orientation") private val screenOrientationSensor: MeasurableSensor, // Top level abstraction, easily replaceable
+    ) : ViewModel() {
+        var isDark by mutableStateOf(false)
 
-    var isDark by mutableStateOf(false)
-
-    init {
+        init {
         /*lightSensor.setOnSensorValuesChangedListener { values ->
             val lux = values[0]
             isDark = lux < 60f
@@ -29,14 +30,14 @@ class SensorDataViewModel @Inject constructor(
         }
         stepDetectorSensor.startListening()*/
 
-        screenOrientationSensor.setOnSensorValuesChangedListener { values ->
-            values.size
+            screenOrientationSensor.setOnSensorValuesChangedListener { values ->
+                values.size
+            }
+            screenOrientationSensor.startListening()
         }
-        screenOrientationSensor.startListening()
-    }
 
-    override fun onCleared() {
-        lightSensor.stopListening()
-        super.onCleared()
+        override fun onCleared() {
+            lightSensor.stopListening()
+            super.onCleared()
+        }
     }
-}

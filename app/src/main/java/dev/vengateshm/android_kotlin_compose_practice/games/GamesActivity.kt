@@ -20,7 +20,7 @@ class GamesActivity : AppCompatActivity() {
                 val state by viewModel.state.collectAsStateWithLifecycle()
                 SnakeGameScreen(
                     state = state,
-                    onSnakeGameEvent = viewModel::onSnakeGameEvent
+                    onSnakeGameEvent = viewModel::onSnakeGameEvent,
                 )
             }
         }

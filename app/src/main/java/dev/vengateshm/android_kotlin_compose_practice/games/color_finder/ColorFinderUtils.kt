@@ -23,21 +23,23 @@ object ColorFinderUtils {
             "Orange" to orangeColor,
             "Purple" to purpleColor,
             "Gray" to grayColor,
-            "Brown" to brownColor
+            "Brown" to brownColor,
         )
     }
 
     fun getColorNameAndList(): ColorNameAndList {
         val shuffled = colorPair.shuffled().take(6)
         val colorName = shuffled.random().first
-        return ColorNameAndList(colorName = colorName,
+        return ColorNameAndList(
+            colorName = colorName,
             colorNameTextColor = colorPair.shuffled().random().second,
-            colorList = shuffled)
+            colorList = shuffled,
+        )
     }
 }
 
 data class ColorNameAndList(
     val colorName: String,
     val colorNameTextColor: Color,
-    val colorList: List<Pair<String,Color>>,
+    val colorList: List<Pair<String, Color>>,
 )

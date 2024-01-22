@@ -1,6 +1,12 @@
 package dev.vengateshm.android_kotlin_compose_practice.bluetooth.presentation
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Icon
@@ -26,58 +32,64 @@ fun ChatScreen(
     onDisconnect: () -> Unit,
     onSendMessage: (String) -> Unit,
 ) {
-    val message = rememberSaveable {
-        mutableStateOf("")
-    }
+    val message =
+        rememberSaveable {
+            mutableStateOf("")
+        }
     val keyboardController = LocalSoftwareKeyboardController.current
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier =
+            Modifier
+                .fillMaxSize(),
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 text = "Messages",
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
             )
             IconButton(onClick = onDisconnect) {
                 Icon(
                     imageVector = Icons.Default.Close,
-                    contentDescription = "Disconnect"
+                    contentDescription = "Disconnect",
                 )
             }
         }
         LazyColumn(
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
             contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(16.dp),
         ) {
             items(state.messages) { message ->
                 Column(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
                 ) {
                     ChatMessage(
                         message = message,
-                        modifier = Modifier
-                            .align(
-                                if (message.isFromLocalUser) Alignment.End else Alignment.Start
-                            )
+                        modifier =
+                            Modifier
+                                .align(
+                                    if (message.isFromLocalUser) Alignment.End else Alignment.Start,
+                                ),
                     )
                 }
             }
         }
         Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             TextField(
                 value = message.value,
@@ -85,7 +97,7 @@ fun ChatScreen(
                 modifier = Modifier.weight(1f),
                 placeholder = {
                     Text(text = "Message")
-                }
+                },
             )
             IconButton(onClick = {
                 onSendMessage(message.value)
@@ -94,7 +106,7 @@ fun ChatScreen(
             }) {
                 Icon(
                     imageVector = Icons.Default.Send,
-                    contentDescription = "Send message"
+                    contentDescription = "Send message",
                 )
             }
         }

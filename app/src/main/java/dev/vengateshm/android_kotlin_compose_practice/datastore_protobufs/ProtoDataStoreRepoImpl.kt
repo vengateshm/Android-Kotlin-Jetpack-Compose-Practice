@@ -7,13 +7,13 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 
-class ProtoDataStoreRepoImpl(private val protoDatastore: DataStore<ThemeStore>) :
+class ProtoDataStoreRepoImpl(private val protoDatastore: DataStore<dev.vengateshm.android_kotlin_compose_practice.ThemeStore>) :
     ProtoDataStoreRepo {
     override suspend fun isDarkTheme(): Flow<Boolean> {
         return protoDatastore.data
             .catch { e ->
                 if (e is IOException) {
-                    emit(ThemeStore.getDefaultInstance())
+                    emit(dev.vengateshm.android_kotlin_compose_practice.ThemeStore.getDefaultInstance())
                 } else {
                     throw e
                 }

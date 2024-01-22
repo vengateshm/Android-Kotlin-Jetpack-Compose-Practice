@@ -6,12 +6,24 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextField
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.datastore.core.DataStore
@@ -24,14 +36,13 @@ import java.io.FileOutputStream
 
 @RequiresApi(Build.VERSION_CODES.M)
 class CryptoActivity : ComponentActivity() {
-
     private val cryptoManager by lazy {
         CryptoManager()
     }
 
     private val Context.dataStore by dataStore(
         fileName = "user-settings.json",
-        serializer = UserSettingsSerializer(cryptoManager)
+        serializer = UserSettingsSerializer(cryptoManager),
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,7 +57,10 @@ class CryptoActivity : ComponentActivity() {
 
 @RequiresApi(Build.VERSION_CODES.M)
 @Composable
-fun CryptoComposable(filesDir: File, cryptoManager: CryptoManager) {
+fun CryptoComposable(
+    filesDir: File,
+    cryptoManager: CryptoManager,
+) {
     var messageToEncrypt by remember {
         mutableStateOf("")
     }
@@ -56,11 +70,11 @@ fun CryptoComposable(filesDir: File, cryptoManager: CryptoManager) {
     }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(16.dp),
     ) {
-
         TextField(
             modifier = Modifier.fillMaxWidth(),
             value = messageToEncrypt,
@@ -69,7 +83,7 @@ fun CryptoComposable(filesDir: File, cryptoManager: CryptoManager) {
             },
             placeholder = {
                 Text(text = "Enter text to encrypt!")
-            }
+            },
         )
 
         Spacer(modifier = Modifier.height(8.dp))
@@ -82,19 +96,21 @@ fun CryptoComposable(filesDir: File, cryptoManager: CryptoManager) {
                     file.createNewFile()
                 }
                 val fos = FileOutputStream(file)
-                messageToDecrypt = cryptoManager.encrypt(
-                    bytes = bytes,
-                    outputStream = fos
-                ).decodeToString()
+                messageToDecrypt =
+                    cryptoManager.encrypt(
+                        bytes = bytes,
+                        outputStream = fos,
+                    ).decodeToString()
             }) {
                 Text(text = "Encrypt")
             }
             Spacer(modifier = Modifier.width(16.dp))
             Button(onClick = {
                 val file = File(filesDir, "secret.txt")
-                messageToEncrypt = cryptoManager.decrypt(
-                    inputStream = FileInputStream(file)
-                ).decodeToString()
+                messageToEncrypt =
+                    cryptoManager.decrypt(
+                        inputStream = FileInputStream(file),
+                    ).decodeToString()
             }) {
                 Text(text = "Decrypt")
             }
@@ -121,11 +137,11 @@ fun EncryptedDatastoreComposable(dataStore: DataStore<UserSettings>) {
     val scope = rememberCoroutineScope()
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .padding(16.dp),
     ) {
-
         TextField(
             modifier = Modifier.fillMaxWidth(),
             value = username,
@@ -134,7 +150,7 @@ fun EncryptedDatastoreComposable(dataStore: DataStore<UserSettings>) {
             },
             placeholder = {
                 Text(text = "Username")
-            }
+            },
         )
         Spacer(modifier = Modifier.height(8.dp))
         TextField(
@@ -145,7 +161,7 @@ fun EncryptedDatastoreComposable(dataStore: DataStore<UserSettings>) {
             },
             placeholder = {
                 Text(text = "Password")
-            }
+            },
         )
         Spacer(modifier = Modifier.height(8.dp))
 
@@ -155,7 +171,7 @@ fun EncryptedDatastoreComposable(dataStore: DataStore<UserSettings>) {
                     dataStore.updateData {
                         UserSettings(
                             username = username,
-                            password = password
+                            password = password,
                         )
                     }
                 }

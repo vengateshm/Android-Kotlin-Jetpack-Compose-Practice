@@ -29,11 +29,12 @@ fun AutoResizeText(
     val defaultFontSize = MaterialTheme.typography.body1.fontSize
 
     Text(
-        modifier = modifier.drawWithContent {
-            if (shouldDraw) {
-                drawContent()
-            }
-        },
+        modifier =
+            modifier.drawWithContent {
+                if (shouldDraw) {
+                    drawContent()
+                }
+            },
         text = text,
         color = color,
         softWrap = false,
@@ -41,15 +42,18 @@ fun AutoResizeText(
         onTextLayout = { result ->
             if (result.didOverflowWidth) {
                 if (textStyle.fontSize.isUnspecified) {
-                    resizedTextStyle = resizedTextStyle.copy(
-                        fontSize = defaultFontSize
-                    )
+                    resizedTextStyle =
+                        resizedTextStyle.copy(
+                            fontSize = defaultFontSize,
+                        )
                 }
-                resizedTextStyle = resizedTextStyle.copy(
-                    fontSize = resizedTextStyle.fontSize * 0.95
-                )
+                resizedTextStyle =
+                    resizedTextStyle.copy(
+                        fontSize = resizedTextStyle.fontSize * 0.95,
+                    )
             } else {
                 shouldDraw = true
             }
-        })
+        },
+    )
 }

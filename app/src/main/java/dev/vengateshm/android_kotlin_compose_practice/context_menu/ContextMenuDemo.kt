@@ -36,10 +36,11 @@ import dev.vengateshm.android_kotlin_compose_practice.models.AndroidStudioVersio
 @Composable
 fun ContextMenuDemo(data: List<AndroidStudioVersions>) {
     LazyColumn(
-        modifier = Modifier
-            .fillMaxSize(),
+        modifier =
+            Modifier
+                .fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(16.dp),
-        contentPadding = PaddingValues(16.dp)
+        contentPadding = PaddingValues(16.dp),
     ) {
         items(data) { datum ->
             ContextMenuItem(datum, listOf("Edit", "Delete"), {})
@@ -53,7 +54,6 @@ fun ContextMenuItem(
     dropDownItems: List<String>,
     onDropDownMenuItemClick: (String) -> Unit,
 ) {
-
     var isContextMenuVisible by rememberSaveable {
         mutableStateOf(false)
     }
@@ -66,42 +66,45 @@ fun ContextMenuItem(
 
     val density = LocalDensity.current
 
-    val interactionSource = remember {
-        MutableInteractionSource()
-    }
+    val interactionSource =
+        remember {
+            MutableInteractionSource()
+        }
 
     Card(
-        modifier = Modifier
-            .fillMaxWidth()
-            .indication(interactionSource, LocalIndication.current)
-            .onSizeChanged {
-                itemHeight = with(density) { it.height.toDp() }
-            },
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .indication(interactionSource, LocalIndication.current)
+                .onSizeChanged {
+                    itemHeight = with(density) { it.height.toDp() }
+                },
         shape = RoundedCornerShape(8.dp),
         backgroundColor = Color.White,
         elevation = 8.dp,
     ) {
         Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .pointerInput(true) {
-                    detectTapGestures(
-                        onLongPress = {
-                            isContextMenuVisible = true
-                            pressOffset = DpOffset(it.x.toDp(), it.y.toDp())
-                        },
-                        onPress = {
-                            val press = PressInteraction.Press(it)
-                            interactionSource.emit(press)
-                            tryAwaitRelease()
-                            interactionSource.emit(PressInteraction.Release(press))
-                        }
-                    )
-                }
-                .padding(16.dp)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .pointerInput(true) {
+                        detectTapGestures(
+                            onLongPress = {
+                                isContextMenuVisible = true
+                                pressOffset = DpOffset(it.x.toDp(), it.y.toDp())
+                            },
+                            onPress = {
+                                val press = PressInteraction.Press(it)
+                                interactionSource.emit(press)
+                                tryAwaitRelease()
+                                interactionSource.emit(PressInteraction.Release(press))
+                            },
+                        )
+                    }
+                    .padding(16.dp),
         ) {
             Text(
-                text = datum.name
+                text = datum.name,
             )
         }
         DropdownMenu(
@@ -109,7 +112,7 @@ fun ContextMenuItem(
             onDismissRequest = {
                 isContextMenuVisible = false
             },
-            offset = pressOffset.copy(y = pressOffset.y - itemHeight)
+            offset = pressOffset.copy(y = pressOffset.y - itemHeight),
         ) {
             dropDownItems.forEach { item ->
                 DropdownMenuItem(onClick = {
@@ -117,7 +120,7 @@ fun ContextMenuItem(
                     isContextMenuVisible = false
                 }) {
                     Text(
-                        text = item
+                        text = item,
                     )
                 }
             }

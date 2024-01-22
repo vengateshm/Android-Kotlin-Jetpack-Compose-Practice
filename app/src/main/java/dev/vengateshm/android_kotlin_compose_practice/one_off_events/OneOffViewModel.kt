@@ -23,9 +23,10 @@ class OneOffViewModel : ViewModel() {
     // Shared flow
     // It does not cache by default
     // Need to set replay count
-    private val _navigationEventSharedFlow = MutableSharedFlow<NavigationEvent>(
-        replay = 1
-    )
+    private val _navigationEventSharedFlow =
+        MutableSharedFlow<NavigationEvent>(
+            replay = 1,
+        )
     val navigationEventSharedFlow = _navigationEventSharedFlow.asSharedFlow()
 
     var isLoggedIn by mutableStateOf(false)
@@ -61,6 +62,7 @@ class OneOffViewModel : ViewModel() {
 
 sealed class NavigationEvent {
     data object NavigateToProfile : NavigationEvent()
+
     data class CountEvent(val count: Int) : NavigationEvent()
 }
 

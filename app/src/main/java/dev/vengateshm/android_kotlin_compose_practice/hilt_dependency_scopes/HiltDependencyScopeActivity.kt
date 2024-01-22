@@ -14,7 +14,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HiltDependencyScopeActivity : ComponentActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -23,28 +22,28 @@ class HiltDependencyScopeActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = "start_screen"
+                    startDestination = "start_screen",
                 ) {
                     navigation(
                         startDestination = "feed_list",
-                        route = "feed_graph"
+                        route = "feed_graph",
                     ) {
                         composable("feed_list") { backStackEntry ->
-                            val parent = remember(backStackEntry) {
-                                navController.getBackStackEntry("feed_graph")
-                            }
+                            val parent =
+                                remember(backStackEntry) {
+                                    navController.getBackStackEntry("feed_graph")
+                                }
                             val viewModel = hiltViewModel<SessionViewModel>(parent)
-
                         }
                         composable("feed_detail") { backStackEntry ->
-                            val parent = remember(backStackEntry) {
-                                navController.getBackStackEntry("feed_graph")
-                            }
+                            val parent =
+                                remember(backStackEntry) {
+                                    navController.getBackStackEntry("feed_graph")
+                                }
                             val viewModel = hiltViewModel<SessionViewModel>(parent)
                         }
                     }
                     composable("start_screen") {
-
                     }
                 }
             }

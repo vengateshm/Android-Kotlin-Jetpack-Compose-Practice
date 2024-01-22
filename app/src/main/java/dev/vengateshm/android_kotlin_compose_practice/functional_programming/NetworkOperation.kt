@@ -4,8 +4,11 @@ import androidx.compose.runtime.Composable
 
 sealed interface NetworkOperation<T> {
     data class Success<T>(val data: T) : NetworkOperation<T>
+
     data class Failure<T>(val reason: String) : NetworkOperation<T>
+
     class Loading<T> : NetworkOperation<T>
+
     class None<T> : NetworkOperation<T>
 
     @Composable

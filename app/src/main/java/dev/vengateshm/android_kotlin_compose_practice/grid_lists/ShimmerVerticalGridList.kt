@@ -37,30 +37,33 @@ fun ShimmerVerticalGridListScreen() {
 
 @Composable
 fun ShimmerVerticalGridList() {
-
-    val animateColors = listOf(
-        Color.Gray.copy(0.9f),
-        Color.Gray.copy(0.2f),
-        Color.Gray.copy(0.9f)
-    )
-    val transition = rememberInfiniteTransition()
-    val animState = transition.animateFloat(
-        initialValue = 0f,
-        targetValue = 1000f,
-        animationSpec = infiniteRepeatable(
-            tween(
-                durationMillis = 1200,
-                easing = FastOutLinearInEasing
-            ),
-            RepeatMode.Reverse
+    val animateColors =
+        listOf(
+            Color.Gray.copy(0.9f),
+            Color.Gray.copy(0.2f),
+            Color.Gray.copy(0.9f),
         )
-    )
+    val transition = rememberInfiniteTransition()
+    val animState =
+        transition.animateFloat(
+            initialValue = 0f,
+            targetValue = 1000f,
+            animationSpec =
+                infiniteRepeatable(
+                    tween(
+                        durationMillis = 1200,
+                        easing = FastOutLinearInEasing,
+                    ),
+                    RepeatMode.Reverse,
+                ),
+        )
 
-    val brush = Brush.linearGradient(
-        colors = animateColors,
-        start = Offset(10f, 10f),
-        end = Offset(animState.value, animState.value)
-    )
+    val brush =
+        Brush.linearGradient(
+            colors = animateColors,
+            start = Offset(10f, 10f),
+            end = Offset(animState.value, animState.value),
+        )
 
     ShimmerGridItem(brush)
 }
@@ -68,35 +71,40 @@ fun ShimmerVerticalGridList() {
 @Composable
 fun ShimmerGridItem(brush: Brush) {
     Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(8.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-
-        Spacer(
-            modifier = Modifier
-                .width(100.dp)
-                .height(100.dp)
-                .background(brush = brush)
-        )
-
-        Spacer(modifier = Modifier.height(8.dp))
-
-        Text(
-            modifier = Modifier
+        modifier =
+            Modifier
                 .fillMaxWidth()
-                .height(20.dp)
-                .background(brush = brush), text = ""
+                .padding(8.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Spacer(
+            modifier =
+                Modifier
+                    .width(100.dp)
+                    .height(100.dp)
+                    .background(brush = brush),
         )
 
         Spacer(modifier = Modifier.height(8.dp))
 
         Text(
-            modifier = Modifier
-                .height(15.dp)
-                .width(80.dp)
-                .background(brush = brush), text = ""
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .height(20.dp)
+                    .background(brush = brush),
+            text = "",
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Text(
+            modifier =
+                Modifier
+                    .height(15.dp)
+                    .width(80.dp)
+                    .background(brush = brush),
+            text = "",
         )
     }
 }

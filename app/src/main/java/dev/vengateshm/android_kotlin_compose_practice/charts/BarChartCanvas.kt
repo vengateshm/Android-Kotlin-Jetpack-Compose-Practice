@@ -17,27 +17,33 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun BarChartCanvas(list: List<Int>, barSelected: (Int) -> Unit) {
+fun BarChartCanvas(
+    list: List<Int>,
+    barSelected: (Int) -> Unit,
+) {
     val scrollState = rememberScrollState()
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(12.dp)
-            .height(150.dp)
-            .horizontalScroll(
-                state = scrollState
-            )
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(12.dp)
+                .height(150.dp)
+                .horizontalScroll(
+                    state = scrollState,
+                ),
     ) {
         val density = LocalDensity.current
         val horizontalPadding = with(density) { 12.dp.toPx() }
         val distance = with(density) { 26.dp.toPx() }
-        val calculatedWidth = with(density) {
-            (distance.times(list.size) + horizontalPadding.times(2)).toDp()
-        }
+        val calculatedWidth =
+            with(density) {
+                (distance.times(list.size) + horizontalPadding.times(2)).toDp()
+            }
         Canvas(
-            modifier = Modifier
-                .fillMaxHeight()
-                .width(calculatedWidth)
+            modifier =
+                Modifier
+                    .fillMaxHeight()
+                    .width(calculatedWidth),
         ) {
             val smallPadding = with(density) { 2.dp.toPx() }
             val lineDistance = size.height.minus(smallPadding.times(2)).div(4)
@@ -45,7 +51,7 @@ fun BarChartCanvas(list: List<Int>, barSelected: (Int) -> Unit) {
                 drawLine(
                     color = Color.Gray,
                     start = Offset(x = 0f, y = smallPadding.plus(it.times(lineDistance))),
-                    end = Offset(x = size.width, y = smallPadding.plus(it.times(lineDistance)))
+                    end = Offset(x = size.width, y = smallPadding.plus(it.times(lineDistance))),
                 )
             }
         }

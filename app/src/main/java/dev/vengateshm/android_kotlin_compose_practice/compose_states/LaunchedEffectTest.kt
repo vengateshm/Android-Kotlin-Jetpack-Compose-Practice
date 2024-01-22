@@ -29,10 +29,11 @@ fun LaunchedEffectTest() {
 
     Box(modifier = Modifier.fillMaxSize()) {
         Text(
-            modifier = Modifier.clickable {
-                state = SomeData("World")
-            },
-            text = "Hello World! 🎶 $state"
+            modifier =
+                Modifier.clickable {
+                    state = SomeData("World")
+                },
+            text = "Hello World! 🎶 $state",
         )
     }
 }

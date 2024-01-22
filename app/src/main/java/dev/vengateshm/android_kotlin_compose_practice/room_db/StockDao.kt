@@ -1,6 +1,10 @@
 package dev.vengateshm.android_kotlin_compose_practice.room_db
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -20,7 +24,7 @@ interface StockDao {
             FROM stock_tbl
             WHERE LOWER(name) LIKE '%' || LOWER(:query) || '%' OR
             UPPER(:query) == symbol
-        """
+        """,
     )
     // %ple% gives Apple
     suspend fun searchStock(query: String): List<StockEntity>
@@ -30,7 +34,7 @@ interface StockDao {
         SELECT * FROM stock_tbl 
         JOIN stock_fts_tbl ON stock_fts_tbl.name == stock_tbl.name
         WHERE stock_fts_tbl.name MATCH  '*'||:query||'*'
-    """
+    """,
     )
     fun searchStocks(query: String): List<StockEntity>
 }

@@ -17,7 +17,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 class LocationService : Service() {
-
     private val serviceScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 
     private lateinit var locationClient: LocationClient
@@ -28,13 +27,18 @@ class LocationService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        locationClient = DefaultLocationClient(
-            applicationContext,
-            LocationServices.getFusedLocationProviderClient(applicationContext)
-        )
+        locationClient =
+            DefaultLocationClient(
+                applicationContext,
+                LocationServices.getFusedLocationProviderClient(applicationContext),
+            )
     }
 
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+    override fun onStartCommand(
+        intent: Intent?,
+        flags: Int,
+        startId: Int,
+    ): Int {
         when (intent?.action) {
             ACTION_START -> start()
             ACTION_STOP -> stop()
@@ -43,11 +47,12 @@ class LocationService : Service() {
     }
 
     private fun start() {
-        val notificationBuilder = NotificationCompat.Builder(this, "location_channel_id")
-            .setContentTitle("Tracking location...")
-            .setContentText("Location NA")
-            .setSmallIcon(R.drawable.ic_baseline_notifications_24)
-            .setOngoing(true)
+        val notificationBuilder =
+            NotificationCompat.Builder(this, "location_channel_id")
+                .setContentTitle("Tracking location...")
+                .setContentText("Location NA")
+                .setSmallIcon(R.drawable.ic_baseline_notifications_24)
+                .setOngoing(true)
 
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -58,9 +63,10 @@ class LocationService : Service() {
             .onEach { location ->
                 val lat = location.latitude.toString()
                 val lng = location.longitude.toString()
-                val builder = notificationBuilder.setContentText(
-                    "Location : $lat, $lng"
-                )
+                val builder =
+                    notificationBuilder.setContentText(
+                        "Location : $lat, $lng",
+                    )
                 notificationManager.notify(121, builder.build())
             }
             .launchIn(serviceScope)

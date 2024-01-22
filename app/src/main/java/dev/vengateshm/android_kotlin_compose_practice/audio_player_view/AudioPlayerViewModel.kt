@@ -8,7 +8,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class AudioPlayerViewModel : ViewModel() {
-
     private val tag = AudioPlayerViewModel::class.java.simpleName
 
     private var mediaTimer: CountDownTimer? = null
@@ -20,16 +19,17 @@ class AudioPlayerViewModel : ViewModel() {
     val isAudioCompleted: LiveData<Boolean> = _isAudioCompleted
 
     fun initMediaTimer(mediaPlayer: MediaPlayer) {
-        mediaTimer = object : CountDownTimer(mediaPlayer.duration.toLong(), 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                _currentMediaTimeInMillis.value = mediaPlayer.currentPosition
-            }
+        mediaTimer =
+            object : CountDownTimer(mediaPlayer.duration.toLong(), 1000) {
+                override fun onTick(millisUntilFinished: Long) {
+                    _currentMediaTimeInMillis.value = mediaPlayer.currentPosition
+                }
 
-            override fun onFinish() {
-                _isAudioCompleted.value = true
-                Log.d(tag, "onFinish : Media player finished")
+                override fun onFinish() {
+                    _isAudioCompleted.value = true
+                    Log.d(tag, "onFinish : Media player finished")
+                }
             }
-        }
         mediaTimer?.start()
     }
 

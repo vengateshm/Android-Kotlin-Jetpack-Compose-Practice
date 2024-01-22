@@ -13,5 +13,5 @@ data class NumberGuessingGameState(
 enum class GameStatus {
     PROGRESS,
     WON,
-    LOST
+    LOST,
 }

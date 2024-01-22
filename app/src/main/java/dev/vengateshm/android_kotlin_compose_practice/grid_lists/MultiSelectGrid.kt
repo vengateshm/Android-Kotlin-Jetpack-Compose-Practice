@@ -23,17 +23,22 @@ import androidx.compose.ui.unit.sp
 @ExperimentalFoundationApi
 @Composable
 fun MultiSelectVerticalGridListScreen() {
-    val selectedItems = rememberSaveable {
-        mutableStateOf(setOf<Int>())
-    }
+    val selectedItems =
+        rememberSaveable {
+            mutableStateOf(setOf<Int>())
+        }
 
-    MultiSelectVerticalGridList(selectedItems = selectedItems.value,
+    MultiSelectVerticalGridList(
+        selectedItems = selectedItems.value,
         onCheckBoxCheckStateChanged = { isChecked, index ->
-            selectedItems.value = if (isChecked)
-                selectedItems.value + index
-            else
-                selectedItems.value - index
-        })
+            selectedItems.value =
+                if (isChecked) {
+                    selectedItems.value + index
+                } else {
+                    selectedItems.value - index
+                }
+        },
+    )
 }
 
 @ExperimentalFoundationApi
@@ -44,36 +49,40 @@ fun MultiSelectVerticalGridList(
 ) {
     LazyVerticalGrid(
         columns = GridCells.Fixed(2),
-        contentPadding = PaddingValues(8.dp)
+        contentPadding = PaddingValues(8.dp),
     ) {
         items(30) { index ->
             Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                elevation = 8.dp
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                elevation = 8.dp,
             ) {
                 Column {
                     Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 8.dp, end = 8.dp)
+                        modifier =
+                            Modifier
+                                .fillMaxWidth()
+                                .padding(top = 8.dp, end = 8.dp),
                     ) {
-                        Checkbox(modifier = Modifier.align(Alignment.End),
+                        Checkbox(
+                            modifier = Modifier.align(Alignment.End),
                             checked = selectedItems.contains(index),
                             onCheckedChange = { isChecked ->
                                 onCheckBoxCheckStateChanged(
                                     isChecked,
-                                    index
+                                    index,
                                 )
-                            })
+                            },
+                        )
                     }
                     Text(
                         modifier = Modifier.padding(10.dp),
                         text = "Item ${index + 1}",
                         color = Color.Black,
                         fontSize = 14.sp,
-                        fontFamily = FontFamily.Serif
+                        fontFamily = FontFamily.Serif,
                     )
                 }
             }

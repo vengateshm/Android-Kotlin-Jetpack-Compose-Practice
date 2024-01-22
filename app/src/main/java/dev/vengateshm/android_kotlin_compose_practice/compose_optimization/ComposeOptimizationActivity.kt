@@ -26,16 +26,16 @@ class ComposeOptimizationActivity : ComponentActivity() {
         setContent {
             MaterialTheme {
                 val viewModel = viewModel<MainViewModel>()
-                val changeColorLambda = remember<(Color) -> Unit> {
-                    {
-                        viewModel.changeColor(it)
+                val changeColorLambda =
+                    remember<(Color) -> Unit> {
+                        {
+                            viewModel.changeColor(it)
+                        }
                     }
-                }
                 Box(
                     modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.Center,
                 ) {
-
                     // 1. Callback lambdas
                     /*RgbSelector(
                         color = viewModel.color,
@@ -49,9 +49,11 @@ class ComposeOptimizationActivity : ComponentActivity() {
                         // To avoid this we can
                         // 1. Use method reference
                         // 2. Use remember lambda
-                        *//*onColorClick = {
+                     */
+                    /*onColorClick = {
                             viewModel.changeColor(it)
-                        }*//*
+                        }*/
+                    /*
                         //onColorClick = viewModel::changeColor
                         onColorClick = changeColorLambda
                     )*/
@@ -68,11 +70,11 @@ class ComposeOptimizationActivity : ComponentActivity() {
                     val feeds = feedViewModel.feeds
 
                     Column(
-                        modifier = Modifier.fillMaxSize()
+                        modifier = Modifier.fillMaxSize(),
                     ) {
                         CustomGrid(
                             feeds = feeds,
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier.fillMaxWidth(),
                         )
                         Button(onClick = feedViewModel::rearrangeFeeds) {
                             Text(text = "Shuffle feeds")

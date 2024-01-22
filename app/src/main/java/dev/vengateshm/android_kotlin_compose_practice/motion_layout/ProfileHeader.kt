@@ -26,41 +26,44 @@ import dev.vengateshm.android_kotlin_compose_practice.R
 @Composable
 fun ProfileHeader(progress: Float) {
     val context = LocalContext.current
-    val motionScene = remember {
-        context.resources
-            .openRawResource(R.raw.motion_scene)
-            .readBytes()
-            .decodeToString()
-    }
+    val motionScene =
+        remember {
+            context.resources
+                .openRawResource(R.raw.motion_scene)
+                .readBytes()
+                .decodeToString()
+        }
     MotionLayout(
         motionScene = MotionScene(content = motionScene),
         progress = progress,
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
     ) {
         val properties = motionProperties(id = "profile_pic")
         Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(Color.DarkGray)
-                .layoutId("box")
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .background(Color.DarkGray)
+                    .layoutId("box"),
         )
         Image(
             painter = painterResource(id = R.drawable.someone_else),
             contentDescription = null,
-            modifier = Modifier
-                .clip(CircleShape)
-                .border(
-                    width = 2.dp,
-                    color = properties.value.color("background"),
-                    shape = CircleShape
-                )
-                .layoutId("profile_pic")
+            modifier =
+                Modifier
+                    .clip(CircleShape)
+                    .border(
+                        width = 2.dp,
+                        color = properties.value.color("background"),
+                        shape = CircleShape,
+                    )
+                    .layoutId("profile_pic"),
         )
         Text(
             text = "Vengatesh M",
             fontSize = 24.sp,
             modifier = Modifier.layoutId("username"),
-            color = properties.value.color("background")
+            color = properties.value.color("background"),
         )
     }
 }

@@ -26,7 +26,7 @@ fun MotionLayoutSample() {
             onValueChange = {
                 progress = it
             },
-            modifier = Modifier.padding(horizontal = 32.dp)
+            modifier = Modifier.padding(horizontal = 32.dp),
         )
     }
 }

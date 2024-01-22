@@ -4,5 +4,5 @@ import dev.vengateshm.android_kotlin_compose_practice.graph_ql_app.rickandmorty_
 
 data class CharacterState(
     val isLoading: Boolean = false,
-    val character: Character? = null
+    val character: Character? = null,
 )

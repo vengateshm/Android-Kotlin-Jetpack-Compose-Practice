@@ -19,15 +19,16 @@ fun CalculatorButton(
 ) {
     Box(
         contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .clip(CircleShape)
-            .clickable { onClick() }
-            .then(modifier)
+        modifier =
+            Modifier
+                .clip(CircleShape)
+                .clickable { onClick() }
+                .then(modifier),
     ) {
         Text(
             text = symbol,
             fontSize = 36.sp,
-            color = Color.White
+            color = Color.White,
         )
     }
 }

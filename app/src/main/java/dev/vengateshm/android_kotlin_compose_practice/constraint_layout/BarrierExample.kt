@@ -13,27 +13,34 @@ import androidx.constraintlayout.compose.ConstraintLayout
 @Composable
 fun BarrierExample() {
     ConstraintLayout(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = Color.White)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(color = Color.White),
     ) {
         val (name, age, button) = createRefs()
         val nameBarrier = createEndBarrier(name)
-        Text(text = "Full Name",
+        Text(
+            text = "Full Name",
             Modifier.constrainAs(name) {
                 start.linkTo(parent.start)
                 top.linkTo(parent.top)
-            })
-        Text(text = "Age",
+            },
+        )
+        Text(
+            text = "Age",
             Modifier.constrainAs(age) {
                 start.linkTo(parent.start)
                 top.linkTo(name.bottom)
-            })
-        Button(onClick = { },
+            },
+        )
+        Button(
+            onClick = { },
             Modifier.constrainAs(button) {
                 start.linkTo(nameBarrier)
                 top.linkTo(parent.top)
-            }) {
+            },
+        ) {
             Text(text = "Click!")
         }
     }

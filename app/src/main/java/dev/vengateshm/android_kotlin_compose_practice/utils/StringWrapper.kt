@@ -19,13 +19,14 @@ data class BasicString(val stringValue: String) : StringWrapper() {
 
 data class SingleString(
     @StringRes val stringId: Int,
-    val arguments: Array<out Any> = arrayOf()
+    val arguments: Array<out Any> = arrayOf(),
 ) : StringWrapper() {
     override fun getFormattedString(context: Context): String {
-        return if (arguments.isEmpty())
+        return if (arguments.isEmpty()) {
             context.getString(stringId)
-        else
+        } else {
             context.getString(stringId, *checkArguments(context, arguments))
+        }
     }
 
     override fun equals(other: Any?): Boolean {
@@ -45,23 +46,23 @@ data class SingleString(
         result = 31 * result + arguments.contentHashCode()
         return result
     }
-
 }
 
 data class PluralString(
     @PluralsRes val pluralId: Int,
     val count: Int,
-    val arguments: Array<out Any> = arrayOf()
+    val arguments: Array<out Any> = arrayOf(),
 ) : StringWrapper() {
     override fun getFormattedString(context: Context): String {
-        return if (arguments.isEmpty())
+        return if (arguments.isEmpty()) {
             context.resources.getQuantityString(pluralId, count)
-        else
+        } else {
             context.resources.getQuantityString(
                 pluralId,
                 count,
-                *checkArguments(context, arguments)
+                *checkArguments(context, arguments),
             )
+        }
     }
 
     override fun equals(other: Any?): Boolean {
@@ -83,7 +84,6 @@ data class PluralString(
         result = 31 * result + arguments.contentHashCode()
         return result
     }
-
 }
 
 fun String.asStringWrapper(): StringWrapper {
@@ -94,17 +94,21 @@ fun Int.asSingleString(vararg arguments: Any): SingleString {
     return SingleString(stringId = this, arguments)
 }
 
-fun Int.asPluralString(count: Int, vararg arguments: Any): PluralString {
+fun Int.asPluralString(
+    count: Int,
+    vararg arguments: Any,
+): PluralString {
     return PluralString(pluralId = this, count, arguments)
 }
 
-fun Context.getStringValue(stringWrapper: StringWrapper) : String =
-    stringWrapper.getFormattedString(this)
+fun Context.getStringValue(stringWrapper: StringWrapper): String = stringWrapper.getFormattedString(this)
 
-fun View.getStringValue(stringWrapper: StringWrapper) : String =
-    stringWrapper.getFormattedString(context)
+fun View.getStringValue(stringWrapper: StringWrapper): String = stringWrapper.getFormattedString(context)
 
-fun checkArguments(context: Context, arguments: Array<out Any>): Array<out Any> {
+fun checkArguments(
+    context: Context,
+    arguments: Array<out Any>,
+): Array<out Any> {
     return Array(arguments.size) {
         arguments[it].run {
             (this as? StringWrapper)?.getFormattedString(context) ?: this

@@ -14,9 +14,10 @@ fun FlowRow(
     Layout(
         modifier = modifier,
         measurePolicy = { measurables, constraints ->
-            val placeables = measurables.map {
-                it.measure(constraints)
-            }
+            val placeables =
+                measurables.map {
+                    it.measure(constraints)
+                }
 
             val groupedPlaceables = mutableListOf<List<Placeable>>()
             var currentGroup = mutableListOf<Placeable>()
@@ -44,7 +45,7 @@ fun FlowRow(
 
             layout(
                 width = constraints.maxWidth,
-                height = constraints.maxHeight
+                height = constraints.maxHeight,
             ) {
                 /*var xPosition = 0
                 placeables.forEach { placeable ->
@@ -61,7 +62,7 @@ fun FlowRow(
                     row.forEach { placeable ->
                         placeable.place(
                             x = xPosition,
-                            y = yPosition
+                            y = yPosition,
                         )
                         xPosition += placeable.width
                     }
@@ -69,6 +70,6 @@ fun FlowRow(
                 }
             }
         },
-        content = content
+        content = content,
     )
 }

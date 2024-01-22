@@ -9,11 +9,18 @@ interface BluetoothController {
     val scannedDevices: StateFlow<List<BluetoothDevice>>
     val pairedDevices: StateFlow<List<BluetoothDevice>>
     val errors: SharedFlow<String>
+
     fun startDiscovery()
+
     fun stopDiscovery()
+
     fun startBluetoothServer(): Flow<ConnectionResult>
+
     suspend fun trySendMessage(message: String): BluetoothMessage?
+
     fun connectToDevice(device: BluetoothDevice): Flow<ConnectionResult>
+
     fun closeConnection()
+
     fun release()
 }

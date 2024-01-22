@@ -7,7 +7,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
-
     var color by mutableStateOf(Color.Red)
         private set
 

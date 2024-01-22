@@ -13,7 +13,7 @@ object MockData {
                 isLiked = true,
                 likesCount = 778,
                 commentsCount = 156,
-                comment = "Nice..."
+                comment = "Nice...",
             ),
             Reel(
                 id = 2,
@@ -23,7 +23,7 @@ object MockData {
                 isLiked = true,
                 likesCount = 5923,
                 commentsCount = 11,
-                comment = "Super"
+                comment = "Super",
             ),
             Reel(
                 id = 3,
@@ -33,7 +33,7 @@ object MockData {
                 isLiked = true,
                 likesCount = 2314,
                 comment = "Ah Oh...",
-                commentsCount = 200
+                commentsCount = 200,
             ),
             Reel(
                 id = 4,
@@ -43,7 +43,7 @@ object MockData {
                 isLiked = true,
                 likesCount = 786,
                 comment = "Yeahoo",
-                commentsCount = 700
+                commentsCount = 700,
             ),
             Reel(
                 id = 5,
@@ -53,8 +53,8 @@ object MockData {
                 isLiked = true,
                 likesCount = 1890,
                 comment = "Wow...",
-                commentsCount = 232
-            )
+                commentsCount = 232,
+            ),
         )
     }
 }

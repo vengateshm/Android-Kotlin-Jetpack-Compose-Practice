@@ -13,12 +13,12 @@ import androidx.core.content.ContextCompat
 fun Context.hasLocationPermission(): Boolean {
     return ContextCompat.checkSelfPermission(
         this,
-        Manifest.permission.ACCESS_COARSE_LOCATION
+        Manifest.permission.ACCESS_COARSE_LOCATION,
     ) == PackageManager.PERMISSION_GRANTED &&
-            ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_GRANTED
+        ContextCompat.checkSelfPermission(
+            this,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+        ) == PackageManager.PERMISSION_GRANTED
 }
 
 inline fun <reified T> Context.launchActivity() = this.startActivity(Intent(this, T::class.java))
@@ -45,11 +45,10 @@ fun Context.requestPostNotificationsPermission() {
             ActivityCompat.requestPermissions(
                 this as Activity,
                 arrayOf(permission),
-                REQUEST_CODE_POST_NOTIFICATIONS
+                REQUEST_CODE_POST_NOTIFICATIONS,
             )
         }
     }
-
 }
 
 const val REQUEST_CODE_POST_NOTIFICATIONS = 100

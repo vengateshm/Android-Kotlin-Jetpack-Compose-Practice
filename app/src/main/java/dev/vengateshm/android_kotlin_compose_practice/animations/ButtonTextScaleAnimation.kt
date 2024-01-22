@@ -21,10 +21,11 @@ fun ScaleButton(onClick: () -> Unit) {
     val scale by infiniteTransition.animateFloat(
         initialValue = 0f,
         targetValue = 1f,
-        animationSpec = infiniteRepeatable(
-            tween(durationMillis = 500),
-            repeatMode = RepeatMode.Restart
-        )
+        animationSpec =
+            infiniteRepeatable(
+                tween(durationMillis = 500),
+                repeatMode = RepeatMode.Restart,
+            ),
     )
 
     Button(onClick = onClick, modifier = Modifier.scale(scale)) {
@@ -36,10 +37,9 @@ fun ScaleButton(onClick: () -> Unit) {
 fun ButtonTextScaleSample() {
     Box(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         ScaleButton {
-
         }
     }
 }

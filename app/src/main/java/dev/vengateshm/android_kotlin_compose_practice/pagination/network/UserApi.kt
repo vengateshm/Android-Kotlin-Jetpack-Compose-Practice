@@ -10,10 +10,12 @@ import retrofit2.http.Query
 
 interface UserApi {
     @GET("user")
-    suspend fun getUsers(@Query("page") page: Int, @Query("limit") limit: Int): UsersResponse
+    suspend fun getUsers(
+        @Query("page") page: Int,
+        @Query("limit") limit: Int,
+    ): UsersResponse
 
     companion object {
-
         private const val BASE_URL = "https://dummyapi.io/data/v1/"
 
         operator fun invoke(): UserApi {
@@ -28,12 +30,14 @@ interface UserApi {
         private fun getRetrofitClient(): OkHttpClient {
             return OkHttpClient.Builder()
                 .addInterceptor { chain ->
-                    chain.proceed(chain.request().newBuilder().also {
-                        it.addHeader("Accept", "application/json")
-                        it.addHeader("app-id", "62cceaafb592b449c3aad899")
-                    }.build())
+                    chain.proceed(
+                        chain.request().newBuilder().also {
+                            it.addHeader("Accept", "application/json")
+                            it.addHeader("app-id", "62cceaafb592b449c3aad899")
+                        }.build(),
+                    )
                 }.also { client ->
-                    if (BuildConfig.DEBUG) {
+                    if (dev.vengateshm.android_kotlin_compose_practice.BuildConfig.DEBUG) {
                         val logging = HttpLoggingInterceptor()
                         logging.setLevel(HttpLoggingInterceptor.Level.BODY)
                         client.addInterceptor(logging)

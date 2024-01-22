@@ -13,7 +13,8 @@ data class StockEntity(
     @ColumnInfo(name = "symbol") val symbol: String,
 )
 
-fun StockEntity.toStock() = Stock(
-    name = this.name,
-    symbol = this.symbol
-)
+fun StockEntity.toStock() =
+    Stock(
+        name = this.name,
+        symbol = this.symbol,
+    )

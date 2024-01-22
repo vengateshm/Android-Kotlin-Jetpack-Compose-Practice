@@ -30,7 +30,8 @@ fun CheckMarkAnimation() {
     var isPlaying by remember { mutableStateOf(false) }
 
     val progress by animateLottieCompositionAsState(
-        composition = composition, isPlaying = isPlaying
+        composition = composition,
+        isPlaying = isPlaying,
     )
 
     LaunchedEffect(key1 = progress) {
@@ -39,14 +40,17 @@ fun CheckMarkAnimation() {
     }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White),
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(Color.White),
         verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         LottieAnimation(
-            modifier = Modifier.size(200.dp), composition = composition, progress = progress
+            modifier = Modifier.size(200.dp),
+            composition = composition,
+            progress = progress,
         )
         Button(onClick = { isPlaying = true }) {
             Text(text = "Play Again")

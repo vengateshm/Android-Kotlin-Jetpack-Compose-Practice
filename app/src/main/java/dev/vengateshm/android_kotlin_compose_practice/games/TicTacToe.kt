@@ -37,7 +37,8 @@ class TicTacToeActivity : ComponentActivity() {
         setContent {
             MaterialTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colors.background,
                 ) {
                     TicTacToe()
                 }
@@ -52,38 +53,46 @@ fun TicTacToe() {
     var currentPlayer by remember { mutableStateOf("❌") }
     var winner by remember { mutableStateOf<String?>(null) }
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.Black)
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(Color.Black),
     ) {
         Row(
-            modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center,
         ) {
             Text(
-                text = "Tic Tac Toe", style = MaterialTheme.typography.h4, color = Color(0XFFFF5F1F)
+                text = "Tic Tac Toe",
+                style = MaterialTheme.typography.h4,
+                color = Color(0XFFFF5F1F),
             )
         }
 
         Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             for (row in 0..2) {
                 Row {
                     for (col in 0..2) {
                         Button(
-                            modifier = Modifier
-                                .aspectRatio(ratio = 1f)
-                                .weight(weight = 1f)
-                                .padding(4.dp), onClick = {
+                            modifier =
+                                Modifier
+                                    .aspectRatio(ratio = 1f)
+                                    .weight(weight = 1f)
+                                    .padding(4.dp),
+                            onClick = {
                                 if (board[row][col] == null && winner == null) {
                                     board[row][col] = currentPlayer
                                     currentPlayer = currentPlayer.switchPlayer()
                                     winner = board.checkWinner()
                                 }
-                            }, colors = ButtonDefaults.buttonColors(backgroundColor = Color.Gray)
+                            },
+                            colors = ButtonDefaults.buttonColors(backgroundColor = Color.Gray),
                         ) {
                             Text(
                                 text = board[row][col] ?: "",
@@ -96,12 +105,14 @@ fun TicTacToe() {
         }
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = "Current Player : $currentPlayer", color = Color.White
+            text = "Current Player : $currentPlayer",
+            color = Color.White,
         )
         winner?.let {
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Winner : $winner", color = Color.White
+                text = "Winner : $winner",
+                color = Color.White,
             )
             LaunchedEffect(true) {
                 // Reset if there is a winner
@@ -113,17 +124,19 @@ fun TicTacToe() {
                 }
             }
             Button(
-                modifier = Modifier
-                    .size(200.dp)
-                    .padding(16.dp),
+                modifier =
+                    Modifier
+                        .size(200.dp)
+                        .padding(16.dp),
                 onClick = {
                     winner = null
                     currentPlayer = "❌"
                     board.fill(arrayOfNulls<String?>(3))
-                }) {
+                },
+            ) {
                 Text(
                     text = "RESET",
-                    color = Color.White
+                    color = Color.White,
                 )
             }
         }

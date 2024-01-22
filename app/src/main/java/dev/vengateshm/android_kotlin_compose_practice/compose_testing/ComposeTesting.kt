@@ -29,27 +29,28 @@ fun FavouriteButton(modifier: Modifier = Modifier) {
         mutableStateOf(false)
     }
     Row(
-        modifier = modifier
-            .clickable {
-                isFavourite = !isFavourite
-            }
-            .testTag("FAV_BTN")
-            .background(
-                color = Color.Blue,
-                shape = RoundedCornerShape(8.dp)
-            )
-            .padding(horizontal = 12.dp, vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically
+        modifier =
+            modifier
+                .clickable {
+                    isFavourite = !isFavourite
+                }
+                .testTag("FAV_BTN")
+                .background(
+                    color = Color.Blue,
+                    shape = RoundedCornerShape(8.dp),
+                )
+                .padding(horizontal = 12.dp, vertical = 8.dp),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
             painter = painterResource(id = R.drawable.ic_favorite_24),
             contentDescription = "Favourite icon",
-            tint = if (isFavourite) Color.Red else Color.LightGray
+            tint = if (isFavourite) Color.Red else Color.LightGray,
         )
         Spacer(modifier = Modifier.width(4.dp))
         Text(
             text = if (isFavourite) "Liked" else "Like",
-            color = Color.White.copy(alpha = 0.6f)
+            color = Color.White.copy(alpha = 0.6f),
         )
     }
 }

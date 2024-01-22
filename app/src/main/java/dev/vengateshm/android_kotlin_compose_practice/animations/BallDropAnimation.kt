@@ -38,26 +38,28 @@ fun BallDropAnimation() {
     val initialYOffset = (screenHeight / 2) - (boxSize / 2)
     val yOffset by animateDpAsState(
         targetValue = if (dropBall) (screenHeight - boxSize) else initialYOffset,
-        animationSpec = spring(
-            dampingRatio = Spring.DampingRatioMediumBouncy,
-            stiffness = Spring.StiffnessLow
-        ),
-        label = "ballBounceAnimation"
+        animationSpec =
+            spring(
+                dampingRatio = Spring.DampingRatioMediumBouncy,
+                stiffness = Spring.StiffnessLow,
+            ),
+        label = "ballBounceAnimation",
     )
 
     Box(modifier = Modifier.fillMaxSize()) {
         Box(
-            modifier = Modifier
-                .offset(
-                    x = xOffset,
-                    y = yOffset
-                )
-                .size(boxSize)
+            modifier =
+                Modifier
+                    .offset(
+                        x = xOffset,
+                        y = yOffset,
+                    )
+                    .size(boxSize),
         ) {
             Image(
                 painter = painterResource(id = R.drawable.basketball),
                 contentDescription = "",
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
             )
         }
     }

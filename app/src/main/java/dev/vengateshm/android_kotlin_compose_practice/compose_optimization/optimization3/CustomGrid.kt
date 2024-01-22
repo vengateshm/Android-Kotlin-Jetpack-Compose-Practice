@@ -29,19 +29,21 @@ fun CustomGrid(
     feeds: List<VideoFeed>,
     modifier: Modifier = Modifier,
 ) {
-    val firstRowFeeds = remember(feeds) {
-        feeds.take(2)
-    }
-    val secondRowTracks = remember(feeds) {
-        feeds.takeLast(1)
-    }
+    val firstRowFeeds =
+        remember(feeds) {
+            feeds.take(2)
+        }
+    val secondRowTracks =
+        remember(feeds) {
+            feeds.takeLast(1)
+        }
     Column(
         modifier = modifier,
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
+            horizontalArrangement = Arrangement.Center,
         ) {
             firstRowFeeds.forEach { feed ->
                 key(feed.id) {
@@ -51,7 +53,7 @@ fun CustomGrid(
         }
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
+            horizontalArrangement = Arrangement.Center,
         ) {
             secondRowTracks.forEach { feed ->
                 key(feed.id) {
@@ -68,10 +70,11 @@ fun VideoFeedView(
     modifier: Modifier = Modifier,
 ) {
     Box(
-        modifier = modifier
-            .size(150.dp)
-            .clip(RoundedCornerShape(10.dp))
-            .background(feed.backgroundColor)
+        modifier =
+            modifier
+                .size(150.dp)
+                .clip(RoundedCornerShape(10.dp))
+                .background(feed.backgroundColor),
     ) {
         Text(text = feed.username)
     }

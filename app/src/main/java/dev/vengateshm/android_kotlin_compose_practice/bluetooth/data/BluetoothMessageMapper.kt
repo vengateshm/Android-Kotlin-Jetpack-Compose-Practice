@@ -8,7 +8,7 @@ fun String.toBluetoothMessage(isFromLocalUser: Boolean): BluetoothMessage {
     return BluetoothMessage(
         message = message,
         senderName = name,
-        isFromLocalUser = isFromLocalUser
+        isFromLocalUser = isFromLocalUser,
     )
 }
 

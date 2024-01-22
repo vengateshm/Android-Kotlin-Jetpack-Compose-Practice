@@ -27,20 +27,22 @@ fun DeviceScreen(
     onDeviceClick: (BluetoothDevice) -> Unit,
 ) {
     Column(
-        modifier = Modifier
-            .fillMaxSize()
+        modifier =
+            Modifier
+                .fillMaxSize(),
     ) {
         BluetoothDeviceList(
             pairedDevices = state.pairedDevices,
             scannedDevices = state.scannedDevices,
             onClick = onDeviceClick,
-            modifier = Modifier
-                .fillMaxWidth()
-                .weight(1f)
+            modifier =
+                Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
         )
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceAround
+            horizontalArrangement = Arrangement.SpaceAround,
         ) {
             Button(onClick = onStartScan) {
                 Text(text = "Start scan")
@@ -63,23 +65,24 @@ fun BluetoothDeviceList(
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
-        modifier = modifier
+        modifier = modifier,
     ) {
         item {
             Text(
                 text = "Paired Devices",
                 fontWeight = FontWeight.Bold,
                 fontSize = 24.sp,
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(16.dp),
             )
         }
         items(pairedDevices) { device ->
             Text(
                 text = device.name ?: "(No name)",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { onClick(device) }
-                    .padding(16.dp)
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .clickable { onClick(device) }
+                        .padding(16.dp),
             )
         }
 
@@ -88,16 +91,17 @@ fun BluetoothDeviceList(
                 text = "Scanned Devices",
                 fontWeight = FontWeight.Bold,
                 fontSize = 24.sp,
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(16.dp),
             )
         }
         items(scannedDevices) { device ->
             Text(
                 text = device.name ?: "(No name)",
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable { onClick(device) }
-                    .padding(16.dp)
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .clickable { onClick(device) }
+                        .padding(16.dp),
             )
         }
     }

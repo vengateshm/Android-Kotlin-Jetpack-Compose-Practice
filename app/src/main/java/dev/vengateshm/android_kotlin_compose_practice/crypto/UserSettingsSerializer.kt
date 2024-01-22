@@ -18,7 +18,7 @@ class UserSettingsSerializer(private val cryptoManager: CryptoManager) : Seriali
         return try {
             Json.decodeFromString(
                 deserializer = UserSettings.serializer(),
-                string = decryptedBytes.decodeToString()
+                string = decryptedBytes.decodeToString(),
             )
         } catch (e: SerializationException) {
             e.printStackTrace()
@@ -26,13 +26,17 @@ class UserSettingsSerializer(private val cryptoManager: CryptoManager) : Seriali
         }
     }
 
-    override suspend fun writeTo(t: UserSettings, output: OutputStream) {
+    override suspend fun writeTo(
+        t: UserSettings,
+        output: OutputStream,
+    ) {
         cryptoManager.encrypt(
-            bytes = Json.encodeToString(
-                serializer = UserSettings.serializer(),
-                value = t
-            ).encodeToByteArray(),
-            outputStream = output
+            bytes =
+                Json.encodeToString(
+                    serializer = UserSettings.serializer(),
+                    value = t,
+                ).encodeToByteArray(),
+            outputStream = output,
         )
     }
 }

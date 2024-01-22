@@ -21,20 +21,22 @@ fun MultipleScreenSizeComposable() {
                 Text(
                     text = "Item $item",
                     fontSize = 20.sp,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(color = Color.White)
-                        .padding(16.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .background(color = Color.White)
+                            .padding(16.dp),
                 )
             }
             items(10) { item ->
                 Text(
                     text = "Item $item",
                     fontSize = 20.sp,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(color = Color.LightGray)
-                        .padding(16.dp)
+                    modifier =
+                        Modifier
+                            .fillMaxWidth()
+                            .background(color = Color.LightGray)
+                            .padding(16.dp),
                 )
             }
         })
@@ -47,13 +49,15 @@ fun MultipleScreenSizeComposable() {
                         Text(
                             text = "Item $item",
                             fontSize = 20.sp,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .background(color = Color.White)
-                                .padding(16.dp)
+                            modifier =
+                                Modifier
+                                    .fillMaxWidth()
+                                    .background(color = Color.White)
+                                    .padding(16.dp),
                         )
                     }
-                })
+                },
+            )
             LazyColumn(
                 modifier = Modifier.weight(1f),
                 content = {
@@ -61,13 +65,15 @@ fun MultipleScreenSizeComposable() {
                         Text(
                             text = "Item $item",
                             fontSize = 20.sp,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .background(color = Color.LightGray)
-                                .padding(16.dp)
+                            modifier =
+                                Modifier
+                                    .fillMaxWidth()
+                                    .background(color = Color.LightGray)
+                                    .padding(16.dp),
                         )
                     }
-                })
+                },
+            )
         }
     }
 }

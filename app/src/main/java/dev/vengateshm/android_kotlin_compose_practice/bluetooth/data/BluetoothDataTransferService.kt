@@ -20,18 +20,19 @@ class BluetoothDataTransferService(
             }
             val buffer = ByteArray(1024)
             while (true) {
-                val byteCount = try {
-                    socket.inputStream.read(buffer)
-                } catch (e: IOException) {
-                    throw TransferFailedException()
-                }
+                val byteCount =
+                    try {
+                        socket.inputStream.read(buffer)
+                    } catch (e: IOException) {
+                        throw TransferFailedException()
+                    }
 
                 emit(
                     buffer.decodeToString(
-                        endIndex = byteCount
+                        endIndex = byteCount,
                     ).toBluetoothMessage(
-                        isFromLocalUser = false
-                    )
+                        isFromLocalUser = false,
+                    ),
                 )
             }
         }.flowOn(Dispatchers.IO)

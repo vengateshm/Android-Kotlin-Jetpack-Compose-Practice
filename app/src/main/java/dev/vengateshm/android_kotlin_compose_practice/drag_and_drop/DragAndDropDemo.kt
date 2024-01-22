@@ -27,30 +27,31 @@ fun DragAndDropDemo() {
     var backgroundColor by remember { mutableStateOf(Color.Gray) }
 
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = backgroundColor)
-            .pointerInput(Unit) {
-                detectDragGestures { change, dragAmount ->
-                    change.consumeAllChanges()
-                    println("OFFSET $offset")
-                    offset += dragAmount
-                    println("OFFSET $offset")
+        modifier =
+            Modifier
+                .fillMaxSize()
+                .background(color = backgroundColor)
+                .pointerInput(Unit) {
+                    detectDragGestures { change, dragAmount ->
+                        change.consumeAllChanges()
+                        println("OFFSET $offset")
+                        offset += dragAmount
+                        println("OFFSET $offset")
+                    }
                 }
-            }
-            .pointerInput(Unit) {
-                detectTapGestures(
-                    onPress = {
-                        backgroundColor = Color.Green
-                    },
-                )
-            }
-            .offset(x = offset.x.dp, y = offset.y.dp),
-        contentAlignment = Alignment.Center
+                .pointerInput(Unit) {
+                    detectTapGestures(
+                        onPress = {
+                            backgroundColor = Color.Green
+                        },
+                    )
+                }
+                .offset(x = offset.x.dp, y = offset.y.dp),
+        contentAlignment = Alignment.Center,
     ) {
         Text(
             text = "Drag me!",
-            modifier = Modifier.padding(24.dp)
+            modifier = Modifier.padding(24.dp),
         )
     }
 }

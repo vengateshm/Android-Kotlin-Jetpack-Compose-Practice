@@ -30,7 +30,7 @@ class PVActivity : ComponentActivity() {
                 val viewModel = viewModel<PVViewModel>()
                 val state = viewModel.state
                 LazyColumn(
-                    modifier = Modifier.fillMaxSize()
+                    modifier = Modifier.fillMaxSize(),
                 ) {
                     items(state.items.size) { index ->
                         val item = state.items[index]
@@ -38,29 +38,31 @@ class PVActivity : ComponentActivity() {
                             viewModel.loadNextItems()
                         }
                         Column(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(16.dp)
+                            modifier =
+                                Modifier
+                                    .fillMaxWidth()
+                                    .padding(16.dp),
                         ) {
                             Text(
                                 text = item.title,
                                 fontSize = 20.sp,
-                                color = Color.Gray
+                                color = Color.Gray,
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             Text(
                                 text = item.description,
-                                color = Color.LightGray
+                                color = Color.LightGray,
                             )
                         }
                     }
                     item {
                         if (state.isLoading) {
                             Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(8.dp),
-                                horizontalArrangement = Arrangement.Center
+                                modifier =
+                                    Modifier
+                                        .fillMaxWidth()
+                                        .padding(8.dp),
+                                horizontalArrangement = Arrangement.Center,
                             ) {
                                 CircularProgressIndicator()
                             }

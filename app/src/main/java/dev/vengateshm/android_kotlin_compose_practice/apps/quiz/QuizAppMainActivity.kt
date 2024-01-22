@@ -23,20 +23,23 @@ class QuizAppMainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 NavHost(
                     navController = navController,
-                    startDestination = QuizAppScreen.WelcomeScreen.route
+                    startDestination = QuizAppScreen.WelcomeScreen.route,
                 ) {
                     composable(route = QuizAppScreen.WelcomeScreen.route) {
-                        WelcomeScreen(viewModel = viewModel,
+                        WelcomeScreen(
+                            viewModel = viewModel,
                             onStartClicked = {
                                 navController.navigate(QuizAppScreen.QuizScreen.route)
-                            })
+                            },
+                        )
                     }
                     composable(route = QuizAppScreen.QuizScreen.route) {
                         QuestionsScreen(
                             viewModel = viewModel,
                             onFinishClicked = {
                                 navController.navigate(QuizAppScreen.ResultScreen.route)
-                            })
+                            },
+                        )
                     }
                     composable(route = QuizAppScreen.ResultScreen.route) {
                         ResultScreen(
@@ -44,9 +47,9 @@ class QuizAppMainActivity : ComponentActivity() {
                             onStartAgain = {
                                 navController.popBackStack(
                                     route = QuizAppScreen.WelcomeScreen.route,
-                                    inclusive = false
+                                    inclusive = false,
                                 )
-                            }
+                            },
                         )
                     }
                 }

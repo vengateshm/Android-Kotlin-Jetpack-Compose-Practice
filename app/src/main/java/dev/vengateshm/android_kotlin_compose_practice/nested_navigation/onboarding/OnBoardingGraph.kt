@@ -9,7 +9,8 @@ import dev.vengateshm.android_kotlin_compose_practice.nested_navigation.sharedVi
 
 fun NavGraphBuilder.OnBoardingGraph(navController: NavController) {
     navigation(
-        startDestination = AppScreen.Onboarding.Login.name, route = AppScreen.Onboarding.name
+        startDestination = AppScreen.Onboarding.Login.name,
+        route = AppScreen.Onboarding.name,
     ) {
         composable(route = AppScreen.Onboarding.Login.name) {
             val viewModel = it.sharedViewModel<OnboardingViewModel>(navController = navController)
@@ -23,7 +24,7 @@ fun NavGraphBuilder.OnBoardingGraph(navController: NavController) {
                         }
                     }
                 },
-                viewModel = viewModel
+                viewModel = viewModel,
             )
         }
         composable(route = AppScreen.Onboarding.Register.name) {

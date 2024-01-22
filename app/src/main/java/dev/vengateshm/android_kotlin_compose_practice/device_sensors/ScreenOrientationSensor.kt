@@ -7,8 +7,10 @@ import android.hardware.Sensor
 class ScreenOrientationSensor(context: Context) : AndroidSensor(
     context = context,
     sensorFeature = PackageManager.FEATURE_SCREEN_LANDSCAPE,
-    sensorType = Sensor.TYPE_ORIENTATION
+    sensorType = Sensor.TYPE_ORIENTATION,
 ) {
-
-    override fun onAccuracyChanged(p0: Sensor?, p1: Int) = Unit
+    override fun onAccuracyChanged(
+        p0: Sensor?,
+        p1: Int,
+    ) = Unit
 }
