@@ -5,4 +5,6 @@
     <string name="banana">Banana</string>
     <string name="citrus">Citrus</string>
     <string name="change_language">Change Language</string>
+    <string name="short_label">Short\n</string>
+    <string name="long_label">Static Shortcut</string>
 </resources>

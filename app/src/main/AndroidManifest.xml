@@ -103,6 +103,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
         <activity android:name=".crypto.CryptoActivity" />
         <activity
@@ -284,6 +288,10 @@
         <activity
             android:name="dev.vengateshm.compose_material3.list_detail.ListDetailActivity"
             android:exported="true" />
+        <activity
+            android:name=".app_shortcuts.AppShortCutActivity"
+            android:exported="true" />
+
         <!-- Register AlarmReceiver -->
         <receiver
             android:name=".doze_mode_test.AlarmReceiver"
