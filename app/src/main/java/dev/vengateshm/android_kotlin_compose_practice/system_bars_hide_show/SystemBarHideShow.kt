@@ -18,28 +18,14 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 
+// Usage
 @Composable
 fun SystemBarHideShow() {
     var showSystemBar by remember {
         mutableStateOf(true)
     }
 
-    val view = LocalView.current
-    val window = (view.context as Activity).window
-    val insetsController = WindowCompat.getInsetsController(window, view)
-    if (!view.isInEditMode) {
-        if (showSystemBar) {
-            insetsController.apply {
-                show(WindowInsetsCompat.Type.systemBars())
-            }
-        } else {
-            insetsController.apply {
-                hide(WindowInsetsCompat.Type.systemBars())
-                systemBarsBehavior =
-                    WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-            }
-        }
-    }
+    SystemBarVisibility(showSystemBar)
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -53,3 +39,27 @@ fun SystemBarHideShow() {
         }
     }
 }
+
+@Composable
+fun SystemBarVisibility(showSystemBar: Boolean) {
+    val view = LocalView.current
+    val window = (view.context as Activity).window
+    val insetsController = WindowCompat.getInsetsController(window, view)
+    if (!view.isInEditMode) {
+        if (showSystemBar) {
+            insetsController.apply {
+                show(WindowInsetsCompat.Type.systemBars())
+            }
+        } else {
+            insetsController.apply {
+                hide(WindowInsetsCompat.Type.systemBars())
+                // This flag makes system bars visible
+                // when swiped on top or bottom of the screen
+                systemBarsBehavior =
+                    WindowInsetsControllerCompat
+                        .BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+            }
+        }
+    }
+}
+
