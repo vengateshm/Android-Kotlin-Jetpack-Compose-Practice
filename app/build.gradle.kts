@@ -208,6 +208,11 @@ dependencies {
     // Immutable collections
     implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.6")
 
+    // Media3
+    implementation("androidx.media3:media3-ui:1.2.1")
+    implementation("androidx.media3:media3-exoplayer:1.2.1")
+    implementation("androidx.media3:media3-exoplayer-hls:1.2.1")
+
     testImplementation("junit:junit:4.13.2")
     testImplementation("androidx.room:room-testing:2.6.1")
 
