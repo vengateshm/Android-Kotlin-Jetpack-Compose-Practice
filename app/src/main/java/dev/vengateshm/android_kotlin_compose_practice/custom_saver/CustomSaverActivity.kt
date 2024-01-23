@@ -11,6 +11,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.runtime.saveable.SaverScope
+import androidx.compose.runtime.saveable.listSaver
+import androidx.compose.runtime.saveable.mapSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -83,4 +85,58 @@ object BookSaverGsonApproach : Saver<Book, String> {
 fun BookItemPreview() {
     BookSaverGsonApproach
     BookItem()
+}
+
+object BookSaver {
+    val listSaver = listSaver(
+        save = { book: Book ->
+            listOf(
+                book.isbn,
+                book.title,
+                book.rating
+            )
+        },
+        restore = { list ->
+            Book(
+                isbn = list[0] as String,
+                title = list[1] as String,
+                rating = list[2] as Double
+            )
+        }
+    )
+
+    val mapSaver = mapSaver(
+        save = { book: Book ->
+            mapOf(
+                "isbn" to book.isbn,
+                "title" to book.title,
+                "rating" to book.rating
+            )
+        },
+        restore = { map ->
+            Book(
+                isbn = map["isbn"] as String,
+                title = map["title"] as String,
+                rating = map["rating"] as Double
+            )
+        }
+    )
+
+    val anotherSaver = object : Saver<Book, List<Any>> {
+        override fun restore(value: List<Any>): Book? {
+            return Book(
+                isbn = value[0] as String,
+                title = value[1] as String,
+                rating = value[2] as Double
+            )
+        }
+
+        override fun SaverScope.save(value: Book): List<Any>? {
+            return listOf(
+                value.isbn,
+                value.title,
+                value.rating
+            )
+        }
+    }
 }
