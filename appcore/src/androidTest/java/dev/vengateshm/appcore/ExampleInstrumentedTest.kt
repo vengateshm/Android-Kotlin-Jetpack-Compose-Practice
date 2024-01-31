@@ -1,4 +1,4 @@
-package dev.vengateshm.common_lib
+package dev.vengateshm.appcore
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry

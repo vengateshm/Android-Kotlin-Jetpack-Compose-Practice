@@ -1,4 +1,4 @@
-package dev.vengateshm.common_lib
+package dev.vengateshm.appcore
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

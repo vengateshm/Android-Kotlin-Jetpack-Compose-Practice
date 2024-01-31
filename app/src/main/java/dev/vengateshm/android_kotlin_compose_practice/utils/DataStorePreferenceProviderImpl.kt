@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
-import dev.vengateshm.common_lib.PreferenceProvider
+import dev.vengateshm.appcore.PreferenceProvider
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "app_prefs")
 

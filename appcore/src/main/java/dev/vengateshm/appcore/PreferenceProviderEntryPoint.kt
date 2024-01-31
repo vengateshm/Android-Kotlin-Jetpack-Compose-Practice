@@ -1,4 +1,4 @@
-package dev.vengateshm.common_lib
+package dev.vengateshm.appcore
 
 import dagger.hilt.EntryPoint
 import dagger.hilt.InstallIn

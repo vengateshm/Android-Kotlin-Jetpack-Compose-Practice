@@ -6,7 +6,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import dev.vengateshm.common_lib.PreferenceProvider
+import dev.vengateshm.appcore.PreferenceProvider
 import javax.inject.Singleton
 
 @Module

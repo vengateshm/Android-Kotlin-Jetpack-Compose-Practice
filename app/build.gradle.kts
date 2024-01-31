@@ -192,7 +192,7 @@ dependencies {
     implementation("androidx.camera:camera-view:$cameraxVersion")
 
     implementation(project(":compose_material3"))
-    implementation(project(":common_lib"))
+    implementation(project(":appcore"))
     implementation(project(":glance_app_widget"))
 
     implementation(project(":ksp_samples"))

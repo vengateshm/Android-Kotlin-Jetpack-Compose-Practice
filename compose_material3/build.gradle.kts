@@ -73,7 +73,7 @@ dependencies {
 
     // FlowLayout
     implementation("com.google.accompanist:accompanist-flowlayout:0.23.1")
-    implementation(project(":common_lib"))
+    implementation(project(":appcore"))
 
     testImplementation("junit:junit:4.13.2")
 

@@ -8,7 +8,7 @@ import android.util.Log
 import androidx.datastore.preferences.core.edit
 import com.google.gson.Gson
 import dagger.hilt.EntryPoints
-import dev.vengateshm.common_lib.PreferenceProviderEntryPoint
+import dev.vengateshm.appcore.PreferenceProviderEntryPoint
 import dev.vengateshm.glance_app_widget.network.COVIDApiService
 import dev.vengateshm.glance_app_widget.network.LiveScoreApiService
 import dev.vengateshm.glance_app_widget.receiver.COVID19WidgetReceiver

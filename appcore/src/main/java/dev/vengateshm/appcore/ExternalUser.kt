@@ -1,4 +1,4 @@
-package dev.vengateshm.common_lib
+package dev.vengateshm.appcore
 
 data class ExternalUser(
     val id: String,

@@ -1,6 +1,6 @@
 package dev.vengateshm.android_kotlin_compose_practice.compose_optimization.optimization2
 
-import dev.vengateshm.common_lib.ExternalUser
+import dev.vengateshm.appcore.ExternalUser
 
 data class User(
     val id: String,

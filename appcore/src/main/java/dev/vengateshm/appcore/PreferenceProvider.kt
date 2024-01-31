@@ -1,4 +1,4 @@
-package dev.vengateshm.common_lib
+package dev.vengateshm.appcore
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences

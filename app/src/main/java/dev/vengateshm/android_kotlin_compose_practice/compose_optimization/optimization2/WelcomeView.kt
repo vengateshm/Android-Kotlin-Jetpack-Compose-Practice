@@ -2,7 +2,7 @@ package dev.vengateshm.android_kotlin_compose_practice.compose_optimization.opti
 
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import dev.vengateshm.common_lib.ExternalUser
+import dev.vengateshm.appcore.ExternalUser
 
 @Composable
 fun WelcomeView(user: ExternalUser) {

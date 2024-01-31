@@ -16,7 +16,7 @@ dependencyResolutionManagement {
 rootProject.name = "AndroidKotlinComposePractice"
 include(":app")
 include(":compose_material3")
-include(":common_lib")
+include(":appcore")
 include(":glance_app_widget")
 include(":kotlin_practice")
 include(":java_practice")

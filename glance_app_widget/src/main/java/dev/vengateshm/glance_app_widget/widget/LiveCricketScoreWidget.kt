@@ -43,7 +43,7 @@ import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import com.google.gson.Gson
 import dagger.hilt.EntryPoints
-import dev.vengateshm.common_lib.PreferenceProviderEntryPoint
+import dev.vengateshm.appcore.PreferenceProviderEntryPoint
 import dev.vengateshm.glance_app_widget.R
 import dev.vengateshm.glance_app_widget.models.LiveMatchesResponse
 import dev.vengateshm.glance_app_widget.service.LiveScoreService
