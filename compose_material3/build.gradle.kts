@@ -64,16 +64,21 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
 
     // Compose Material3
-    val material3Version = "1.2.0-beta02"
+    val material3Version = "1.2.0"
     implementation("androidx.compose.material3:material3:$material3Version")
     implementation("androidx.compose.material3:material3-window-size-class:$material3Version")
-    implementation("androidx.compose.material3:material3-adaptive:1.0.0-alpha04")
+    implementation("androidx.compose.material3:material3-adaptive:1.0.0-alpha06")
 
-    implementation("androidx.navigation:navigation-compose:2.7.6")
+    implementation("androidx.navigation:navigation-compose:2.7.7")
 
     // FlowLayout
     implementation("com.google.accompanist:accompanist-flowlayout:0.23.1")
     implementation(project(":appcore"))
+
+    // Voyager
+    implementation(libs.voyager.navigator)
+    implementation(libs.voyager.tabNavigator)
+    implementation(libs.voyager.transitions)
 
     testImplementation("junit:junit:4.13.2")
 

@@ -17,5 +17,8 @@
         <activity
             android:name=".list_detail.ListDetailActivity"
             android:exported="true" />
+        <activity
+            android:name=".navigation_voyager.VoyagerNavigationActivity"
+            android:exported="true" />
     </application>
 </manifest>

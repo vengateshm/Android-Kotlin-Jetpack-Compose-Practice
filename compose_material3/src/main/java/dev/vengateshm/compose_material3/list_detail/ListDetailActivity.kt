@@ -35,7 +35,7 @@ class ListDetailActivity : ComponentActivity() {
                     mutableStateOf(null)
                 }
 
-                val navigator = rememberListDetailPaneScaffoldNavigator()
+                val navigator = rememberListDetailPaneScaffoldNavigator<MyItem>()
 
                 ListDetailPaneScaffold(
                     listPane = {
