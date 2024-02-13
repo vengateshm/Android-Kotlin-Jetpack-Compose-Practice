@@ -291,7 +291,9 @@
         <activity
             android:name=".app_shortcuts.AppShortCutActivity"
             android:exported="true" />
-
+        <activity
+            android:name="dev.vengateshm.compose_material3.navigation_voyager.VoyagerNavigationActivity"
+            android:exported="true" />
         <!-- Register AlarmReceiver -->
         <receiver
             android:name=".doze_mode_test.AlarmReceiver"
