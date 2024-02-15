@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<locale-config xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--<locale android:name="en-US" />
+    <locale android:name="ja-JP" />
+    <locale android:name="hi-IN" />
+    <locale android:name="ar-AE" />
+    <locale android:name="es-ES" />
+    <locale android:name="zh-Hant-TW" />--> <!-- Specified the custom locale in Locale Config -->
+    <locale android:name="en" />
+    <locale android:name="es" />
+    <locale android:name="hi-IN" />
+    <locale android:name="ja-JP" />
+</locale-config>
