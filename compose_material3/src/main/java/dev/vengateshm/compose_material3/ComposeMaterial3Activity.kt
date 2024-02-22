@@ -20,14 +20,12 @@ import dev.vengateshm.compose_material3.components.MyRangeSlider
 import dev.vengateshm.compose_material3.components.MySlider
 import dev.vengateshm.compose_material3.components.MySwitch
 import dev.vengateshm.compose_material3.theme.Material3AppTheme
-import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
+import dev.vengateshm.compose_material3.ui.story.Stories
 
 class ComposeMaterial3Activity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        SimpleDateFormat.getDateInstance()
         setContent {
             Material3AppTheme {
                 Surface(
@@ -48,7 +46,14 @@ class ComposeMaterial3Activity : ComponentActivity() {
                         Spacer(modifier = Modifier.height(8.dp))
                         MyRangeSlider()
                     }*/
-                    ChatAppMain()
+//                    ChatAppMain()
+                    Stories(
+                        listOfImage = listOf(
+                            R.drawable.scene_1,
+                            R.drawable.scene_2,
+                            R.drawable.scene_3,
+                        )
+                    )
                 }
             }
         }
