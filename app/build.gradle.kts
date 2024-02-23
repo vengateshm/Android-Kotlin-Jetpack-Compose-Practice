@@ -8,7 +8,7 @@ plugins {
     id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
     id("dagger.hilt.android.plugin")
     id("kotlinx-serialization")
-//    id("com.google.gms.google-services")
+    id("com.google.gms.google-services")
     id("com.apollographql.apollo3") version "3.8.2"
     id("com.google.devtools.ksp")
 //    id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
@@ -183,8 +183,10 @@ dependencies {
     implementation("com.apollographql.apollo3:apollo-runtime:3.8.2")
 
     // Firebase BOM
-    implementation(platform("com.google.firebase:firebase-bom:32.2.0"))
+    implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
     implementation("com.google.firebase:firebase-database-ktx")
+    implementation("com.google.firebase:firebase-messaging")
+    implementation("com.google.firebase:firebase-messaging-ktx")
 
     val cameraxVersion = "1.4.0-alpha03"
     implementation("androidx.camera:camera-camera2:$cameraxVersion")
