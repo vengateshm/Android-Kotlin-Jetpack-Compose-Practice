@@ -11,6 +11,15 @@ plugins {
     id("com.google.gms.google-services") version "4.3.15" apply false
     id("com.google.devtools.ksp") version "1.9.10-1.0.13" apply false
     id("com.google.dagger.hilt.android") version "2.48" apply false
+    id("org.jetbrains.dokka") version "1.9.10" // Needs KDoc comments to generate documentation
+}
+
+//subprojects {
+//    apply(plugin = "org.jetbrains.dokka")
+//}
+
+tasks.dokkaHtml {
+    outputDirectory.set(layout.buildDirectory.dir("docs/html"))
 }
 
 rootProject.extra.set("composeCompilerVersion", "1.5.3")
