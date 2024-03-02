@@ -20,5 +20,7 @@
         <activity
             android:name=".navigation_voyager.VoyagerNavigationActivity"
             android:exported="true" />
+        <activity android:name=".gemini_ai_chat.ChatAiActivity"
+            android:exported="true"/>
     </application>
 </manifest>

@@ -69,6 +69,8 @@ dependencies {
     implementation("androidx.compose.material3:material3-window-size-class:$material3Version")
     implementation("androidx.compose.material3:material3-adaptive:1.0.0-alpha06")
 
+    implementation("androidx.compose.material:material-icons-extended-android:1.6.2")
+
     implementation("androidx.navigation:navigation-compose:2.7.7")
 
     // FlowLayout
@@ -79,6 +81,8 @@ dependencies {
     implementation(libs.voyager.navigator)
     implementation(libs.voyager.tabNavigator)
     implementation(libs.voyager.transitions)
+
+    implementation("com.google.ai.client.generativeai:generativeai:0.2.1")
 
     testImplementation("junit:junit:4.13.2")
 

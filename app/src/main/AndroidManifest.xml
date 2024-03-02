@@ -297,6 +297,8 @@
             android:exported="true" />
         <activity android:name=".biometric.BiometricAuthActivity"
             android:exported="true"/>
+        <activity android:name="dev.vengateshm.compose_material3.gemini_ai_chat.ChatAiActivity"
+            android:exported="true"/>
         <!-- Register AlarmReceiver -->
         <receiver
             android:name=".doze_mode_test.AlarmReceiver"
