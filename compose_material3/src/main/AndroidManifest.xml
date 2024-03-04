@@ -22,5 +22,7 @@
             android:exported="true" />
         <activity android:name=".gemini_ai_chat.ChatAiActivity"
             android:exported="true"/>
+        <activity android:name=".ml_kit.MlKitActivity"
+            android:exported="true"/>
     </application>
 </manifest>
