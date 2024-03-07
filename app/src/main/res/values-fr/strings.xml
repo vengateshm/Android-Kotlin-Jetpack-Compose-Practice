@@ -4,4 +4,6 @@
     <string name="banana">Banane</string>
     <string name="citrus">Agrume</string>
     <string name="change_language">Changer la Langue.</string>
+    <string name="first_name_label">Prénom</string>
+    <string name="last_name_label">Nom de famille</string>
 </resources>

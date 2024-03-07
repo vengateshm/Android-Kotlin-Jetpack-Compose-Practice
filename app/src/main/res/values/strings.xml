@@ -5,6 +5,9 @@
     <string name="banana">Banana</string>
     <string name="citrus">Citrus</string>
     <string name="change_language">Change Language</string>
-    <string name="short_label">Short\n</string>
-    <string name="long_label">Static Shortcut</string>
+    <string name="short_label" translatable="false">Short\n</string>
+    <string name="long_label" translatable="false">Static Shortcut</string>
+    <string name="stars" translatable="false">%d stars</string>
+    <string name="first_name_label">First name</string>
+    <string name="last_name_label">Last name</string>
 </resources>

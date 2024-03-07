@@ -301,6 +301,8 @@
             android:exported="true"/>
         <activity android:name="dev.vengateshm.compose_material3.ml_kit.MlKitActivity"
             android:exported="true"/>
+        <activity android:name=".res_strings_cache_in_viewmodel.ResStringCacheInViewModelActivity"
+            android:exported="true"/>
         <!-- Register AlarmReceiver -->
         <receiver
             android:name=".doze_mode_test.AlarmReceiver"
