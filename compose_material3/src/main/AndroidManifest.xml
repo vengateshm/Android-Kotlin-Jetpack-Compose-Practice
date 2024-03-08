@@ -24,5 +24,8 @@
             android:exported="true"/>
         <activity android:name=".ml_kit.MlKitActivity"
             android:exported="true"/>
+        <activity
+            android:name=".multi_select_list_view.MultiSelectionListActivity"
+            android:exported="true" />
     </application>
 </manifest>
