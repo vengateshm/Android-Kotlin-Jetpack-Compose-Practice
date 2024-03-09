@@ -183,10 +183,12 @@ dependencies {
     implementation("com.apollographql.apollo3:apollo-runtime:3.8.2")
 
     // Firebase BOM
-    implementation(platform("com.google.firebase:firebase-bom:32.7.2"))
+    implementation(platform("com.google.firebase:firebase-bom:32.7.3"))
     implementation("com.google.firebase:firebase-database-ktx")
     implementation("com.google.firebase:firebase-messaging")
     implementation("com.google.firebase:firebase-messaging-ktx")
+    implementation("com.google.firebase:firebase-auth")
+    implementation(libs.firebase.firestore.ktx)
 
     val cameraxVersion = "1.4.0-alpha03"
     implementation("androidx.camera:camera-camera2:$cameraxVersion")
