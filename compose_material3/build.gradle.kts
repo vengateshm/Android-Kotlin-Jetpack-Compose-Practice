@@ -5,6 +5,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
+    id("kotlinx-serialization")
 }
 
 android {
@@ -85,6 +86,12 @@ dependencies {
     implementation("com.google.ai.client.generativeai:generativeai:0.2.1")
 
     implementation("com.google.android.gms:play-services-mlkit-document-scanner:16.0.0-beta1")
+
+    implementation("io.ktor:ktor-client-core:2.3.9")
+    implementation("io.ktor:ktor-client-android:2.3.9")
+    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.9")
+    implementation("io.ktor:ktor-client-content-negotiation:2.3.9")
+    implementation("io.ktor:ktor-client-logging:2.3.9")
 
     testImplementation("junit:junit:4.13.2")
 
