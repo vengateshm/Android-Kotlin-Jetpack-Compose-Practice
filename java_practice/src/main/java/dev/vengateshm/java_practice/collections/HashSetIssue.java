@@ -32,5 +32,8 @@ public class HashSetIssue {
         book1.setTitle("Advanced Java");
         System.out.println(book1.hashCode());
         System.out.println(books.contains(book1));
+        books.remove(book1);
+        books.add(book1);
+        System.out.println(books.contains(book1));
     }
 }
