@@ -1,3 +1,5 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 val composeVersion: String by rootProject.extra
 val composeCompilerVersion: String by rootProject.extra
 
@@ -17,6 +19,9 @@ android {
         targetSdk = 34
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val apiKey = gradleLocalProperties(rootDir).getProperty("GEMINI_API_KEY")
+        buildConfigField("String", "GEMINI_API_KEY", apiKey)
     }
 
     buildTypes {

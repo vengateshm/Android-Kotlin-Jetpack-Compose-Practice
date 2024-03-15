@@ -3,7 +3,7 @@ package dev.vengateshm.compose_material3.gemini_ai_chat
 import android.graphics.Bitmap
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.ai.client.generativeai.type.content
-import dev.vengateshm.compose_material3.gemini_ai_chat.Constants.API_KEY
+import dev.vengateshm.compose_material3.BuildConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -11,7 +11,7 @@ object ChatRepo {
     suspend fun getResponse(prompt: String): Chat {
         val generativeModel = GenerativeModel(
             modelName = "gemini-pro",
-            apiKey = API_KEY
+            apiKey = BuildConfig.GEMINI_API_KEY
         )
 
         try {
@@ -36,7 +36,7 @@ object ChatRepo {
     suspend fun getResponseWithImage(prompt: String, image: Bitmap): Chat {
         val generativeModel = GenerativeModel(
             modelName = "gemini-pro-vision",
-            apiKey = API_KEY
+            apiKey = BuildConfig.GEMINI_API_KEY
         )
 
         val inputContent = content {
