@@ -58,7 +58,7 @@ fun StartScreen(
                     .padding(horizontal = 20.dp, vertical = 40.dp)
             ) {
                 Text(
-                    text = stringResource(Material3AppString.stay_with_your_friends),
+                    text = stringResource(Material3AppString.cmaterial3_stay_with_your_friends),
                     style = TextStyle(
                         fontSize = 36.sp,
                         color = Color.White,
@@ -85,7 +85,7 @@ fun StartScreen(
             )
         ) {
             Text(
-                text = stringResource(Material3AppString.get_started), style = TextStyle(
+                text = stringResource(Material3AppString.cmaterial3_get_started), style = TextStyle(
                     color = Color.Black,
                     fontSize = 16.sp,
                     fontFamily = InterBold
@@ -119,7 +119,7 @@ fun CustomCheckBox() {
         }
         Spacer(modifier = Modifier.width(15.dp))
         Text(
-            text = stringResource(Material3AppString.secure_private_messaging), style = TextStyle(
+            text = stringResource(Material3AppString.cmaterial3_secure_private_messaging), style = TextStyle(
                 color = Color.White,
                 fontSize = 16.sp,
                 fontFamily = InterSemiBold

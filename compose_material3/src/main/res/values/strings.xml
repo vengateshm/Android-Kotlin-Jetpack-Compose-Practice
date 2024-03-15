@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="stay_with_your_friends">Stay connected with your friends and family</string>
-    <string name="secure_private_messaging">Secure, private messaging</string>
-    <string name="get_started">Get Started</string>
-    <string name="add_story">Add Story</string>
-    <string name="online">Online</string>
-    <string name="type_message">Type Message</string>
+    <string name="cmaterial3_stay_with_your_friends">Stay connected with your friends and family</string>
+    <string name="cmaterial3_secure_private_messaging">Secure, private messaging</string>
+    <string name="cmaterial3_get_started">Get Started</string>
+    <string name="cmaterial3_add_story">Add Story</string>
+    <string name="cmaterial3_online">Online</string>
+    <string name="cmaterial3_type_message">Type Message</string>
 </resources>

@@ -182,7 +182,7 @@ fun CustomTextField(
             onValueChange = { onValueChange(it) },
             placeholder = {
                 Text(
-                    text = stringResource(R.string.type_message),
+                    text = stringResource(R.string.cmaterial3_type_message),
                     style = TextStyle(
                         fontSize = 14.sp,
                         fontFamily = InterRegular,
@@ -269,7 +269,7 @@ fun UserNameRow(
                     )
                 )
                 Text(
-                    text = stringResource(R.string.online),
+                    text = stringResource(R.string.cmaterial3_online),
                     style = TextStyle(
                         color = Color.White,
                         fontFamily = InterRegular,

@@ -1,7 +1,6 @@
 package dev.vengateshm.compose_material3.chat_app.screens
 
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Indication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -186,7 +185,7 @@ fun AddStoryLayout(
         }
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = stringResource(AppStrings.add_story),
+            text = stringResource(AppStrings.cmaterial3_add_story),
             style = TextStyle(
                 color = Color.White,
                 fontSize = 13.sp,
