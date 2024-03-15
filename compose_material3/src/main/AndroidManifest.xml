@@ -27,5 +27,7 @@
         <activity
             android:name=".multi_select_list_view.MultiSelectionListActivity"
             android:exported="true" />
+        <activity android:name=".shaders.AGSLShaderActivity"
+            android:exported="true"/>
     </application>
 </manifest>
