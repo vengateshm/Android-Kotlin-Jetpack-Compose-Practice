@@ -29,5 +29,7 @@
             android:exported="true" />
         <activity android:name=".shaders.AGSLShaderActivity"
             android:exported="true"/>
+        <activity android:name=".infinite_scroll.InfiniteScrollActivity"
+            android:exported="true"/>
     </application>
 </manifest>
