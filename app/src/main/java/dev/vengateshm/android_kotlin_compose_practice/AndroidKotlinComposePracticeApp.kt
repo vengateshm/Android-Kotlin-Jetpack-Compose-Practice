@@ -13,6 +13,8 @@ import coil.memory.MemoryCache
 import coil.request.CachePolicy
 import coil.util.DebugLogger
 import dagger.hilt.android.HiltAndroidApp
+import dev.vengateshm.android_kotlin_compose_practice.manual_di.CallAppModule
+import dev.vengateshm.android_kotlin_compose_practice.manual_di.CallAppModuleImpl
 import java.io.PrintWriter
 import java.io.StringWriter
 import java.lang.Character.LINE_SEPARATOR
@@ -22,6 +24,9 @@ import kotlin.system.exitProcess
 class AndroidKotlinComposePracticeApp : Application(), ImageLoaderFactory {
     override fun onCreate() {
         super.onCreate()
+
+        // Manual DI
+        callAppModule = CallAppModuleImpl(this)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel =
@@ -114,5 +119,9 @@ class AndroidKotlinComposePracticeApp : Application(), ImageLoaderFactory {
             }*/
             .logger(DebugLogger())
             .build()
+    }
+
+    companion object {
+        lateinit var callAppModule: CallAppModule
     }
 }

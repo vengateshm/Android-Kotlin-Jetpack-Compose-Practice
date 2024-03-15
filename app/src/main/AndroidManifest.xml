@@ -306,6 +306,8 @@
         <activity
             android:name="dev.vengateshm.compose_material3.multi_select_list_view.MultiSelectionListActivity"
             android:exported="true" />
+        <activity android:name=".manual_di.ManualDiActivity"
+            android:exported="true"/>
         <!-- Register AlarmReceiver -->
         <receiver
             android:name=".doze_mode_test.AlarmReceiver"
