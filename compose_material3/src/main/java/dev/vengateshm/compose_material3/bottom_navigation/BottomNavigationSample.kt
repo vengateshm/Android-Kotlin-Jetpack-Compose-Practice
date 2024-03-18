@@ -1,21 +1,28 @@
 package dev.vengateshm.compose_material3.bottom_navigation
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Badge
 import androidx.compose.material3.BadgedBox
+import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 
 @Composable
@@ -57,13 +64,57 @@ fun BottomNavigationSample() {
             startDestination = "home"
         ) {
             composable("home") {
-                HomeScreen()
+                HomeScreen(
+                    onShowErrorDialog = {
+                        val errMsg = "Error loading list"
+                        navController.navigate("error_dialog/$errMsg")
+                    }
+                )
+            }
+            dialog("error_dialog/{err_msg}") {
+                it.arguments?.getString("err_msg")?.let { errMsg ->
+                    ErrorDialog(
+                        onDismissRequest = {
+                            navController.popBackStack()
+                        },
+                        message = errMsg,
+                        btnText = "OK"
+                    )
+                }
             }
         }
     }
 }
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(onShowErrorDialog: () -> Unit) {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center
+    ) {
+        Button(onClick = {
+            onShowErrorDialog()
+        }) {
+            Text(text = "Show error dialog")
+        }
+    }
+}
 
+@Composable
+fun ErrorDialog(onDismissRequest: () -> Unit, message: String, btnText: String) {
+    AlertDialog(
+        text = {
+            Text(text = message)
+        },
+        onDismissRequest = {
+            onDismissRequest()
+        },
+        confirmButton = {
+            TextButton(onClick = {
+                onDismissRequest()
+            }) {
+                Text(text = btnText)
+            }
+        }
+    )
 }
