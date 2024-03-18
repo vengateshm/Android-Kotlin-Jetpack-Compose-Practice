@@ -1,5 +1,9 @@
 package dev.vengateshm.compose_material3.request_state
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.animation.togetherWith
 import androidx.compose.runtime.Composable
 
 sealed class RequestState<out T> {
@@ -17,16 +21,34 @@ sealed class RequestState<out T> {
 
     @Composable
     fun DisplayUi(
+        shouldAnimate: Boolean = true,
         onIdle: (@Composable () -> Unit)? = null,
         onLoading: @Composable () -> Unit,
         onSuccess: @Composable () -> Unit,
         onError: @Composable () -> Unit,
     ) {
-        when (this) {
-            is Idle -> onIdle?.invoke()
-            is Loading -> onLoading()
-            is Success -> onSuccess()
-            is Error -> onError()
+        if (shouldAnimate) {
+            AnimatedContent(
+                targetState = this,
+                transitionSpec = {
+                    slideInVertically { it } togetherWith slideOutVertically { it }
+                },
+                label = ""
+            ) { state ->
+                when (state) {
+                    is Idle -> onIdle?.invoke()
+                    is Loading -> onLoading()
+                    is Success -> onSuccess()
+                    is Error -> onError()
+                }
+            }
+        } else {
+            when (this) {
+                is Idle -> onIdle?.invoke()
+                is Loading -> onLoading()
+                is Success -> onSuccess()
+                is Error -> onError()
+            }
         }
     }
 }
