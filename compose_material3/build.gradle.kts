@@ -68,10 +68,11 @@ dependencies {
     implementation("androidx.compose.foundation:foundation-layout:$composeVersion")
 
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
+    implementation(libs.preference.ktx)
     debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
 
     // Compose Material3
-    val material3Version = "1.2.0"
+    val material3Version = "1.2.1"
     implementation("androidx.compose.material3:material3:$material3Version")
     implementation("androidx.compose.material3:material3-window-size-class:$material3Version")
     implementation("androidx.compose.material3:material3-adaptive:1.0.0-alpha06")
