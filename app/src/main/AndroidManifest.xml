@@ -314,6 +314,8 @@
             android:exported="true"/>
         <activity android:name="dev.vengateshm.compose_material3.app.calendar.CalendarAppActivity"
             android:exported="true"/>
+        <activity android:name="dev.vengateshm.compose_material3.pull_to_refresh.PullToRefreshActivity"
+            android:exported="true"/>
         <!-- Register AlarmReceiver -->
         <receiver
             android:name=".doze_mode_test.AlarmReceiver"
