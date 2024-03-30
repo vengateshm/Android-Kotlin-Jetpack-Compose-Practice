@@ -68,7 +68,7 @@ dependencies {
     implementation("androidx.compose.foundation:foundation-layout:$composeVersion")
 
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
-    implementation(libs.preference.ktx)
+    implementation(libs.androidx.preference.ktx)
     debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
 
     // Compose Material3
@@ -80,6 +80,8 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended-android:1.6.2")
 
     implementation("androidx.navigation:navigation-compose:2.7.7")
+
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
 
     // FlowLayout
     implementation("com.google.accompanist:accompanist-flowlayout:0.23.1")

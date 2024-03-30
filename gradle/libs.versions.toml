@@ -1,7 +1,8 @@
 [versions]
+preferenceKtxVersion = "1.2.1"
 voyager = "1.0.0"
-firebaseFirestoreKtx = "24.10.3"
-agp = "8.2.0"
+firebaseFirestoreKtx = "24.11.0"
+agp = "8.2.2"
 kotlin = "1.9.10"
 coreKtx = "1.12.0"
 junit = "4.13.2"
@@ -10,9 +11,9 @@ espressoCore = "3.5.1"
 appcompat = "1.6.1"
 material = "1.11.0"
 jetbrainsKotlinJvm = "1.9.10"
-preferenceKtx = "1.2.1"
 
 [libraries]
+androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtxVersion" }
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
 voyager-screenModel = { module = "cafe.adriel.voyager:voyager-screenmodel", version.ref = "voyager" }
 voyager-bottomSheetNavigator = { module = "cafe.adriel.voyager:voyager-bottom-sheet-navigator", version.ref = "voyager" }
@@ -29,7 +30,7 @@ ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitV
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
-preference-ktx = { group = "androidx.preference", name = "preference-ktx", version.ref = "preferenceKtx" }
+
 [plugins]
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 jetbrainsKotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
