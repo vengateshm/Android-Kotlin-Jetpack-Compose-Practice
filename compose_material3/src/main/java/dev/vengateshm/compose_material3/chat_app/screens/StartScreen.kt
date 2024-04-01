@@ -42,7 +42,7 @@ fun StartScreen(
             .background(Color.Black)
     ) {
         Image(
-            painter = painterResource(id = Material3AppDrawable.chat_app_background),
+            painter = painterResource(id = Material3AppDrawable.cmaterial3_chat_app_background),
             contentDescription = "",
             contentScale = ContentScale.FillWidth
         )

@@ -1,5 +1,7 @@
 package dev.vengateshm.android_kotlin_compose_practice.localization_app
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -17,6 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import dev.vengateshm.android_kotlin_compose_practice.R
 
+@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun ListScreen() {
     // Observe the language change using LocalContext

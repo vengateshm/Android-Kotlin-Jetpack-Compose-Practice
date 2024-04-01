@@ -1,5 +1,6 @@
 package dev.vengateshm.android_kotlin_compose_practice.stopwatch
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.ContentTransform
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -32,6 +33,7 @@ import dev.vengateshm.android_kotlin_compose_practice.stopwatch.Constants.ACTION
 import dev.vengateshm.android_kotlin_compose_practice.stopwatch.Constants.ACTION_SERVICE_STOP
 import dev.vengateshm.android_kotlin_compose_practice.stopwatch.service.StopWatchService
 
+@SuppressLint("UnusedContentLambdaTargetStateParameter")
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun MainScreen(stopWatchService: StopWatchService) {
@@ -54,6 +56,7 @@ fun MainScreen(stopWatchService: StopWatchService) {
             AnimatedContent(
                 targetState = seconds,
                 transitionSpec = { addAnimation() },
+                label = "",
             ) {
                 Text(
                     modifier = Modifier.weight(1f),
@@ -69,6 +72,7 @@ fun MainScreen(stopWatchService: StopWatchService) {
             AnimatedContent(
                 targetState = seconds,
                 transitionSpec = { addAnimation() },
+                label = "",
             ) {
                 Text(
                     modifier = Modifier.weight(1f),

@@ -5,6 +5,7 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.os.Build
 
 abstract class AndroidSensor(
     private val context: Context,
@@ -23,7 +24,9 @@ abstract class AndroidSensor(
         }
         // (context.getSystemService(SensorManager::class.java) as SensorManager).getSensorList(Sensor.TYPE_ALL)
         if (!::sensorManager.isInitialized && sensor == null) {
-            sensorManager = context.getSystemService(SensorManager::class.java) as SensorManager
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                sensorManager = context.getSystemService(SensorManager::class.java) as SensorManager
+            }
             sensor = sensorManager.getDefaultSensor(sensorType)
         }
         sensor?.let {

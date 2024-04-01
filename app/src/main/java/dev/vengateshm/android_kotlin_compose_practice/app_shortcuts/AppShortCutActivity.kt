@@ -75,7 +75,7 @@ class AppShortCutActivity : ComponentActivity() {
             val shortcutInfo = ShortcutInfo.Builder(this, "pinned_shortcut")
                 .setShortLabel("Pinned")
                 .setLongLabel("Pinned Shortcut")
-                .setIcon(Icon.createWithResource(this, R.drawable.chat_app_mic))
+                .setIcon(Icon.createWithResource(this, R.drawable.cmaterial3_chat_app_mic))
                 .setIntent(Intent(applicationContext, AppShortCutActivity::class.java).apply {
                     action = Intent.ACTION_VIEW
                     putExtra("shortcut_id", "pinned_shortcut")

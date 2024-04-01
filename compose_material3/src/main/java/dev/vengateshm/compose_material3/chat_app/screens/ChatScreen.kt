@@ -198,7 +198,7 @@ fun CustomTextField(
                 focusedIndicatorColor = Color.Transparent
             ),
             leadingIcon = { CommonIconButton(imageVector = Icons.Default.Add) },
-            trailingIcon = { CommonIconButtonDrawable(R.drawable.chat_app_mic) }
+            trailingIcon = { CommonIconButtonDrawable(R.drawable.cmaterial3_chat_app_mic) }
         )
     }
 }

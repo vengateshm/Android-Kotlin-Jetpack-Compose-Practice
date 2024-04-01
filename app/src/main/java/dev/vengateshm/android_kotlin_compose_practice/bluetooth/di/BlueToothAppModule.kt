@@ -1,6 +1,7 @@
 package dev.vengateshm.android_kotlin_compose_practice.bluetooth.di
 
 import android.content.Context
+import android.os.Build
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,6 +19,10 @@ object BlueToothAppModule {
     fun provideBluetoothController(
         @ApplicationContext context: Context,
     ): BluetoothController {
-        return AndroidBluetoothController(context)
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            AndroidBluetoothController(context)
+        } else {
+            TODO("VERSION.SDK_INT < M")
+        }
     }
 }

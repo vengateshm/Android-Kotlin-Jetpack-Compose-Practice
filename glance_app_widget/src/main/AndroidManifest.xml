@@ -7,7 +7,8 @@
         <service
             android:name=".service.LiveScoreService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true"
+            android:foregroundServiceType="shortService"/>
         <receiver
             android:name=".receiver.LiveCricketScoreWidgetReceiver"
             android:enabled="true"
@@ -23,7 +24,8 @@
         <service
             android:name=".service.COVID19DataService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true"
+            android:foregroundServiceType="shortService"/>
 
         <receiver
             android:name=".receiver.COVID19WidgetReceiver"

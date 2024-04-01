@@ -1,5 +1,7 @@
 package dev.vengateshm.android_kotlin_compose_practice.localization_app
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
@@ -19,6 +21,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 
+@RequiresApi(Build.VERSION_CODES.N)
 @Composable
 fun LocalizationApp() {
     val navController = rememberNavController()

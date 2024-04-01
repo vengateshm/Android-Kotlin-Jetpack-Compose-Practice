@@ -47,7 +47,7 @@ fun ProfileHeader(progress: Float) {
                     .layoutId("box"),
         )
         Image(
-            painter = painterResource(id = R.drawable.someone_else),
+            painter = painterResource(id = R.drawable.cmaterial3_someone_else),
             contentDescription = null,
             modifier =
                 Modifier
