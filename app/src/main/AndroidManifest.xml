@@ -325,6 +325,9 @@
             android:exported="true"/>
         <activity android:name=".screenshot_detection.ScreenShotActivity"
             android:exported="true"/>
+        <activity
+            android:name="dev.vengateshm.compose_material3.coroutines.dispatchers.CoroutineDispatchersActivity"
+            android:exported="true" />
         <!-- Register AlarmReceiver -->
         <receiver
             android:name=".doze_mode_test.AlarmReceiver"

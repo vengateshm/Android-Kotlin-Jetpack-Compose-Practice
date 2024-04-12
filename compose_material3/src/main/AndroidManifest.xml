@@ -43,6 +43,9 @@
         <activity
             android:name=".presenter_retain.PresenterRetainActivity"
             android:exported="true" />
+        <activity
+            android:name=".coroutines.dispatchers.CoroutineDispatchersActivity"
+            android:exported="true" />
         <receiver android:name=".app_widget.CounterGlanceAppWidgetReceiver"
             android:exported="true">
             <intent-filter>
