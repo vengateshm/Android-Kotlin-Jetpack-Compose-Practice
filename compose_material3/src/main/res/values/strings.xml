@@ -7,4 +7,27 @@
     <string name="cmaterial3_online">Online</string>
     <string name="cmaterial3_type_message">Type Message</string>
     <string name="cmaterial3_counter_widget_description">Counter</string>
+
+    <string name="cmaterial3_flight_status_ontime">On time</string>
+    <string name="cmaterial3_flight_status_departed">Departed</string>
+    <string name="cmaterial3_flight_status_delayed">Delayed</string>
+    <string name="cmaterial3_flight_status_canceled">Canceled</string>
+    <string name="cmaterial3_flight_status_diverted">Diverted</string>
+    <string name="cmaterial3_flight_status_return">Return</string>
+    <string name="cmaterial3_flight_status_early">Early</string>
+    <string name="cmaterial3_flight_status_inflight">In flight</string>
+    <string name="cmaterial3_flight_status_landed">Landed</string>
+    <string name="cmaterial3_flight_status_arrived">Arrived</string>
+    <string name="cmaterial3_flight_status_not_available">Not available</string>
+    <string name="cmaterial3_scheduled_text">Scheduled</string>
+    <string name="cmaterial3_estimated_text">Estimated</string>
+    <string name="cmaterial3_actual_text">Actual</string>
+    <string name="cmaterial3_canceled_text">Canceled</string>
+    <string name="cmaterial3_empty_text"> </string>
+    <string name="cmaterial3_remainingtime_left_label">%1$s left</string>
+
+    <plurals name="cmaterial3_no_of_stops">
+        <item quantity="one">%d stop</item>
+        <item quantity="other">%d stops</item>
+    </plurals>
 </resources>

@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import dev.vengateshm.compose_material3.flight_block_ui.UiGreen
+import dev.vengateshm.compose_material3.flight_block_ui.UiBadgeGreen
 import dev.vengateshm.compose_material3.flight_block_ui.UiWhite
 
 @Composable
@@ -33,7 +33,7 @@ fun FlightStatusBadge(
 
 data class FlightStatusBadgeData(
     val statusText: String = "",
-    val backgroundColor: Color = UiGreen,
+    val backgroundColor: Color = UiBadgeGreen,
     val textColor: Color = UiWhite
 )
 
