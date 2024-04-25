@@ -21,7 +21,8 @@ import dev.vengateshm.compose_material3.R
 fun FlightBlockProgressBar(
     modifier: Modifier = Modifier,
     progress: Float = 0f,
-    showThumb: Boolean = false
+    showThumb: Boolean = false,
+    showSolidTrack: Boolean = false
 ) {
     Slider(
         modifier = modifier,
@@ -43,15 +44,20 @@ fun FlightBlockProgressBar(
             Canvas(
                 Modifier
                     .fillMaxWidth()
-                    .height(1.dp)
+                    .height(if (showSolidTrack) 2.dp else 1.dp)
             ) {
-
-                drawLine(
-                    color = Color(0XFF666666),
-                    start = Offset(0f, 0f),
-                    end = Offset(size.width, 0f),
-                    pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f)
-                )
+                if (showSolidTrack) {
+                    drawRoundRect(
+                        color = Color(0XFF002244),
+                    )
+                } else {
+                    drawLine(
+                        color = Color(0XFF666666),
+                        start = Offset(0f, 0f),
+                        end = Offset(size.width, 0f),
+                        pathEffect = PathEffect.dashPathEffect(floatArrayOf(10f, 10f), 0f)
+                    )
+                }
             }
         })
 }
