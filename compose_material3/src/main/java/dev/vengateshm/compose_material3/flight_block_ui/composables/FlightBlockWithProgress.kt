@@ -1,7 +1,10 @@
 package dev.vengateshm.compose_material3.flight_block_ui.composables
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,9 +19,14 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asAndroidBitmap
+import androidx.compose.ui.graphics.layer.drawLayer
+import androidx.compose.ui.graphics.rememberGraphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
@@ -36,18 +44,45 @@ import dev.vengateshm.compose_material3.flight_block_ui.FlightBlockWithProgressV
 import dev.vengateshm.compose_material3.flight_block_ui.FlightStatus
 import dev.vengateshm.compose_material3.flight_block_ui.flightStatuses
 import dev.vengateshm.compose_material3.flight_block_ui.inFlight
+import dev.vengateshm.compose_material3.media_store.MediaStoreUtil
+import kotlinx.coroutines.launch
 
+@RequiresApi(Build.VERSION_CODES.Q)
 @Composable
 fun FlightBlockWithProgressScreen(viewModel: FlightBlockWithProgressViewModel = FlightBlockWithProgressViewModel()) {
-    val flightBlockUiDataList = flightStatuses.filter { it.flightStatus == FlightStatus.IN_FLIGHT }
+    val coroutineScope = rememberCoroutineScope()
+    val graphicsLayer = rememberGraphicsLayer()
+
+    val flightBlockUiDataList = flightStatuses
+        .filter { it.flightStatus == FlightStatus.IN_FLIGHT }
         .map { viewModel.getFlightBlockUiData(it) }
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
-        items(flightBlockUiDataList) { flightBlockUiData ->
-            FlightBlockWithProgress(
-                modifier = Modifier.padding(16.dp),
-                flightBlockUiData = flightBlockUiData
-            )
-            HorizontalDivider()
+
+    val context = LocalContext.current
+
+    Box(modifier = Modifier
+        .fillMaxSize()
+        .drawWithContent {
+            graphicsLayer.record {
+                this@drawWithContent.drawContent()
+            }
+            drawLayer(graphicsLayer)
+        }
+        .clickable {
+            coroutineScope.launch {
+                val bitmap = graphicsLayer.toImageBitmap().asAndroidBitmap()
+                MediaStoreUtil(context).saveImage(bitmap)
+            }
+        }
+        .background(color = Color.White)
+    ) {
+        LazyColumn(modifier = Modifier.fillMaxSize()) {
+            items(flightBlockUiDataList) { flightBlockUiData ->
+                FlightBlockWithProgress(
+                    modifier = Modifier.padding(16.dp),
+                    flightBlockUiData = flightBlockUiData
+                )
+                HorizontalDivider()
+            }
         }
     }
 }
