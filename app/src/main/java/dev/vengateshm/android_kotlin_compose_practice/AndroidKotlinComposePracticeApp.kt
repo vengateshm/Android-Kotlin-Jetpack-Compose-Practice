@@ -15,6 +15,7 @@ import coil.util.DebugLogger
 import dagger.hilt.android.HiltAndroidApp
 import dev.vengateshm.android_kotlin_compose_practice.manual_di.CallAppModule
 import dev.vengateshm.android_kotlin_compose_practice.manual_di.CallAppModuleImpl
+import dev.vengateshm.compose_material3.foreground_service.counter_service.CounterNotificationUtils
 import java.io.PrintWriter
 import java.io.StringWriter
 import java.lang.Character.LINE_SEPARATOR
@@ -38,6 +39,7 @@ class AndroidKotlinComposePracticeApp : Application(), ImageLoaderFactory {
             val notificationManager =
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
+            notificationManager.createNotificationChannel(CounterNotificationUtils.getCounterNotificationChannel())
         }
 
         Thread.setDefaultUncaughtExceptionHandler { _, throwable ->

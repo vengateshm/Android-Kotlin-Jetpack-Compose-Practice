@@ -3,6 +3,9 @@
 
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
 
     <application>
         <activity
@@ -47,6 +50,9 @@
             android:name=".coroutines.dispatchers.CoroutineDispatchersActivity"
             android:exported="true" />
         <activity android:name=".shared_element_transition.SharedElementTransitionActivity"
+            android:exported="true"/>
+        <service android:name=".foreground_service.counter_service.CounterService"
+            android:foregroundServiceType="specialUse"
             android:exported="true"/>
         <receiver android:name=".app_widget.CounterGlanceAppWidgetReceiver"
             android:exported="true">
