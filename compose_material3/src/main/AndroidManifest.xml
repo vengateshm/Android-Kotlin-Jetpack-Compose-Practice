@@ -46,6 +46,8 @@
         <activity
             android:name=".coroutines.dispatchers.CoroutineDispatchersActivity"
             android:exported="true" />
+        <activity android:name=".shared_element_transition.SharedElementTransitionActivity"
+            android:exported="true"/>
         <receiver android:name=".app_widget.CounterGlanceAppWidgetReceiver"
             android:exported="true">
             <intent-filter>

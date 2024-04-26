@@ -1,4 +1,5 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val composeVersion: String by rootProject.extra
 val composeCompilerVersion: String by rootProject.extra
@@ -54,6 +55,10 @@ android {
     resourcePrefix = "cmaterial3_"
 }
 
+tasks.withType(KotlinCompile::class.java) {
+    kotlinOptions.freeCompilerArgs += "-Xcontext-receivers"
+}
+
 dependencies {
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
@@ -62,14 +67,17 @@ dependencies {
 
     // Compose dependencies
     implementation("androidx.activity:activity-compose:1.8.2")
-    implementation("androidx.compose.ui:ui:$composeVersion")
-    implementation("androidx.compose.runtime:runtime:$composeVersion")
-    implementation("androidx.compose.foundation:foundation:$composeVersion")
-    implementation("androidx.compose.foundation:foundation-layout:$composeVersion")
 
-    implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
+    val composeAlphaVersion = "1.7.0-alpha07"
+    implementation("androidx.compose.ui:ui:$composeAlphaVersion")
+    implementation("androidx.compose.foundation:foundation:$composeAlphaVersion")
+    implementation("androidx.compose.animation:animation:$composeAlphaVersion")
+    implementation("androidx.compose.runtime:runtime:$composeAlphaVersion")
+    implementation("androidx.compose.foundation:foundation-layout:$composeAlphaVersion")
+    implementation("androidx.compose.ui:ui-tooling-preview:$composeAlphaVersion")
+    debugImplementation("androidx.compose.ui:ui-tooling:$composeAlphaVersion")
+
     implementation(libs.androidx.preference.ktx)
-    debugImplementation("androidx.compose.ui:ui-tooling:$composeVersion")
 
     // Compose Material3
     val material3Version = "1.2.1"
@@ -123,7 +131,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     // Compose testing
     // Test rules and transitive dependencies:
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeVersion")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeAlphaVersion")
     // Needed for createAndroidComposeRule, but not createComposeRule:
-    debugImplementation("androidx.compose.ui:ui-test-manifest:$composeVersion")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:$composeAlphaVersion")
 }

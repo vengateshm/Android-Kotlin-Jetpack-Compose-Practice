@@ -328,6 +328,8 @@
         <activity
             android:name="dev.vengateshm.compose_material3.coroutines.dispatchers.CoroutineDispatchersActivity"
             android:exported="true" />
+        <activity android:name="dev.vengateshm.compose_material3.shared_element_transition.SharedElementTransitionActivity"
+            android:exported="true"/>
         <!-- Register AlarmReceiver -->
         <receiver
             android:name=".doze_mode_test.AlarmReceiver"
