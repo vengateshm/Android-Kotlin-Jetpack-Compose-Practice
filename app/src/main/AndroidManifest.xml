@@ -330,6 +330,19 @@
             android:exported="true" />
         <activity android:name="dev.vengateshm.compose_material3.shared_element_transition.SharedElementTransitionActivity"
             android:exported="true"/>
+        <activity android:name="dev.vengateshm.compose_material3.deep_links.DeepLinkActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="artemis.com"
+                    android:scheme="example"/>
+            </intent-filter>
+        </activity>
         <!-- Register AlarmReceiver -->
         <receiver
             android:name=".doze_mode_test.AlarmReceiver"

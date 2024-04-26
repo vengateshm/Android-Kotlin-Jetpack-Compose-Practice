@@ -54,6 +54,19 @@
         <service android:name=".foreground_service.counter_service.CounterService"
             android:foregroundServiceType="specialUse"
             android:exported="true"/>
+        <activity android:name=".deep_links.DeepLinkActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="artemis.com"
+                    android:scheme="example"/>
+            </intent-filter>
+        </activity>
         <receiver android:name=".app_widget.CounterGlanceAppWidgetReceiver"
             android:exported="true">
             <intent-filter>
