@@ -89,5 +89,9 @@ public class StreamOperators {
                 .mapToObj(i -> fn.get(i) + " " + ln.get(i))
                 .collect(Collectors.toList());
         System.out.println(res);
+
+        List<String> r = StreamZip.zip(fn.stream(), ln.stream(), (f, l) -> f + " " + l)
+                .collect(Collectors.toList());
+        System.out.println(r);
     }
 }
