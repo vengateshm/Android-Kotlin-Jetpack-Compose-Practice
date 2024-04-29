@@ -81,5 +81,13 @@ public class StreamOperators {
         List<Integer> is2 = IntStream.rangeClosed(1,10).boxed().collect(Collectors.toList());
         System.out.println(is1);
         System.out.println(is2);
+
+        List<String> fn = Arrays.asList("Bob", "Alice");
+        List<String> ln = Arrays.asList("Smith", "Jones");
+
+        List<String> res = IntStream.range(0, Math.min(fn.size(), ln.size()))
+                .mapToObj(i -> fn.get(i) + " " + ln.get(i))
+                .collect(Collectors.toList());
+        System.out.println(res);
     }
 }
