@@ -54,7 +54,7 @@ fun FlightBlockWithProgressScreen(viewModel: FlightBlockWithProgressViewModel = 
     val graphicsLayer = rememberGraphicsLayer()
 
     val flightBlockUiDataList = flightStatuses
-        .filter { it.flightStatus == FlightStatus.IN_FLIGHT }
+        .filter { it.flightStatus == FlightStatus.LANDED }
         .map { viewModel.getFlightBlockUiData(it) }
 
     val context = LocalContext.current
@@ -272,7 +272,8 @@ private fun TimeAndProgress(flightBlockUiData: FlightBlockUiData) {
             FlightBlockProgressBar(
                 progress = flightBlockUiData.progress,
                 showThumb = flightBlockUiData.showThumb,
-                showSolidTrack = flightBlockUiData.showSolidTrack
+                showSolidTrack = flightBlockUiData.showSolidTrack,
+                shouldAnimate = flightBlockUiData.shouldAnimateProgress
             )
 
             flightBlockUiData.totalJourneyTime.takeIf { it.isNotEmpty() }?.let { totalJourneyTime ->

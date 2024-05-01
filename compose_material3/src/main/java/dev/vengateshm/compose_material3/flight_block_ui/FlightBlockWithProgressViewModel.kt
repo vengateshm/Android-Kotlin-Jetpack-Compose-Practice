@@ -95,6 +95,7 @@ class FlightBlockWithProgressViewModel {
             arrivalDate = arrivalDate,
             journeyTimeLeft = journeyTimeLeft,
             progress = progress ?: 0f,
+            shouldAnimateProgress = showThumb,
             totalJourneyTime = totalJourneyTime,
             showLeftCheck = showLeftCheck,
             showRightCheck = showRightCheck,
