@@ -1,4 +1,4 @@
-package dev.vengateshm.compose_material3.image_loading
+package dev.vengateshm.compose_material3.image
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
