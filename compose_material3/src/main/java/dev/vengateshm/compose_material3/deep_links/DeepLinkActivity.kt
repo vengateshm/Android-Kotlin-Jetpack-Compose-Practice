@@ -7,16 +7,23 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.core.app.NotificationCompat
 import androidx.core.content.getSystemService
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.dropUnlessResumed
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -50,14 +57,14 @@ class DeepLinkActivity : ComponentActivity() {
             MaterialTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = Color.Magenta.copy(alpha = 0.2f)
                 ) {
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = "s1") {
                         composable(
                             route = "s1",
                         ) {
-                            Screen1()
+                            Screen1(navController)
                         }
                         composable(
                             route = "s2?article={article}",
@@ -68,7 +75,7 @@ class DeepLinkActivity : ComponentActivity() {
                             )
                         ) {
                             val article = it.arguments?.getString("article")
-                            Screen2(article)
+                            Screen2(navController, article)
                         }
                     }
                 }
@@ -78,21 +85,55 @@ class DeepLinkActivity : ComponentActivity() {
 }
 
 @Composable
-fun Screen1() {
+fun Screen1(navController: NavHostController) {
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color.LightGray),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = "Screen1")
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(text = "Screen1")
+            Button(onClick = /*{
+                navController.doIfResumed {
+                    navController.navigate("s2")
+                }
+            }*/dropUnlessResumed {
+                navController.navigate("s2")
+            }) {
+                Text(text = "Go To Screen 2")
+            }
+        }
     }
 }
 
 @Composable
-fun Screen2(article: String?) {
+fun Screen2(navController: NavHostController, article: String?) {
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color.LightGray),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = "Showing / $article")
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(text = "Showing / $article")
+            Button(onClick = /*{
+                navController.doIfResumed {
+                    navController.popBackStack()
+                }
+            }*/
+            dropUnlessResumed {
+                navController.popBackStack()
+            }) {
+                Text(text = "Back")
+            }
+        }
+    }
+}
+
+fun NavHostController.doIfResumed(block: () -> Unit) {
+    println("${currentBackStackEntry?.destination?.route} in ${currentBackStackEntry?.lifecycle?.currentState} state")
+    if (currentBackStackEntry?.lifecycle?.currentState == Lifecycle.State.RESUMED) {
+        block()
     }
 }
