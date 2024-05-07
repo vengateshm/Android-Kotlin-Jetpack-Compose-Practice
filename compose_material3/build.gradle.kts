@@ -120,11 +120,6 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:$okhttpVersion")
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttpVersion")
 
-    // Glance
-    val glance_version = "1.0.0"
-    //implementation "androidx.glance:glance:$glance_version"
-    implementation("androidx.glance:glance-appwidget:$glance_version")
-
     testImplementation("junit:junit:4.13.2")
 
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

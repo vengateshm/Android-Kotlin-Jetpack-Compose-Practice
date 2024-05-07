@@ -12,49 +12,28 @@
             android:name=".ComposeMaterial3Activity"
             android:exported="true" />
         <activity
-            android:name=".message_bar.MessageBarActivity"
-            android:exported="true" />
-        <activity
-            android:name=".expandable_list.ExpandableListActivity"
-            android:exported="true" />
-        <activity
-            android:name=".bottom_sheet.BottomSheetActivity"
-            android:exported="true" />
-        <activity
-            android:name=".list_detail.ListDetailActivity"
-            android:exported="true" />
-        <activity
-            android:name=".navigation_voyager.VoyagerNavigationActivity"
-            android:exported="true" />
-        <activity android:name=".gemini_ai_chat.ChatAiActivity"
-            android:exported="true"/>
-        <activity android:name=".ml_kit.MlKitActivity"
+            android:name=".apps.gemini_ai_chat.ChatAiActivity"
             android:exported="true"/>
         <activity
-            android:name=".multi_select_list_view.MultiSelectionListActivity"
-            android:exported="true" />
-        <activity android:name=".shaders.AGSLShaderActivity"
-            android:exported="true"/>
-        <activity android:name=".infinite_scroll.InfiniteScrollActivity"
+            android:name=".other_concepts.ml_kit.MlKitActivity"
             android:exported="true"/>
         <activity
-            android:name=".app.calendar.CalendarAppActivity"
+            android:name=".other_concepts.shaders.AGSLShaderActivity"
             android:exported="true" />
         <activity
-            android:name=".pull_to_refresh.PullToRefreshActivity"
-            android:exported="true" />
-        <activity
-            android:name=".presenter_retain.PresenterRetainActivity"
-            android:exported="true" />
-        <activity
-            android:name=".coroutines.dispatchers.CoroutineDispatchersActivity"
-            android:exported="true" />
-        <activity android:name=".shared_element_transition.SharedElementTransitionActivity"
+            android:name=".ui_concepts.infinite_scroll.InfiniteScrollActivity"
             android:exported="true"/>
-        <service android:name=".foreground_service.counter_service.CounterService"
-            android:foregroundServiceType="specialUse"
-            android:exported="true"/>
-        <activity android:name=".deep_links.DeepLinkActivity"
+        <activity
+            android:name=".apps.calendar.CalendarAppActivity"
+            android:exported="true" />
+        <activity
+            android:name=".other_concepts.presenter_retain.PresenterRetainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".api_kotlin.coroutines.CoroutineDispatchersActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui_concepts.deep_links.DeepLinkActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -67,13 +46,10 @@
                     android:scheme="example"/>
             </intent-filter>
         </activity>
-        <receiver android:name=".app_widget.CounterGlanceAppWidgetReceiver"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-            </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/cmaterial3_counter_widget_info"/>
-        </receiver>
+
+        <service
+            android:name=".api_android.foreground_service.counter.CounterService"
+            android:exported="true"
+            android:foregroundServiceType="specialUse" />
     </application>
 </manifest>

@@ -4,6 +4,9 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application>
+        <activity
+            android:name=".GlanceAppWidgetActivity"
+            android:exported="true" />
         <service
             android:name=".service.LiveScoreService"
             android:enabled="true"
@@ -63,6 +66,17 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/whatsapp_glance_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name=".receiver.CounterGlanceAppWidgetReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/counter_widget_info" />
         </receiver>
     </application>
 </manifest>

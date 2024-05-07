@@ -1,4 +1,4 @@
-package dev.vengateshm.android_kotlin_compose_practice.glanceAppWidget.widgetAndReceiver.utils
+package dev.vengateshm.glance_app_widget.utils
 
 import android.os.Build
 import androidx.compose.runtime.Composable

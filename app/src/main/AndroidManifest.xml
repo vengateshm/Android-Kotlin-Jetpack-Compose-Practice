@@ -170,16 +170,10 @@
             android:name=".games.TicTacToeActivity"
             android:exported="true" />
         <activity
-            android:name="dev.vengateshm.compose_material3.message_bar.MessageBarActivity"
-            android:exported="true" />
-        <activity
             android:name=".compose_apis.ComposeApisActivity"
             android:exported="true" />
         <activity
             android:name=".search_functionality.SearchFunctionalityActivity"
-            android:exported="true" />
-        <activity
-            android:name="dev.vengateshm.compose_material3.expandable_list.ExpandableListActivity"
             android:exported="true" />
         <activity
             android:name=".nested_navigation.NestedNavigationActivity"
@@ -225,9 +219,6 @@
             android:exported="true" />
         <activity
             android:name=".pie_chart.PieChartActivity"
-            android:exported="true" />
-        <activity
-            android:name="dev.vengateshm.compose_material3.bottom_sheet.BottomSheetActivity"
             android:exported="true" />
         <activity
             android:name=".room_db.RoomDbSampleActivity"
@@ -297,40 +288,30 @@
         <activity
             android:name=".app_shortcuts.AppShortCutActivity"
             android:exported="true" />
-        <activity
-            android:name="dev.vengateshm.compose_material3.navigation_voyager.VoyagerNavigationActivity"
-            android:exported="true" />
         <activity android:name=".biometric.BiometricAuthActivity"
             android:exported="true"/>
-        <activity android:name="dev.vengateshm.compose_material3.gemini_ai_chat.ChatAiActivity"
+        <activity android:name="dev.vengateshm.compose_material3.apps.gemini_ai_chat.ChatAiActivity"
             android:exported="true"/>
-        <activity android:name="dev.vengateshm.compose_material3.ml_kit.MlKitActivity"
+        <activity android:name="dev.vengateshm.compose_material3.other_concepts.ml_kit.MlKitActivity"
             android:exported="true"/>
         <activity android:name=".res_strings_cache_in_viewmodel.ResStringCacheInViewModelActivity"
             android:exported="true"/>
-        <activity
-            android:name="dev.vengateshm.compose_material3.multi_select_list_view.MultiSelectionListActivity"
-            android:exported="true" />
         <activity android:name=".manual_di.ManualDiActivity"
             android:exported="true"/>
-        <activity android:name="dev.vengateshm.compose_material3.shaders.AGSLShaderActivity"
+        <activity android:name="dev.vengateshm.compose_material3.other_concepts.shaders.AGSLShaderActivity"
             android:exported="true"/>
-        <activity android:name="dev.vengateshm.compose_material3.infinite_scroll.InfiniteScrollActivity"
+        <activity android:name="dev.vengateshm.compose_material3.ui_concepts.infinite_scroll.InfiniteScrollActivity"
             android:exported="true"/>
-        <activity android:name="dev.vengateshm.compose_material3.app.calendar.CalendarAppActivity"
+        <activity android:name="dev.vengateshm.compose_material3.apps.calendar.CalendarAppActivity"
             android:exported="true"/>
-        <activity android:name="dev.vengateshm.compose_material3.pull_to_refresh.PullToRefreshActivity"
-            android:exported="true"/>
-        <activity android:name="dev.vengateshm.compose_material3.presenter_retain.PresenterRetainActivity"
+        <activity android:name="dev.vengateshm.compose_material3.other_concepts.presenter_retain.PresenterRetainActivity"
             android:exported="true"/>
         <activity android:name=".screenshot_detection.ScreenShotActivity"
             android:exported="true"/>
         <activity
-            android:name="dev.vengateshm.compose_material3.coroutines.dispatchers.CoroutineDispatchersActivity"
+            android:name="dev.vengateshm.compose_material3.api_kotlin.coroutines.CoroutineDispatchersActivity"
             android:exported="true" />
-        <activity android:name="dev.vengateshm.compose_material3.shared_element_transition.SharedElementTransitionActivity"
-            android:exported="true"/>
-        <activity android:name="dev.vengateshm.compose_material3.deep_links.DeepLinkActivity"
+        <activity android:name="dev.vengateshm.compose_material3.ui_concepts.deep_links.DeepLinkActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
