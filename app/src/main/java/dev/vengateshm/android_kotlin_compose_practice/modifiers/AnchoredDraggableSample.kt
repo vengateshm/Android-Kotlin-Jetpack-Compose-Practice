@@ -1,6 +1,7 @@
 package dev.vengateshm.android_kotlin_compose_practice.modifiers
 
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.exponentialDecay
+import androidx.compose.animation.core.spring
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.AnchoredDraggableState
@@ -38,33 +39,36 @@ fun AnchoredDraggableSample() {
             }
         }
 
-    val state =
-        remember {
+    val state = remember {
             AnchoredDraggableState(
                 initialValue = DragValue.Start,
                 anchors = anchors,
-                positionalThreshold = { distance ->
-                    distance * 0.5f
-                },
-                velocityThreshold = {
-                    with(density) { 48.dp.toPx() }
-                },
-                animationSpec = tween(),
+                positionalThreshold = { distance: Float -> distance * 0.5f },
+                velocityThreshold = { with(density) { 48.dp.toPx() } },
+                snapAnimationSpec = spring(),
+                decayAnimationSpec = exponentialDecay()
             )
         }
 
     Box(
         modifier =
-            Modifier
-                .width(width)
-                .anchoredDraggable(
-                    state = state,
-                    orientation = Orientation.Horizontal,
-                ),
+        Modifier
+            .width(width)
+            .anchoredDraggable(
+                state = state,
+                orientation = Orientation.Horizontal,
+            ),
     ) {
         Box(
             Modifier
-                .offset { IntOffset(state.offset.roundToInt(), 0) }
+                .offset {
+                    IntOffset(
+                        x = state
+                            .requireOffset()
+                            .roundToInt(),
+                        y = 0
+                    )
+                }
                 .size(squareSize)
                 .background(color = Color.LightGray),
         )
