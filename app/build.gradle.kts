@@ -220,6 +220,8 @@ dependencies {
     implementation("androidx.biometric:biometric:1.1.0")
     implementation("androidx.biometric:biometric-ktx:1.2.0-alpha05")
 
+    implementation(project(":xml_kotlin"))
+
     testImplementation("junit:junit:4.13.2")
     testImplementation("androidx.room:room-testing:2.6.1")
 

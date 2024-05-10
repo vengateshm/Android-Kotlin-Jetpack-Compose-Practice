@@ -324,6 +324,9 @@
                     android:scheme="example"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name="dev.vengateshm.xml_kotlin.tab_layout_viewpager.XMLKotlinActivity"
+            android:exported="true" />
         <!-- Register AlarmReceiver -->
         <receiver
             android:name=".doze_mode_test.AlarmReceiver"
