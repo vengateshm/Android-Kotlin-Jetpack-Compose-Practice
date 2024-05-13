@@ -56,7 +56,7 @@ fun PieChart(modifier: Modifier = Modifier, chartDataPoints: List<PieChartData>)
             .fillMaxSize()
             .background(color = Color.White)
     ) {
-        var startAngle = 270f
+        /*var startAngle = 270f
         chartDataPoints.forEachIndexed { index, pieChartData ->
             val sweepAngle = 360f * (pieChartData.point.toFloat() / total)
             drawPie(
@@ -65,6 +65,15 @@ fun PieChart(modifier: Modifier = Modifier, chartDataPoints: List<PieChartData>)
                 sweepAngle = sweepAngle,
             )
             startAngle += sweepAngle
+        }*/
+        chartDataPoints.forEachIndexed { index, pieChartData ->
+            val startAngle = 360f * chartDataPoints.take(index).sumOf { it.point } / total
+            val sweepAngle = 360f * pieChartData.point.toFloat() / total
+            drawPie(
+                color = pieChartData.color,
+                startAngle = startAngle,
+                sweepAngle = sweepAngle,
+            )
         }
     }
 }
