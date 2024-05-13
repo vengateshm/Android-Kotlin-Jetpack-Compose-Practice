@@ -1,10 +1,14 @@
 package dev.vengateshm.compose_material3.custom_ui.charts
 
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -12,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import kotlin.random.Random
@@ -50,30 +55,54 @@ fun PieChartSample(modifier: Modifier = Modifier) {
 
 @Composable
 fun PieChart(modifier: Modifier = Modifier, chartDataPoints: List<PieChartData>) {
+    val animateSize = remember {
+        Animatable(initialValue = 0.dp.value)
+    }
+    val animateAngle = remember {
+        Animatable(initialValue = 0f)
+    }
+
+    LaunchedEffect(key1 = Unit) {
+        animateSize.animateTo(400.dp.value, tween(1000))
+        animateAngle.animateTo(360f, tween(1000))
+    }
+
     val total = chartDataPoints.sumOf { it.point }
-    Canvas(
+    Box(
         modifier = modifier
-            .fillMaxSize()
-            .background(color = Color.White)
+            .size(animateSize.value.dp)
     ) {
-        /*var startAngle = 270f
-        chartDataPoints.forEachIndexed { index, pieChartData ->
-            val sweepAngle = 360f * (pieChartData.point.toFloat() / total)
-            drawPie(
-                color = pieChartData.color,
-                startAngle = startAngle,
-                sweepAngle = sweepAngle,
-            )
-            startAngle += sweepAngle
-        }*/
-        chartDataPoints.forEachIndexed { index, pieChartData ->
-            val startAngle = 360f * chartDataPoints.take(index).sumOf { it.point } / total
-            val sweepAngle = 360f * pieChartData.point.toFloat() / total
-            drawPie(
-                color = pieChartData.color,
-                startAngle = startAngle,
-                sweepAngle = sweepAngle,
-            )
+        Canvas(
+            modifier = modifier
+                .size(animateSize.value.dp)
+                .graphicsLayer {
+                    rotationZ = animateAngle.value
+                }
+        ) {
+            /*var startAngle = 270f
+            chartDataPoints.forEachIndexed { index, pieChartData ->
+                val sweepAngle = 360f * (pieChartData.point.toFloat() / total)
+                drawPie(
+                    color = pieChartData.color,
+                    startAngle = startAngle,
+                    sweepAngle = sweepAngle,
+                )
+                startAngle += sweepAngle
+            }*/
+            chartDataPoints.forEachIndexed { index, pieChartData ->
+                val startAngle = 360f * chartDataPoints.take(index).sumOf { it.point } / total
+                val sweepAngle = 360f * pieChartData.point.toFloat() / total
+                /*drawPie(
+                    color = pieChartData.color,
+                    startAngle = startAngle,
+                    sweepAngle = sweepAngle,
+                )*/
+                drawRing(
+                    color = pieChartData.color,
+                    startAngle = startAngle,
+                    sweepAngle = sweepAngle,
+                )
+            }
         }
     }
 }
