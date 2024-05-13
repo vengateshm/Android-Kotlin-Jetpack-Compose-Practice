@@ -9,6 +9,7 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
     id("kotlinx-serialization")
+    kotlin("plugin.serialization") version "1.9.10"
 }
 
 android {
@@ -17,7 +18,6 @@ android {
 
     defaultConfig {
         minSdk = 21
-        targetSdk = 34
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -78,7 +78,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling:$composeAlphaVersion")
 
     implementation(libs.androidx.preference.ktx)
-
+    implementation("androidx.security:security-crypto-ktx:1.1.0-alpha06")
     // Compose Material3
     val material3Version = "1.2.1"
     implementation("androidx.compose.material3:material3:$material3Version")
@@ -88,7 +88,8 @@ dependencies {
 
     implementation("androidx.compose.material:material-icons-extended-android:1.6.2")
 
-    implementation("androidx.navigation:navigation-compose:2.7.7")
+    implementation("androidx.navigation:navigation-compose:2.8.0-alpha08")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 
     implementation("androidx.lifecycle:lifecycle-runtime-compose-android:2.8.0-rc01")
 
