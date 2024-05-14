@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name=".tab_layout_viewpager.XMLKotlinActivity"
+            android:name=".XMLKotlinActivity"
             android:exported="true" />
     </application>
 </manifest>

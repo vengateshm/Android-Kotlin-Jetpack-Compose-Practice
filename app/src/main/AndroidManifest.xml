@@ -325,7 +325,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="dev.vengateshm.xml_kotlin.tab_layout_viewpager.XMLKotlinActivity"
+            android:name="dev.vengateshm.xml_kotlin.XMLKotlinActivity"
             android:exported="true" />
         <!-- Register AlarmReceiver -->
         <receiver

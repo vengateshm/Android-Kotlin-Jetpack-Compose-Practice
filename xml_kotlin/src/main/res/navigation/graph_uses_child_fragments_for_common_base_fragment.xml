@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/same_fragment_type_graph"
+    app:startDestination="@id/fragmentA">
+
+    <fragment
+        android:id="@+id/fragmentA"
+        android:name="dev.vengateshm.xml_kotlin.navigation.FragmentA"
+        android:label="FragmentA" >
+        <action
+            android:id="@+id/action_fragmentA_to_fragmentB1"
+            app:destination="@id/fragmentB1" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentB1"
+        android:name="dev.vengateshm.xml_kotlin.navigation.FragmentB1"
+        android:label="FragmentB1" >
+        <action
+            android:id="@+id/action_fragmentB1_to_fragmentB2"
+            app:destination="@id/fragmentB2" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentB2"
+        android:name="dev.vengateshm.xml_kotlin.navigation.FragmentB2"
+        android:label="FragmentB2" />
+</navigation>

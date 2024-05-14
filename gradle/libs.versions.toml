@@ -1,6 +1,7 @@
 [versions]
 fragmentKtx = "1.7.0"
 glide = "4.16.0"
+navigationFragmentKtx = "2.7.7"
 preferenceKtxVersion = "1.2.1"
 voyager = "1.0.0"
 firebaseFirestoreKtx = "24.11.1"
@@ -16,6 +17,8 @@ jetbrainsKotlinJvm = "1.9.10"
 
 [libraries]
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
+androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
+androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationFragmentKtx" }
 androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtxVersion" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
