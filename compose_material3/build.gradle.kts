@@ -88,7 +88,7 @@ dependencies {
 
     implementation("androidx.compose.material:material-icons-extended-android:1.6.2")
 
-    implementation("androidx.navigation:navigation-compose:2.8.0-alpha08")
+    implementation("androidx.navigation:navigation-compose:2.8.0-beta01")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
 
     implementation("androidx.lifecycle:lifecycle-runtime-compose-android:2.8.0-rc01")
