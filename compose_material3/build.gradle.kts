@@ -106,6 +106,8 @@ dependencies {
 
     implementation("com.google.android.gms:play-services-mlkit-document-scanner:16.0.0-beta1")
 
+    implementation("com.google.android.gms:play-services-location:21.2.0")
+
     implementation("io.ktor:ktor-client-core:2.3.9")
     implementation("io.ktor:ktor-client-android:2.3.9")
     implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.9")

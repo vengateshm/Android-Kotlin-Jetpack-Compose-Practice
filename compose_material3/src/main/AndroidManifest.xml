@@ -6,6 +6,9 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application>
         <activity
@@ -51,5 +54,9 @@
             android:name=".api_android.foreground_service.counter.CounterService"
             android:exported="true"
             android:foregroundServiceType="specialUse" />
+        <service
+            android:name=".api_android.foreground_service.location_tracking.LocationTrackingService"
+            android:exported="true"
+            android:foregroundServiceType="location" />
     </application>
 </manifest>

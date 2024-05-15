@@ -14,6 +14,13 @@ fun Activity.requestNotificationPermission() {
     }
 }
 
+fun Activity.requestLocationPermissions() {
+    arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION)
+        .forEachIndexed { index, permission ->
+            requestPermissionIfNotGranted(permission, 1000 + (index + 1))
+        }
+}
+
 private fun Activity.requestPermissionIfNotGranted(permission: String, requestCode: Int) {
     val isGranted =
         ContextCompat.checkSelfPermission(
