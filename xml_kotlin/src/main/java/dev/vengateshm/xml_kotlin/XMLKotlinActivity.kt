@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
+import dev.vengateshm.xml_kotlin.haptics.HapticsFragment
 import dev.vengateshm.xml_kotlin.tab_layout_viewpager.TabLayoutViewPagerFragment
 
 class XMLKotlinActivity : AppCompatActivity() {
@@ -17,6 +18,10 @@ class XMLKotlinActivity : AppCompatActivity() {
                 replace<TabLayoutViewPagerFragment>(R.id.fragmentContainer)
             }
         }*/
+        supportFragmentManager.commit {
+            setReorderingAllowed(true)
+            replace<HapticsFragment>(R.id.fragmentContainer)
+        }
     }
 
     override fun onDestroy() {
