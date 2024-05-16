@@ -18,7 +18,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -27,12 +26,13 @@ import androidx.compose.ui.unit.dp
 import dev.vengateshm.compose_material3.theme.Material3AppTheme
 import kotlinx.coroutines.launch
 
-data class NPieData(val title: String, val value: Int, val color: Color)
+data class NPieData(val title: String = "", val value: Int, val color: Color)
 
 data class ArcData(
     val animation: Animatable<Float, AnimationVector1D>,
     val targetSweepAngle: Float,
-    val color: Color
+    val color: Color,
+    val startAngle: Float = 0f
 )
 
 @Composable
@@ -93,7 +93,9 @@ fun NPieChartSample(modifier: Modifier = Modifier) {
     Material3AppTheme {
         Surface {
             NPieChart(
-                modifier = Modifier.padding(32.dp).aspectRatio(1f),
+                modifier = Modifier
+                    .padding(32.dp)
+                    .aspectRatio(1f),
                 dataPoints = dataPoints,
             ) {
                 Row(
