@@ -79,6 +79,11 @@ dependencies {
 
     implementation(libs.androidx.preference.ktx)
     implementation("androidx.security:security-crypto-ktx:1.1.0-alpha06")
+
+    implementation("androidx.compose.runtime:runtime-livedata")
+
+    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
+
     // Compose Material3
     val material3Version = "1.2.1"
     implementation("androidx.compose.material3:material3:$material3Version")
