@@ -47,7 +47,7 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     // Glance
-    val glance_version = "1.0.0"
+    val glance_version = "1.1.0-rc01"
     //implementation "androidx.glance:glance:$glance_version"
     implementation("androidx.glance:glance-appwidget:$glance_version")
 
