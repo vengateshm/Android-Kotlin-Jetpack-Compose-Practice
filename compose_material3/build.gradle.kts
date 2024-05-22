@@ -5,11 +5,12 @@ val composeVersion: String by rootProject.extra
 val composeCompilerVersion: String by rootProject.extra
 
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-parcelize")
     id("kotlinx-serialization")
-    kotlin("plugin.serialization") version "1.9.10"
+    kotlin("plugin.serialization") version libs.versions.kotlin.get()
+    alias(libs.plugins.composeInvestigator)
 }
 
 android {
@@ -21,7 +22,7 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        val apiKey = gradleLocalProperties(rootDir).getProperty("GEMINI_API_KEY")
+        val apiKey = gradleLocalProperties(rootDir, project.providers).getProperty("GEMINI_API_KEY")
         buildConfigField("String", "GEMINI_API_KEY", apiKey)
     }
 
@@ -68,14 +69,14 @@ dependencies {
     // Compose dependencies
     implementation("androidx.activity:activity-compose:1.8.2")
 
-    val composeAlphaVersion = "1.7.0-alpha07"
-    implementation("androidx.compose.ui:ui:$composeAlphaVersion")
-    implementation("androidx.compose.foundation:foundation:$composeAlphaVersion")
-    implementation("androidx.compose.animation:animation:$composeAlphaVersion")
-    implementation("androidx.compose.runtime:runtime:$composeAlphaVersion")
-    implementation("androidx.compose.foundation:foundation-layout:$composeAlphaVersion")
-    implementation("androidx.compose.ui:ui-tooling-preview:$composeAlphaVersion")
-    debugImplementation("androidx.compose.ui:ui-tooling:$composeAlphaVersion")
+    val composeNonStableVersion = "1.7.0-beta01"
+    implementation("androidx.compose.ui:ui:$composeNonStableVersion")
+    implementation("androidx.compose.foundation:foundation:$composeNonStableVersion")
+    implementation("androidx.compose.animation:animation:$composeNonStableVersion")
+    implementation("androidx.compose.runtime:runtime:$composeNonStableVersion")
+    implementation("androidx.compose.foundation:foundation-layout:$composeNonStableVersion")
+    implementation("androidx.compose.ui:ui-tooling-preview:$composeNonStableVersion")
+    debugImplementation("androidx.compose.ui:ui-tooling:$composeNonStableVersion")
 
     implementation(libs.androidx.preference.ktx)
     implementation("androidx.security:security-crypto-ktx:1.1.0-alpha06")
@@ -128,13 +129,17 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:$okhttpVersion")
     implementation("com.squareup.okhttp3:logging-interceptor:$okhttpVersion")
 
+    // In App updates
+    implementation("com.google.android.play:app-update:2.1.0")
+    implementation("com.google.android.play:app-update-ktx:2.1.0")
+
     testImplementation("junit:junit:4.13.2")
 
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     // Compose testing
     // Test rules and transitive dependencies:
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeAlphaVersion")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeNonStableVersion")
     // Needed for createAndroidComposeRule, but not createComposeRule:
-    debugImplementation("androidx.compose.ui:ui-test-manifest:$composeAlphaVersion")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:$composeNonStableVersion")
 }
