@@ -42,9 +42,8 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
     // Glance
-    val glance_version = "1.1.0-rc01"
-    //implementation "androidx.glance:glance:$glance_version"
-    implementation("androidx.glance:glance-appwidget:$glance_version")
+    implementation(libs.androidx.glance.appwidget)
+    implementation(libs.androidx.glance.material3)
 
     val retrofit_version = "2.9.0"
     implementation("com.squareup.retrofit2:retrofit:$retrofit_version")

@@ -3,11 +3,11 @@ package dev.vengateshm.glance_app_widget.widget
 import android.content.Context
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
+import androidx.glance.GlanceTheme
 import androidx.glance.ImageProvider
 import androidx.glance.action.ActionParameters
 import androidx.glance.action.actionParametersOf
@@ -17,6 +17,8 @@ import androidx.glance.appwidget.action.ActionCallback
 import androidx.glance.appwidget.action.ToggleableStateKey
 import androidx.glance.appwidget.action.actionRunCallback
 import androidx.glance.appwidget.appWidgetBackground
+import androidx.glance.appwidget.components.Scaffold
+import androidx.glance.appwidget.components.TitleBar
 import androidx.glance.appwidget.lazy.LazyColumn
 import androidx.glance.appwidget.lazy.items
 import androidx.glance.appwidget.provideContent
@@ -25,11 +27,9 @@ import androidx.glance.background
 import androidx.glance.currentState
 import androidx.glance.layout.Column
 import androidx.glance.layout.fillMaxSize
-import androidx.glance.layout.fillMaxWidth
 import androidx.glance.layout.padding
 import androidx.glance.state.GlanceStateDefinition
 import androidx.glance.state.PreferencesGlanceStateDefinition
-import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import dev.vengateshm.glance_app_widget.R
@@ -55,40 +55,53 @@ class TodoListWidget : GlanceAppWidget() {
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
             val prefs = currentState<Preferences>()
-            Column(
-                modifier = GlanceModifier
-                    .fillMaxSize()
-                    .background(ImageProvider(R.drawable.app_widget_background))
-                    .appWidgetBackground()
-                    .padding(16.dp)
-            ) {
-                Text(
-                    text = context.getString(R.string.todo_list),
-                    modifier = GlanceModifier
-                        .fillMaxWidth()
-                        .padding(8.dp),
-                    style = TextStyle(
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 18.sp
-                    ),
-                )
-                CountChecked(groceryStringIds.filter {
-                    prefs[booleanPreferencesKey(it.toString())] ?: false
-                }.size)
-                LazyColumn {
-                    items(groceryStringIds) {
-                        val idString = it.toString()
-                        val checked = prefs[booleanPreferencesKey(idString)] ?: false
-                        CheckBox(
-                            text = context.getString(it),
-                            checked = checked,
-                            onCheckedChange = actionRunCallback<CheckboxClickAction>(
-                                actionParametersOf(
-                                    toggledStringIdKey to idString,
-                                )
-                            ),
-                            modifier = GlanceModifier.padding(12.dp)
+            GlanceTheme {
+                Scaffold(
+                    modifier = GlanceModifier.fillMaxSize(),
+                    titleBar = {
+                        TitleBar(
+                            startIcon = ImageProvider(R.drawable.baseline_checklist_24),
+                            title = "ToDos"
                         )
+                    },
+                    backgroundColor = GlanceTheme.colors.widgetBackground
+                ) {
+                    Column(
+                        modifier = GlanceModifier
+                            .fillMaxSize()
+                            /*.background(ImageProvider(R.drawable.app_widget_background))
+                            .appWidgetBackground()*/
+                            .padding(16.dp)
+                    ) {
+                        /*Text(
+                            text = context.getString(R.string.todo_list),
+                            modifier = GlanceModifier
+                                .fillMaxWidth()
+                                .padding(8.dp),
+                            style = TextStyle(
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 18.sp
+                            ),
+                        )*/
+                        CountChecked(groceryStringIds.filter {
+                            prefs[booleanPreferencesKey(it.toString())] ?: false
+                        }.size)
+                        LazyColumn {
+                            items(groceryStringIds) {
+                                val idString = it.toString()
+                                val checked = prefs[booleanPreferencesKey(idString)] ?: false
+                                CheckBox(
+                                    text = context.getString(it),
+                                    checked = checked,
+                                    onCheckedChange = actionRunCallback<CheckboxClickAction>(
+                                        actionParametersOf(
+                                            toggledStringIdKey to idString,
+                                        )
+                                    ),
+                                    modifier = GlanceModifier.padding(12.dp)
+                                )
+                            }
+                        }
                     }
                 }
             }
@@ -99,6 +112,7 @@ class TodoListWidget : GlanceAppWidget() {
 @Composable
 private fun CountChecked(checkedCount: Int) {
     Text(
+        style = TextStyle(color = GlanceTheme.colors.onSurface),
         text = "$checkedCount checkboxes checked",
         modifier = GlanceModifier.padding(start = 8.dp)
     )

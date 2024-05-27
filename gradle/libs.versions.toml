@@ -1,5 +1,6 @@
 [versions]
 agp = "8.4.1"
+glanceAppwidget = "1.1.0-rc01"
 kotlin = "2.0.0"
 fragmentKtx = "1.7.1"
 glide = "4.16.0"
@@ -22,6 +23,8 @@ composeInvestigator = "1.5.11-0.2.1"
 
 [libraries]
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
+androidx-glance-appwidget = { module = "androidx.glance:glance-appwidget", version.ref = "glanceAppwidget" }
+androidx-glance-material3 = { module = "androidx.glance:glance-material3", version.ref = "glanceAppwidget" }
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationFragmentKtx" }
 androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtxVersion" }
