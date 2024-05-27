@@ -10,7 +10,8 @@ plugins {
     id("kotlin-parcelize")
     id("kotlinx-serialization")
     kotlin("plugin.serialization") version libs.versions.kotlin.get()
-    alias(libs.plugins.composeInvestigator)
+//    alias(libs.plugins.composeInvestigator)
+    alias(libs.plugins.compose.plugin)
 }
 
 android {
@@ -41,12 +42,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = composeCompilerVersion
     }
     packaging {
         resources {

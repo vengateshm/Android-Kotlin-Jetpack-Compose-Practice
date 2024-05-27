@@ -1,6 +1,6 @@
 [versions]
 agp = "8.4.1"
-kotlin = "1.9.23"
+kotlin = "2.0.0"
 fragmentKtx = "1.7.1"
 glide = "4.16.0"
 navigationFragmentKtx = "2.7.7"
@@ -17,7 +17,7 @@ dokka = "1.9.20"
 daggerHilt = "2.49"
 googleServices = "4.4.1"
 secretsGradlePlugin = "2.0.1"
-ksp = "1.9.23-1.0.20"
+ksp = "2.0.0-1.0.21"
 composeInvestigator = "1.5.11-0.2.1"
 
 [libraries]
@@ -26,6 +26,7 @@ androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fr
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationFragmentKtx" }
 androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtxVersion" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+ksp-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
 voyager-screenModel = { module = "cafe.adriel.voyager:voyager-screenmodel", version.ref = "voyager" }
 voyager-bottomSheetNavigator = { module = "cafe.adriel.voyager:voyager-bottom-sheet-navigator", version.ref = "voyager" }
@@ -55,3 +56,4 @@ google-services = { id = "com.google.gms.google-services", version.ref = "google
 mapsplatform-secrets-gradle-plugin = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secretsGradlePlugin" }
 devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 composeInvestigator = { id = "land.sungbin.composeinvestigator", version.ref = "composeInvestigator" }
+compose-plugin = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin"}

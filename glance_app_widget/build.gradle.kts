@@ -3,6 +3,7 @@ val composeCompilerVersion: String by rootProject.extra
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.compose.plugin)
 }
 
 android {
@@ -30,12 +31,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = composeCompilerVersion
     }
 }
 

@@ -12,6 +12,7 @@ plugins {
     id("com.apollographql.apollo3") version "3.8.2"
     id("com.google.devtools.ksp")
 //    id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
+    alias(libs.plugins.compose.plugin)
 }
 
 android {
@@ -46,12 +47,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = "17"
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = composeCompilerVersion
     }
     packaging {
         resources {
