@@ -47,6 +47,8 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "/META-INF/LICENSE.md"
+            excludes += "/META-INF/LICENSE-notice.md"
         }
     }
     resourcePrefix = "cmaterial3_"
@@ -145,8 +147,11 @@ dependencies {
 
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    //Koin
     androidTestImplementation(libs.koin.test)
     androidTestImplementation(libs.koin.android.test)
+    //Mockk
+    androidTestImplementation(libs.mockk.android)
     // Compose testing
     // Test rules and transitive dependencies:
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeNonStableVersion")
