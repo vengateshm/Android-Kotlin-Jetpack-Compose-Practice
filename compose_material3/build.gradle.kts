@@ -142,11 +142,11 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.koin.android)
 
-    testImplementation("junit:junit:4.13.2")
+    testImplementation(libs.junit)
     testImplementation(libs.koin.test)
 
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation(libs.ext.junit)
+    androidTestImplementation(libs.espresso.core)
     //Koin
     androidTestImplementation(libs.koin.test)
     androidTestImplementation(libs.koin.android.test)
