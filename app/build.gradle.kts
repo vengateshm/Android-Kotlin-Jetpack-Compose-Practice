@@ -215,6 +215,11 @@ dependencies {
     implementation("androidx.biometric:biometric:1.1.0")
     implementation("androidx.biometric:biometric-ktx:1.2.0-alpha05")
 
+    //Koin
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+
     implementation(project(":xml_kotlin"))
 
     testImplementation("junit:junit:4.13.2")

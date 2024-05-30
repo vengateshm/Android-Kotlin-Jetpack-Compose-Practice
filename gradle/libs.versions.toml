@@ -6,6 +6,7 @@ fragmentKtx = "1.7.1"
 glide = "4.16.0"
 navigationFragmentKtx = "2.7.7"
 preferenceKtxVersion = "1.2.1"
+roomRuntime = "2.6.1"
 voyager = "1.0.0"
 firebaseFirestoreKtx = "25.0.0"
 coreKtx = "1.13.1"
@@ -20,6 +21,7 @@ googleServices = "4.4.1"
 secretsGradlePlugin = "2.0.1"
 ksp = "2.0.0-1.0.21"
 composeInvestigator = "1.5.11-0.2.1"
+koinBom = "3.5.0"
 
 [libraries]
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
@@ -28,6 +30,9 @@ androidx-glance-material3 = { module = "androidx.glance:glance-material3", versi
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationFragmentKtx" }
 androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtxVersion" }
+androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 ksp-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
@@ -46,6 +51,11 @@ ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitV
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koinBom" }
+koin-core = { module = "io.insert-koin:koin-core" }
+koin-android = { module = "io.insert-koin:koin-android" }
+koin-test = { module = "io.insert-koin:koin-test" }
+koin-android-test = { module = "io.insert-koin:koin-android-test" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

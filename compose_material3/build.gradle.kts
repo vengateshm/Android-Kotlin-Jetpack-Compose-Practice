@@ -12,6 +12,7 @@ plugins {
     kotlin("plugin.serialization") version libs.versions.kotlin.get()
 //    alias(libs.plugins.composeInvestigator)
     alias(libs.plugins.compose.plugin)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -128,10 +129,24 @@ dependencies {
     implementation("com.google.android.play:app-update:2.1.0")
     implementation("com.google.android.play:app-update-ktx:2.1.0")
 
+    //Room
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    // Kotlin Extensions and Coroutines support for Room
+    implementation(libs.androidx.room.ktx)
+
+    //Koin
+    implementation(platform(libs.koin.bom))
+    implementation(libs.koin.core)
+    implementation(libs.koin.android)
+
     testImplementation("junit:junit:4.13.2")
+    testImplementation(libs.koin.test)
 
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    androidTestImplementation(libs.koin.test)
+    androidTestImplementation(libs.koin.android.test)
     // Compose testing
     // Test rules and transitive dependencies:
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeNonStableVersion")

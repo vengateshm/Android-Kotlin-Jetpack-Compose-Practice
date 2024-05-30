@@ -17,6 +17,9 @@ import dev.vengateshm.android_kotlin_compose_practice.manual_di.CallAppModule
 import dev.vengateshm.android_kotlin_compose_practice.manual_di.CallAppModuleImpl
 import dev.vengateshm.compose_material3.api_android.foreground_service.counter.CounterNotificationUtils
 import dev.vengateshm.compose_material3.api_android.foreground_service.location_tracking.LocationTrackingService
+import dev.vengateshm.compose_material3.testing.mvvm_local_db.di.todoModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 import java.io.PrintWriter
 import java.io.StringWriter
 import java.lang.Character.LINE_SEPARATOR
@@ -46,6 +49,11 @@ class AndroidKotlinComposePracticeApp : Application(), ImageLoaderFactory {
 
         Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
             handleUncaughtException(throwable)
+        }
+
+        startKoin {
+            androidContext(this@AndroidKotlinComposePracticeApp)
+            modules(todoModule)
         }
     }
 
