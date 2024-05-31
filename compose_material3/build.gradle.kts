@@ -112,11 +112,7 @@ dependencies {
 
     implementation("com.google.android.gms:play-services-location:21.2.0")
 
-    implementation("io.ktor:ktor-client-core:2.3.9")
-    implementation("io.ktor:ktor-client-android:2.3.9")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.9")
-    implementation("io.ktor:ktor-client-content-negotiation:2.3.9")
-    implementation("io.ktor:ktor-client-logging:2.3.9")
+    implementation(libs.bundles.ktor.client)
 
     val retrofitVersion = "2.9.0"
     implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")

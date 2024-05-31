@@ -4,6 +4,7 @@ glanceAppwidget = "1.1.0-rc01"
 kotlin = "2.0.0"
 fragmentKtx = "1.7.1"
 glide = "4.16.0"
+ktorClientCore = "2.3.9"
 navigationFragmentKtx = "2.7.7"
 preferenceKtxVersion = "1.2.1"
 roomRuntime = "2.6.1"
@@ -36,6 +37,11 @@ androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRunt
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 ksp-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
+ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktorClientCore" }
+ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktorClientCore" }
+ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktorClientCore" }
+ktor-client-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktorClientCore" }
+ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktorClientCore" }
 voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
 voyager-screenModel = { module = "cafe.adriel.voyager:voyager-screenmodel", version.ref = "voyager" }
 voyager-bottomSheetNavigator = { module = "cafe.adriel.voyager:voyager-bottom-sheet-navigator", version.ref = "voyager" }
@@ -58,6 +64,9 @@ koin-android = { module = "io.insert-koin:koin-android" }
 koin-test = { module = "io.insert-koin:koin-test" }
 koin-android-test = { module = "io.insert-koin:koin-android-test" }
 mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockkAndroid" }
+
+[bundles]
+ktor-client = ["ktor-client-android", "ktor-client-content-negotiation", "ktor-client-core", "ktor-client-logging", "ktor-serialization-kotlinx-json"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
