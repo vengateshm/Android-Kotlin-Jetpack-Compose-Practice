@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
-    android:description="@string/cmaterial3_counter_widget_description"
-    android:initialLayout="@layout/cmaterial3_widget_initial_layout"
+    android:description="@string/counter_widget_description"
+    android:initialLayout="@layout/widget_initial_layout"
     android:minWidth="100dp"
     android:minHeight="50dp"
-    android:previewImage="@drawable/cmaterial3_counter_widget_preview_image"
+    android:previewImage="@drawable/baseline_plus_one_24"
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen" />

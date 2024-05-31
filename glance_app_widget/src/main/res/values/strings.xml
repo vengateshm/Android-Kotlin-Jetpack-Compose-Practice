@@ -19,4 +19,5 @@
     <string name="grocery_list_yogurt">Yogurt</string>
     <string name="covid_summary_app_widget_description">COVID 19 Summary</string>
     <string name="live_score_widget_description">Live score widget</string>
+    <string name="counter_widget_description">Counter</string>
 </resources>
