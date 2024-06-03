@@ -25,5 +25,6 @@ val feedChickens = suspend {
     println("Feeding chicken #${++chicken}")
     suspendCoroutine<Unit> { COROUTINE_SUSPENDED }
     println("Feeding chicken #${++chicken}")
-    suspendCoroutine<Unit> { COROUTINE_SUSPENDED }
+//    suspendCoroutine<Unit> { COROUTINE_SUSPENDED }
+    suspendCoroutine { it.resume(Unit) }
 }.createCoroutineUnintercepted(Continuation(EmptyCoroutineContext) {})
