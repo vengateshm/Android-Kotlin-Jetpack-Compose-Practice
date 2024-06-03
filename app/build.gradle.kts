@@ -1,3 +1,6 @@
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
 val composeCompilerVersion: String by rootProject.extra
 
 plugins {
@@ -30,6 +33,12 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        val timeStamp =
+            LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MMM-yyyy hh-mm-ss a"))
+        val apkName = "AndroidKotlinComposePractice-$timeStamp"
+        //val apkName = "$applicationId-$versionName"
+        project.setProperty("archivesBaseName", apkName)
     }
 
     buildTypes {
