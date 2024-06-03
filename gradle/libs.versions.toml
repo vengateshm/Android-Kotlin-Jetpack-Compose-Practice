@@ -4,7 +4,8 @@ glanceAppwidget = "1.1.0-rc01"
 kotlin = "2.0.0"
 fragmentKtx = "1.7.1"
 glide = "4.16.0"
-ktorClientCore = "2.3.9"
+kotlinxSerializationJson = "1.6.3"
+ktorClientCore = "2.3.11"
 navigationFragmentKtx = "2.7.7"
 preferenceKtxVersion = "1.2.1"
 roomRuntime = "2.6.1"
@@ -14,11 +15,11 @@ coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
 espressoCore = "3.5.1"
-appcompat = "1.6.1"
+appcompat = "1.7.0"
 material = "1.12.0"
 dokka = "1.9.20"
 daggerHilt = "2.49"
-googleServices = "4.4.1"
+googleServices = "4.4.2"
 secretsGradlePlugin = "2.0.1"
 ksp = "2.0.0-1.0.21"
 composeInvestigator = "1.5.11-0.2.1"
@@ -36,6 +37,7 @@ androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref =
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 ksp-api = { module = "com.google.devtools.ksp:symbol-processing-api", version.ref = "ksp" }
 ktor-client-android = { module = "io.ktor:ktor-client-android", version.ref = "ktorClientCore" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktorClientCore" }

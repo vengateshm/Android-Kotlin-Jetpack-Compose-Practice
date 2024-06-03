@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("java-library")
     id("org.jetbrains.kotlin.jvm")
+    kotlin("plugin.serialization") version libs.versions.kotlin.get()
 }
 
 java {
@@ -26,6 +27,8 @@ dependencies {
     implementation("com.google.code.gson:gson:2.10.1")
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-reflect
     runtimeOnly("org.jetbrains.kotlin:kotlin-reflect:1.9.22")
+
+    implementation(libs.kotlinx.serialization.json)
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.2")
