@@ -25,6 +25,7 @@ ksp = "2.0.0-1.0.21"
 composeInvestigator = "1.5.11-0.2.1"
 koinBom = "3.5.0"
 mockkAndroid = "1.13.11"
+espressoIdlingResource = "3.5.1"
 
 [libraries]
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
@@ -66,6 +67,7 @@ koin-android = { module = "io.insert-koin:koin-android" }
 koin-test = { module = "io.insert-koin:koin-test" }
 koin-android-test = { module = "io.insert-koin:koin-android-test" }
 mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockkAndroid" }
+androidx-espresso-idling-resource = { group = "androidx.test.espresso", name = "espresso-idling-resource", version.ref = "espressoIdlingResource" }
 
 [bundles]
 ktor-client = ["ktor-client-android", "ktor-client-content-negotiation", "ktor-client-core", "ktor-client-logging", "ktor-serialization-kotlinx-json"]

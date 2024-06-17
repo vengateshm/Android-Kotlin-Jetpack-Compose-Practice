@@ -3,12 +3,12 @@
 
     <uses-permission android:name="android.permission.READ_CALENDAR" />
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application>
         <activity
@@ -16,16 +16,16 @@
             android:exported="true" />
         <activity
             android:name=".apps.gemini_ai_chat.ChatAiActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".other_concepts.ml_kit.MlKitActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".other_concepts.shaders.AGSLShaderActivity"
             android:exported="true" />
         <activity
             android:name=".ui_concepts.infinite_scroll.InfiniteScrollActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".apps.calendar.CalendarAppActivity"
             android:exported="true" />
@@ -46,9 +46,20 @@
 
                 <data
                     android:host="artemis.com"
-                    android:scheme="example"/>
+                    android:scheme="example" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".testing.compose_with_view.ComposeWithViewRootActivity"
+            android:exported="true" />
+        <activity
+            android:name=".testing.compose_with_view.FeedActivity"
+            android:theme="@style/AppTheme"
+            android:exported="true" />
+        <activity
+            android:name=".testing.compose_with_view.ProfileActivity"
+            android:theme="@style/AppTheme"
+            android:exported="true" />
 
         <service
             android:name=".api_android.foreground_service.counter.CounterService"
