@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.text.withStyle
@@ -42,7 +43,7 @@ fun ExpandableText(modifier: Modifier = Modifier) {
             val color = if (isExpanded) Color(0xFFA41818) else Color(0xFF114B11)
             val linkAnnotation = LinkAnnotation.Clickable(
                 tag = tag,
-                style = SpanStyle(color = color, fontSize = 14.sp),
+                styles = TextLinkStyles(style = SpanStyle(color = color, fontSize = 14.sp)),
                 linkInteractionListener = {
                     isExpanded = !isExpanded
                 })

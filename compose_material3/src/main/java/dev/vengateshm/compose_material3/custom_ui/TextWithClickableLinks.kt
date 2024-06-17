@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withLink
@@ -30,10 +31,12 @@ fun TextWithClickableLinks(modifier: Modifier = Modifier) {
             withLink(
                 link = LinkAnnotation.Url(
                     url = linkText,
-                    style = SpanStyle(
-                        color = Color(
-                            0xFF0E72C2
-                        ), textDecoration = TextDecoration.Underline
+                    styles = TextLinkStyles(
+                        style = SpanStyle(
+                            color = Color(
+                                0xFF0E72C2
+                            ), textDecoration = TextDecoration.Underline
+                        )
                     ),
                     linkInteractionListener = {
                         uriHandler.openUri(linkText)
