@@ -3,15 +3,23 @@ package dev.vengateshm.compose_material3.kotest
 import dev.vengateshm.compose_material3.third_party_libraries.testing.kotest.Book
 import dev.vengateshm.compose_material3.third_party_libraries.testing.kotest.Borrower
 import dev.vengateshm.compose_material3.third_party_libraries.testing.kotest.LibraryService
+import io.kotest.common.ExperimentalKotest
 import io.kotest.core.spec.style.FeatureSpec
+import io.kotest.core.test.config.TestConfig
 import io.kotest.matchers.shouldBe
 
+@OptIn(ExperimentalKotest::class)
 class FeatureSpecTest : FeatureSpec({
     val libraryService = LibraryService()
 
+    afterTest {
+        println(it.b.toString())
+    }
+
+    val testConfig = TestConfig(enabled = true, invocations = 7)
     feature("Library Service") {
-        scenario("Add and remove books") {
-            println("Library Service : $this")
+        scenario("Add and remove books").config(config = testConfig) {
+            println("Library Service : $libraryService")
             val book1 = Book(id = "001", title = "Book1", author = "Author1")
             val book2 = Book(id = "002", title = "Book2", author = "Author2")
 
@@ -25,7 +33,7 @@ class FeatureSpecTest : FeatureSpec({
         }
 
         scenario("Borrow and return book") {
-            println("Library Service : $this")
+            println("Library Service : $libraryService")
             val book3 = Book(id = "003", title = "Book3", author = "Author3")
             val borrower = Borrower(id = "100", "Borrower1")
 
