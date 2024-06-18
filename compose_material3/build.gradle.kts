@@ -140,6 +140,7 @@ dependencies {
 
     testImplementation(libs.junit)
     testImplementation(libs.koin.test)
+    testImplementation(libs.bundles.kotest)
 
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -156,4 +157,9 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest:$composeNonStableVersion")
 
     androidTestImplementation("androidx.navigation:navigation-testing:2.7.7")
+    androidTestImplementation(libs.bundles.kotest)
+}
+
+tasks.withType<Test>().configureEach {
+    useJUnitPlatform()
 }
