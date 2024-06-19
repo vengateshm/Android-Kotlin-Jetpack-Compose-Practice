@@ -8,5 +8,5 @@ java {
 }
 
 dependencies {
-    implementation("io.reactivex.rxjava3:rxjava:3.1.6")
+    implementation(libs.rxjava)
 }

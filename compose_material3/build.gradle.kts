@@ -20,7 +20,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        minSdk = 21
+        minSdk = 23
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -54,78 +54,68 @@ android {
     resourcePrefix = "cmaterial3_"
 }
 
-tasks.withType(KotlinCompile::class.java) {
-    kotlinOptions.freeCompilerArgs += "-Xcontext-receivers"
+tasks.withType<KotlinCompile>().configureEach {
+    compilerOptions {
+        freeCompilerArgs.add("-Xcontext-receivers")
+    }
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
 
-    implementation("com.google.android.material:material:1.11.0")
+    implementation(libs.material)
 
     // Compose dependencies
-    implementation("androidx.activity:activity-compose:1.8.2")
+    implementation(libs.androidx.activity.compose)
 
-    val composeNonStableVersion = "1.7.0-beta01"
-    implementation("androidx.compose.ui:ui:$composeNonStableVersion")
-    implementation("androidx.compose.foundation:foundation:$composeNonStableVersion")
-    implementation("androidx.compose.animation:animation:$composeNonStableVersion")
-    implementation("androidx.compose.runtime:runtime:$composeNonStableVersion")
-    implementation("androidx.compose.foundation:foundation-layout:$composeNonStableVersion")
-    implementation("androidx.compose.ui:ui-tooling-preview:$composeNonStableVersion")
-    debugImplementation("androidx.compose.ui:ui-tooling:$composeNonStableVersion")
+    // Compose
+    implementation(libs.bundles.compose.beta)
+    // Compose testing
+    // Test rules and transitive dependencies:
+    androidTestImplementation(libs.androidx.compose.beta.ui.test.junit4)
+    // Needed for createAndroidComposeRule, but not createComposeRule:
+    debugImplementation(libs.androidx.compose.beta.ui.test.manifest)
+
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    implementation(libs.androidx.material.icons.extended.android)
+
+    implementation(libs.androidx.lifecycle.runtime.compose.android)
+    implementation(libs.runtime.livedata)
+    // Compose Material3
+    implementation(libs.androidx.material3)
+    implementation(libs.androidx.material3.window.size)
+    implementation(libs.androidx.material3.adaptive)
+    //implementation("androidx.compose.material3:material3-adaptive-navigation-suite-android:1.0.0-alpha05")
 
     implementation(libs.androidx.preference.ktx)
-    implementation("androidx.security:security-crypto-ktx:1.1.0-alpha06")
+    implementation(libs.androidx.security.crypto.ktx)
 
-    implementation("androidx.compose.runtime:runtime-livedata")
-
-    implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
-
-    // Compose Material3
-    val material3Version = "1.2.1"
-    implementation("androidx.compose.material3:material3:$material3Version")
-    implementation("androidx.compose.material3:material3-window-size-class:$material3Version")
-    implementation("androidx.compose.material3:material3-adaptive:1.0.0-alpha06")
-//    implementation("androidx.compose.material3:material3-adaptive-navigation-suite-android:1.0.0-alpha05")
-
-    implementation("androidx.compose.material:material-icons-extended-android:1.6.2")
-
-    implementation("androidx.navigation:navigation-compose:2.8.0-beta03")
     implementation(libs.kotlinx.serialization.json)
-
-    implementation("androidx.lifecycle:lifecycle-runtime-compose-android:2.8.0-rc01")
-
-    // FlowLayout
-    implementation("com.google.accompanist:accompanist-flowlayout:0.23.1")
-    implementation(project(":appcore"))
 
     // Voyager
     implementation(libs.voyager.navigator)
     implementation(libs.voyager.tabNavigator)
     implementation(libs.voyager.transitions)
 
-    implementation("com.google.ai.client.generativeai:generativeai:0.2.1")
-
-    implementation("com.google.android.gms:play-services-mlkit-document-scanner:16.0.0-beta1")
-
-    implementation("com.google.android.gms:play-services-location:21.2.0")
+    implementation(libs.generativeai)
+    implementation(libs.play.services.mlkit.document.scanner)
+    implementation(libs.play.services.location)
 
     implementation(libs.bundles.ktor.client)
 
-    val retrofitVersion = "2.9.0"
-    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
-    implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
-    implementation("com.squareup.retrofit2:converter-moshi:$retrofitVersion")
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.converter.moshi)
 
-    val okhttpVersion = "5.0.0-alpha.3"
-    implementation("com.squareup.okhttp3:okhttp:$okhttpVersion")
-    implementation("com.squareup.okhttp3:logging-interceptor:$okhttpVersion")
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
 
     // In App updates
-    implementation("com.google.android.play:app-update:2.1.0")
-    implementation("com.google.android.play:app-update-ktx:2.1.0")
+    implementation(libs.app.update)
+    implementation(libs.app.update.ktx)
 
     //Room
     implementation(libs.androidx.room.runtime)
@@ -137,6 +127,8 @@ dependencies {
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
     implementation(libs.koin.android)
+
+    implementation(projects.appcore)
 
     testImplementation(libs.junit)
     testImplementation(libs.koin.test)
@@ -150,13 +142,7 @@ dependencies {
     androidTestImplementation(libs.koin.android.test)
     //Mockk
     androidTestImplementation(libs.mockk.android)
-    // Compose testing
-    // Test rules and transitive dependencies:
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4:$composeNonStableVersion")
-    // Needed for createAndroidComposeRule, but not createComposeRule:
-    debugImplementation("androidx.compose.ui:ui-test-manifest:$composeNonStableVersion")
-
-    androidTestImplementation("androidx.navigation:navigation-testing:2.7.7")
+    androidTestImplementation(libs.androidx.navigation.testing)
     androidTestImplementation(libs.bundles.kotest)
 }
 

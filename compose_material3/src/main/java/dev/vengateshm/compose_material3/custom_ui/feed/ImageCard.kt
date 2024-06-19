@@ -1,7 +1,10 @@
 package dev.vengateshm.compose_material3.custom_ui.feed
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,10 +25,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
-import com.google.accompanist.flowlayout.FlowRow
-import com.google.accompanist.flowlayout.SizeMode
 import kotlin.random.Random
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun ImageCard(
     title: String,
@@ -62,8 +64,7 @@ fun ImageCard(
             Spacer(modifier = Modifier.height(8.dp))
             FlowRow(
                 modifier = Modifier.fillMaxWidth(),
-                mainAxisSpacing = 8.dp,
-                mainAxisSize = SizeMode.Wrap
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 AssistChip(onClick = { },
                     colors = AssistChipDefaults.assistChipColors(

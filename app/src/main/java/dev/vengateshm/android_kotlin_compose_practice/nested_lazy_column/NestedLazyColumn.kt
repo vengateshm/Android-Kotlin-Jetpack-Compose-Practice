@@ -2,6 +2,8 @@ package dev.vengateshm.android_kotlin_compose_practice.nested_lazy_column
 
 import android.widget.Toast
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowColumn
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,7 +17,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.google.accompanist.flowlayout.FlowColumn
 
 @Composable
 fun NestedLazyColumn() {
@@ -33,6 +34,7 @@ fun NestedLazyColumn() {
     )
 }
 
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun NestedLazyColumnListItem(
     nestedLazyColumnData: NestedLazyColumnData,
@@ -48,15 +50,15 @@ fun NestedLazyColumnListItem(
             Text(
                 text = data.toString(),
                 style =
-                    TextStyle(
-                        color = Color.Blue,
-                        fontSize = 18.sp,
-                        fontWeight = FontWeight.Bold,
-                    ),
+                TextStyle(
+                    color = Color.Blue,
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                ),
                 modifier =
-                    Modifier
-                        .padding(8.dp)
-                        .clickable { onItemClick(data.toString()) },
+                Modifier
+                    .padding(8.dp)
+                    .clickable { onItemClick(data.toString()) },
             )
         }
     }

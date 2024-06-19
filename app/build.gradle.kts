@@ -24,7 +24,7 @@ android {
 
     defaultConfig {
         applicationId = "dev.vengateshm.android_kotlin_compose_practice"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -66,179 +66,162 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-    implementation("androidx.activity:activity-compose:1.8.2")
+
+    // Android
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
 
     // Splash screen
-    implementation("androidx.core:core-splashscreen:1.1.0-alpha02")
+    implementation(libs.androidx.core.splashscreen)
 
-    // [Start] Compose BOM
-    val composeBom = platform("androidx.compose:compose-bom:2024.02.00")
+    // Material
+    implementation(libs.material)
+
+    // Compose
+    val composeBom = platform(libs.androidx.compose.bom)
+    implementation(libs.androidx.activity.compose)
     implementation(composeBom)
     androidTestImplementation(composeBom)
-
-    // Compose dependencies
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.runtime:runtime")
-    // Material icons
-    implementation("androidx.compose.material:material")
-    implementation("androidx.compose.material:material-icons-extended")
-    implementation("androidx.compose.foundation:foundation")
-    implementation("androidx.compose.foundation:foundation-layout")
-    implementation("androidx.compose.animation:animation")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    // LiveData
-    implementation("androidx.compose.runtime:runtime-livedata")
-    debugImplementation("androidx.compose.ui:ui-tooling")
+    implementation(libs.bundles.compose)
+    debugImplementation(libs.androidx.compose.ui.tooling)
     // Compose testing
     // Test rules and transitive dependencies
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     // Needed for createAndroidComposeRule, but not createComposeRule
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
-
-    // Constraint layout
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
-
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.7.0")
-
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
+    // LiveData
+    implementation(libs.androidx.runtime.livedata)
+    // Lifecycle
+    implementation(libs.androidx.lifecycle.runtime.compose)
     // ViewModel
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+    // Constraint layout
+    implementation(libs.androidx.constraintlayout.compose)
+    // Google Maps
+    implementation(libs.maps.compose)
 
-    implementation("com.google.android.material:material:1.11.0")
-    implementation("com.google.maps.android:maps-compose:1.0.0")
+    // Material icons
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.material.icons.extended)
 
     // Window manager
-    implementation("androidx.window:window:1.2.0")
+    implementation(libs.androidx.window)
 
     // Accompanist
     // Permissions
-    implementation("com.google.accompanist:accompanist-permissions:0.21.2-beta")
+    implementation(libs.accompanist.permissions)
     // Pager
-    implementation("com.google.accompanist:accompanist-pager:0.13.0")
-    // FlowLayout
-    implementation("com.google.accompanist:accompanist-flowlayout:0.23.1")
-    // Lottie
-    implementation("com.airbnb.android:lottie-compose:4.2.0")
-    implementation("androidx.compose.foundation:foundation:1.5.4")
+    implementation(libs.accompanist.pager)
 
-    implementation("com.github.skydoves:landscapist-glide:1.4.5")
+    // Lottie
+    implementation(libs.lottie.compose)
+
+    implementation(libs.landscapist.glide)
 
     // Paging
-    implementation("androidx.paging:paging-runtime-ktx:3.2.1")
-    implementation("androidx.paging:paging-compose:3.3.0-alpha02")
+    implementation(libs.androidx.paging.runtime.ktx)
+    implementation(libs.androidx.paging.compose)
     // Google Fonts
-    implementation("androidx.compose.ui:ui-text-google-fonts:1.5.4")
+    implementation(libs.androidx.ui.text.google.fonts)
 
-    val retrofitVersion = "2.9.0"
-    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
-    implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
-    implementation("com.squareup.retrofit2:converter-moshi:$retrofitVersion")
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.converter.moshi)
 
-    val okhttpVersion = "5.0.0-alpha.3"
-    implementation("com.squareup.okhttp3:okhttp:$okhttpVersion")
-    implementation("com.squareup.okhttp3:logging-interceptor:$okhttpVersion")
+    implementation(libs.okhttp)
+    implementation(libs.logging.interceptor)
 
     // Kotlinx coroutines
-    val coroutinesVersion = "1.7.3"
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
-    val coroutinesAndroidVersion = "1.7.3"
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesAndroidVersion")
+    implementation(libs.kotlinx.coroutines.core)
+    implementation(libs.kotlinx.coroutines.android)
 
-    implementation("androidx.datastore:datastore:1.0.0")
-    implementation("androidx.datastore:datastore-core:1.0.0")
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
-    implementation("com.google.protobuf:protobuf-javalite:3.25.2")
-    implementation("com.google.protobuf:protobuf-kotlin-lite:3.25.2")
+    implementation(libs.androidx.datastore)
+    implementation(libs.androidx.datastore.core)
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.protobuf.javalite)
+    implementation(libs.protobuf.kotlin.lite)
 
     // Google Maps
-    implementation("com.google.android.gms:play-services-maps:18.2.0")
-    implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation(libs.play.services.maps)
+    implementation(libs.play.services.location)
 
     // Dagger - Hilt
-    implementation("com.google.dagger:hilt-android:2.48")
-    kapt("com.google.dagger:hilt-android-compiler:2.48")
-    kapt("androidx.hilt:hilt-compiler:1.1.0")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    kapt(libs.androidx.hilt.compiler)
 
-    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
-    implementation("androidx.navigation:navigation-compose:2.7.6")
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.navigation.compose)
 
     // Room
-    implementation("androidx.room:room-runtime:2.6.1")
-    ksp("androidx.room:room-compiler:2.6.1")
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
     // Kotlin Extensions and Coroutines support for Room
-    implementation("androidx.room:room-ktx:2.6.1")
+    implementation(libs.androidx.room.ktx)
 
     implementation(libs.kotlinx.serialization.json)
 
-    implementation("io.github.vanpra.compose-material-dialogs:datetime:0.8.1-rc")
-    coreLibraryDesugaring("com.android.tools.desugar_jdk_libs:1.1.6")
+    implementation(libs.compose.material.dialogs)
+    coreLibraryDesugaring(libs.desugar.jdk)
 
-    val ktorVersion = "2.3.2"
-    implementation("io.ktor:ktor-client-core:$ktorVersion")
-    implementation("io.ktor:ktor-client-android:$ktorVersion")
-    implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
-    implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
-    implementation("io.ktor:ktor-client-logging:$ktorVersion")
+    implementation(libs.bundles.ktor.client)
 
     // Apollo GraphQL
-    implementation("com.apollographql.apollo3:apollo-runtime:3.8.2")
+    implementation(libs.apollo.runtime)
 
     // Firebase BOM
-    implementation(platform("com.google.firebase:firebase-bom:32.7.3"))
-    implementation("com.google.firebase:firebase-database-ktx")
-    implementation("com.google.firebase:firebase-messaging")
-    implementation("com.google.firebase:firebase-messaging-ktx")
-    implementation("com.google.firebase:firebase-auth")
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.database.ktx)
+    implementation(libs.firebase.messaging)
+    implementation(libs.firebase.messaging.ktx)
+    implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore.ktx)
 
-    val cameraxVersion = "1.4.0-alpha03"
-    implementation("androidx.camera:camera-camera2:$cameraxVersion")
-    implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
-    implementation("androidx.camera:camera-view:$cameraxVersion")
-
-    implementation(project(":compose_material3"))
-    implementation(project(":appcore"))
-    implementation(project(":glance_app_widget"))
-
-    implementation(project(":ksp_samples"))
-    ksp(project(":ksp_samples"))
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
 
     // Play services
-    implementation("com.google.android.gms:play-services-ads:22.6.0")
+    implementation(libs.play.services.ads)
 
     // Arrow
-    implementation(platform("io.arrow-kt:arrow-stack:1.2.0-RC"))
-    implementation("io.arrow-kt:arrow-core")
+    implementation(platform(libs.arrow.stack))
+    implementation(libs.arrow.kt.arrow.core)
 
     // Immutable collections
-    implementation("org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.6")
+    implementation(libs.kotlinx.collections.immutable)
 
     // Media3
-    implementation("androidx.media3:media3-ui:1.2.1")
-    implementation("androidx.media3:media3-exoplayer:1.2.1")
-    implementation("androidx.media3:media3-exoplayer-hls:1.2.1")
+    implementation(libs.androidx.media3.ui)
+    implementation(libs.androidx.media3.exoplayer)
+    implementation(libs.androidx.media3.exoplayer.hls)
 
-    implementation("androidx.biometric:biometric:1.1.0")
-    implementation("androidx.biometric:biometric-ktx:1.2.0-alpha05")
+    implementation(libs.androidx.biometric)
+    implementation(libs.androidx.biometric.ktx)
 
     //Koin
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
     implementation(libs.koin.android)
 
-    implementation(project(":xml_kotlin"))
+    implementation(projects.kspSamples)
+    ksp(projects.kspSamples)
 
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("androidx.room:room-testing:2.6.1")
+    implementation(projects.appcore)
+    implementation(projects.composeMaterial3)
+    implementation(projects.glanceAppWidget)
+    implementation(projects.xmlKotlin)
 
-    androidTestImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    testImplementation(libs.junit)
+    testImplementation(libs.androidx.room.testing)
+
+    androidTestImplementation(libs.junit)
+    androidTestImplementation(libs.ext.junit)
+    androidTestImplementation(libs.espresso.core)
     // To test flows
-    androidTestImplementation("app.cash.turbine:turbine:0.9.0")
+    androidTestImplementation(libs.turbine)
 }
 
 protobuf {
