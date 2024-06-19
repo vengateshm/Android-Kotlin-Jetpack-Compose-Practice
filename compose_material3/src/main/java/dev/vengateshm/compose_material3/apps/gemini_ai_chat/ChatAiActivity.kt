@@ -1,7 +1,6 @@
 package dev.vengateshm.compose_material3.apps.gemini_ai_chat
 
 import android.graphics.Bitmap
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -58,9 +57,8 @@ class ChatAiActivity : ComponentActivity() {
     private val uriState = MutableStateFlow("")
 
     private val imagePicker =
-        registerForActivityResult<PickVisualMediaRequest, Uri>(
-            ActivityResultContracts.PickVisualMedia()
-        ) { uri ->
+        registerForActivityResult(ActivityResultContracts.PickVisualMedia())
+        { uri ->
             uri?.let {
                 uriState.update {
                     uri.toString()
