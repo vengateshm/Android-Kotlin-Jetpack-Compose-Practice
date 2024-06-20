@@ -27,6 +27,7 @@ hiltAndroid = "2.49"
 hiltAndroidCompiler = "2.48"
 hiltCompiler = "1.2.0"
 hiltNavigationCompose = "1.2.0"
+jaxbRuntime = "2.3.2"
 junitJupiterApi = "5.9.2"
 klutterCore = "3.0.0"
 kotest = "5.9.1"
@@ -332,6 +333,9 @@ mockk-android = { module = "io.mockk:mockk-android", version.ref = "mockkAndroid
 kotest-runner = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
 kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest" }
+
+#JAXB
+jaxb-runtime = { module = "org.glassfish.jaxb:jaxb-runtime", version.ref = "jaxbRuntime" }
 
 [bundles]
 compose = ["androidx-compose-ui", "androidx-compose-ui-graphics", "androidx-compose-foundation", "androidx-compose-animation", "androidx-compose-runtime", "androidx-compose-foundation-layout", "androidx-compose-ui-tooling", "androidx-compose-ui-tooling-preview"]
