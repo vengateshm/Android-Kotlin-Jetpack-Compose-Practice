@@ -1,7 +1,7 @@
 [versions]
 accompanistPager = "0.25.1"
 accompanistPermissions = "0.21.2-beta"
-agp = "8.4.2"
+agp = "8.5.0"
 apolloRuntime = "3.8.2"
 appUpdate = "2.1.0"
 arrowCore = "1.2.0"
