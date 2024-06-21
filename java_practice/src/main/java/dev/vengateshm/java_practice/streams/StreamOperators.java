@@ -93,5 +93,14 @@ public class StreamOperators {
         List<String> r = StreamZip.zip(fn.stream(), ln.stream(), (f, l) -> f + " " + l)
                 .collect(Collectors.toList());
         System.out.println(r);
+
+        int size = Stream.iterate(0, n -> n + 1)
+                .limit(30)
+                .skip(1)
+                .collect(Collectors.partitioningBy(n -> n % 2 == 0))
+//                .get(true)
+                .get(false)
+                .size();
+        System.out.println(size);
     }
 }
