@@ -1,5 +1,6 @@
-package dev.vengateshm.compose_material3.api_compose.adaptive
+package dev.vengateshm.compose_material3.ui_concepts.adaptive
 
+import android.os.Parcelable
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -113,7 +114,7 @@ data class ProgrammingLanguage(
     val id: Int,
     val name: String,
     val icon: String,
-) {
+) : Parcelable {
     companion object {
         fun getProgrammingLanguages(): List<ProgrammingLanguage> {
             val languages = listOf(
