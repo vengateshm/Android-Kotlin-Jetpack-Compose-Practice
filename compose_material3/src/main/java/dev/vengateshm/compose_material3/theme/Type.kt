@@ -1,6 +1,7 @@
 package dev.vengateshm.compose_material3.theme
 
 import androidx.compose.material3.Typography
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -21,3 +22,10 @@ val InterRegular = FontFamily(Font(R.font.inter_regular))
 val InterBold = FontFamily(Font(R.font.inter_bold))
 val InterSemiBold = FontFamily(Font(R.font.inter_semibold))
 val InterMedium = FontFamily(Font(R.font.inter_medium))
+
+val PlayWriteDeGrundRegular = FontFamily(Font(R.font.play_write_de_grund_regular))
+val JostRegular = FontFamily(Font(R.font.jost_regular))
+
+val LocalRegularFontFamily = staticCompositionLocalOf<FontFamily> {
+    error("No regular font family provided")
+}

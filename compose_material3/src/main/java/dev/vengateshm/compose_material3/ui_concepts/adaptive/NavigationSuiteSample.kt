@@ -1,4 +1,4 @@
-package dev.vengateshm.compose_material3.navigation_suite
+package dev.vengateshm.compose_material3.ui_concepts.adaptive
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -25,6 +25,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import androidx.compose.ui.unit.sp
 import androidx.window.core.layout.WindowWidthSizeClass
+import dev.vengateshm.compose_material3.theme.JostRegular
+import dev.vengateshm.compose_material3.theme.PlayWriteDeGrundRegular
 
 data class NavItem(val title: String, val icon: ImageVector)
 
@@ -49,7 +51,7 @@ fun NavigationSuiteSample() {
             }
 
             WindowWidthSizeClass.MEDIUM -> {
-                NavigationSuiteType.NavigationDrawer
+                NavigationSuiteType.NavigationBar
             }
 
             else -> {
@@ -65,7 +67,12 @@ fun NavigationSuiteSample() {
                 item(
                     selected = selectedItemIndex == index,
                     icon = { Icon(navItem.icon, contentDescription = null) },
-                    label = { Text(text = navItem.title) },
+                    label = {
+                        Text(
+                            text = navItem.title,
+                            fontFamily = JostRegular
+                        )
+                    },
                     onClick = { selectedItemIndex = index }
                 )
             }
@@ -84,7 +91,10 @@ fun Destination(title: String) {
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = title, fontSize = 48.sp)
+        Text(
+            text = title, fontSize = 48.sp,
+            fontFamily = PlayWriteDeGrundRegular
+        )
     }
 }
 

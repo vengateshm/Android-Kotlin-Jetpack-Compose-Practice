@@ -1,5 +1,6 @@
 package dev.vengateshm.compose_material3.api_android.download_manager
 
+import android.app.DownloadManager
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,8 +24,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.content.getSystemService
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 
 data class ImageData(
@@ -54,10 +58,11 @@ data class ImageData(
 
 @Composable
 fun DownloadManagerSample(
-    modifier: Modifier = Modifier,
-    viewModel: DownloadManagerViewModel
+    modifier: Modifier = Modifier
 ) {
-
+    val context = LocalContext.current
+    val downloadManager = context.getSystemService<DownloadManager>()
+    val viewModel = viewModel { DownloadManagerViewModel(downloadManager = downloadManager!!) }
     val imageDataList by viewModel.imageDataList.observeAsState()
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -98,7 +103,9 @@ fun ImageItem(
             Text(text = imageData.title)
             Spacer(modifier = Modifier.height(height = 8.dp))
             if (imageData.isDownloadInProgress) {
-                LinearProgressIndicator(progress = { imageData.progress / 100.0f })
+                LinearProgressIndicator(
+                    modifier = Modifier.fillMaxWidth(),
+                    progress = { imageData.progress / 100.0f })
                 Text(text = "${imageData.remaining} / ${imageData.total}")
             }
         }
