@@ -86,9 +86,10 @@ dependencies {
     implementation(libs.runtime.livedata)
     // Compose Material3
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.material3.window.size)
-    implementation(libs.androidx.material3.adaptive)
-    //implementation("androidx.compose.material3:material3-adaptive-navigation-suite-android:1.0.0-alpha05")
+    implementation(libs.androidx.compose.material3.adaptive)
+    implementation(libs.androidx.compose.material3.adaptive.layout)
+    implementation(libs.androidx.compose.material3.adaptive.navigation)
+    implementation(libs.androidx.compose.material3.adaptive.navigation.suite)
 
     implementation(libs.androidx.preference.ktx)
     implementation(libs.androidx.security.crypto.ktx)
