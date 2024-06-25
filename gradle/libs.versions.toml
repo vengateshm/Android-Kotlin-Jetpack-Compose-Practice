@@ -22,7 +22,7 @@ firebaseBom = "33.1.1"
 generativeai = "0.8.0"
 glanceAppwidget = "1.1.0"
 gson = "2.10.1"
-guava = "32.1.2-jre"
+guava = "32.1.3-jre"
 hiltAndroid = "2.49"
 hiltAndroidCompiler = "2.48"
 hiltCompiler = "1.2.0"
@@ -71,8 +71,8 @@ voyager = "1.0.0"
 firebaseFirestoreKtx = "25.0.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
+junitVersion = "1.2.0"
+espressoCore = "3.6.0"
 appcompat = "1.7.0"
 material = "1.12.0"
 dokka = "1.9.20"
@@ -83,7 +83,7 @@ ksp = "2.0.0-1.0.21"
 composeInvestigator = "1.5.11-0.2.1"
 koinBom = "3.5.0"
 mockkAndroid = "1.13.11"
-espressoIdlingResource = "3.5.1"
+espressoIdlingResource = "3.6.0"
 lifecycleRuntimeKtx = "2.8.2"
 window = "1.3.0"
 workRuntimeKtx = "2.9.0"
@@ -159,6 +159,7 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlinxCoroutinesAndroid" }
 kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinxCollectionsImmutable" }
 kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlinReflect" }
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 
 #Compose
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }

@@ -1,9 +1,11 @@
+import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     id("java-library")
     id("org.jetbrains.kotlin.jvm")
     kotlin("plugin.serialization") version libs.versions.kotlin.get()
+    kotlin("plugin.power-assert") version "2.0.0"
 }
 
 java {
@@ -47,8 +49,22 @@ dependencies {
     testRuntimeOnly(libs.junit.jupiter.engine)
 
     testImplementation(libs.mockk)
+
+    testImplementation(libs.kotlin.test)
 }
 
 tasks.test {
     useJUnitPlatform()
+}
+
+@OptIn(ExperimentalKotlinGradlePluginApi::class)
+powerAssert {
+    functions = listOf(
+        "kotlin.assert",
+        "kotlin.test.assertTrue",
+        "kotlin.test.assertEquals",
+        "kotlin.test.assertNull",
+        "kotlin.require",
+        "dev.vengateshm.kotlin_practice.power_assert.MyAssertScope.assert"
+    )
 }
