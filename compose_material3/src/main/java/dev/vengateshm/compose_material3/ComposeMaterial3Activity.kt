@@ -9,7 +9,6 @@ import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
 import dev.vengateshm.compose_material3.theme.Material3AppTheme
-import dev.vengateshm.compose_material3.ui_concepts.adaptive.NavigationSuiteSample
 import dev.vengateshm.compose_material3.utils.requestNotificationPermission
 
 @AndroidEntryPoint
@@ -25,7 +24,7 @@ class ComposeMaterial3Activity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    NavigationSuiteSample()
+                    
                 }
             }
         }

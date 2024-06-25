@@ -60,6 +60,9 @@
             android:name=".testing.compose_with_view.ProfileActivity"
             android:theme="@style/AppTheme"
             android:exported="true" />
+        <activity
+            android:name=".api_compose.navigation.set_result.A3Activity"
+            android:exported="true" />
 
         <service
             android:name=".api_android.foreground_service.counter.CounterService"
