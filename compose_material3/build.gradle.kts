@@ -49,6 +49,8 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
             excludes += "/META-INF/LICENSE.md"
             excludes += "/META-INF/LICENSE-notice.md"
+            excludes += "**/attach_hotspot_windows.dll"
+            excludes += "META-INF/licenses/ASM"
         }
     }
     resourcePrefix = "cmaterial3_"
