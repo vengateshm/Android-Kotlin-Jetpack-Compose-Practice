@@ -29,4 +29,8 @@ fun main() {
             .reversed()
             .replaceFirst("-", "")
     )
+
+    println("#C5".hexToInt(format = HexFormat {
+        number.prefix = "#"
+    }))
 }

@@ -37,6 +37,7 @@ dependencies {
 
     implementation(libs.gson)
     // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-reflect
+    implementation(libs.kotlin.reflect)
     runtimeOnly(libs.kotlin.reflect)
 
     implementation(libs.kotlinx.serialization.json)
