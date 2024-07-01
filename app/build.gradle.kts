@@ -1,7 +1,14 @@
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+apply(from = "../versioning.gradle.kts")
+
 val composeCompilerVersion: String by rootProject.extra
+val appVersionCode: Int by extra
+val appVersionName: String by extra
+
+println("App Version Code: $appVersionCode")
+println("App Version Name: $appVersionName")
 
 plugins {
     id("com.android.application")
@@ -26,8 +33,8 @@ android {
         applicationId = "dev.vengateshm.android_kotlin_compose_practice"
         minSdk = 23
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
+        versionCode = appVersionCode
+        versionName = appVersionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -35,7 +42,8 @@ android {
         }
 
         val timeStamp =
-            LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd-MMM-yyyy hh-mm-ss a"))
+            LocalDateTime.now()
+                .format(DateTimeFormatter.ofPattern("dd-MMM-yyyy hh-mm-ss a"))
         val apkName = "AndroidKotlinComposePractice-$timeStamp"
         //val apkName = "$applicationId-$versionName"
         project.setProperty("archivesBaseName", apkName)
