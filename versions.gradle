@@ -1,0 +1,36 @@
+ext {
+    def getVersionCode = { ->
+        def propertiesFile = new File(rootProject.projectDir, "gradle.properties")
+        def properties = new Properties()
+        propertiesFile.withInputStream { properties.load(it) }
+
+        def currentVersionCode = properties.getProperty("versionCode")?.toInteger()
+        def newVersionCode = currentVersionCode + 1
+
+        // Overwrite
+        /*properties.setProperty("appVersionCode", newVersionCode.toString())
+        propertiesFile.withOutputStream { properties.store(it, null) }*/
+
+        return newVersionCode
+    }
+    def getVersionName = { ->
+        def propertiesFile = new File(rootProject.projectDir, "gradle.properties")
+        def properties = new Properties()
+        propertiesFile.withInputStream { properties.load(it) }
+
+        def currentVersionName = properties.getProperty("versionName")
+
+        def versionParts = currentVersionName.split('\\.').collect { it.toInteger() }
+        versionParts[2] = versionParts[2] + 1
+
+        def newVersionName = versionParts.join('.')
+
+        // Overwrite
+        /*properties.setProperty("appVersionName", newVersionName)
+        propertiesFile.withOutputStream { properties.store(it, null) }*/
+
+        return newVersionName
+    }
+    vCode = getVersionCode()
+    vName = getVersionName()
+}

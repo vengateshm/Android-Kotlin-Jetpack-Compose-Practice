@@ -1,14 +1,19 @@
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
+apply(from = "../versions.gradle")
 apply(from = "../versioning.gradle.kts")
 
 val composeCompilerVersion: String by rootProject.extra
 val appVersionCode: Int by extra
 val appVersionName: String by extra
-
 println("App Version Code: $appVersionCode")
 println("App Version Name: $appVersionName")
+
+val vCode: Int by extra
+val vName: String by extra
+println("App Version Code: $vCode")
+println("App Version Name: $vName")
 
 plugins {
     id("com.android.application")
