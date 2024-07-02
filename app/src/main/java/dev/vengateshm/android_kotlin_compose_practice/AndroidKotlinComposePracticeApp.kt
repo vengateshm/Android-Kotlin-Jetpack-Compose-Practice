@@ -17,7 +17,6 @@ import dev.vengateshm.android_kotlin_compose_practice.manual_di.CallAppModule
 import dev.vengateshm.android_kotlin_compose_practice.manual_di.CallAppModuleImpl
 import dev.vengateshm.compose_material3.api_android.foreground_service.counter.CounterNotificationUtils
 import dev.vengateshm.compose_material3.api_android.foreground_service.location_tracking.LocationTrackingService
-import dev.vengateshm.compose_material3.api_android.strict_mode.StrictModeUtils
 import dev.vengateshm.compose_material3.testing.mvvm_local_db.di.todoModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -31,7 +30,7 @@ class AndroidKotlinComposePracticeApp : Application(), ImageLoaderFactory {
     override fun onCreate() {
         super.onCreate()
 
-        StrictModeUtils.enableStrictMode(BuildConfig.DEBUG)
+        //StrictModeUtils.enableStrictMode(BuildConfig.DEBUG)
 
         // Manual DI
         callAppModule = CallAppModuleImpl(this)
