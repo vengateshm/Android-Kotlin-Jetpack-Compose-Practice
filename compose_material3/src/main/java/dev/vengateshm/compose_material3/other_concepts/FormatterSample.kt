@@ -1,6 +1,9 @@
 package dev.vengateshm.compose_material3.other_concepts
 
+import android.icu.number.Notation
+import android.icu.util.DateInterval
 import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -15,6 +18,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import dev.vengateshm.compose_material3.utils.formatCurrency
 import dev.vengateshm.compose_material3.utils.formatCurrencyWithNotation
+import dev.vengateshm.compose_material3.utils.formatDateIntervals
 import dev.vengateshm.compose_material3.utils.formatDateTimes
 import dev.vengateshm.compose_material3.utils.formatDateTimesWithPattern
 import dev.vengateshm.compose_material3.utils.formatDecimalPointsValueWithPlaceholders
@@ -24,6 +28,7 @@ import dev.vengateshm.compose_material3.utils.formatPhoneNumbers
 import io.michaelrocks.libphonenumber.android.PhoneNumberUtil
 import java.time.LocalDateTime
 
+@RequiresApi(Build.VERSION_CODES.R)
 @Composable
 fun FormatterSample(modifier: Modifier = Modifier) {
     val context = LocalContext.current
@@ -78,6 +83,16 @@ fun FormatterSample(modifier: Modifier = Modifier) {
             formatCurrency("pl", "TND", 1567),
             formatCurrency("ar", "TND", 1567),
             formatCurrencyWithNotation("en", "USD", 3, 1567),
+            formatCurrencyWithNotation("en", "", 0, 6_000_000_000_000, Notation.compactLong()),
+            formatCurrencyWithNotation("fr", "", 0, 6_000_000_000_000, Notation.compactLong()),
+            formatCurrencyWithNotation("en", "", 0, 6_000_000_000_000, Notation.compactShort()),
+            formatCurrencyWithNotation("en", "", 0, 6_000_000_000_000, Notation.engineering()),
+            formatCurrencyWithNotation("ar", "", 0, 6_000_000_000_000, Notation.simple()),
+            "Date Interval Format",
+            formatDateIntervals(DateInterval(1717286400000, 1719878400000), "yMMMd", "en"),
+            formatDateIntervals(DateInterval(1717286400000, 1719878400000), "yMMMd", "lv"),
+            formatDateIntervals(DateInterval(1717286400000, 1719878400000), "yMMMd", "ja"),
+            formatDateIntervals(DateInterval(1717286400000, 1719878400000), "yMMMd", "es"),
         )
     }
 

@@ -4,9 +4,11 @@ import android.content.Context
 import android.icu.number.Notation
 import android.icu.number.NumberFormatter
 import android.icu.number.Precision
+import android.icu.text.DateIntervalFormat
 import android.icu.text.ListFormatter
 import android.icu.text.NumberFormat
 import android.icu.util.Currency
+import android.icu.util.DateInterval
 import android.os.Build
 import android.telephony.PhoneNumberUtils
 import io.michaelrocks.libphonenumber.android.PhoneNumberUtil
@@ -83,15 +85,23 @@ fun formatCurrencyWithNotation(
     localeCode: String,
     isoCode: String,
     fractionPlaces: Int,
-    number: Int,
-    notation: Notation = Notation.compactShort(),
+    number: Long,
+    notation: Notation? = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        Notation.compactShort()
+    } else null,
 ): String {
     return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
         val format = NumberFormatter.withLocale(Locale(localeCode))
             .notation(notation)
-            .unit(Currency.getInstance(isoCode))
-            .precision(Precision.maxFraction(fractionPlaces))
+            .unit(if (isoCode.isNotEmpty()) Currency.getInstance(isoCode) else null)
+            .precision(if (fractionPlaces != 0) Precision.maxFraction(fractionPlaces) else null)
             .format(number)
         format.toString()
+    } else ""
+}
+
+fun formatDateIntervals(dateInterval: DateInterval, skeleton: String, localeCode: String): String {
+    return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        DateIntervalFormat.getInstance(skeleton, Locale(localeCode)).format(dateInterval)
     } else ""
 }
