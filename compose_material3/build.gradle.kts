@@ -149,6 +149,8 @@ dependencies {
     androidTestImplementation(libs.bundles.kotest)
 }
 
+// Uncomment when running tests with JUnit5
+/*
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
-}
+}*/
