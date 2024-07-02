@@ -18,6 +18,7 @@ constraintlayoutCompose = "1.0.1"
 coreSplashscreen = "1.1.0-rc01"
 datastorePreferences = "1.1.1"
 composeMaterialDialogs = "0.8.1-rc"
+fig = "0.0.2"
 firebaseBom = "33.1.1"
 generativeai = "0.8.0"
 glanceAppwidget = "1.1.0"
@@ -340,6 +341,9 @@ kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest"
 
 #JAXB
 jaxb-runtime = { module = "org.glassfish.jaxb:jaxb-runtime", version.ref = "jaxbRuntime" }
+
+#Fig - Google sheets as remote config
+fig = { module = "com.github.theapache64:fig", version.ref = "fig" }
 
 [bundles]
 compose = ["androidx-compose-ui", "androidx-compose-ui-graphics", "androidx-compose-foundation", "androidx-compose-animation", "androidx-compose-runtime", "androidx-compose-foundation-layout", "androidx-compose-ui-tooling", "androidx-compose-ui-tooling-preview"]
