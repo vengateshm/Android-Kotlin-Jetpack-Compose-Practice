@@ -133,6 +133,8 @@ dependencies {
 
     implementation(libs.fig)
 
+    implementation(libs.libphonenumber.android)
+
     implementation(projects.appcore)
 
     testImplementation(libs.junit)

@@ -42,6 +42,7 @@ kotlinxCoroutinesCore = "1.9.0-RC"
 kotlinxSerializationJson = "1.6.3"
 ktorClientCore = "2.3.11"
 landscapistGlide = "1.4.5"
+libphonenumberAndroid = "8.13.35"
 loggingInterceptor = "5.0.0-alpha.3"
 lottieCompose = "4.2.0"
 mapsCompose = "1.0.0"
@@ -344,6 +345,9 @@ jaxb-runtime = { module = "org.glassfish.jaxb:jaxb-runtime", version.ref = "jaxb
 
 #Fig - Google sheets as remote config
 fig = { module = "com.github.theapache64:fig", version.ref = "fig" }
+
+#libphonenumber android
+libphonenumber-android = { module = "io.michaelrocks:libphonenumber-android", version.ref = "libphonenumberAndroid" }
 
 [bundles]
 compose = ["androidx-compose-ui", "androidx-compose-ui-graphics", "androidx-compose-foundation", "androidx-compose-animation", "androidx-compose-runtime", "androidx-compose-foundation-layout", "androidx-compose-ui-tooling", "androidx-compose-ui-tooling-preview"]
