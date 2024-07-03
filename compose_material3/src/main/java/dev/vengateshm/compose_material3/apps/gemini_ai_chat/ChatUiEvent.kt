@@ -8,4 +8,9 @@ sealed class ChatUiEvent {
         val prompt: String,
         val image: Bitmap?
     ) : ChatUiEvent()
+
+    data class SendPromptForStream(
+        val prompt: String,
+        val image: Bitmap?
+    ) : ChatUiEvent()
 }

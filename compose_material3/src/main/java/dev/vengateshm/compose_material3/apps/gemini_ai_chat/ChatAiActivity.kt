@@ -26,8 +26,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.Send
 import androidx.compose.material.icons.rounded.AddAPhoto
-import androidx.compose.material.icons.rounded.Send
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -176,6 +176,8 @@ class ChatAiActivity : ComponentActivity() {
                 Spacer(modifier = Modifier.width(8.dp))
 
                 TextField(
+                    modifier = Modifier.weight(1f),
+                    singleLine = true,
                     value = state.prompt,
                     onValueChange = {
                         chatUiViewModel.onEvent(ChatUiEvent.UpdatePrompt(it))
@@ -190,9 +192,15 @@ class ChatAiActivity : ComponentActivity() {
                     modifier = Modifier
                         .size(40.dp)
                         .clickable {
-                            chatUiViewModel.onEvent(ChatUiEvent.SendPrompt(state.prompt, image))
+                            //chatUiViewModel.onEvent(ChatUiEvent.SendPrompt(state.prompt, image))
+                            chatUiViewModel.onEvent(
+                                ChatUiEvent.SendPromptForStream(
+                                    state.prompt,
+                                    image
+                                )
+                            )
                         },
-                    imageVector = Icons.Rounded.Send,
+                    imageVector = Icons.AutoMirrored.Rounded.Send,
                     contentDescription = "Send Prompt",
                     tint = MaterialTheme.colorScheme.primary
                 )

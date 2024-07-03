@@ -5,12 +5,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class ChatUiViewModel : ViewModel() {
     private val _chatState = MutableStateFlow(ChatState())
     val chatState = _chatState.asStateFlow()
+
+    private var _streamText = StringBuilder()
 
     fun onEvent(event: ChatUiEvent) {
         when (event) {
@@ -31,6 +34,14 @@ class ChatUiViewModel : ViewModel() {
                     getResponse(event.prompt)
                 }
             }
+
+            is ChatUiEvent.SendPromptForStream -> {
+                if (event.prompt.isNotEmpty()) {
+                    addPrompt(event.prompt, event.image)
+                }
+
+                getResponseStream(event.prompt)
+            }
         }
     }
 
@@ -39,9 +50,7 @@ class ChatUiViewModel : ViewModel() {
             it.copy(
                 chatList = it.chatList.toMutableList().apply {
                     add(0, Chat(prompt = prompt, image = image, isFromUser = true))
-                },
-                prompt = "",
-                image = null
+                }, prompt = "", image = null
             )
         }
     }
@@ -53,11 +62,42 @@ class ChatUiViewModel : ViewModel() {
                 it.copy(
                     chatList = it.chatList.toMutableList().apply {
                         add(0, chat)
-                    },
-                    prompt = "",
-                    image = null
+                    }, prompt = "", image = null
                 )
             }
+        }
+    }
+
+    private fun getResponseStream(prompt: String) {
+        viewModelScope.launch {
+            ChatRepo.getResponseStream(prompt)
+                .catch { throwable ->
+                    // Emit a Chat with error message
+                    emit(
+                        Chat(
+                            prompt = "Error: ${throwable.message}",
+                            image = null,
+                            isFromUser = false
+                        )
+                    )
+                }
+                .collect { chat ->
+                    _chatState.update {
+                        it.copy(
+                            chatList = it.chatList.toMutableList().apply {
+                                if (it.chatList.size % 2 != 0) {
+                                    _streamText.clear()
+                                    _streamText.append(chat.prompt)
+                                    add(0, chat)
+                                } else {
+                                    //val item = this[it.chatList.size - 1]
+                                    _streamText.append(chat.prompt)
+                                    set(0, chat.copy(prompt = _streamText.toString()))
+                                }
+                            }, prompt = "", image = null
+                        )
+                    }
+                }
         }
     }
 
@@ -68,9 +108,7 @@ class ChatUiViewModel : ViewModel() {
                 it.copy(
                     chatList = it.chatList.toMutableList().apply {
                         add(0, chat)
-                    },
-                    prompt = "",
-                    image = null
+                    }, prompt = "", image = null
                 )
             }
         }

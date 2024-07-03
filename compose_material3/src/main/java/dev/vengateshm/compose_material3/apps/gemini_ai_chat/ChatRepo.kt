@@ -9,6 +9,8 @@ import com.google.ai.client.generativeai.type.content
 import com.google.ai.client.generativeai.type.generationConfig
 import dev.vengateshm.compose_material3.BuildConfig
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.withContext
 
 object ChatRepo {
@@ -77,5 +79,21 @@ object ChatRepo {
                 isFromUser = false
             )
         }
+    }
+
+    fun getResponseStream(prompt: String): Flow<Chat> {
+        val generativeModel = GenerativeModel(
+            modelName = "gemini-pro",
+            apiKey = BuildConfig.GEMINI_API_KEY,
+        )
+
+        return generativeModel.generateContentStream(prompt)
+            .map {
+                Chat(
+                    prompt = it.text ?: "Error",
+                    image = null,
+                    isFromUser = false
+                )
+            }
     }
 }
