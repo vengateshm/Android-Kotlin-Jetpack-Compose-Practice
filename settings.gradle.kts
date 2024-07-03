@@ -25,3 +25,6 @@ include(":java_practice")
 include(":ksp_samples")
 include(":kotlin_gradle_samples")
 include(":xml_kotlin")
+
+// Building other projects and including
+//includeBuild()
