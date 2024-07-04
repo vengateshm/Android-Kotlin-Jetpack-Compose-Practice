@@ -1,4 +1,4 @@
-package dev.vengateshm.java_practice.programs;
+package dev.vengateshm.java_practice.streams;
 
 public class AnagramsUsingStream {
 
