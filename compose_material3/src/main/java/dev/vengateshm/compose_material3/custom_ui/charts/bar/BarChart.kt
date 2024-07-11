@@ -1,4 +1,4 @@
-package dev.vengateshm.compose_material3.custom_ui.charts
+package dev.vengateshm.compose_material3.custom_ui.charts.bar
 
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.animateDpAsState
