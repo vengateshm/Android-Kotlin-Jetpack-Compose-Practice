@@ -1,5 +1,7 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import java.io.FileInputStream
+import java.util.Properties
 
 val composeVersion: String by rootProject.extra
 val composeCompilerVersion: String by rootProject.extra
@@ -19,13 +21,25 @@ android {
     namespace = "dev.vengateshm.compose_material3"
     compileSdk = 34
 
+    val file = rootProject.file("local.properties")
+    val properties = Properties()
+    properties.load(FileInputStream(file))
+    val testApiKey = properties.getProperty("testApiKey")
+    println(testApiKey)
+
     defaultConfig {
         minSdk = 23
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        val apiKey = gradleLocalProperties(rootDir, project.providers).getProperty("GEMINI_API_KEY")
-        buildConfigField("String", "GEMINI_API_KEY", apiKey)
+        val geminiApiKey =
+            gradleLocalProperties(rootDir, project.providers).getProperty("GEMINI_API_KEY")
+        buildConfigField("String", "GEMINI_API_KEY", geminiApiKey)
+        buildConfigField("String", "testApiKey", testApiKey)
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {
