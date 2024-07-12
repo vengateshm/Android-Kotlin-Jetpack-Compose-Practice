@@ -26,6 +26,7 @@
     <string name="cmaterial3_empty_text"> </string>
     <string name="cmaterial3_remainingtime_left_label">%1$s left</string>
     <string name="cmaterial3_scheduled_label">Scheduled\n%1$s</string>
+    <string name="close">Close</string>
 
     <plurals name="cmaterial3_no_of_stops">
         <item quantity="one">%d stop</item>
