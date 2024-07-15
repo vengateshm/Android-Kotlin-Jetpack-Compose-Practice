@@ -2,10 +2,16 @@ import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    application
     id("java-library")
     id("org.jetbrains.kotlin.jvm")
     kotlin("plugin.serialization") version libs.versions.kotlin.get()
     kotlin("plugin.power-assert") version "2.0.0"
+}
+
+application {
+    applicationDefaultJvmArgs = listOf("-ea")
+//    applicationDefaultJvmArgs = listOf("-Dkotlinx.coroutines.debug=on")
 }
 
 java {
@@ -22,6 +28,9 @@ tasks.withType<KotlinCompile>().configureEach {
 kotlin {
     sourceSets.all {
         languageSettings.enableLanguageFeature("ExplicitBackingFields")
+    }
+    compilerOptions {
+        freeCompilerArgs.add("-Xdebug")// Don't use in release builds
     }
 }
 
@@ -43,6 +52,8 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
 
     implementation(libs.jaxb.runtime)
+
+    implementation("dev.reformator.stacktracedecoroutinator:stacktrace-decoroutinator-jvm:2.3.8")
 
     testImplementation(libs.junit)
     testImplementation(libs.junit.jupiter.api)
