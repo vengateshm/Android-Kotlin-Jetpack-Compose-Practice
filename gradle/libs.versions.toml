@@ -12,14 +12,14 @@ camera2 = "1.4.0-beta02"
 coil = "2.6.0"
 composeBom = "2024.06.00"
 activityCompose = "1.9.0"
-composeBetaVersion = "1.7.0-beta04"
+composeBetaVersion = "1.7.0-beta05"
 constraintlayout = "2.1.4"
 constraintlayoutCompose = "1.0.1"
 coreSplashscreen = "1.1.0-rc01"
 datastorePreferences = "1.1.1"
 composeMaterialDialogs = "0.8.1-rc"
 fig = "0.0.2"
-firebaseBom = "33.1.1"
+firebaseBom = "33.1.2"
 generativeai = "0.9.0"
 glanceAppwidget = "1.1.0"
 gson = "2.10.1"
@@ -40,7 +40,7 @@ kotlinxCollectionsImmutable = "0.3.6"
 kotlinxCoroutinesAndroid = "1.8.1"
 kotlinxCoroutinesCore = "1.9.0-RC"
 kotlinxSerializationJson = "1.6.3"
-ktorClientCore = "2.3.11"
+ktorClientCore = "2.3.12"
 landscapistGlide = "1.4.5"
 libphonenumberAndroid = "8.13.35"
 loggingInterceptor = "5.0.0-alpha.3"
@@ -50,7 +50,7 @@ material3 = "1.2.1"
 materialIconsExtendedAndroid = "1.6.8"
 media3Ui = "1.3.1"
 mockk = "1.13.11"
-navigationCompose = "2.8.0-beta04"
+navigationCompose = "2.8.0-beta05"
 navigationFragmentKtx = "2.7.7"
 okhttp = "5.0.0-alpha.3"
 pagingRuntimeKtx = "3.3.0"
@@ -67,6 +67,9 @@ roomTesting = "2.6.1"
 runtimeLivedata = "1.6.8"
 rxjava = "3.1.6"
 securityCryptoKtx = "1.1.0-alpha06"
+tensorflowLiteGpu = "2.9.0"
+tensorflowLiteGpuDelegatePlugin = "0.4.0"
+tensorflowLiteTaskVision = "0.4.0"
 turbine = "0.9.0"
 uiTextGoogleFonts = "1.6.8"
 voyager = "1.0.0"
@@ -109,9 +112,12 @@ androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fr
 androidx-navigation-testing = { module = "androidx.navigation:navigation-testing", version.ref = "navigationFragmentKtx" }
 
 #Camera
+androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "camera2" }
 androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "camera2" }
 androidx-camera-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref = "camera2" }
 androidx-camera-view = { module = "androidx.camera:camera-view", version.ref = "camera2" }
+androidx-camera-extensions = { module = "androidx.camera:camera-extensions", version.ref = "camera2" }
+androidx-camera-video = { module = "androidx.camera:camera-video", version.ref = "camera2" }
 
 #Media3
 androidx-media3-exoplayer = { module = "androidx.media3:media3-exoplayer", version.ref = "media3Ui" }
@@ -348,6 +354,11 @@ fig = { module = "com.github.theapache64:fig", version.ref = "fig" }
 
 #libphonenumber android
 libphonenumber-android = { module = "io.michaelrocks:libphonenumber-android", version.ref = "libphonenumberAndroid" }
+
+#Tensorflow Lite
+tensorflow-lite-gpu = { module = "org.tensorflow:tensorflow-lite-gpu", version.ref = "tensorflowLiteGpu" }
+tensorflow-lite-gpu-delegate-plugin = { module = "org.tensorflow:tensorflow-lite-gpu-delegate-plugin", version.ref = "tensorflowLiteGpuDelegatePlugin" }
+tensorflow-lite-task-vision = { module = "org.tensorflow:tensorflow-lite-task-vision", version.ref = "tensorflowLiteTaskVision" }
 
 [bundles]
 compose = ["androidx-compose-ui", "androidx-compose-ui-graphics", "androidx-compose-foundation", "androidx-compose-animation", "androidx-compose-runtime", "androidx-compose-foundation-layout", "androidx-compose-ui-tooling", "androidx-compose-ui-tooling-preview"]

@@ -21,6 +21,11 @@ fun Activity.requestLocationPermissions() {
         }
 }
 
+fun Activity.requestCameraPermission() {
+    val permission = Manifest.permission.CAMERA
+    requestPermissionIfNotGranted(permission, 112)
+}
+
 private fun Activity.requestPermissionIfNotGranted(permission: String, requestCode: Int) {
     val isGranted =
         ContextCompat.checkSelfPermission(
