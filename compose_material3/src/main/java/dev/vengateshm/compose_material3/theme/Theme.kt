@@ -1,9 +1,7 @@
 package dev.vengateshm.compose_material3.theme
 
 import android.os.Build
-import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
@@ -93,10 +91,13 @@ fun Material3AppTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Comp
         typography = Typography,
         shapes = Shapes
     ) {
-        // TODO (M3): MaterialTheme doesn't provide LocalIndication, remove when it does
+        /*// TODO (M3): MaterialTheme doesn't provide LocalIndication, remove when it does
         val rippleIndication = rememberRipple()
         CompositionLocalProvider(
             LocalIndication provides rippleIndication,
+            content = content
+        )*/
+        CompositionLocalProvider(
             content = content
         )
     }
