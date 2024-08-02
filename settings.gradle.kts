@@ -28,3 +28,6 @@ include(":xml_kotlin")
 
 // Building other projects and including
 //includeBuild()
+include(":feature:auth")
+include(":feature:home")
+include(":feature:common")

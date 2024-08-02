@@ -79,7 +79,6 @@ tasks.withType<KotlinCompile>().configureEach {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-
     implementation(libs.material)
 
     // Compose dependencies
@@ -162,6 +161,9 @@ dependencies {
     implementation(libs.tensorflow.lite.gpu)
 
     implementation(projects.appcore)
+    implementation(projects.feature.common)
+    implementation(projects.feature.auth)
+    implementation(projects.feature.home)
 
     testImplementation(libs.junit)
     testImplementation(libs.koin.test)
