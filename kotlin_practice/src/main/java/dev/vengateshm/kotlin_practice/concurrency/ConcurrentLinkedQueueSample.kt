@@ -1,4 +1,4 @@
-package dev.vengateshm.kotlin_practice.coroutines
+package dev.vengateshm.kotlin_practice.concurrency
 
 import java.lang.Thread.sleep
 import java.util.concurrent.ConcurrentLinkedQueue
@@ -10,7 +10,6 @@ val queue = ConcurrentLinkedQueue<String>()
 fun main() {
 
     thread {
-
         repeat(5) { sleep(1000); queue.add(readData(1)) }
     }
     thread {
