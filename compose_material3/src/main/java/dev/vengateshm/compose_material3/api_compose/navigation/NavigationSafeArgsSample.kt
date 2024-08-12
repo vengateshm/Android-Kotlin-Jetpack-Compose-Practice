@@ -1,5 +1,6 @@
 package dev.vengateshm.compose_material3.api_compose.navigation
 
+import android.net.Uri
 import android.os.Bundle
 import android.os.Parcelable
 import androidx.compose.foundation.layout.Box
@@ -37,6 +38,7 @@ fun NavigationSafeArgsSample(modifier: Modifier = Modifier) {
                 navController.navigate(
                     Screen.Profile(
                         id = Random.nextInt(0..10),
+                        userType = UserType.entries.toTypedArray().random()
                     )
                 )
             },
@@ -45,22 +47,29 @@ fun NavigationSafeArgsSample(modifier: Modifier = Modifier) {
                         Screen.Settings(
                             config = SettingsConfig(
                                 isDarkTheme = false,
-                                menu = listOf("Logout, Download over WiFi only")
+                                menu = listOf("Logout, Download over WiFi only"),
+                                userType = UserType.entries.toTypedArray().random()
                             )
                         )
                     )
                 })
         }
-        composable<Screen.Profile> { backStackEntry ->
+        composable<Screen.Profile>(
+            typeMap = mapOf(typeOf<UserType>() to NavType.EnumType(UserType::class.java))
+        ) { backStackEntry ->
             val profile = backStackEntry.toRoute<Screen.Profile>()
             ProfileScreen(
                 id = profile.id,
+                userType = profile.userType,
                 goBack = {
                     navController.popBackStack()
                 })
         }
         composable<Screen.Settings>(
-            typeMap = mapOf(typeOf<SettingsConfig>() to settingsConfigNavType)
+            typeMap = mapOf(
+                typeOf<SettingsConfig>() to settingsConfigNavType,
+                typeOf<UserType>() to NavType.EnumType(UserType::class.java)
+            )
         ) { backStackEntry ->
             val settingsViewModel = viewModel<SettingsViewModel> {
                 val savedStateHandle = createSavedStateHandle()
@@ -102,14 +111,15 @@ fun HomeScreen(
 fun ProfileScreen(
     modifier: Modifier = Modifier,
     id: Int,
-    goBack: () -> Unit
+    goBack: () -> Unit,
+    userType: UserType
 ) {
     Box(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(text = "Profile Screen $id")
+            Text(text = "Profile Screen $id\nUser type: ${userType.name.uppercase()}")
             ElevatedAssistChip(
                 onClick = dropUnlessResumed {
                     goBack()
@@ -155,7 +165,7 @@ sealed class Screen {
     data object Home : Screen()
 
     @Serializable
-    data class Profile(val id: Int) : Screen()
+    data class Profile(val id: Int, val userType: UserType) : Screen()
 
     @Serializable
     data class Settings(val config: SettingsConfig) : Screen()
@@ -163,7 +173,11 @@ sealed class Screen {
 
 @Parcelize
 @Serializable
-data class SettingsConfig(val isDarkTheme: Boolean, val menu: List<String>) : Parcelable
+data class SettingsConfig(
+    val isDarkTheme: Boolean,
+    val menu: List<String>,
+    val userType: UserType
+) : Parcelable
 
 val settingsConfigNavType = object : NavType<SettingsConfig>(
     isNullableAllowed = false
@@ -175,14 +189,19 @@ val settingsConfigNavType = object : NavType<SettingsConfig>(
     }
 
     override fun parseValue(value: String): SettingsConfig {
-        return Json.decodeFromString<SettingsConfig>(value)
+        return Json.decodeFromString(Uri.decode(value))
+    }
+
+    override fun serializeAsValue(value: SettingsConfig): String {
+        return Uri.encode(Json.encodeToString(value))
     }
 
     override fun put(bundle: Bundle, key: String, value: SettingsConfig) {
         bundle.putString(key, Json.encodeToString(value))
     }
+}
 
-    override fun serializeAsValue(value: SettingsConfig): String {
-        return Json.encodeToString(value)
-    }
+enum class UserType {
+    FREE,
+    PREMIUM
 }
