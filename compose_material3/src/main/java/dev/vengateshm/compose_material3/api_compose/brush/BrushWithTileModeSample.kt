@@ -1,4 +1,4 @@
-package dev.vengateshm.compose_material3.api_compose.custom_modifiers
+package dev.vengateshm.compose_material3.api_compose.brush
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
