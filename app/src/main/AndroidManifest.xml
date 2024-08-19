@@ -17,13 +17,15 @@
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
 
     <!--Location-->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <!-- Devices running Android 12L (API level 32) or lower  -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32" />
 
     <!-- Devices running Android 13 (API level 33) or higher -->
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
@@ -157,6 +159,7 @@
             android:exported="true" />
         <activity
             android:name="dev.vengateshm.compose_material3.ComposeMaterial3Activity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true" />
         <activity
             android:name=".functional_programming.FunctionalProgrammingActivity"
@@ -289,30 +292,41 @@
         <activity
             android:name=".app_shortcuts.AppShortCutActivity"
             android:exported="true" />
-        <activity android:name=".biometric.BiometricAuthActivity"
-            android:exported="true"/>
-        <activity android:name="dev.vengateshm.compose_material3.apps.gemini_ai_chat.ChatAiActivity"
-            android:exported="true"/>
-        <activity android:name="dev.vengateshm.compose_material3.other_concepts.ml_kit.MlKitActivity"
-            android:exported="true"/>
-        <activity android:name=".res_strings_cache_in_viewmodel.ResStringCacheInViewModelActivity"
-            android:exported="true"/>
-        <activity android:name=".manual_di.ManualDiActivity"
-            android:exported="true"/>
-        <activity android:name="dev.vengateshm.compose_material3.other_concepts.shaders.AGSLShaderActivity"
-            android:exported="true"/>
-        <activity android:name="dev.vengateshm.compose_material3.ui_concepts.infinite_scroll.InfiniteScrollActivity"
-            android:exported="true"/>
-        <activity android:name="dev.vengateshm.compose_material3.apps.calendar.CalendarAppActivity"
-            android:exported="true"/>
-        <activity android:name="dev.vengateshm.compose_material3.other_concepts.presenter_retain.PresenterRetainActivity"
-            android:exported="true"/>
-        <activity android:name=".screenshot_detection.ScreenShotActivity"
-            android:exported="true"/>
+        <activity
+            android:name=".biometric.BiometricAuthActivity"
+            android:exported="true" />
+        <activity
+            android:name="dev.vengateshm.compose_material3.apps.gemini_ai_chat.ChatAiActivity"
+            android:exported="true" />
+        <activity
+            android:name="dev.vengateshm.compose_material3.other_concepts.ml_kit.MlKitActivity"
+            android:exported="true" />
+        <activity
+            android:name=".res_strings_cache_in_viewmodel.ResStringCacheInViewModelActivity"
+            android:exported="true" />
+        <activity
+            android:name=".manual_di.ManualDiActivity"
+            android:exported="true" />
+        <activity
+            android:name="dev.vengateshm.compose_material3.other_concepts.shaders.AGSLShaderActivity"
+            android:exported="true" />
+        <activity
+            android:name="dev.vengateshm.compose_material3.ui_concepts.infinite_scroll.InfiniteScrollActivity"
+            android:exported="true" />
+        <activity
+            android:name="dev.vengateshm.compose_material3.apps.calendar.CalendarAppActivity"
+            android:exported="true" />
+        <activity
+            android:name="dev.vengateshm.compose_material3.other_concepts.presenter_retain.PresenterRetainActivity"
+            android:exported="true" />
+        <activity
+            android:name=".screenshot_detection.ScreenShotActivity"
+            android:exported="true" />
         <activity
             android:name="dev.vengateshm.compose_material3.api_kotlin.coroutines.CoroutineDispatchersActivity"
             android:exported="true" />
-        <activity android:name="dev.vengateshm.compose_material3.ui_concepts.deep_links.DeepLinkActivity"
+        <activity
+            android:name="dev.vengateshm.compose_material3.ui_concepts.deep_links.DeepLinkActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -322,7 +336,7 @@
 
                 <data
                     android:host="artemis.com"
-                    android:scheme="example"/>
+                    android:scheme="example" />
             </intent-filter>
         </activity>
         <activity
@@ -337,7 +351,8 @@
                 <action android:name="dev.vengateshm.android_kotlin_compose_practice.ALARM_TRIGGER" />
             </intent-filter>
         </receiver>
-        <service android:name=".push_notifications.AppPushNotificationService"
+        <service
+            android:name=".push_notifications.AppPushNotificationService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

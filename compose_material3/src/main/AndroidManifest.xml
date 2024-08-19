@@ -19,6 +19,7 @@
     <application>
         <activity
             android:name=".ComposeMaterial3Activity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true" />
         <activity
             android:name=".apps.gemini_ai_chat.ChatAiActivity"

@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "dev.vengateshm.glance_app_widget"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         minSdk = 23
