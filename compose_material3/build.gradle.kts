@@ -138,11 +138,13 @@ dependencies {
     ksp(libs.androidx.room.compiler)
     // Kotlin Extensions and Coroutines support for Room
     implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.paging)
 
     //Koin
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
     implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
 
     implementation(libs.fig)
 
@@ -159,6 +161,10 @@ dependencies {
     implementation(libs.tensorflow.lite.task.vision)
     implementation(libs.tensorflow.lite.gpu.delegate.plugin)
     implementation(libs.tensorflow.lite.gpu)
+
+    // Paging
+    implementation(libs.androidx.paging.runtime.ktx)
+    implementation(libs.androidx.paging.compose)
 
     implementation(projects.appcore)
     implementation(projects.feature.common)

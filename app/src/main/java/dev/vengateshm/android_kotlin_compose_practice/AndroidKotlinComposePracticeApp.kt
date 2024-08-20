@@ -19,6 +19,7 @@ import dev.vengateshm.compose_material3.api_android.foreground_service.counter.C
 import dev.vengateshm.compose_material3.api_android.foreground_service.location_tracking.LocationTrackingService
 import dev.vengateshm.compose_material3.di.koin.koinSampleModule
 import dev.vengateshm.compose_material3.testing.mvvm_local_db.di.todoModule
+import dev.vengateshm.compose_material3.ui_concepts.paging.di.breweryAppModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import java.io.PrintWriter
@@ -56,7 +57,7 @@ class AndroidKotlinComposePracticeApp : Application(), ImageLoaderFactory {
 
         startKoin {
             androidContext(this@AndroidKotlinComposePracticeApp)
-            modules(todoModule, koinSampleModule)
+            modules(todoModule, koinSampleModule, breweryAppModule)
         }
     }
 
