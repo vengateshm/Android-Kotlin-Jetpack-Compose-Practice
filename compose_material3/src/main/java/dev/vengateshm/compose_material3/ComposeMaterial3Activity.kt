@@ -12,14 +12,14 @@ import dagger.hilt.android.AndroidEntryPoint
 import dev.vengateshm.compose_material3.theme.Material3AppTheme
 import dev.vengateshm.compose_material3.utils.requestCameraPermission
 import dev.vengateshm.compose_material3.utils.requestNotificationPermission
+import dev.vengateshm.compose_material3.utils.requestRecordAudioPermission
 
 @AndroidEntryPoint
 class ComposeMaterial3Activity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        requestNotificationPermission()
-        requestCameraPermission()
+        requestPermissions()
 
         setContent {
             Material3AppTheme {
@@ -31,5 +31,11 @@ class ComposeMaterial3Activity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    private fun requestPermissions() {
+        requestNotificationPermission()
+        requestCameraPermission()
+        requestRecordAudioPermission()
     }
 }

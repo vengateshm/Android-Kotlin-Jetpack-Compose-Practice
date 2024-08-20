@@ -26,6 +26,11 @@ fun Activity.requestCameraPermission() {
     requestPermissionIfNotGranted(permission, 112)
 }
 
+fun Activity.requestRecordAudioPermission() {
+    val permission = Manifest.permission.RECORD_AUDIO
+    requestPermissionIfNotGranted(permission, 113)
+}
+
 private fun Activity.requestPermissionIfNotGranted(permission: String, requestCode: Int) {
     val isGranted =
         ContextCompat.checkSelfPermission(
