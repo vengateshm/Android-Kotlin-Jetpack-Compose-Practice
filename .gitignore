@@ -33,3 +33,4 @@ app/google-services.json
 *.hprof
 
 xcuserdata
+*.DS_Store
