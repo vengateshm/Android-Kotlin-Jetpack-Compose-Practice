@@ -56,6 +56,9 @@ dependencies {
     implementation(projects.appcore)
 
     testImplementation(libs.junit)
+
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    androidTestImplementation(libs.androidx.glance.testing)
+    androidTestImplementation(libs.androidx.glance.appwidget.testing)
 }

@@ -208,6 +208,8 @@ androidx-compose-material3-adaptive-navigation-suite = { module = "androidx.comp
 #Glance App Widget
 androidx-glance-appwidget = { module = "androidx.glance:glance-appwidget", version.ref = "glanceAppwidget" }
 androidx-glance-material3 = { module = "androidx.glance:glance-material3", version.ref = "glanceAppwidget" }
+androidx-glance-testing = { module = "androidx.glance:glance-testing", version.ref = "glanceAppwidget" }
+androidx-glance-appwidget-testing = { module = "androidx.glance:glance-appwidget-testing", version.ref = "glanceAppwidget" }
 
 #Compose Beta
 androidx-compose-beta-ui = { module = "androidx.compose.ui:ui", version.ref = "composeBetaVersion" }
