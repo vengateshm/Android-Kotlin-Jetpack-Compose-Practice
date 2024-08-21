@@ -1,0 +1,101 @@
+openapi: 3.0.3
+info:
+  title: GitHub User API
+  description: API for retrieving public information about GitHub users by their username.
+  version: 1.0.0
+  contact:
+    name: API Support
+    url: https://docs.github.com/en/rest/users/users#get-a-user
+    email: support@github.com
+
+servers:
+  - url: https://api.github.com
+    description: GitHub API server
+
+paths:
+  /users/{username}:
+    get:
+      summary: Get GitHub user information
+      description: Retrieves public information about a GitHub user by their username.
+      parameters:
+        - in: path
+          name: username
+          schema:
+            type: string
+          required: true
+          description: The GitHub username of the user to retrieve.
+      responses:
+        '200':
+          description: Successful response with user information.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found.
+        '403':
+          description: API rate limit exceeded.
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        login:
+          type: string
+          description: The username of the user.
+          example: "octocat"
+        id:
+          type: integer
+          description: The unique identifier for the user.
+          example: 583231
+        avatar_url:
+          type: string
+          description: URL to the user's avatar.
+          example: "https://avatars.githubusercontent.com/u/583231?v=4"
+        name:
+          type: string
+          description: The user's full name.
+          example: "The Octocat"
+        company:
+          type: string
+          description: The company the user works for.
+          example: "GitHub"
+        blog:
+          type: string
+          description: The user's blog URL.
+          example: "https://github.blog"
+        location:
+          type: string
+          description: The user's location.
+          example: "San Francisco"
+        email:
+          type: string
+          description: The user's public email address.
+          example: "octocat@github.com"
+        bio:
+          type: string
+          description: The user's biography.
+          example: "Just another GitHub user."
+        public_repos:
+          type: integer
+          description: The number of public repositories the user has.
+          example: 8
+        followers:
+          type: integer
+          description: The number of followers the user has.
+          example: 1000
+        following:
+          type: integer
+          description: The number of users this user is following.
+          example: 50
+        created_at:
+          type: string
+          format: date-time
+          description: The date and time when the user was created.
+          example: "2011-01-25T18:44:36Z"
+        updated_at:
+          type: string
+          format: date-time
+          description: The date and time when the user was last updated.
+          example: "2024-01-01T12:00:00Z"

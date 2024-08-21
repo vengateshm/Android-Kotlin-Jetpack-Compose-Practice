@@ -15,6 +15,7 @@ plugins {
 //    alias(libs.plugins.composeInvestigator)
     alias(libs.plugins.compose.plugin)
     id("com.google.devtools.ksp")
+    alias(libs.plugins.openApi.generator)
 }
 
 android {
@@ -125,9 +126,12 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.converter.moshi)
+    implementation(libs.converter.scalars)
 
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
+
+    implementation(libs.gson)
 
     // In App updates
     implementation(libs.app.update)
@@ -191,4 +195,35 @@ dependencies {
 /*
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
+}*/
+
+openApiGenerate {
+    skipValidateSpec.set(true)
+    packageName.set("dev.vengateshm.compose_material3.openapi")
+    generatorName.set("kotlin")
+    generateApiTests.set(false)
+    generateModelTests.set(false)
+    library.set("jvm-retrofit2")
+    inputSpec.set("$rootDir/api.yml")
+    configOptions.set(
+        mapOf(
+            "serializationLibrary" to "gson",
+            "useCoroutines" to "true",
+        )
+    )
+}
+
+// To access in app/module directory
+kotlin {
+    sourceSets {
+        main {
+            kotlin.srcDir("$rootDir/compose_material3/build/generate-resources/main/src")
+        }
+    }
+}
+
+// Generate openapi code while building
+/*
+tasks.withType<KotlinCompile>().configureEach {
+    dependsOn("openApiGenerate")
 }*/

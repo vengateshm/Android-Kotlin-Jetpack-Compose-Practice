@@ -12,6 +12,7 @@ plugins {
     alias(libs.plugins.jetbrains.dokka)// Needs KDoc comments to generate documentation
 //    alias(libs.plugins.composeInvestigator) apply false
     alias(libs.plugins.compose.plugin) apply false
+    alias(libs.plugins.openApi.generator) apply false
 }
 
 //subprojects {
