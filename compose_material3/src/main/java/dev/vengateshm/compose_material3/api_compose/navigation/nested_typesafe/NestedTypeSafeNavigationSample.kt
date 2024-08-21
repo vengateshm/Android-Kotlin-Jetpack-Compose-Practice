@@ -7,6 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
@@ -14,9 +15,10 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 
 @Composable
-fun NestedTypeSafeNavigationSample(modifier: Modifier = Modifier) {
-    val navController = rememberNavController()
-
+fun NestedTypeSafeNavigationSample(
+    modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController()
+) {
     NavHost(
         navController = navController,
         startDestination = DestGraph.AuthGraph
