@@ -20,4 +20,5 @@
     <string name="covid_summary_app_widget_description">COVID 19 Summary</string>
     <string name="live_score_widget_description">Live score widget</string>
     <string name="counter_widget_description">Counter</string>
+    <string name="hello_world_widget_description">Hello World Widget</string>
 </resources>

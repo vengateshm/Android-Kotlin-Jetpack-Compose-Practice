@@ -11,7 +11,7 @@
             android:name=".service.LiveScoreService"
             android:enabled="true"
             android:exported="true"
-            android:foregroundServiceType="shortService"/>
+            android:foregroundServiceType="shortService" />
         <receiver
             android:name=".receiver.LiveCricketScoreWidgetReceiver"
             android:enabled="true"
@@ -28,7 +28,7 @@
             android:name=".service.COVID19DataService"
             android:enabled="true"
             android:exported="true"
-            android:foregroundServiceType="shortService"/>
+            android:foregroundServiceType="shortService" />
 
         <receiver
             android:name=".receiver.COVID19WidgetReceiver"
@@ -77,6 +77,17 @@
             <meta-data
                 android:name="android.appwidget.provider"
                 android:resource="@xml/counter_widget_info" />
+        </receiver>
+        <receiver
+            android:name=".receiver.HelloWorldWidgetReceiver"
+            android:exported="true"
+            android:label="Hello World">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/hello_world_widget_provider_info" />
         </receiver>
     </application>
 </manifest>
