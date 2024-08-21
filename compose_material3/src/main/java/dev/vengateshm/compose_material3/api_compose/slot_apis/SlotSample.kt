@@ -10,16 +10,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
-@Composable
-fun SlotButton(content: @Composable RowScope.() -> Unit) {
+@Composable // content param
+fun SingleSlotParam(content: @Composable RowScope.() -> Unit) {
     Row {
         content()
     }
 }
 
+@Composable // named param
+fun MultipleSlotParam(
+    icon: @Composable () -> Unit,
+    label: @Composable () -> Unit
+) {
+
+}
+
 @Composable
 fun SlotUI(modifier: Modifier = Modifier) {
-    SlotButton {
+    SingleSlotParam {
         Icon(imageVector = Icons.Default.Build, contentDescription = "build icon")
         Text(text = "Build")
     }
