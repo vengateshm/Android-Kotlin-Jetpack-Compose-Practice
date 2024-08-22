@@ -170,6 +170,8 @@ dependencies {
     implementation(libs.androidx.paging.runtime.ktx)
     implementation(libs.androidx.paging.compose)
 
+    implementation(libs.kotlinx.datetime)
+
     implementation(projects.appcore)
     implementation(projects.feature.common)
     implementation(projects.feature.auth)
@@ -177,6 +179,7 @@ dependencies {
 
     testImplementation(libs.junit)
     testImplementation(libs.koin.test)
+    testImplementation(libs.koin.test.junit4)
     testImplementation(libs.bundles.kotest)
 
     androidTestImplementation(libs.ext.junit)
@@ -184,6 +187,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.idling.resource)
     //Koin
     androidTestImplementation(libs.koin.test)
+    androidTestImplementation(libs.koin.test.junit4)
     androidTestImplementation(libs.koin.android.test)
     //Mockk
     androidTestImplementation(libs.mockk.android)
