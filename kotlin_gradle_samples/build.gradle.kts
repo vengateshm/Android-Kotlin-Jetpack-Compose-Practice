@@ -96,9 +96,65 @@ tasks.register<Oranges>("oranges") {
 class ApplesPlugin : Plugin<Project> {
     override fun apply(target: Project) {
         target.tasks.register("applesPlugin") {
-            println("Hello form ApplesPlugin!")
+            println("Hello from ApplesPlugin!")
         }
     }
 }
 
 apply<ApplesPlugin>()
+
+val helloThere: Task by tasks.creating {
+    doLast {
+        print("hello")
+    }
+}
+
+val world: Task by tasks.creating {
+    dependsOn(helloThere)
+    doLast {
+        print("world")
+    }
+}
+
+val copyJavaResources: Task by tasks.creating(Copy::class) {
+    from("kotlin_gradle_samples/src/main/java")
+    into(buildDir)
+}
+
+tasks.addRule("Pattern: hello<who>: Send personalized greeting") {
+    val taskName = this
+    if (taskName.startsWith("hello")) {
+        println("TASK NAME : $taskName")
+        task(taskName) {
+            dependsOn(helloThere)
+            doLast {
+                println(taskName.removePrefix("hello"))
+            }
+        }
+    }
+}
+
+tasks {
+    val h by creating {
+        doLast { println("hello, ") }
+    }
+    val w by creating {
+        doLast { println("world!") }
+    }
+}
+
+tasks {
+    val h by getting
+    val w by getting
+    w.dependsOn(h)
+}
+
+tasks {
+    "h" {
+        doLast { println("wonderful") }
+    }
+    "w" {
+        dependsOn("h")
+        doLast { println("crystals") }
+    }
+}
