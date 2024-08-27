@@ -1,4 +1,4 @@
-package dev.vengateshm.kotlin_practice.annotations_reflection
+package dev.vengateshm.kotlin_practice.annotations
 
 import kotlin.reflect.full.findAnnotation
 

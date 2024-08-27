@@ -1,4 +1,4 @@
-package dev.vengateshm.ksp_processor
+package dev.vengateshm.ksp_samples
 
 import com.google.devtools.ksp.processing.Dependencies
 import com.google.devtools.ksp.processing.Resolver
@@ -6,7 +6,7 @@ import com.google.devtools.ksp.processing.SymbolProcessor
 import com.google.devtools.ksp.processing.SymbolProcessorEnvironment
 import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSClassDeclaration
-import dev.vengateshm.ksp_annotations.MyAnnotation
+import dev.vengateshm.ksp_samples.annotations.MyAnnotation
 
 class MyAnnotationProcessor(
     environment: SymbolProcessorEnvironment

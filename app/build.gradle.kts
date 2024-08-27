@@ -224,8 +224,8 @@ dependencies {
     implementation(libs.koin.core)
     implementation(libs.koin.android)
 
-    implementation(projects.kspSamples)
-    ksp(projects.kspSamples)
+    implementation(projects.kspProcessor)
+    ksp(projects.kspProcessor)
 
     implementation(projects.appcore)
     implementation(projects.composeMaterial3)

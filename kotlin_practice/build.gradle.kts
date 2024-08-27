@@ -7,6 +7,7 @@ plugins {
     id("org.jetbrains.kotlin.jvm")
     kotlin("plugin.serialization") version libs.versions.kotlin.get()
     kotlin("plugin.power-assert") version "2.0.0"
+    id("com.google.devtools.ksp")
 }
 
 application {
@@ -56,6 +57,9 @@ dependencies {
     implementation("dev.reformator.stacktracedecoroutinator:stacktrace-decoroutinator-jvm:2.3.8")
 
     implementation(libs.kotlinx.datetime)
+
+    implementation(projects.kspProcessor)
+    ksp(projects.kspProcessor)
 
     testImplementation(libs.junit)
     testImplementation(libs.junit.jupiter.api)

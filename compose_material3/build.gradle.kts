@@ -177,9 +177,6 @@ dependencies {
     implementation(projects.feature.auth)
     implementation(projects.feature.home)
 
-    implementation(projects.kspProcessor)
-    ksp(projects.kspProcessor)
-
     testImplementation(libs.junit)
     testImplementation(libs.koin.test)
     testImplementation(libs.koin.test.junit4)
