@@ -18,8 +18,8 @@ class Named {
 data class Vehicle(val make: String)
 
 fun main() {
-    NamedGenerated().printName()
+    //NamedGenerated().printName()
     AnnotationsWithKsp()
     val vehicle = Vehicle(make = "Honda")
-    println(vehicle.toJson())
+    //println(vehicle.toJson())
 }
