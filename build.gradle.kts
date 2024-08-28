@@ -1,3 +1,7 @@
+import com.diffplug.gradle.spotless.SpotlessExtension
+import com.diffplug.gradle.spotless.SpotlessPlugin
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     alias(libs.plugins.android.application) apply false
@@ -13,11 +17,41 @@ plugins {
 //    alias(libs.plugins.composeInvestigator) apply false
     alias(libs.plugins.compose.plugin) apply false
     alias(libs.plugins.openApi.generator) apply false
+    alias(libs.plugins.spotless) apply false
 }
 
-//subprojects {
-//    apply(plugin = "org.jetbrains.dokka")
-//}
+val ktlintVersion = libs.versions.ktlint.get()
+
+subprojects {
+    //apply(plugin = "org.jetbrains.dokka")
+    apply<SpotlessPlugin>()
+    configure<SpotlessExtension> {
+        kotlin {
+            target("src/**/*.kt")
+            targetExclude("build/**/*.kt")
+            ktlint(ktlintVersion)
+                .editorConfigOverride(
+                    mapOf(
+                        "ktlint_standard_no-wildcard-imports" to "disabled",
+                        "ktlint_standard_package-name" to "disabled",
+                        "ktlint_standard_function-naming" to "disabled",
+                    ),
+                )
+            //this.ratchetFrom("origin/develop")
+        }
+        kotlinGradle {
+            target("*.kts")
+            ktlint(ktlintVersion)
+        }
+    }
+
+    afterEvaluate {
+        tasks.withType<KotlinCompile> {
+            // Enable spotlessApply after KotlinCompile
+            //finalizedBy("spotlessApply")
+        }
+    }
+}
 
 tasks.dokkaHtml {
     outputDirectory.set(layout.buildDirectory.dir("docs/html"))

@@ -9,8 +9,7 @@ import dev.vengateshm.samples.common.navigation.NavDest
 import dev.vengateshm.samples.common.navigation.NavDestGraph
 import dev.vengateshm.samples.home.screens.HomeScreen
 
-interface HomeFeature : Feature {
-}
+interface HomeFeature : Feature
 
 class HomeFeatureImpl : HomeFeature {
     override fun registerGraph(

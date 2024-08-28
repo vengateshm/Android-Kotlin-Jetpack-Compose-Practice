@@ -74,8 +74,9 @@ abstract class Oranges : DefaultTask() {
 
     @TaskAction
     fun run() {
-        if (count.get() < 0)
+        if (count.get() < 0) {
             throw StopExecutionException("count cannot be negative!")
+        }
 //            throw StopActionException("count cannot be negative!")
         println("Oranges : ${count.orNull ?: 5}")
     }

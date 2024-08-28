@@ -17,9 +17,12 @@ class MyGlanceComposableTest {
         setAppWidgetSize(size = DpSize(100.dp, 100.dp))
 
         provideComposable {
-            Text(text = "Hello, World!", modifier = GlanceModifier.semantics {
-                testTag = "hw"
-            })
+            Text(
+                text = "Hello, World!",
+                modifier = GlanceModifier.semantics {
+                    testTag = "hw"
+                }
+            )
         }
 
         onNode(hasText("Hello, World!")).assertExists()

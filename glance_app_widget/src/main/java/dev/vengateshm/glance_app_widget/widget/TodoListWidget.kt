@@ -16,14 +16,12 @@ import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.action.ActionCallback
 import androidx.glance.appwidget.action.ToggleableStateKey
 import androidx.glance.appwidget.action.actionRunCallback
-import androidx.glance.appwidget.appWidgetBackground
 import androidx.glance.appwidget.components.Scaffold
 import androidx.glance.appwidget.components.TitleBar
 import androidx.glance.appwidget.lazy.LazyColumn
 import androidx.glance.appwidget.lazy.items
 import androidx.glance.appwidget.provideContent
 import androidx.glance.appwidget.state.updateAppWidgetState
-import androidx.glance.background
 import androidx.glance.currentState
 import androidx.glance.layout.Column
 import androidx.glance.layout.fillMaxSize
@@ -83,9 +81,11 @@ class TodoListWidget : GlanceAppWidget() {
                                 fontSize = 18.sp
                             ),
                         )*/
-                        CountChecked(groceryStringIds.filter {
-                            prefs[booleanPreferencesKey(it.toString())] ?: false
-                        }.size)
+                        CountChecked(
+                            groceryStringIds.filter {
+                                prefs[booleanPreferencesKey(it.toString())] ?: false
+                            }.size
+                        )
                         LazyColumn {
                             items(groceryStringIds) {
                                 val idString = it.toString()
@@ -95,7 +95,7 @@ class TodoListWidget : GlanceAppWidget() {
                                     checked = checked,
                                     onCheckedChange = actionRunCallback<CheckboxClickAction>(
                                         actionParametersOf(
-                                            toggledStringIdKey to idString,
+                                            toggledStringIdKey to idString
                                         )
                                     ),
                                     modifier = GlanceModifier.padding(12.dp)
@@ -124,7 +124,7 @@ class CheckboxClickAction : ActionCallback {
     override suspend fun onAction(
         context: Context,
         glanceId: GlanceId,
-        parameters: ActionParameters,
+        parameters: ActionParameters
     ) {
         val toggledStringId = requireNotNull(parameters[toggledStringIdKey]) {
             "Add $toggledStringIdKey parameter in the ActionParameters."

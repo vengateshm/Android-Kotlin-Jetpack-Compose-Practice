@@ -1,7 +1,6 @@
 package dev.vengateshm.glance_app_widget.network
 
 import com.google.gson.GsonBuilder
-import dev.vengateshm.glance_app_widget.network.COVIDApi
 import dev.vengateshm.glance_app_widget.network.COVIDApi.Companion.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -18,7 +17,5 @@ object COVIDApiService {
             .build()
     }
 
-    fun getCOVIDApi(): dev.vengateshm.glance_app_widget.network.COVIDApi {
-        return dev.vengateshm.glance_app_widget.network.COVIDApiService.retrofit.create(dev.vengateshm.glance_app_widget.network.COVIDApi::class.java)
-    }
+    fun getCOVIDApi(): dev.vengateshm.glance_app_widget.network.COVIDApi = dev.vengateshm.glance_app_widget.network.COVIDApiService.retrofit.create(dev.vengateshm.glance_app_widget.network.COVIDApi::class.java)
 }

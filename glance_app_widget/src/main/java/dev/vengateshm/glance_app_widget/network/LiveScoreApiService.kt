@@ -16,7 +16,5 @@ object LiveScoreApiService {
             .build()
     }
 
-    fun getLiveScoreApi(): LiveScoreApi {
-        return retrofit.create(LiveScoreApi::class.java)
-    }
+    fun getLiveScoreApi(): LiveScoreApi = retrofit.create(LiveScoreApi::class.java)
 }

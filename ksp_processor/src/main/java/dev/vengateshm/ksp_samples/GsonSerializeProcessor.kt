@@ -9,8 +9,7 @@ import com.google.devtools.ksp.symbol.KSAnnotated
 import com.google.devtools.ksp.symbol.KSClassDeclaration
 import dev.vengateshm.ksp_samples.annotations.GsonSerialize
 
-class GsonSerializeProcessor(private val codeGenerator: CodeGenerator, logger: KSPLogger) :
-    SymbolProcessor {
+class GsonSerializeProcessor(private val codeGenerator: CodeGenerator, logger: KSPLogger) : SymbolProcessor {
     override fun process(resolver: Resolver): List<KSAnnotated> {
         val symbols = resolver.getSymbolsWithAnnotation(GsonSerialize::class.qualifiedName!!)
 

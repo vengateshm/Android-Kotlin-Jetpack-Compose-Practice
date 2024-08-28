@@ -17,8 +17,11 @@ fun AuthScreen(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = "Auth Screen", modifier = Modifier.clickable {
-            onClick()
-        })
+        Text(
+            text = "Auth Screen",
+            modifier = Modifier.clickable {
+                onClick()
+            }
+        )
     }
 }

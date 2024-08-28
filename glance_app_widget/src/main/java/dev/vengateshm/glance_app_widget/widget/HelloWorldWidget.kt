@@ -50,7 +50,7 @@ class HelloWorldWidget : GlanceAppWidget() {
             R.id.error_text_view,
             "Error was thrown.\nThis is a custom view \nError Message: ${throwable.message}"
         )
-        //rv.setOnClickPendingIntent(R.id.error_text_view, getErrorIntent(context, throwable))
+        // rv.setOnClickPendingIntent(R.id.error_text_view, getErrorIntent(context, throwable))
         AppWidgetManager.getInstance(context).updateAppWidget(appWidgetId, rv)
     }
 }

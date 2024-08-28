@@ -47,10 +47,11 @@ android {
         }
 
         val timeStamp =
-            LocalDateTime.now()
+            LocalDateTime
+                .now()
                 .format(DateTimeFormatter.ofPattern("dd-MMM-yyyy hh-mm-ss a"))
         val apkName = "AndroidKotlinComposePractice-$timeStamp"
-        //val apkName = "$applicationId-$versionName"
+        // val apkName = "$applicationId-$versionName"
         project.setProperty("archivesBaseName", apkName)
     }
 
@@ -59,7 +60,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro",
+                "proguard-rules.pro"
             )
         }
     }
@@ -219,7 +220,7 @@ dependencies {
     implementation(libs.androidx.biometric)
     implementation(libs.androidx.biometric.ktx)
 
-    //Koin
+    // Koin
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
     implementation(libs.koin.android)

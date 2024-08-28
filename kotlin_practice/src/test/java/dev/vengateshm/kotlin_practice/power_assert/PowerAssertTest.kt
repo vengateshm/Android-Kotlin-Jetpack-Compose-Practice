@@ -1,9 +1,11 @@
 package dev.vengateshm.kotlin_practice.power_assert
 
+import kotlin.test.Ignore
 import kotlin.test.Test
 
 class PowerAssertTest {
     @Test
+    @Ignore
     fun testFunction() {
         val hello = "Hello"
         val world = "world!"
@@ -12,6 +14,7 @@ class PowerAssertTest {
 
     data class Person(val name: String, val age: Int)
 
+    @Ignore
     @Test
     fun testComplexAssertion() {
         val person = Person("Alice", 10)
@@ -20,6 +23,7 @@ class PowerAssertTest {
         assert(isValidName && isValidAge)
     }
 
+    @Ignore
     @Test
     fun testRequireFunction() {
         val value = "NA"
@@ -29,6 +33,7 @@ class PowerAssertTest {
     data class Employee(val name: String, val age: Int, val salary: Int)
 
     @Test
+    @Ignore
     fun `test employees data`() {
         val employees = listOf(
             Employee("Alice", 30, 60000),

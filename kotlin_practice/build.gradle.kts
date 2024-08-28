@@ -31,7 +31,7 @@ kotlin {
         languageSettings.enableLanguageFeature("ExplicitBackingFields")
     }
     compilerOptions {
-        freeCompilerArgs.add("-Xdebug")// Don't use in release builds
+        freeCompilerArgs.add("-Xdebug") // Don't use in release builds
     }
 }
 
@@ -77,12 +77,13 @@ tasks.test {
 
 @OptIn(ExperimentalKotlinGradlePluginApi::class)
 powerAssert {
-    functions = listOf(
-        "kotlin.assert",
-        "kotlin.test.assertTrue",
-        "kotlin.test.assertEquals",
-        "kotlin.test.assertNull",
-        "kotlin.require",
-        "dev.vengateshm.kotlin_practice.power_assert.MyAssertScope.assert"
-    )
+    functions =
+        listOf(
+            "kotlin.assert",
+            "kotlin.test.assertTrue",
+            "kotlin.test.assertEquals",
+            "kotlin.test.assertNull",
+            "kotlin.require",
+            "dev.vengateshm.kotlin_practice.power_assert.MyAssertScope.assert"
+        )
 }

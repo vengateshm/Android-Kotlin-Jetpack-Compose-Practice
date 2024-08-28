@@ -57,12 +57,12 @@ class COVID19Widget : GlanceAppWidget() {
     override val stateDefinition: GlanceStateDefinition<*> = PreferencesGlanceStateDefinition
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         provideContent {
-
             var cachedResponse by remember { mutableStateOf<SummaryResponse?>(null) }
             LaunchedEffect(Unit) {
                 try {
                     val preferenceProvider = EntryPoints.get(
-                        context.applicationContext, PreferenceProviderEntryPoint::class.java
+                        context.applicationContext,
+                        PreferenceProviderEntryPoint::class.java
                     ).preferenceProvider()
                     val prefs = preferenceProvider.prefsDatastore().data.first()
                     val respStr = prefs[SUMMARY_RESPONSE_KEY]
@@ -75,7 +75,8 @@ class COVID19Widget : GlanceAppWidget() {
                         } else {
                             context.startServiceInForeground(
                                 Intent(
-                                    context, COVID19DataService::class.java
+                                    context,
+                                    COVID19DataService::class.java
                                 )
                             )
                         }
@@ -105,7 +106,7 @@ class COVID19Widget : GlanceAppWidget() {
                     Image(
                         modifier = GlanceModifier.size(24.dp),
                         provider = ImageProvider(R.drawable.ic_covid_19),
-                        contentDescription = "Refresh Icon",
+                        contentDescription = "Refresh Icon"
                     )
                     Spacer(
                         modifier = GlanceModifier
@@ -118,14 +119,14 @@ class COVID19Widget : GlanceAppWidget() {
                             .defaultWeight(),
                         style = TextStyle(
                             color = ColorProvider(Color.White),
-                            fontSize = 18.sp,
-                        ),
+                            fontSize = 18.sp
+                        )
                     )
                     Image(
                         modifier = GlanceModifier.size(24.dp)
                             .clickable(actionRunCallback<RefreshButtonClickAction>()),
                         provider = ImageProvider(R.drawable.ic_outline_refresh_24),
-                        contentDescription = "Refresh Icon",
+                        contentDescription = "Refresh Icon"
                     )
                 }
                 Spacer(
@@ -172,8 +173,8 @@ fun Summary(title: String, confirmed: String, deaths: String, recovered: String)
                 .padding(8.dp),
             style = TextStyle(
                 color = ColorProvider(Color.White),
-                fontSize = 18.sp,
-            ),
+                fontSize = 18.sp
+            )
         )
         Spacer(
             modifier = GlanceModifier
@@ -186,8 +187,8 @@ fun Summary(title: String, confirmed: String, deaths: String, recovered: String)
                 .padding(8.dp),
             style = TextStyle(
                 color = ColorProvider(Color.White),
-                fontSize = 18.sp,
-            ),
+                fontSize = 18.sp
+            )
         )
         Spacer(
             modifier = GlanceModifier
@@ -200,8 +201,8 @@ fun Summary(title: String, confirmed: String, deaths: String, recovered: String)
                 .padding(8.dp),
             style = TextStyle(
                 color = ColorProvider(Color.White),
-                fontSize = 18.sp,
-            ),
+                fontSize = 18.sp
+            )
         )
         Text(
             text = recovered,
@@ -210,8 +211,8 @@ fun Summary(title: String, confirmed: String, deaths: String, recovered: String)
                 .padding(8.dp),
             style = TextStyle(
                 color = ColorProvider(Color.White),
-                fontSize = 18.sp,
-            ),
+                fontSize = 18.sp
+            )
         )
     }
 }
@@ -220,7 +221,7 @@ class RefreshButtonClickAction : ActionCallback {
     override suspend fun onAction(
         context: Context,
         glanceId: GlanceId,
-        parameters: ActionParameters,
+        parameters: ActionParameters
     ) {
         context.startServiceInForeground(Intent(context, COVID19DataService::class.java))
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -231,7 +232,8 @@ class RefreshButtonClickAction : ActionCallback {
         } else {
             context.startServiceInForeground(
                 Intent(
-                    context, COVID19DataService::class.java
+                    context,
+                    COVID19DataService::class.java
                 )
             )
         }

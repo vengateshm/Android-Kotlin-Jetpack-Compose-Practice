@@ -20,25 +20,15 @@ class SynchronizedLiveDataList<T>(data: List<T> = emptyList()) : MutableList<T> 
         return cleared
     }
 
-    override fun get(index: Int): T {
-        return list[index]
-    }
+    override fun get(index: Int): T = list[index]
 
-    override fun isEmpty(): Boolean {
-        return list.isEmpty()
-    }
+    override fun isEmpty(): Boolean = list.isEmpty()
 
-    override fun iterator(): MutableIterator<T> {
-        return list.iterator()
-    }
+    override fun iterator(): MutableIterator<T> = list.iterator()
 
-    override fun listIterator(): MutableListIterator<T> {
-        return list.listIterator()
-    }
+    override fun listIterator(): MutableListIterator<T> = list.listIterator()
 
-    override fun listIterator(index: Int): MutableListIterator<T> {
-        return list.listIterator(index)
-    }
+    override fun listIterator(index: Int): MutableListIterator<T> = list.listIterator(index)
 
     override fun removeAt(index: Int): T {
         val removed = list.removeAt(index)
@@ -46,9 +36,7 @@ class SynchronizedLiveDataList<T>(data: List<T> = emptyList()) : MutableList<T> 
         return removed
     }
 
-    override fun subList(fromIndex: Int, toIndex: Int): MutableList<T> {
-        return list.subList(fromIndex, toIndex)
-    }
+    override fun subList(fromIndex: Int, toIndex: Int): MutableList<T> = list.subList(fromIndex, toIndex)
 
     override fun set(index: Int, element: T): T {
         val item = list.set(index, element)
@@ -74,21 +62,13 @@ class SynchronizedLiveDataList<T>(data: List<T> = emptyList()) : MutableList<T> 
         return removed
     }
 
-    override fun lastIndexOf(element: T): Int {
-        return list.lastIndexOf(element)
-    }
+    override fun lastIndexOf(element: T): Int = list.lastIndexOf(element)
 
-    override fun indexOf(element: T): Int {
-        return list.indexOf(element)
-    }
+    override fun indexOf(element: T): Int = list.indexOf(element)
 
-    override fun containsAll(elements: Collection<T>): Boolean {
-        return list.containsAll(elements)
-    }
+    override fun containsAll(elements: Collection<T>): Boolean = list.containsAll(elements)
 
-    override fun contains(element: T): Boolean {
-        return list.contains(element)
-    }
+    override fun contains(element: T): Boolean = list.contains(element)
 
     override fun addAll(elements: Collection<T>): Boolean {
         val added = list.addAll(elements)

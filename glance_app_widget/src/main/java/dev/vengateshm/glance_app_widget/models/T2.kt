@@ -1,6 +1,5 @@
 package dev.vengateshm.glance_app_widget.models
 
-
 import com.google.gson.annotations.SerializedName
 
 data class T2(
@@ -15,5 +14,5 @@ data class T2(
     @SerializedName("Pids")
     val pids: dev.vengateshm.glance_app_widget.models.PidsXX,
     @SerializedName("tbd")
-    val tbd: Int,
+    val tbd: Int
 )

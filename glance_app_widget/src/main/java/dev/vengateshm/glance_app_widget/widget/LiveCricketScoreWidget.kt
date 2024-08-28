@@ -59,7 +59,8 @@ class LiveCricketScoreWidget : GlanceAppWidget() {
             LaunchedEffect(key1 = true) {
                 try {
                     val preferenceProvider = EntryPoints.get(
-                        context.applicationContext, PreferenceProviderEntryPoint::class.java
+                        context.applicationContext,
+                        PreferenceProviderEntryPoint::class.java
                     ).preferenceProvider()
                     val prefs = preferenceProvider.prefsDatastore().data.first()
                     val respStr = prefs[LIVE_MATCHES_RESPONSE_KEY]
@@ -72,7 +73,8 @@ class LiveCricketScoreWidget : GlanceAppWidget() {
                         } else {
                             context.startServiceInForeground(
                                 Intent(
-                                    context, LiveScoreService::class.java
+                                    context,
+                                    LiveScoreService::class.java
                                 )
                             )
                         }
@@ -87,7 +89,6 @@ class LiveCricketScoreWidget : GlanceAppWidget() {
                     .background(imageProvider = ImageProvider(R.drawable.widget_initial_layout_bg))
                     .appWidgetBackground().padding(16.dp)
             ) {
-
                 if (cachedResponse != null) {
                     cachedResponse!!.stages.first().let {
                         if (it.events.isEmpty().not()) {
@@ -97,8 +98,10 @@ class LiveCricketScoreWidget : GlanceAppWidget() {
                                     modifier = GlanceModifier.height(8.dp)
                                 )
                                 Text(
-                                    text = event.eCo, style = TextStyle(
-                                        fontStyle = FontStyle.Normal, fontWeight = FontWeight.Medium
+                                    text = event.eCo,
+                                    style = TextStyle(
+                                        fontStyle = FontStyle.Normal,
+                                        fontWeight = FontWeight.Medium
                                     )
                                 )
                             }
@@ -121,13 +124,13 @@ class LiveCricketScoreWidget : GlanceAppWidget() {
                         modifier = GlanceModifier.wrapContentSize(),
                         style = TextStyle(
                             color = ColorProvider(Color(0XFF777777)),
-                            fontSize = 18.sp,
-                        ),
+                            fontSize = 18.sp
+                        )
                     )
                     Image(
                         modifier = GlanceModifier.size(24.dp),
                         provider = ImageProvider(R.drawable.ic_outline_refresh_24_black),
-                        contentDescription = "Refresh Icon",
+                        contentDescription = "Refresh Icon"
                     )
                 }
             }
@@ -139,7 +142,7 @@ class RefreshScoreClickAction : ActionCallback {
     override suspend fun onAction(
         context: Context,
         glanceId: GlanceId,
-        parameters: ActionParameters,
+        parameters: ActionParameters
     ) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             OneTimeWorkRequestBuilder<LiveScoreWidgetCoroutineWorker>().build()
@@ -149,7 +152,8 @@ class RefreshScoreClickAction : ActionCallback {
         } else {
             context.startServiceInForeground(
                 Intent(
-                    context, LiveScoreService::class.java
+                    context,
+                    LiveScoreService::class.java
                 )
             )
         }

@@ -90,5 +90,5 @@ data class Event(
     @SerializedName("Tr2CW1")
     val tr2CW1: Int,
     @SerializedName("Tr2CW2")
-    val tr2CW2: Int,
+    val tr2CW2: Int
 )

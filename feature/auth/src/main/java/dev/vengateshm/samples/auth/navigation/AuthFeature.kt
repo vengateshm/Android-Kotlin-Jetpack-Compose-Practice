@@ -9,8 +9,7 @@ import dev.vengateshm.samples.common.navigation.Feature
 import dev.vengateshm.samples.common.navigation.NavDest
 import dev.vengateshm.samples.common.navigation.NavDestGraph
 
-interface AuthFeature : Feature {
-}
+interface AuthFeature : Feature
 
 class AuthFeatureImpl : AuthFeature {
     override fun registerGraph(

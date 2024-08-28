@@ -17,8 +17,11 @@ fun HomeScreen(
         modifier = Modifier.fillMaxSize(),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = "Home Screen", modifier = Modifier.clickable {
-            onClick()
-        })
+        Text(
+            text = "Home Screen",
+            modifier = Modifier.clickable {
+                onClick()
+            }
+        )
     }
 }

@@ -14,7 +14,7 @@ fun Service.startForegroundWithNotification(
     channelName: String,
     contentTitle: String?,
     contentText: String,
-    @DrawableRes smallIcon: Int?,
+    @DrawableRes smallIcon: Int?
 ) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         this.startForeground(
@@ -39,7 +39,7 @@ fun createNotification(
     contentTitle: String?,
     contentText: String,
     @DrawableRes smallIcon: Int?,
-    pendingIntent: PendingIntent? = null,
+    pendingIntent: PendingIntent? = null
 ): Notification {
     val notificationChannel =
         NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_NONE)

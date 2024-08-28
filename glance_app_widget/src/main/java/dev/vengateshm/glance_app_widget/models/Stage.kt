@@ -1,6 +1,5 @@
 package dev.vengateshm.glance_app_widget.models
 
-
 import com.google.gson.annotations.SerializedName
 
 data class Stage(
@@ -31,5 +30,5 @@ data class Stage(
     @SerializedName("Sid")
     val sid: String,
     @SerializedName("Snm")
-    val snm: String,
+    val snm: String
 )
