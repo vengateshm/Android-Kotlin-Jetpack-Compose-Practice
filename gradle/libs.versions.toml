@@ -35,6 +35,7 @@ kotest = "5.9.1"
 kotlin = "2.0.0"
 fragmentKtx = "1.8.2"
 glide = "4.16.0"
+kotlinpoet = "1.18.1"
 kotlinReflect = "2.0.0"
 kotlinxCollectionsImmutable = "0.3.6"
 kotlinxCoroutinesAndroid = "1.8.1"
@@ -330,6 +331,9 @@ firebase-database-ktx = { module = "com.google.firebase:firebase-database-ktx" }
 firebase-messaging = { module = "com.google.firebase:firebase-messaging" }
 firebase-messaging-ktx = { module = "com.google.firebase:firebase-messaging-ktx" }
 firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
+
+kotlinpoet = { module = "com.squareup:kotlinpoet", version.ref = "kotlinpoet" }
+kotlinpoet-ksp = { module = "com.squareup:kotlinpoet-ksp", version.ref = "kotlinpoet" }
 
 #Junit
 junit = { group = "junit", name = "junit", version.ref = "junit" }

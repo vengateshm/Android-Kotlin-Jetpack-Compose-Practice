@@ -1,3 +1,4 @@
 dev.vengateshm.ksp_samples.GsonSerializeProcessorProvider
 dev.vengateshm.ksp_samples.MySampleAnnotationProcessorProvider
 dev.vengateshm.ksp_samples.MyAnnotationProcessorProvider
+dev.vengateshm.ksp_samples.DecoratorProcessorProvider
