@@ -41,6 +41,7 @@ dependencies {
     implementation(platform(libs.arrow.stack))
     implementation(libs.arrow.kt.arrow.core)
     implementation(libs.arrow.fx.coroutines)
+    implementation(libs.arrow.optics)
     implementation(libs.guava)
     // https://mvnrepository.com/artifact/uy.kohesive.klutter/klutter-core
     implementation(libs.klutter.core)
@@ -60,6 +61,8 @@ dependencies {
 
     implementation(projects.kspProcessor)
     ksp(projects.kspProcessor)
+
+    ksp("io.arrow-kt:arrow-optics-ksp-plugin:${libs.versions.arrowCore.get()}")
 
     testImplementation(libs.junit)
     testImplementation(libs.junit.jupiter.api)
@@ -84,6 +87,6 @@ powerAssert {
             "kotlin.test.assertEquals",
             "kotlin.test.assertNull",
             "kotlin.require",
-            "dev.vengateshm.kotlin_practice.power_assert.MyAssertScope.assert"
+            "dev.vengateshm.kotlin_practice.power_assert.MyAssertScope.assert",
         )
 }

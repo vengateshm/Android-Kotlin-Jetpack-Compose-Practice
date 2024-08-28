@@ -4,8 +4,8 @@ accompanistPermissions = "0.21.2-beta"
 agp = "8.5.2"
 apolloRuntime = "3.8.2"
 appUpdate = "2.1.0"
-arrowCore = "1.2.0"
-arrowStack = "1.2.0-RC"
+arrowCore = "1.2.4"
+arrowStack = "1.2.4"
 biometric = "1.1.0"
 biometricKtx = "1.2.0-alpha05"
 camera2 = "1.4.0-rc01"
@@ -297,6 +297,7 @@ rxjava = { module = "io.reactivex.rxjava3:rxjava", version.ref = "rxjava" }
 arrow-stack = { module = "io.arrow-kt:arrow-stack", version.ref = "arrowStack" }
 arrow-kt-arrow-core = { module = "io.arrow-kt:arrow-core" }
 arrow-fx-coroutines = { module = "io.arrow-kt:arrow-fx-coroutines", version.ref = "arrowCore" }
+arrow-optics = { module = "io.arrow-kt:arrow-optics", version.ref = "arrowCore" }
 
 #Klutter
 klutter-core = { module = "uy.kohesive.klutter:klutter-core", version.ref = "klutterCore" }
