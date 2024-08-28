@@ -29,6 +29,18 @@ class FizzBuzzAcceptanceTests {
         assertEquals("Buzz", lines[19])
         assertEquals("", lines[20])
     }
+
+    @Test
+    fun `prints fizzbuzz up to 100 1`() {
+        val output = ByteArrayOutputStream()
+        //fizzBuzz(PrintStream(output))
+        fizzBuzz(PrintStream(output), 100)
+        val lines = output.toString().lines()
+        assertEquals(fizzBuzzOutput.lines(), lines.take(20))
+        assertEquals(101, lines.size)
+        assertEquals("Buzz", lines[99])
+        assertEquals("", lines[100])
+    }
 }
 
 private fun captureStdOut(block: () -> Unit): String {
