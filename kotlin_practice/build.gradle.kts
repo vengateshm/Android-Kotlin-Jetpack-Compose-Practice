@@ -72,6 +72,7 @@ dependencies {
     testImplementation(libs.mockk)
 
     testImplementation(libs.kotlin.test)
+    testImplementation("net.jqwik:jqwik:1.9.0")
 }
 
 tasks.test {

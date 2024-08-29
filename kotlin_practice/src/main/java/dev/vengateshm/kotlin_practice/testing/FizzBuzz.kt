@@ -9,7 +9,9 @@ fun main() {
 //    fizzBuzz(System.out, Int.MAX_VALUE)
 //    fizzBuzz1(System.out, 10)
 //    fizzBuzz2(System.out, 10)
-    fizzBuzz3(System.out, 10)
+//    fizzBuzz3(System.out, 10)
+//    fizzBuzz4(System.out)
+    fizzBuzz5(System.out)
 }
 
 fun fizzBuzzEmpty() {
@@ -140,4 +142,33 @@ fun fizzBuzzLines3(rounds: Int): Sequence<String> {
             }
         }
     }.map { it.toFizzBuzz() }
+}
+
+fun fizzBuzz4(out: Appendable) {
+    for (i in 1..100) {
+        out.appendLine(i.toFizzBuzz())
+    }
+}
+
+fun fizzBuzz5(out: Appendable) {
+    generateFizzBuzzSequence2().take(100).forEach { out.appendLine(it) }
+}
+
+fun generateFizzBuzzSequence1(): Sequence<String> {
+    return sequence {
+        for (i in 1..100) {
+            yield(i.toFizzBuzz())
+        }
+    }
+}
+
+fun generateFizzBuzzSequence2(): Sequence<String> {
+    var i = 1
+    return sequence {
+        while (true) {
+            val i1 = i++
+            yield(i1.toFizzBuzz())
+            println(i1)
+        }
+    }
 }
