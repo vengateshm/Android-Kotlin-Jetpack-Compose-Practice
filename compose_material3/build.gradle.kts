@@ -48,7 +48,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -177,6 +177,8 @@ dependencies {
     implementation(projects.feature.auth)
     implementation(projects.feature.home)
 
+    implementation(libs.jsoup)
+
     testImplementation(libs.junit)
     testImplementation(libs.koin.test)
     testImplementation(libs.koin.test.junit4)
@@ -213,7 +215,7 @@ openApiGenerate {
         mapOf(
             "serializationLibrary" to "gson",
             "useCoroutines" to "true",
-        )
+        ),
     )
 }
 
