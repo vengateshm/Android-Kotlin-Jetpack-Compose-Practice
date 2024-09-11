@@ -20,8 +20,19 @@
     <application>
         <activity
             android:name=".ComposeMaterial3Activity"
-            android:windowSoftInputMode="adjustResize"
-            android:exported="true" />
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="foo" />
+                <data android:host="arabica.com" />
+                <data android:host="www.arabica.com" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".apps.gemini_ai_chat.ChatAiActivity"
             android:exported="true" />
@@ -62,12 +73,12 @@
             android:exported="true" />
         <activity
             android:name=".testing.compose_with_view.FeedActivity"
-            android:theme="@style/AppTheme"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".testing.compose_with_view.ProfileActivity"
-            android:theme="@style/AppTheme"
-            android:exported="true" />
+            android:exported="true"
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".api_compose.navigation.set_result.A3Activity"
             android:exported="true" />

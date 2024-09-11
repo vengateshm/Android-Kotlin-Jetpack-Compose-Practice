@@ -24,6 +24,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navDeepLink
 import androidx.navigation.navigation
 import androidx.navigation.toRoute
 import kotlinx.serialization.Serializable
@@ -53,7 +54,14 @@ fun NavGraphBuilder.conversationGraph(navController: NavController) {
                 },
             )
         }
-        composable<ConversationDetail> { entry ->
+        //./adb shell am start -W -a android.intent.action.VIEW -d "foo://arabica.com/conversationdetail/3"
+        composable<ConversationDetail>(
+            deepLinks = listOf(
+                navDeepLink<ConversationDetail>(
+                    basePath = "foo://arabica.com/conversationdetail",
+                ),
+            ),
+        ) { entry ->
             val detail = entry.toRoute<ConversationDetail>()
             ConversationDetailScreen(conversationId = detail.conversationId)
         }
@@ -62,7 +70,13 @@ fun NavGraphBuilder.conversationGraph(navController: NavController) {
 
 fun NavGraphBuilder.userProfileGraph() {
     navigation<UserProfileGraph>(startDestination = UserProfile()) {
-        composable<UserProfile> {
+        composable<UserProfile>(
+            deepLinks = listOf(
+                navDeepLink<ConversationDetail>(
+                    basePath = "foo://arabica.com/userprofile",
+                ),
+            ),
+        ) {
             UserProfileScreen(profileId = 1)
         }
     }
