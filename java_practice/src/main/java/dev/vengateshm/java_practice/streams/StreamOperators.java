@@ -1,12 +1,19 @@
 package dev.vengateshm.java_practice.streams;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+
+import dev.vengateshm.java_practice.pojos.Customer;
+import dev.vengateshm.java_practice.pojos.Order;
+import dev.vengateshm.java_practice.pojos.Product;
 
 public class StreamOperators {
     public static void main(String[] args) {
@@ -44,6 +51,7 @@ public class StreamOperators {
                         Collectors.averagingDouble(Double::doubleValue),
                         Math::round
                 ));
+        System.out.println("Average salary:");
         System.out.println(avgSalary);
 
         //dropWhile, takeWhile
@@ -78,7 +86,7 @@ public class StreamOperators {
 
         //IntStream.range(), IntStream.rangeClosed()
         List<Integer> is1 = IntStream.range(1, 10).boxed().collect(Collectors.toList());
-        List<Integer> is2 = IntStream.rangeClosed(1,10).boxed().collect(Collectors.toList());
+        List<Integer> is2 = IntStream.rangeClosed(1, 10).boxed().collect(Collectors.toList());
         System.out.println(is1);
         System.out.println(is2);
 
@@ -102,5 +110,73 @@ public class StreamOperators {
                 .get(false)
                 .size();
         System.out.println(size);
+
+        //Counting
+        Long count = Arrays.asList(1, 2, 3, 4, 5, 6).stream().collect(Collectors.counting());
+        System.out.println(count);
+
+        //summarizingInt
+        IntSummaryStatistics stats = Arrays.asList(1, 2, 3, 4, 5, 6).stream().collect(Collectors.summarizingInt(Integer::intValue));
+        System.out.println(stats);
+
+        //mapping
+        List<Integer> lengths = Arrays.asList("arabica", "robusta", "liberica", "excelsa")
+                .stream()
+                .collect(Collectors.mapping(String::length, Collectors.toList()));
+        System.out.println(lengths);
+
+        Integer totalLength = Arrays.asList("arabica", "robusta", "liberica", "excelsa")
+                .stream()
+                .collect(Collectors.mapping(String::length, Collectors.summingInt(Integer::intValue)));
+        System.out.println(totalLength);
+
+        Set<String> emails = Arrays.asList(
+                        new Order("1", 200.0, new Customer("a@b.c")),
+                        new Order("2", 300.0, new Customer("x@y.z")))
+                .stream()
+                .collect(Collectors.mapping(order -> order.getCustomer().getEmail(), Collectors.toSet()));
+        System.out.println(emails);
+
+        Product p1 = new Product("1", "p1");
+        Product p2 = new Product("2", "p2");
+        Product p3 = new Product("3", "p3");
+        List<Product> order1Products = new ArrayList<>();
+        order1Products.add(p1);
+        order1Products.add(p2);
+        List<Product> order2Products = new ArrayList<>();
+        order1Products.add(p1);
+        order1Products.add(p2);
+        order1Products.add(p3);
+
+        Set<String> products = Arrays.asList(
+                        new Order("1", 200.0, new Customer("a@b.c"), order1Products),
+                        new Order("2", 300.0, new Customer("x@y.z"), order2Products))
+                .stream()
+                .flatMap(order -> order.getProducts().stream())
+                .collect(Collectors.mapping(Product::getName, Collectors.toSet()));
+        System.out.println(products);
+
+        //joining
+        String joined = Arrays.asList("arabica", "robusta", "liberica", "excelsa")
+                .stream()
+                .collect(Collectors.joining(", ", "{", "}"));
+        System.out.println(joined);
+
+        //groupingBy
+        Map<Integer, Long> groupByLength = Arrays.asList("arabica", "robusta", "liberica", "excelsa")
+                .stream()
+                .collect(Collectors.groupingBy(String::length, Collectors.counting()));
+        System.out.println(groupByLength);
+
+        //filtering
+        List<Order> highValueOrders = Arrays.asList(
+                        new Order("1", 200.0, new Customer("a@b.c")),
+                        new Order("2", 300.0, new Customer("x@y.z")),
+                        new Order("3", 1000.0, new Customer("v@c.z")))
+                .stream()
+                .collect(Collectors.filtering(order -> order.getTotalAmount() > 500.0, Collectors.toList()));
+        highValueOrders.forEach(System.out::println);
+
+
     }
 }
