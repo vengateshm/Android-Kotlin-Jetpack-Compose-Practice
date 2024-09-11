@@ -39,10 +39,10 @@ object UserProfileGraph
 object ConversationList
 
 @Serializable
-data class ConversationDetail(val conversationId: Int)
+data class ConversationDetail(val conversationId: Int) // deeplink /conversationdetail/{conversationId} path parameter
 
 @Serializable
-data class UserProfile(val profileId: Int = -1)
+data class UserProfile(val profileId: Int = -1) // deeplink /userprofile?profileId={profileId} query option if has default values
 
 fun NavGraphBuilder.conversationGraph(navController: NavController) {
     navigation<ConversationGraph>(startDestination = ConversationList) {
