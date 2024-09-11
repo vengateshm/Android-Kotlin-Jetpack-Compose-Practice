@@ -12,3 +12,14 @@ class PaymentStage : OrderProcessingStage {
         return order
     }
 }
+
+val paymentStage: OrderProcessStage = { order ->
+    if ("VALID" == order.status) {
+        order.status = "PAID"
+        println("Payment done : $order")
+    } else {
+        order.status = "FAILED"
+        println("Payment failed : $order")
+    }
+    order
+}

@@ -12,3 +12,14 @@ class ShipmentStage : OrderProcessingStage {
         return order
     }
 }
+
+val shipmentStage: OrderProcessStage = { order ->
+    if ("PAID" == order.status) {
+        order.status = "SHIPPED"
+        println("Shipment done : $order")
+    } else {
+        order.status = "FAILED"
+        println("Shipment failed : $order")
+    }
+    order
+}

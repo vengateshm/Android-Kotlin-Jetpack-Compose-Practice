@@ -12,3 +12,16 @@ class ValidationStage : OrderProcessingStage {
         return order
     }
 }
+
+typealias OrderProcessStage = (POrder) -> POrder
+
+val validationStage: OrderProcessStage = { order ->
+    if (order.amount <= 0) {
+        order.status = "INVALID"
+        println("Invalid : $order")
+    } else {
+        order.status = "VALID"
+        println("Valid : $order")
+    }
+    order
+}
