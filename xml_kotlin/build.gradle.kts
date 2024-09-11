@@ -4,6 +4,7 @@ plugins {
     id("kotlin-parcelize")
     id("kotlinx-serialization")
     kotlin("plugin.serialization") version libs.versions.kotlin.get()
+    alias(libs.plugins.compose.plugin)
 }
 
 android {
@@ -22,7 +23,7 @@ android {
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                "proguard-rules.pro",
             )
         }
     }
@@ -45,6 +46,13 @@ dependencies {
     implementation(libs.material)
 
     implementation(libs.androidx.fragment.ktx)
+
+    // Compose dependencies
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.bundles.compose.beta)
+    implementation(libs.androidx.fragment.compose)
+    // Compose Material3
+    implementation(libs.androidx.material3)
 
     implementation(libs.glide)
 
