@@ -58,6 +58,8 @@ dependencies {
 
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.runtime)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

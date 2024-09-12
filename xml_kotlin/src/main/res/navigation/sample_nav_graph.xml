@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/with_composable"
+    app:startDestination="@id/sampleFragment">
+
+    <fragment
+        android:id="@+id/sampleFragment"
+        android:name="dev.vengateshm.xml_kotlin.compose_migration.SampleFragment"
+        android:label="SampleFragment" />
+
+    <!--<composable
+        android:id="@+id/sampleComposable"
+        android:name="dev.vengateshm.xml_kotlin.compose_migration.SampleComposableKt$SampleComposable" />-->
+</navigation>

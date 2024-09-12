@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import dev.vengateshm.xml_kotlin.compose_migration.FragmentWithCompose
+import dev.vengateshm.xml_kotlin.compose_migration.NavHostFragmentHolder
 import dev.vengateshm.xml_kotlin.haptics.HapticsFragment
 import dev.vengateshm.xml_kotlin.tab_layout_viewpager.TabLayoutViewPagerFragment
 
@@ -22,7 +23,8 @@ class XMLKotlinActivity : AppCompatActivity() {
         supportFragmentManager.commit {
             setReorderingAllowed(true)
 //            replace<HapticsFragment>(R.id.fragmentContainer)
-            replace<FragmentWithCompose>(R.id.fragmentContainer)
+//            replace<FragmentWithCompose>(R.id.fragmentContainer)
+            replace<NavHostFragmentHolder>(R.id.fragmentContainer)
         }
     }
 
