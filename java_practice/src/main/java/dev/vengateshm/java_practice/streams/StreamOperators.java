@@ -2,11 +2,15 @@ package dev.vengateshm.java_practice.streams;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.DoubleSummaryStatistics;
 import java.util.IntSummaryStatistics;
 import java.util.List;
+import java.util.LongSummaryStatistics;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.ConcurrentMap;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -177,6 +181,65 @@ public class StreamOperators {
                 .collect(Collectors.filtering(order -> order.getTotalAmount() > 500.0, Collectors.toList()));
         highValueOrders.forEach(System.out::println);
 
+        //toMap
+        Map<String, Integer> mapByLength = Arrays.asList("apple", "banana", "cherry")
+                .stream()
+                .collect(Collectors.toMap(Function.identity(), String::length));
+        System.out.println(mapByLength);
 
+        Map<String, Double> orderIdAmount = Arrays.asList(
+                        new Order("1", 200.0, new Customer("a@b.c"), order1Products),
+                        new Order("2", 300.0, new Customer("x@y.z"), order2Products))
+                .stream()
+                .collect(Collectors.toMap(Order::getId, Order::getTotalAmount));
+        System.out.println(orderIdAmount);
+
+        //toConcurrentMap
+        Map<String, Double> orderIdAmountConcurrentMap = Arrays.asList(
+                        new Order("1", 200.0, new Customer("a@b.c"), order1Products),
+                        new Order("2", 300.0, new Customer("x@y.z"), order2Products))
+                .stream()
+                .collect(Collectors.toConcurrentMap(Order::getId, Order::getTotalAmount));
+        System.out.println(orderIdAmountConcurrentMap);
+
+        //reducing
+        Integer fact = Arrays.asList(1, 2, 3, 4, 5)
+                .stream()
+                .collect(Collectors.reducing(1, (integer, integer2) -> integer * integer2));
+        System.out.println(fact);
+
+        Double totalSales = Arrays.asList(
+                        new Order("1", 200.0, new Customer("a@b.c"), order1Products),
+                        new Order("2", 300.0, new Customer("x@y.z"), order2Products))
+                .stream()
+                .map(Order::getTotalAmount)
+                .collect(Collectors.reducing(0.0, Double::sum));
+        System.out.println(totalSales);
+
+        //flatMapping
+        List<Product> products1 = Arrays.asList(
+                        new Order("1", 200.0, new Customer("a@b.c"), order1Products),
+                        new Order("2", 300.0, new Customer("x@y.z"), order2Products))
+                .stream()
+                .collect(Collectors.flatMapping(order -> order.getProducts().stream(), Collectors.toList()));
+        System.out.println(products1);
+
+        //summarizingDouble
+        DoubleSummaryStatistics doubleSummaryStatistics = Arrays.asList(1.5, 2.5, 3.5, 4.5, 5.5)
+                .stream()
+                .collect(Collectors.summarizingDouble(Double::doubleValue));
+        System.out.println(doubleSummaryStatistics);
+
+        //summarizingLong
+        LongSummaryStatistics longSummaryStatistics = Arrays.asList(10L, 20L, 30L, 40L, 50L)
+                .stream()
+                .collect(Collectors.summarizingLong(Long::longValue));
+        System.out.println(longSummaryStatistics);
+
+        //groupingByConcurrent
+        ConcurrentMap<Integer, List<String>> lengthNameConcurrentMap = Arrays.asList("apple", "banana", "cherry", "date")
+                .stream()
+                .collect(Collectors.groupingByConcurrent(String::length));
+        System.out.println(lengthNameConcurrentMap);
     }
 }
