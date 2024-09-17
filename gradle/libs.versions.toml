@@ -102,6 +102,7 @@ truth = "1.4.4"
 kotlinxDateTime = "0.6.1"
 ktlint = "1.3.1"
 jsoup = "1.18.1"
+credentials = "1.5.0-alpha04"
 
 [libraries]
 #Android
@@ -162,6 +163,11 @@ androidx-security-crypto-ktx = { module = "androidx.security:security-crypto-ktx
 #Biometric
 androidx-biometric = { module = "androidx.biometric:biometric", version.ref = "biometric" }
 androidx-biometric-ktx = { module = "androidx.biometric:biometric-ktx", version.ref = "biometricKtx" }
+
+#Credentials
+androidx-credentials-core = { group = "androidx.credentials", name = "credentials", version.ref = "credentials" }
+# Optional - needed for credentials support from play services, for Android 13 and below.
+androidx-credentials-compat = { group = "androidx.credentials", name = "credentials-play-services-auth", version.ref = "credentials" }
 
 #Google
 generativeai = { module = "com.google.ai.client.generativeai:generativeai", version.ref = "generativeai" }

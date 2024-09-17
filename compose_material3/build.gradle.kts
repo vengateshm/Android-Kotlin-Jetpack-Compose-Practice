@@ -179,6 +179,9 @@ dependencies {
 
     implementation(libs.jsoup)
 
+    implementation(libs.androidx.credentials.core)
+    implementation(libs.androidx.credentials.compat)
+
     testImplementation(libs.junit)
     testImplementation(libs.koin.test)
     testImplementation(libs.koin.test.junit4)
