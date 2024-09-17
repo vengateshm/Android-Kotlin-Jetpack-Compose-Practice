@@ -9,5 +9,14 @@
         <activity
             android:name=".lifecycles.activity.MyActivity1"
             android:exported="true" />
+        <activity
+            android:name=".memory_leak.A1"
+            android:exported="true" />
+        <activity
+            android:name=".memory_leak.A2"
+            android:exported="true" />
+        <activity
+            android:name=".memory_leak.A3"
+            android:exported="true" />
     </application>
 </manifest>
