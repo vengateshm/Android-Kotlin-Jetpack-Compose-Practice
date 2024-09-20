@@ -39,7 +39,7 @@ fun NavigationSuiteSample() {
         listOf(
             NavItem("Home", Icons.Filled.Home),
             NavItem("Cart", Icons.Filled.ShoppingCart),
-            NavItem("Profile", Icons.Filled.Person)
+            NavItem("Profile", Icons.Filled.Person),
         )
     }
 
@@ -70,13 +70,14 @@ fun NavigationSuiteSample() {
                     label = {
                         Text(
                             text = navItem.title,
-                            fontFamily = JostRegular
+                            fontFamily = JostRegular,
                         )
                     },
-                    onClick = { selectedItemIndex = index }
+                    onClick = { selectedItemIndex = index },
                 )
             }
-        }) {
+        },
+    ) {
         when (selectedItemIndex) {
             0 -> Destination("🏛️Home")
             1 -> Destination("🛒Cart")
@@ -89,11 +90,11 @@ fun NavigationSuiteSample() {
 fun Destination(title: String) {
     Box(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
         Text(
             text = title, fontSize = 48.sp,
-            fontFamily = PlayWriteDeGrundRegular
+            fontFamily = PlayWriteDeGrundRegular,
         )
     }
 }
