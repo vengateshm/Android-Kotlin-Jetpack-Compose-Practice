@@ -17,6 +17,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.MapUiSettings
 import com.google.maps.android.compose.Marker
+import com.google.maps.android.compose.MarkerState
 
 @Composable
 fun MapScreen(viewModel: MapViewModel = androidx.lifecycle.viewmodel.compose.viewModel()) {
@@ -53,7 +54,7 @@ fun MapScreen(viewModel: MapViewModel = androidx.lifecycle.viewmodel.compose.vie
             ) {
                 viewModel.state.parkingSpots.forEach { spot ->
                     Marker(
-                        position = LatLng(spot.lat, spot.lng),
+                        state = MarkerState(position = LatLng(spot.lat, spot.lng)),
                         title = "Parking spot (${spot.lat} ${spot.lng})",
                         snippet = "Long click to delete",
                         onInfoWindowLongClick = {

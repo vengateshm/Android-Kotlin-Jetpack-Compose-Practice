@@ -47,7 +47,7 @@ landscapistGlide = "1.4.5"
 libphonenumberAndroid = "8.13.35"
 loggingInterceptor = "5.0.0-alpha.3"
 lottieCompose = "4.2.0"
-mapsCompose = "1.0.0"
+mapsCompose = "6.1.2"
 material3 = "1.2.1"
 material3-beta = "1.3.0"
 materialIconsExtendedAndroid = "1.7.2"
@@ -204,6 +204,7 @@ androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-
 androidx-material = { module = "androidx.compose.material:material" }
 androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
 maps-compose = { module = "com.google.maps.android:maps-compose", version.ref = "mapsCompose" }
+maps-compose-utils = { module = "com.google.maps.android:maps-compose-utils", version.ref = "mapsCompose" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-paging-compose = { module = "androidx.paging:paging-compose", version.ref = "pagingRuntimeKtx" }
