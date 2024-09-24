@@ -354,6 +354,9 @@
         <activity
             android:name="dev.vengateshm.xml_kotlin.memory_leak.A3"
             android:exported="true" />
+        <activity
+            android:name="dev.vengateshm.compose_material3.api_android.bound_service.MyBoundServiceActivity"
+            android:exported="true" />
         <!-- Register AlarmReceiver -->
         <receiver
             android:name=".doze_mode_test.AlarmReceiver"

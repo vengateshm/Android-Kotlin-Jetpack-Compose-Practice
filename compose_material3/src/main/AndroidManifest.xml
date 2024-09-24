@@ -91,5 +91,12 @@
             android:name=".api_android.foreground_service.location_tracking.LocationTrackingService"
             android:exported="true"
             android:foregroundServiceType="location" />
+        <service
+            android:name=".api_android.bound_service.MyBoundService"
+            android:exported="true" />
+
+        <activity
+            android:name=".api_android.bound_service.MyBoundServiceActivity"
+            android:exported="true" />
     </application>
 </manifest>
