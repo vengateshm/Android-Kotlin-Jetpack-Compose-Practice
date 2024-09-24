@@ -31,11 +31,37 @@ fun Activity.requestRecordAudioPermission() {
     requestPermissionIfNotGranted(permission, 113)
 }
 
+fun Activity.requestMediaPermissions() {
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+        arrayOf(
+            Manifest.permission.READ_MEDIA_AUDIO,
+            Manifest.permission.READ_MEDIA_VIDEO,
+            Manifest.permission.READ_MEDIA_IMAGES,
+            Manifest.permission.READ_MEDIA_VISUAL_USER_SELECTED,
+        )
+            .forEachIndexed { index, permission ->
+                requestPermissionIfNotGranted(permission, 2001 + (index + 1))
+            }
+    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        arrayOf(
+            Manifest.permission.READ_MEDIA_AUDIO,
+            Manifest.permission.READ_MEDIA_VIDEO,
+            Manifest.permission.READ_MEDIA_IMAGES,
+        )
+            .forEachIndexed { index, permission ->
+                requestPermissionIfNotGranted(permission, 2002 + (index + 1))
+            }
+    } else {
+        requestPermissionIfNotGranted(Manifest.permission.READ_EXTERNAL_STORAGE, 2003)
+    }
+}
+
 private fun Activity.requestPermissionIfNotGranted(permission: String, requestCode: Int) {
     val isGranted =
         ContextCompat.checkSelfPermission(
             this,
-            permission
+            permission,
         ) == PackageManager.PERMISSION_GRANTED
     if (!isGranted) {
         // Request the permission.
