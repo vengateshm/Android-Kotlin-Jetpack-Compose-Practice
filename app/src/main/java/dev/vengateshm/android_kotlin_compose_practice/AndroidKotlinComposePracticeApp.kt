@@ -17,11 +17,14 @@ import dev.vengateshm.android_kotlin_compose_practice.manual_di.CallAppModule
 import dev.vengateshm.android_kotlin_compose_practice.manual_di.CallAppModuleImpl
 import dev.vengateshm.compose_material3.api_android.foreground_service.counter.CounterNotificationUtils
 import dev.vengateshm.compose_material3.api_android.foreground_service.location_tracking.LocationTrackingService
+import dev.vengateshm.compose_material3.api_compose.navigation.navigation_without_one_time_event.navigatorModule
 import dev.vengateshm.compose_material3.di.koin.koinSampleModule
 import dev.vengateshm.compose_material3.testing.mvvm_local_db.di.todoModule
 import dev.vengateshm.compose_material3.ui_concepts.paging.di.breweryAppModule
 import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
+import org.koin.core.logger.Level
 import java.io.PrintWriter
 import java.io.StringWriter
 import java.lang.Character.LINE_SEPARATOR
@@ -57,7 +60,8 @@ class AndroidKotlinComposePracticeApp : Application(), ImageLoaderFactory {
 
         startKoin {
             androidContext(this@AndroidKotlinComposePracticeApp)
-            modules(todoModule, koinSampleModule, breweryAppModule)
+            androidLogger(level = Level.INFO)
+            modules(todoModule, koinSampleModule, breweryAppModule, navigatorModule)
         }
     }
 
