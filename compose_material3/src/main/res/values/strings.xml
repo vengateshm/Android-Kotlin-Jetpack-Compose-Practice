@@ -32,4 +32,6 @@
         <item quantity="one">%d stop</item>
         <item quantity="other">%d stops</item>
     </plurals>
+
+    <string name="cmaterial3_welcome">Welcome</string>"
 </resources>
