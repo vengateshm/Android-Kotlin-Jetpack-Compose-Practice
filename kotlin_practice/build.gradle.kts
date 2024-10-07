@@ -8,6 +8,7 @@ plugins {
     kotlin("plugin.serialization") version libs.versions.kotlin.get()
     kotlin("plugin.power-assert") version "2.0.0"
     id("com.google.devtools.ksp")
+    id("org.jetbrains.kotlinx.benchmark") version "0.4.12"
 }
 
 application {
@@ -64,6 +65,8 @@ dependencies {
 
     ksp("io.arrow-kt:arrow-optics-ksp-plugin:${libs.versions.arrowCore.get()}")
 
+    implementation("org.jetbrains.kotlinx:kotlinx-benchmark-runtime:0.4.12")
+
     testImplementation(libs.junit)
     testImplementation(libs.junit.jupiter.api)
     testImplementation(libs.junit.jupiter.params)
@@ -90,4 +93,8 @@ powerAssert {
             "kotlin.require",
             "dev.vengateshm.kotlin_practice.power_assert.MyAssertScope.assert",
         )
+}
+
+benchmark {
+    targets.create("main")
 }
