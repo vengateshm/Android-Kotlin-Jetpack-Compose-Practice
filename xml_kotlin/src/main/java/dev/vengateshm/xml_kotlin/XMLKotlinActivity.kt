@@ -4,10 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
-import dev.vengateshm.xml_kotlin.compose_migration.FragmentWithCompose
-import dev.vengateshm.xml_kotlin.compose_migration.NavHostFragmentHolder
-import dev.vengateshm.xml_kotlin.haptics.HapticsFragment
-import dev.vengateshm.xml_kotlin.tab_layout_viewpager.TabLayoutViewPagerFragment
+import dev.vengateshm.xml_kotlin.coroutines.CoroutinesCancellationFragment
 
 class XMLKotlinActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +21,8 @@ class XMLKotlinActivity : AppCompatActivity() {
             setReorderingAllowed(true)
 //            replace<HapticsFragment>(R.id.fragmentContainer)
 //            replace<FragmentWithCompose>(R.id.fragmentContainer)
-            replace<NavHostFragmentHolder>(R.id.fragmentContainer)
+//            replace<NavHostFragmentHolder>(R.id.fragmentContainer)
+            replace<CoroutinesCancellationFragment>(R.id.fragmentContainer)
         }
     }
 
