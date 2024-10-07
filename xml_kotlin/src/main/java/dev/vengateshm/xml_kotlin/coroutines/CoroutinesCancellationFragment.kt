@@ -24,6 +24,7 @@ class CoroutinesCancellationFragment : Fragment() {
     private val coroutineScope = CoroutineScope(Dispatchers.Main.immediate)
     private val benchmarkUseCase = BenchmarkUseCase()
     private var isWithoutTryCatch = false
+    private val customerUseCase = CustomerUseCase()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,6 +47,15 @@ class CoroutinesCancellationFragment : Fragment() {
 
 //            withoutTryCatch(benchmarkDurationInSeconds)
             withTryCatch(benchmarkDurationInSeconds)
+
+            coroutineScope.launch {
+                delay(2000L)
+                try {
+                    customerUseCase.makeCustomerPremium()
+                } catch (e: CancellationException) {
+                    logThreadInfo("makeCustomerPremium cancelled")
+                }
+            }
         }
     }
 
