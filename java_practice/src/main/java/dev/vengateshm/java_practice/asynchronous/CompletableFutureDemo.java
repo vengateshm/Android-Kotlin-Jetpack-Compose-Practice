@@ -96,6 +96,33 @@ public class CompletableFutureDemo {
             System.out.println("Any Futures Completed");
             System.out.println(result);
         }).join();
+
+        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> {
+                    gracefullyShutdown();
+                    return "String 1";
+                })
+                .exceptionally(ex -> {
+                    return "Exception getting String 1";
+                });
+        CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(() -> {
+            gracefullyShutdown();
+            return "String 2";
+        });
+
+        CompletableFuture<String> thenned = cf1.thenCombine(cf2, (r1, r2) -> {
+            return r1 + " " + r2;
+        }).handle((result, ex) -> {
+            if (ex != null) {
+                return "Exception: " + ex.getMessage();
+            }
+            return result;
+        });
+
+        System.out.println(thenned.get());
+    }
+
+    private static void gracefullyShutdown() {
+        throw new RuntimeException("something failed");
     }
 
     private static void simulateDelay(int seconds) {
