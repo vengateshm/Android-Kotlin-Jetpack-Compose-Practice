@@ -2,7 +2,7 @@ package dev.vengateshm.android_kotlin_compose_practice.previews
 
 import android.content.res.Configuration
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,12 +16,16 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewDynamicColors
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.tooling.preview.datasource.LoremIpsum
@@ -135,8 +139,12 @@ annotation class PreviewPrimaryBackground
 
 @Composable
 fun MListItem(modifier: Modifier = Modifier) {
+    var rotate by remember { mutableFloatStateOf(90f) }
     Row(
         modifier = modifier
+            .clickable {
+                rotate = if (rotate == 90f) 270f else 90f
+            }
             .fillMaxWidth()
             .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically,
@@ -145,7 +153,10 @@ fun MListItem(modifier: Modifier = Modifier) {
             text = "List Item",
             modifier = Modifier.weight(1f),
         )
-        Icon(imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null)
+        Icon(
+            modifier = Modifier.rotate(rotate),
+            imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight, contentDescription = null,
+        )
     }
 }
 
