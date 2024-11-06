@@ -10,5 +10,9 @@ public class DependencyInjectionSample {
         ComponentB componentB = DaggerComponentB.create();
         componentB.getClientB().doSomething();
         componentB.getClientB().doSomething();
+        System.out.println("[END]");
+        ComponentC componentC = DaggerComponentC.create();
+        componentC.getClientC().doSomething();
+        componentC.getClientC().doSomething();
     }
 }
