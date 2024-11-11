@@ -20,6 +20,7 @@ import dev.vengateshm.compose_material3.api_android.foreground_service.location_
 import dev.vengateshm.compose_material3.api_compose.navigation.navigation_without_one_time_event.navigatorModule
 import dev.vengateshm.compose_material3.di.koin.koinSampleModule
 import dev.vengateshm.compose_material3.testing.mvvm_local_db.di.todoModule
+import dev.vengateshm.compose_material3.third_party_libraries.koin_scope.koinScopeModule
 import dev.vengateshm.compose_material3.ui_concepts.paging.di.breweryAppModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -61,7 +62,7 @@ class AndroidKotlinComposePracticeApp : Application(), ImageLoaderFactory {
         startKoin {
             androidContext(this@AndroidKotlinComposePracticeApp)
             androidLogger(level = Level.INFO)
-            modules(todoModule, koinSampleModule, breweryAppModule, navigatorModule)
+            modules(todoModule, koinSampleModule, breweryAppModule, navigatorModule, koinScopeModule)
         }
     }
 

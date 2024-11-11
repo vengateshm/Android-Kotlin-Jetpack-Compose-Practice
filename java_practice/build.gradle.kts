@@ -9,4 +9,6 @@ java {
 
 dependencies {
     implementation(libs.rxjava)
+    implementation("com.google.dagger:dagger:2.49")
+    annotationProcessor("com.google.dagger:dagger-compiler:2.49")
 }
