@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
-import dev.vengateshm.xml_kotlin.coroutines.CoroutinesCancellationFragment
 
 class XMLKotlinActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +21,8 @@ class XMLKotlinActivity : AppCompatActivity() {
 //            replace<HapticsFragment>(R.id.fragmentContainer)
 //            replace<FragmentWithCompose>(R.id.fragmentContainer)
 //            replace<NavHostFragmentHolder>(R.id.fragmentContainer)
-            replace<CoroutinesCancellationFragment>(R.id.fragmentContainer)
+//            replace<CoroutinesCancellationFragment>(R.id.fragmentContainer)
+            replace<MyFragment>(R.id.fragmentContainer)
         }
     }
 
