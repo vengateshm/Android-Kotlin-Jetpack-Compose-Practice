@@ -18,6 +18,7 @@ plugins {
     alias(libs.plugins.compose.plugin) apply false
     alias(libs.plugins.openApi.generator) apply false
     alias(libs.plugins.spotless) apply false
+    kotlin("kapt") version "2.0.10" apply false
 }
 
 val ktlintVersion = libs.versions.ktlint.get()

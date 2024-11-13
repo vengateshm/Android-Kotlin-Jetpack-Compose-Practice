@@ -16,6 +16,7 @@ plugins {
     alias(libs.plugins.compose.plugin)
     id("com.google.devtools.ksp")
     alias(libs.plugins.openApi.generator)
+    kotlin("kapt")
 }
 
 android {
@@ -181,6 +182,10 @@ dependencies {
 
     implementation(libs.androidx.credentials.core)
     implementation(libs.androidx.credentials.compat)
+
+    implementation(libs.androidx.appsearch)
+    kapt(libs.androidx.appsearch.compiler)
+    implementation(libs.androidx.appsearch.local.storage)
 
     testImplementation(libs.junit)
     testImplementation(libs.koin.test)
