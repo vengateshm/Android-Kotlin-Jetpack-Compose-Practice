@@ -56,6 +56,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ComposePractice"
         android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         tools:targetApi="tiramisu">
         <activity
             android:name=".drag_and_drop.DragAndDropActivity"
@@ -373,6 +374,13 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <meta-data
+            android:name="android.webkit.WebView.MetricsOptOut"
+            android:value="true" />
+        <meta-data
+            android:name="android.webkit.WebView.EnableSafeBrowsing"
+            android:value="true" />
     </application>
 
 </manifest>
