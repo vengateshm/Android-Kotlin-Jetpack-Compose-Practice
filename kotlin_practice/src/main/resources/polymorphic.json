@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "type": "p",
+    "name": "Alice",
+    "age": 30,
+    "occupation": "Engineer"
+  },
+  {
+    "id": 2,
+    "type": "c",
+    "name": "Tesla Model S",
+    "manufacturer": "Tesla",
+    "year": 2022
+  },
+  {
+    "id": 3,
+    "type": "b",
+    "name": "1984",
+    "author": "George Orwell",
+    "pages": 328
+  }
+]

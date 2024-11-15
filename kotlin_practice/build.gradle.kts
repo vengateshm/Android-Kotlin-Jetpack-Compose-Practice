@@ -67,6 +67,9 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-benchmark-runtime:0.4.12")
 
+    implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
+    implementation("com.squareup.moshi:moshi-adapters:1.15.1")
+
     testImplementation(libs.junit)
     testImplementation(libs.junit.jupiter.api)
     testImplementation(libs.junit.jupiter.params)
