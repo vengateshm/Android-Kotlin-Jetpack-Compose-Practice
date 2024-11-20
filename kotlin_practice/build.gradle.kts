@@ -79,6 +79,7 @@ dependencies {
 
     testImplementation(libs.kotlin.test)
     testImplementation("net.jqwik:jqwik:1.9.0")
+    testImplementation("io.strikt:strikt-core:0.34.0")
 }
 
 tasks.test {
