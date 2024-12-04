@@ -7,7 +7,7 @@ import kotlinx.coroutines.launch
 
 class ToDoViewModel(private val repository: ToDoRepository) : ViewModel() {
 
-    suspend fun getAllToDos() = repository.getAllTodos()
+    val toDos = repository.toDos
 
     fun insert(todo: ToDo) = viewModelScope.launch {
         repository.insert(todo)

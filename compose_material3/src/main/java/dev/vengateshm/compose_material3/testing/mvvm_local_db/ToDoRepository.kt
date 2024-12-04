@@ -4,7 +4,7 @@ import dev.vengateshm.compose_material3.testing.mvvm_local_db.room.ToDo
 import dev.vengateshm.compose_material3.testing.mvvm_local_db.room.ToDoDao
 
 class ToDoRepository(private val toDoDao: ToDoDao) {
-    suspend fun getAllTodos() = toDoDao.getAllTodos()
+    val toDos = toDoDao.getAllTodos()
 
     suspend fun insert(todo: ToDo) {
         toDoDao.insert(todo)

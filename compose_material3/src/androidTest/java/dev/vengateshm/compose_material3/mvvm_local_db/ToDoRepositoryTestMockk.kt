@@ -63,13 +63,13 @@ class ToDoRepositoryTestMockk {
                 id = 1,
                 title = "Test ToDo 1",
                 description = "Test Description 1",
-                isCompleted = false
-            )
+                isCompleted = false,
+            ),
         )
 
         coEvery { toDoDao.getAllTodos() } returns flowOf(todoList)
 
-        val result = toDoRepository.getAllTodos().first()
+        val result = toDoRepository.toDos.first()
 
         assertEquals(todoList, result)
     }

@@ -23,7 +23,7 @@ class ToDoViewModelTest {
     @Before
     fun setUp() {
         repository = mockk {
-            coEvery { getAllTodos() } returns todosFlow
+            coEvery { toDos } returns todosFlow
             coEvery { insert(any()) } just Runs
             coEvery { update(any()) } just Runs
             coEvery { delete(any()) } just Runs
@@ -69,7 +69,7 @@ class ToDoViewModelTest {
         val todo = ToDo(title = "Test ToDo", description = "Test Description", isCompleted = false)
         todosFlow.value = listOf(todo)
 
-        val todos = viewModel.getAllToDos().first()
+        val todos = viewModel.toDos.first()
 
         assertEquals(todo, todos[0])
     }
