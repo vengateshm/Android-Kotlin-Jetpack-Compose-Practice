@@ -17,4 +17,16 @@ sealed interface Dest1 {
 
     @Serializable
     data class Detail(val id: String) : Dest1
+
+    @Serializable
+    data object Profile : Dest1
+
+    @Serializable
+    data object Settings : Dest1
+
+    @Serializable
+    data object Add : Dest1
+
+    @Serializable
+    data object Edit : Dest1
 }
