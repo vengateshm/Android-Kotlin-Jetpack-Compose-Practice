@@ -38,10 +38,21 @@ android {
             gradleLocalProperties(rootDir, project.providers).getProperty("GEMINI_API_KEY")
         buildConfigField("String", "GEMINI_API_KEY", geminiApiKey)
         buildConfigField("String", "testApiKey", testApiKey)
+
+        val localProperties = Properties()
+        val localPropertiesFile = File("$rootDir/secret.properties")
+        if (localPropertiesFile.exists() && localPropertiesFile.isFile) {
+            localPropertiesFile.inputStream().use {
+                localProperties.load(it)
+            }
+        }
+        buildConfigField("String", "API_KEY", localProperties.getProperty("API_KEY"))
+        buildConfigField("String", "API_KEY_PROD", localProperties.getProperty("API_KEY_PROD"))
     }
 
     buildFeatures {
         buildConfig = true
+        resValues = true
     }
 
     buildTypes {
@@ -51,6 +62,10 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
             )
+        }
+        debug {
+            isMinifyEnabled = false
+            resValue("string", "api_url", "https://api.dev.example.com")
         }
     }
     compileOptions {
@@ -186,6 +201,9 @@ dependencies {
     implementation(libs.androidx.appsearch)
     kapt(libs.androidx.appsearch.compiler)
     implementation(libs.androidx.appsearch.local.storage)
+
+    implementation("net.zetetic:android-database-sqlcipher:4.5.3")
+    implementation("androidx.sqlite:sqlite:2.4.0")
 
     testImplementation(libs.junit)
     testImplementation(libs.koin.test)
