@@ -1,5 +1,7 @@
 package dev.vengateshm.kotlin_practice.std_library_samples
 
+import kotlinx.collections.immutable.mutate
+import kotlinx.collections.immutable.persistentListOf
 import uy.klutter.core.collections.asReadOnly
 import uy.klutter.core.collections.toImmutable
 import java.util.Collections
@@ -37,6 +39,22 @@ fun main() {
 
     val n = Collections.unmodifiableList(listOf(1, 2, 3))
     //n.add(4) Throws unsupported operation exception
+
+    val persistentList = persistentListOf(
+        "One",
+        "Two",
+    )
+    val added = persistentList.add("Three")
+    println(persistentList)
+    println(added)
+    val mutated = persistentList.mutate {
+        it.add("Four")
+        it.remove("One")
+    }
+    println(mutated)
+    println(persistentList.hashCode())
+    println(added.hashCode())
+    println(mutated.hashCode())
 }
 
 class ImmutableList<T>(private val protectedList: List<T>) : List<T> by protectedList
