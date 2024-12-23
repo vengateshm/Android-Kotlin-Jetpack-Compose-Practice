@@ -7,6 +7,10 @@ data class SessionManager(
     val session: String,
 )
 
+data class ConfigManager(
+    val config: String,
+)
+
 val sessionModule = module {
     scope<KoinDiActivity> {
         scoped {
@@ -27,3 +31,7 @@ val userModule = module {
         }
     }
 }
+
+class HumanScope
+
+data class Human(val name: String)

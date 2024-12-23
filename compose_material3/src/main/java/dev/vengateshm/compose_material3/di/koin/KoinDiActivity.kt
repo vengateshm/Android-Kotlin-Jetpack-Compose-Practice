@@ -16,23 +16,29 @@ import org.koin.core.scope.Scope
 class KoinDiActivity : ComponentActivity(), AndroidScopeComponent {
 
     private val sessionManager: SessionManager by inject()
+    private val configManager: ConfigManager by inject()
 
     private lateinit var userScope: Scope
+    private lateinit var humanScope: Scope
     private lateinit var user: User
+    private lateinit var human: Human
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         println("SessionManager: ${sessionManager.hashCode()}")
+        println("ConfigManager: ${configManager.hashCode()}")
 
         userScope = getKoin().createScope("user_scope_id", UserScope)
         user = userScope.get()
+        humanScope = getKoin().createScope<HumanScope>()
+        human = humanScope.get<Human>()
 
         setContent {
             MaterialTheme {
                 Surface {
                     CenterAlignedContent {
-                        Text(text = "Hello ${user.userName}")
+                        Text(text = "Hello ${user.userName}, ${human.name}")
                     }
                 }
             }
@@ -42,6 +48,7 @@ class KoinDiActivity : ComponentActivity(), AndroidScopeComponent {
     override fun onDestroy() {
         onCloseScope()
         userScope.close()
+        humanScope.close()
         super.onDestroy()
     }
 
