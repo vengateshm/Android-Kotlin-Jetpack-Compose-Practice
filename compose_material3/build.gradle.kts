@@ -209,6 +209,7 @@ dependencies {
     testImplementation(libs.koin.test)
     testImplementation(libs.koin.test.junit4)
     testImplementation(libs.bundles.kotest)
+    testImplementation(libs.mockk)
 
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
