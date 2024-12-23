@@ -108,5 +108,8 @@
         <activity
             android:name=".api_android.bound_service.MyBoundServiceActivity"
             android:exported="true" />
+        <activity
+            android:name="dev.vengateshm.compose_material3.di.koin.KoinDiActivity"
+            android:exported="true" />
     </application>
 </manifest>
