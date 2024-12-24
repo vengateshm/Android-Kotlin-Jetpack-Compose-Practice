@@ -1,0 +1,4 @@
+-keep class dev.vengateshm.compose_material3.progaurd.Fake
+-keep class * implements dev.vengateshm.compose_material3.progaurd.FakeInterface
+-keep class dev.vengateshm.compose_material3.progaurd.model.** {*;}
+-keep class dev.vengateshm.compose_material3.progaurd.HasPublicFunction {public *;}
