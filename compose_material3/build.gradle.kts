@@ -209,6 +209,8 @@ dependencies {
     implementation("net.zetetic:android-database-sqlcipher:4.5.3")
     implementation("androidx.sqlite:sqlite:2.4.0")
 
+    implementation(libs.play.services.mlkit.smart.reply)
+
     testImplementation(libs.junit)
     testImplementation(libs.koin.test)
     testImplementation(libs.koin.test.junit4)

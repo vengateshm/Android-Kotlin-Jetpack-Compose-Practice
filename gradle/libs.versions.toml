@@ -182,6 +182,7 @@ play-services-ads = { module = "com.google.android.gms:play-services-ads", versi
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
 play-services-maps = { module = "com.google.android.gms:play-services-maps", version.ref = "playServicesMaps" }
 play-services-mlkit-document-scanner = { module = "com.google.android.gms:play-services-mlkit-document-scanner", version.ref = "playServicesMlkitDocumentScanner" }
+play-services-mlkit-smart-reply = { module = "com.google.android.gms:play-services-mlkit-smart-reply", version.ref = "playServicesMlkitDocumentScanner" }
 app-update = { module = "com.google.android.play:app-update", version.ref = "appUpdate" }
 app-update-ktx = { module = "com.google.android.play:app-update-ktx", version.ref = "appUpdate" }
 

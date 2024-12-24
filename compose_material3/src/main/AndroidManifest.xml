@@ -111,5 +111,10 @@
         <activity
             android:name="dev.vengateshm.compose_material3.di.koin.KoinDiActivity"
             android:exported="true" />
+
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="smart_reply" />
+        <!-- To use multiple models: android:value="smart_reply,model2,model3" -->
     </application>
 </manifest>
