@@ -52,9 +52,11 @@ class KtorClientViewModel(
                     ),
                 )
                 onUpload { bytesSentTotal, contentLength ->
-                    transferred.value = "Uploaded ${"%.2f".format(bytesSentTotal.toMB())}/${
-                        "%.2f".format(contentLength.toMB())
-                    } MB"
+                    if (contentLength != null) {
+                        transferred.value = "Uploaded ${"%.2f".format(bytesSentTotal.toMB())}/${
+                            "%.2f".format(contentLength.toMB())
+                        } MB"
+                    }
                 }
             }
             isUploading.value = false
@@ -67,9 +69,12 @@ class KtorClientViewModel(
             val httpResponse: HttpResponse =
                 KtorApiClient.client.get("http://192.168.240.241:9999/sample-image") {
                     onDownload { bytesSentTotal, contentLength ->
-                        transferred.value = "Downloaded ${"%.2f".format(bytesSentTotal.toMB())}/${
-                            "%.2f".format(contentLength.toMB())
-                        } MB"
+                        if (contentLength != null) {
+                            transferred.value =
+                                "Downloaded ${"%.2f".format(bytesSentTotal.toMB())}/${
+                                    "%.2f".format(contentLength.toMB())
+                                } MB"
+                        }
                     }
                 }
             val responseBody: ByteArray = httpResponse.body()

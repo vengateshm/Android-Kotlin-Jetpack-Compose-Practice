@@ -31,12 +31,14 @@ class UploadFileRepository(
             },
         ) {
             onUpload { bytesSentTotal, totalBytes ->
-                if (totalBytes > 0L) {
-                    val progress = ProgressUpdate(
-                        bytesUploaded = bytesSentTotal,
-                        totalBytes = totalBytes,
-                    )
-                    send(progress)
+                if (totalBytes != null) {
+                    if (totalBytes > 0L) {
+                        val progress = ProgressUpdate(
+                            bytesUploaded = bytesSentTotal,
+                            totalBytes = totalBytes,
+                        )
+                        send(progress)
+                    }
                 }
             }
         }
