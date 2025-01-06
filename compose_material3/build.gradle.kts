@@ -203,6 +203,7 @@ dependencies {
 
     implementation(libs.androidx.credentials.core)
     implementation(libs.androidx.credentials.compat)
+    implementation(libs.googleid)
 
     implementation(libs.androidx.appsearch)
     kapt(libs.androidx.appsearch.compiler)
@@ -212,6 +213,10 @@ dependencies {
     implementation("androidx.sqlite:sqlite:2.4.0")
 
     implementation(libs.play.services.mlkit.smart.reply)
+
+    // Firebase BOM
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
 
     testImplementation(libs.junit)
     testImplementation(libs.koin.test)
