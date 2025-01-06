@@ -55,6 +55,24 @@ android {
         project.setProperty("archivesBaseName", apkName)
     }
 
+    flavorDimensions += listOf("subscription_status"/* "style"*/)
+    productFlavors {
+        create("free") {
+            applicationIdSuffix = ".free"
+            dimension = "subscription_status"
+        }
+        create("paid") {
+            applicationIdSuffix = ".paid"
+            dimension = "subscription_status"
+        }
+        /*create("green") {
+            dimension = "style"
+        }
+        create("red") {
+            dimension = "style"
+        }*/
+    }
+
     buildTypes {
         debug {
             isMinifyEnabled = false
