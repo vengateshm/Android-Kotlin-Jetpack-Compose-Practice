@@ -103,6 +103,8 @@ dependencies {
 
     // Compose
     implementation(libs.bundles.compose.beta)
+    implementation(libs.androidx.fragment.compose)
+
     // Compose testing
     // Test rules and transitive dependencies:
     androidTestImplementation(libs.androidx.compose.beta.ui.test.junit4)
