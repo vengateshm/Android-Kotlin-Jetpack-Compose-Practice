@@ -14,4 +14,10 @@ object AppModule {
     fun provideEngine(): Engine {
         return Engine(name = "App module engine")
     }
+
+    @Provides
+    @Singleton
+    fun provideTransmission(): Transmission {
+        return Transmission(name = "App module transmission")
+    }
 }

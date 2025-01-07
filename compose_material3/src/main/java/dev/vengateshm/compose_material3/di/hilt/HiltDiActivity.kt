@@ -22,11 +22,15 @@ class HiltDiActivity : ComponentActivity() {
     @Inject
     lateinit var paymentGateway: PaymentGateway
 
+    @Inject
+    lateinit var car: Car
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         Log.d(tag, "Engine: ${engine.name}")
         paymentGateway.pay(1500.0)
+        Log.d(tag, "Car: ${car.engine.name} ${car.transmission.name}")
 
         setContent {
             MaterialTheme {
