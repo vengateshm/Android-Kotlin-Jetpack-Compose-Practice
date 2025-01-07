@@ -22,4 +22,9 @@ object AppModule {
     fun provideTransmission(): Transmission {
         return Transmission(name = "App module transmission")
     }
+
+    @Provides
+    fun provideWheel(): Wheel {
+        return Wheel(name = "App module wheel")
+    }
 }
