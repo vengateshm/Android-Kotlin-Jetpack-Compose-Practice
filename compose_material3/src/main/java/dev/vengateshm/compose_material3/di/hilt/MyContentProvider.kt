@@ -5,6 +5,7 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.net.Uri
 import android.util.Log
+import dagger.hilt.android.EntryPointAccessors
 import dev.vengateshm.compose_material3.di.hilt.component.DaggerParentComponent
 import javax.inject.Inject
 
@@ -16,9 +17,9 @@ class MyContentProvider : ContentProvider() {
     lateinit var engine: Engine
 
     companion object {
-        val TABLE = "table"
-        val AUTHORITY = "dev.vengateshm.content"
-        val CONTENT_URI = Uri.parse("content://$AUTHORITY/$TABLE")
+        private const val TABLE = "table"
+        private const val AUTHORITY = "dev.vengateshm.content"
+        val CONTENT_URI: Uri = Uri.parse("content://$AUTHORITY/$TABLE")
     }
 
     override fun onCreate(): Boolean {
@@ -28,6 +29,10 @@ class MyContentProvider : ContentProvider() {
             .inject(this)
 
         Log.d(tag, "Engine: ${engine.name}")
+
+        val entryPoint =
+            EntryPointAccessors.fromApplication(context!!, MyContentProviderEntryPoint::class.java)
+        Log.d(tag, "Engine using entry point : ${entryPoint.getEngine().name}")
 
         return true
     }
