@@ -32,6 +32,12 @@ class HiltDiActivity : ComponentActivity() {
     @Inject
     lateinit var assemblyAViewModelFactory: AssemblyBViewModel.AssemblyBViewModelFactory
 
+    @Inject
+    lateinit var stringSet: Set<String>
+
+    @Inject
+    lateinit var stringMap: Map<String, String>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -44,6 +50,9 @@ class HiltDiActivity : ComponentActivity() {
             ?.use {
 
             }
+
+        Log.d(tag, "String set: ${stringSet.joinToString(",")}")
+        Log.d(tag, "String map: ${stringMap.values.joinToString(",")}")
 
         setContent {
             MaterialTheme {
