@@ -111,6 +111,9 @@
         <activity
             android:name="dev.vengateshm.compose_material3.di.koin.KoinDiActivity"
             android:exported="true" />
+        <activity
+            android:name="dev.vengateshm.compose_material3.di.hilt.HiltDiActivity"
+            android:exported="true" />
 
         <meta-data
             android:name="com.google.mlkit.vision.DEPENDENCIES"

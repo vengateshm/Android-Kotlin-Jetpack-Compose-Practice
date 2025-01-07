@@ -17,6 +17,7 @@ plugins {
     id("com.google.devtools.ksp")
     alias(libs.plugins.openApi.generator)
     kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -217,6 +218,11 @@ dependencies {
     // Firebase BOM
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.auth)
+
+    // Dagger - Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    kapt(libs.androidx.hilt.compiler)
 
     testImplementation(libs.junit)
     testImplementation(libs.koin.test)
