@@ -8,7 +8,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 
 @Composable
-fun HiltDiSample(modifier: Modifier = Modifier) {
+fun HiltDiSample(
+    modifier: Modifier = Modifier,
+    assemblyAViewModelFactory: AssemblyBViewModel.AssemblyBViewModelFactory,
+) {
     val navController = rememberNavController()
     NavHost(
         modifier = modifier.safeContentPadding(),
@@ -18,9 +21,12 @@ fun HiltDiSample(modifier: Modifier = Modifier) {
         composable("assembly_a") {
             AssemblyA(
                 goToNext = {
-
+                    navController.navigate("assembly_b")
                 },
             )
+        }
+        composable("assembly_b") {
+            AssemblyB(assemblyAViewModelFactory = assemblyAViewModelFactory)
         }
     }
 }

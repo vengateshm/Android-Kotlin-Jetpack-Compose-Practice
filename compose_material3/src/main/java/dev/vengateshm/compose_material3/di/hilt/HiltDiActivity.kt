@@ -29,6 +29,9 @@ class HiltDiActivity : ComponentActivity() {
     @Inject
     lateinit var wheel: Provider<Wheel>
 
+    @Inject
+    lateinit var assemblyAViewModelFactory: AssemblyBViewModel.AssemblyBViewModelFactory
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -45,6 +48,7 @@ class HiltDiActivity : ComponentActivity() {
                 ) {
                     HiltDiSample(
                         modifier = Modifier.fillMaxSize(),
+                        assemblyAViewModelFactory,
                     )
                 }
             }
