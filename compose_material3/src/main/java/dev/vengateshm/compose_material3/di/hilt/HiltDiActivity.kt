@@ -40,6 +40,11 @@ class HiltDiActivity : ComponentActivity() {
         Log.d(tag, "Car: ${car.engine.name} ${car.transmission.name}")
         Log.d(tag, "Wheel: ${wheel.get().name}")
 
+        contentResolver.query(MyContentProvider.CONTENT_URI, null, null, null, null)
+            ?.use {
+
+            }
+
         setContent {
             MaterialTheme {
                 Surface(

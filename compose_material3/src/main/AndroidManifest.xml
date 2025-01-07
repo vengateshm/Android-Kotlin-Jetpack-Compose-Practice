@@ -119,5 +119,10 @@
             android:name="com.google.mlkit.vision.DEPENDENCIES"
             android:value="smart_reply" />
         <!-- To use multiple models: android:value="smart_reply,model2,model3" -->
+
+        <provider
+            android:name=".di.hilt.MyContentProvider"
+            android:authorities="dev.vengateshm.content"
+            android:exported="false" />
     </application>
 </manifest>
