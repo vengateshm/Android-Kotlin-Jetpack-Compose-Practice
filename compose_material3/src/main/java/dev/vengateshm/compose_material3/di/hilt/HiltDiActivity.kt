@@ -43,7 +43,9 @@ class HiltDiActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background,
                 ) {
-
+                    HiltDiSample(
+                        modifier = Modifier.fillMaxSize(),
+                    )
                 }
             }
         }
