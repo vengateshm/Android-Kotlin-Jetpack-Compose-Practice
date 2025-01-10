@@ -15,7 +15,7 @@ fun main() {
     prepareLottery()
 
     for (letter in listOf('a', 'b', 'c', 'd')) {
-        with(Supplier(letter)) {
+        with(Supplier1(letter)) {
             if (!isValid()) continue
             val value = supplyValue()
             println(value)
@@ -82,7 +82,7 @@ private inline fun validate(
     }
 }
 
-class Supplier(val c: Char) {
+class Supplier1(val c: Char) {
     fun supplyValue(): Int {
         return c.code
     }
