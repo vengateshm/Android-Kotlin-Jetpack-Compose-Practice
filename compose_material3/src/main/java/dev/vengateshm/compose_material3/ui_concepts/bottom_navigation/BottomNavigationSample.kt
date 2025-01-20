@@ -15,11 +15,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.dialog
@@ -28,16 +27,37 @@ import androidx.navigation.compose.rememberNavController
 @Composable
 fun BottomNavigationSample() {
     val navController = rememberNavController()
-    val selectedBottomTabIndex by remember {
+    /*val selectedBottomTabIndex by rememberSaveable {
         mutableIntStateOf(0)
+    }*/
+
+    val currentBackStackEntry by navController.currentBackStackEntryFlow.collectAsStateWithLifecycle(
+        initialValue = null,
+    )
+    var selectedBottomTabIndex = when (currentBackStackEntry?.destination?.route) {
+        "home" -> 0
+        "category" -> 1
+        "notification" -> 2
+        "account" -> 3
+        else -> -1
     }
+
     Scaffold(
         bottomBar = {
             NavigationBar {
                 BottomNavItem.bottomNavItems.forEachIndexed { index, bottomNavItem ->
                     NavigationBarItem(
                         selected = index == selectedBottomTabIndex,
-                        onClick = { },
+                        onClick = {
+                            selectedBottomTabIndex = index
+                            //navController.popBackStack() // Close app when clicked back button when in any of the bottom nav screen
+                            when (index) {
+                                0 -> navController.navigate("home")
+                                1 -> navController.navigate("category")
+                                2 -> navController.navigate("notification")
+                                3 -> navController.navigate("account")
+                            }
+                        },
                         icon = {
                             BadgedBox(
                                 badge = {
@@ -48,27 +68,29 @@ fun BottomNavigationSample() {
                                     } else if (bottomNavItem.hasNews) {
                                         Badge()
                                     }
-                                }) {
+                                },
+                            ) {
                                 Icon(
                                     imageVector = bottomNavItem.icon,
-                                    contentDescription = "${bottomNavItem.title} icon"
+                                    contentDescription = "${bottomNavItem.title} icon",
                                 )
                             }
-                        })
+                        },
+                    )
                 }
             }
-        }
+        },
     ) { paddingValues ->
         NavHost(
             modifier = Modifier.padding(paddingValues), navController = navController,
-            startDestination = "home"
+            startDestination = "home",
         ) {
             composable("home") {
                 HomeScreen(
                     onShowErrorDialog = {
                         val errMsg = "Error loading list"
                         navController.navigate("error_dialog/$errMsg")
-                    }
+                    },
                 )
             }
             dialog("error_dialog/{err_msg}") {
@@ -78,9 +100,18 @@ fun BottomNavigationSample() {
                             navController.popBackStack()
                         },
                         message = errMsg,
-                        btnText = "OK"
+                        btnText = "OK",
                     )
                 }
+            }
+            composable("category") {
+                CategoryScreen()
+            }
+            composable("notification") {
+                NotificationScreen()
+            }
+            composable("account") {
+                AccountScreen()
             }
         }
     }
@@ -90,11 +121,13 @@ fun BottomNavigationSample() {
 fun HomeScreen(onShowErrorDialog: () -> Unit) {
     Box(
         modifier = Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.Center,
     ) {
-        Button(onClick = {
-            onShowErrorDialog()
-        }) {
+        Button(
+            onClick = {
+                onShowErrorDialog()
+            },
+        ) {
             Text(text = "Show error dialog")
         }
     }
@@ -110,13 +143,45 @@ fun ErrorDialog(onDismissRequest: () -> Unit, message: String, btnText: String) 
             onDismissRequest()
         },
         confirmButton = {
-            TextButton(onClick = {
-                onDismissRequest()
-            }) {
+            TextButton(
+                onClick = {
+                    onDismissRequest()
+                },
+            ) {
                 Text(text = btnText)
             }
-        }
+        },
     )
+}
+
+@Composable
+fun CategoryScreen() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(text = "Category")
+    }
+}
+
+@Composable
+fun NotificationScreen() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(text = "Notification")
+    }
+}
+
+@Composable
+fun AccountScreen() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(text = "Account")
+    }
 }
 
 @Preview(showBackground = true, showSystemUi = true)
