@@ -24,7 +24,7 @@ plugins {
     id("dagger.hilt.android.plugin")
     id("kotlinx-serialization")
     id("com.google.gms.google-services")
-    id("com.apollographql.apollo3") version "3.8.2"
+    id("com.apollographql.apollo3") version libs.versions.apolloRuntime.get()
     id("com.google.devtools.ksp")
 //    id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
     alias(libs.plugins.compose.plugin)
