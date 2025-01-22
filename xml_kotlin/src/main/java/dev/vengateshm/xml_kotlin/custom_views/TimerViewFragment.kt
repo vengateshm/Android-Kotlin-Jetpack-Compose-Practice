@@ -10,6 +10,7 @@ import dev.vengateshm.xml_kotlin.R
 class TimerViewFragment : Fragment() {
 
     private lateinit var timerView: TimerView
+    private lateinit var timerViewCoroutines: TimerViewCoroutines
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,7 +23,9 @@ class TimerViewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        timerView = view.findViewById(R.id.timerView)
-        timerView.setTimer(25)
+//        timerView = view.findViewById(R.id.timerView)
+//        timerView.setTimer(25)
+        timerViewCoroutines = view.findViewById(R.id.timerView)
+        timerViewCoroutines.setTimer(25)
     }
 }
