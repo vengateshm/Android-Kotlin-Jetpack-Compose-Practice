@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <dev.vengateshm.xml_kotlin.custom_views.TimerView
+    <dev.vengateshm.xml_kotlin.custom_views.TimerViewCoroutines
         android:id="@+id/timerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
