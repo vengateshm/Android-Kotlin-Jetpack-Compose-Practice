@@ -39,6 +39,7 @@ fragmentKtx = "1.8.5"
 fragment-compose = "1.8.5"
 glide = "4.16.0"
 kotlinpoet = "1.18.1"
+paletteKtx = "1.0.0"
 kotlinReflect = "2.1.0"
 kotlinxCollectionsImmutable = "0.3.6"
 kotlinxCoroutinesAndroid = "1.9.0"
@@ -115,6 +116,7 @@ androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayo
 androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-fragment-compose = { module = "androidx.fragment:fragment-compose", version.ref = "fragment-compose" }
+androidx-palette-ktx = { module = "androidx.palette:palette-ktx", version.ref = "paletteKtx" }
 
 #Window
 androidx-window = { module = "androidx.window:window", version.ref = "window" }
