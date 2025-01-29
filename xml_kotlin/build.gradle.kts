@@ -5,6 +5,7 @@ plugins {
     id("kotlinx-serialization")
     kotlin("plugin.serialization") version libs.versions.kotlin.get()
     alias(libs.plugins.compose.plugin)
+    id("com.google.devtools.ksp")
 }
 
 android {
@@ -60,6 +61,14 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.navigation.runtime)
+
+    //Room
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    // Kotlin Extensions and Coroutines support for Room
+    implementation(libs.androidx.room.ktx)
+
+    implementation(libs.gson)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)

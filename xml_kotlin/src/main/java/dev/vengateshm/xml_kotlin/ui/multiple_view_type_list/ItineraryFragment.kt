@@ -9,6 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import dev.vengateshm.xml_kotlin.databinding.FragmentItineraryBinding
+import dev.vengateshm.xml_kotlin.ui.multiple_view_type_list.db.ItineraryDatabase
+import dev.vengateshm.xml_kotlin.ui.multiple_view_type_list.repository.ItineraryRepositoryImpl
 
 class ItineraryFragment : Fragment() {
 
@@ -19,7 +21,17 @@ class ItineraryFragment : Fragment() {
         ItineraryAdapter(clickListener = viewModel::onItemClicked)
     }
 
-    private val viewModel: ItineraryViewModel by viewModels()
+    private val viewModel: ItineraryViewModel by viewModels(
+        factoryProducer = {
+            ItineraryViewModelFactory(
+                ItineraryRepositoryImpl(
+                    ItineraryDatabase.getDatabase(
+                        requireContext(),
+                    ).itineraryDao(),
+                ),
+            )
+        },
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
