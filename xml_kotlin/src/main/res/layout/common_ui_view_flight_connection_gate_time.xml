@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/common_ui_spacing_md"
+    android:focusable="true"
+    android:importantForAccessibility="yes"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/common_ui_flightconnection_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/common_ui_flightconnection_landing_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Plane arriving"
+            android:importantForAccessibility="no"
+            android:src="@drawable/common_ui_ic_flight_landing"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/common_ui_flightconnection_time_divider_left"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/common_ui_flightconnection_takeoff_imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="Plane departing"
+            android:importantForAccessibility="no"
+            android:src="@drawable/common_ui_ic_flight_takeoff"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/common_ui_flightconnection_time_divider_right"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/common_ui_flightconnection_time_divider_right"
+            android:layout_width="0dp"
+            android:layout_height="1.5dp"
+            android:layout_marginEnd="@dimen/common_ui_spacing_xsm"
+            android:background="@color/common_ui_black"
+            android:focusable="false"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/common_ui_flightconnection_takeoff_imageview"
+            app:layout_constraintStart_toEndOf="@id/common_ui_flightconnection_time_container"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/common_ui_flightconnection_time_divider_left"
+            android:layout_width="0dp"
+            android:layout_height="1.5dp"
+            android:layout_marginStart="@dimen/common_ui_spacing_xsm"
+            android:background="@color/common_ui_black"
+            android:focusable="false"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/common_ui_flightconnection_time_container"
+            app:layout_constraintStart_toEndOf="@id/common_ui_flightconnection_landing_imageview"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/common_ui_flightconnection_time_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_ui_spacing_xsm"
+            android:layout_marginEnd="@dimen/common_ui_spacing_xsm"
+            android:background="@drawable/common_ui_flight_connection_comfortable_background"
+            android:paddingHorizontal="@dimen/common_ui_spacing_xs"
+            android:paddingVertical="@dimen/common_ui_spacing_xsm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/common_ui_flightconnection_time_divider_right"
+            app:layout_constraintStart_toEndOf="@id/common_ui_flightconnection_time_divider_left"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="gone">
+
+            <ImageView
+                android:id="@+id/common_ui_flightconnection_time_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/common_ui_spacing_xsm"
+                android:contentDescription="Information"
+                android:importantForAccessibility="no"
+                android:src="@drawable/common_ui_ic_alert_info"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@id/common_ui_flightconnection_time_text"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/common_ui_flightconnection_time_text"
+                style="@style/common_ui_caption.White"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:importantForAccessibility="no"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="1 hr 20 mins connection time" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/common_ui_flightconnection_arrival_gate_text_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_ui_spacing_xmd"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/common_ui_flightconnection_header">
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/arrivalGateGroup"
+            android:layout_width="@dimen/common_ui_spacing_no_space"
+            android:layout_height="@dimen/common_ui_spacing_no_space"
+            tools:visibility="visible"
+            app:constraint_referenced_ids="common_ui_flightconnection_arrival_gate_label_tv,common_ui_flightconnection_arrival_gate,common_ui_flightconnection_arrival_terminal_tv" />
+
+        <TextView
+            android:id="@+id/common_ui_flightconnection_arrival_gate_label_tv"
+            style="@style/common_ui_body.Black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/common_ui_xs_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Arrival gate" />
+
+        <TextView
+            android:id="@+id/common_ui_flightconnection_arrival_gate"
+            style="@style/common_ui_body.SemiBold.Black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textSize="@dimen/common_ui_text_medium"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/common_ui_flightconnection_arrival_gate_label_tv"
+            tools:text="F1" />
+
+        <TextView
+            android:id="@+id/common_ui_flightconnection_arrival_terminal_tv"
+            style="@style/common_ui_body.Black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/common_ui_xs_text_size"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/common_ui_flightconnection_arrival_gate"
+            tools:text="Terminal 1\nConcourse B" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/common_ui_flightconnection_walk_time_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_ui_spacing_xmd"
+        app:layout_constraintEnd_toStartOf="@id/common_ui_flightconnection_departure_gate_text_container"
+        app:layout_constraintStart_toEndOf="@id/common_ui_flightconnection_arrival_gate_text_container"
+        app:layout_constraintTop_toBottomOf="@id/common_ui_flightconnection_header">
+
+        <ImageView
+            android:id="@+id/common_ui_flightconnection_walk_time_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            android:src="@drawable/common_ui_ic_flight_connection_walk_time"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/common_ui_flightconnection_walk_time_duration_text"
+            style="@style/common_ui_body.SemiBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/common_ui_spacing_xsm"
+            android:importantForAccessibility="no"
+            android:textColor="@color/common_ui_blue"
+            app:layout_constraintStart_toEndOf="@id/common_ui_flightconnection_walk_time_icon"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="15 min" />
+
+        <TextView
+            android:id="@+id/common_ui_flightconnection_walk_time_text"
+            style="@style/common_ui_caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            app:layout_constraintEnd_toEndOf="@id/common_ui_flightconnection_walk_time_duration_text"
+            app:layout_constraintStart_toStartOf="@id/common_ui_flightconnection_walk_time_duration_text"
+            app:layout_constraintTop_toBottomOf="@id/common_ui_flightconnection_walk_time_duration_text"
+            tools:text="Walk Time" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/common_ui_flightconnection_departure_gate_text_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/common_ui_spacing_xmd"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@id/common_ui_flightconnection_header">
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/departureGateGroup"
+            android:layout_width="@dimen/common_ui_spacing_no_space"
+            android:layout_height="@dimen/common_ui_spacing_no_space"
+            tools:visibility="visible"
+            app:constraint_referenced_ids="common_ui_flightconnection_departure_gate_label_tv,common_ui_flightconnection_departure_gate,common_ui_flightconnection_departure_terminal_tv" />
+
+        <TextView
+            android:id="@+id/common_ui_flightconnection_departure_gate_label_tv"
+            style="@style/common_ui_body.Black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center_vertical"
+            android:textSize="@dimen/common_ui_xs_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Departure gate" />
+
+        <TextView
+            android:id="@+id/common_ui_flightconnection_departure_gate"
+            style="@style/common_ui_body.SemiBold.Black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:textSize="@dimen/common_ui_text_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/common_ui_flightconnection_departure_gate_label_tv"
+            tools:text="E33" />
+
+        <TextView
+            android:id="@+id/common_ui_flightconnection_departure_terminal_tv"
+            style="@style/common_ui_body.Black"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="end"
+            android:textSize="@dimen/common_ui_xs_text_size"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/common_ui_flightconnection_departure_gate"
+            tools:text="Terminal 1\nConcourse B" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</merge>

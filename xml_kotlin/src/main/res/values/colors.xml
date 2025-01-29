@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="common_ui_blue">#1414D2</color>
+    <color name="common_ui_black">#000000</color>
+    <color name="common_ui_white">#FFFFFF</color>
+    <color name="common_ui_alert_yellow">#FFC658</color>
+</resources>

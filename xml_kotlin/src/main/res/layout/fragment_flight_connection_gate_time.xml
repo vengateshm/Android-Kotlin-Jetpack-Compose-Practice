@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:orientation="vertical">
+
+        <dev.vengateshm.xml_kotlin.custom_views.flight_connection_gate_time_view.FlightConnectionGateTimeView
+            android:id="@+id/flightConnectionGateTimeViewComfortable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <dev.vengateshm.xml_kotlin.custom_views.flight_connection_gate_time_view.FlightConnectionGateTimeView
+            android:id="@+id/flightConnectionGateTimeViewTight"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content" />
+
+        <dev.vengateshm.xml_kotlin.custom_views.flight_connection_gate_time_view.FlightConnectionGateTimeView
+            android:id="@+id/flightConnectionGateTimeViewNoTime"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content" />
+
+        <dev.vengateshm.xml_kotlin.custom_views.flight_connection_gate_time_view.FlightConnectionGateTimeView
+            android:id="@+id/flightConnectionGateTimeViewNoWalkTime"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</ScrollView>

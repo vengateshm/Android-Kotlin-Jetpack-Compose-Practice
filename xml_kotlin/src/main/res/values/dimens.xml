@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Margin/Padding-->
+    <dimen name="common_ui_spacing_no_space">0dp</dimen>
+    <dimen name="common_ui_spacing_xxsm">1dp</dimen>
+    <dimen name="common_ui_spacing_xsmm">2dp</dimen>
+    <dimen name="common_ui_spacing_xsm">4dp</dimen>
+    <dimen name="common_ui_spacing_xxmd">5dp</dimen>
+    <dimen name="common_ui_spacing_xxmmd">6dp</dimen>
+    <dimen name="common_ui_spacing_sm">8dp</dimen>
+    <dimen name="common_ui_spacing_s">10dp</dimen>
+    <dimen name="common_ui_spacing_xs">12dp</dimen>
+    <dimen name="common_ui_spacing_md">16dp</dimen>
+    <dimen name="common_ui_spacing_mmd">20dp</dimen>
+    <dimen name="common_ui_spacing_xmd">24dp</dimen>
+    <dimen name="common_ui_spacing_lg">32dp</dimen>
+    <dimen name="common_ui_spacing_xlg">60dp</dimen>
+    <dimen name="common_ui_spacing_xxlg">80dp</dimen>
+
+    <!--Text size-->
+    <dimen name="common_ui_text_smaller">12dp</dimen>
+    <dimen name="common_ui_text_small">14dp</dimen>
+    <dimen name="common_ui_text_medium">16dp</dimen>
+    <dimen name="common_ui_text_large">22dp</dimen>
+    <dimen name="common_ui_text_tc">@dimen/common_ui_text_smaller</dimen>
+    <dimen name="common_ui_text_body">@dimen/common_ui_text_medium</dimen>
+    <dimen name="common_ui_text_section_header">22dp</dimen>
+    <dimen name="common_ui_text_button">14dp</dimen>
+    <dimen name="common_ui_text_line_spacing">10dp</dimen>
+    <dimen name="common_ui_sub_text_line_spacing">8dp</dimen>
+    <dimen name="common_ui_title_size">20sp</dimen>
+
+    <dimen name="common_ui_xs_text_size">12sp</dimen>
+</resources>

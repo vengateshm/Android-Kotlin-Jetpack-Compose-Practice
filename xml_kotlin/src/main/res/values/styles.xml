@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="common_ui_body">
+        <item name="android:fontFamily">@font/manrope</item>
+        <item name="android:textSize">@dimen/common_ui_text_medium</item>
+    </style>
+
+    <style name="common_ui_body.Black">
+        <item name="android:textColor">@color/common_ui_black</item>
+    </style>
+
+    <style name="common_ui_body.SemiBold">
+        <item name="android:fontFamily">@font/manrope_medium</item>
+    </style>
+
+    <style name="common_ui_body.SemiBold.Black">
+        <item name="android:textColor">@color/common_ui_black</item>
+    </style>
+
+    <style name="common_ui_body.SemiBold.White">
+        <item name="android:textColor">@color/common_ui_white</item>
+    </style>
+
+    <style name="common_ui_caption">
+        <item name="android:fontFamily">@font/manrope</item>
+        <item name="android:textSize">@dimen/common_ui_text_smaller</item>
+        <item name="android:textColor">@color/common_ui_black</item>
+    </style>
+
+    <style name="common_ui_caption.White">
+        <item name="android:textColor">@color/common_ui_white</item>
+    </style>
+</resources>
