@@ -9,6 +9,7 @@ import dev.vengateshm.xml_kotlin.ui.multiple_view_type_list.db.ItineraryEntity
 import dev.vengateshm.xml_kotlin.ui.multiple_view_type_list.domain.MOBItineraryModel
 import dev.vengateshm.xml_kotlin.ui.multiple_view_type_list.repository.ItineraryRepository
 import dev.vengateshm.xml_kotlin.utils.ItineraryConstants.ACTION_ADD_MORE
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class ItineraryViewModel(private val repository: ItineraryRepository) : ViewModel() {
@@ -18,15 +19,11 @@ class ItineraryViewModel(private val repository: ItineraryRepository) : ViewMode
 
     init {
 //        loadItineraryData()
-        viewModelScope.launch {
-            //addEntity()
-            getItinerary(id = 1)
-        }
     }
 
-    private suspend fun addEntity() {
+    fun addEntity(id: Int) {
         val newEntity = ItineraryEntity(
-            id = 1,
+            id = id,
             jsonResponse = """
         {
           "title": "Weekend Trip to Paris",
@@ -49,17 +46,15 @@ class ItineraryViewModel(private val repository: ItineraryRepository) : ViewMode
             }
           ]
         }
-    """,
+    """.trimIndent(),
         )
-        repository.saveItinerary(newEntity) // Repository function to add the entity to Room
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.saveItinerary(newEntity)
+        }
     }
 
-    private fun getItinerary(id: Int): LiveData<List<ItineraryListItem>?> {
-        return repository.getItinerary(id).map { it?.toItineraryItems(it) }.apply {
-            value?.let {
-                _itineraryList.value = it
-            }
-        }
+    fun getItinerary(id: Int): LiveData<List<ItineraryListItem>?> {
+        return repository.getItinerary(id).map { it?.toItineraryItems(it) ?: emptyList() }
     }
 
     private fun loadItineraryData() {

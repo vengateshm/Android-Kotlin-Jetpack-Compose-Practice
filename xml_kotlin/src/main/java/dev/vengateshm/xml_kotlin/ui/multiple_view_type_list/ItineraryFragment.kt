@@ -59,6 +59,10 @@ class ItineraryFragment : Fragment() {
                 itineraryAdapter.setItineraryItems(itineraryItems)
             },
         )
+        viewModel.getItinerary(id = 1).observe(viewLifecycleOwner) {
+            it?.let { itineraryAdapter.setItineraryItems(it) }
+        }
+        viewModel.addEntity(id = 1)
     }
 
     override fun onDestroyView() {

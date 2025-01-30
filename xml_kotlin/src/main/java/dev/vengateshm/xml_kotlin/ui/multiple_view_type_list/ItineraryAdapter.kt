@@ -60,7 +60,7 @@ class ItineraryAdapter(
     fun getView(parent: ViewGroup, @LayoutRes layoutId: Int) =
         LayoutInflater.from(parent.context).inflate(layoutId, parent, false)
 
-    override fun getDecorationTopOffset(adapterPosition: Int) = R.dimen.common_ui_spacing_xxlg
+    override fun getDecorationTopOffset(adapterPosition: Int) = listItems[adapterPosition].topOffset
 
     override fun getDecorationBottomOffset(adapterPosition: Int) =
         R.dimen.common_ui_spacing_no_space
