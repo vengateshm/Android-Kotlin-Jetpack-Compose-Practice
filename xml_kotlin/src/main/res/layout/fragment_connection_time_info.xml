@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingBottom="@dimen/common_ui_spacing_lg">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivClose"
+        android:layout_width="@dimen/common_ui_element_min_height"
+        android:layout_height="@dimen/common_ui_element_min_height"
+        android:clickable="true"
+        android:src="@drawable/baseline_close_24"
+        android:contentDescription="Close"
+        android:tint="@color/common_ui_blue"
+        android:focusable="true"
+        android:padding="@dimen/common_ui_spacing_md"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvHeader"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/common_ui_spacing_md"
+        android:layout_height="wrap_content"
+        tools:text="Header"
+        android:layout_marginHorizontal="@dimen/common_ui_spacing_md"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivClose" />
+
+    <TextView
+        android:id="@+id/tvBody"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="@dimen/common_ui_spacing_sm"
+        android:layout_height="wrap_content"
+        tools:text="Body"
+        android:layout_marginHorizontal="@dimen/common_ui_spacing_md"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvHeader" />
+</androidx.constraintlayout.widget.ConstraintLayout>

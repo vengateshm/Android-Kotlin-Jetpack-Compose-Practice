@@ -1,4 +1,4 @@
-package dev.vengateshm.xml_kotlin.custom_views.flight_connection_gate_time_view
+package dev.vengateshm.xml_kotlin.custom_views.flight_connection
 
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
@@ -16,4 +16,12 @@ data class FlightConnectionGateTimeData(
     val departureGateLabelText: String,
     val departureGateValue: String,
     val departureTerminalText: String,
+    val conundrumText: String,
+    val conundrumIconType: ConundrumIconType,
 )
+
+enum class ConundrumIconType {
+    INFO,
+    VEHICLE,
+    NONE
+}

@@ -31,4 +31,8 @@
     <dimen name="common_ui_title_size">20sp</dimen>
 
     <dimen name="common_ui_xs_text_size">12sp</dimen>
+    <dimen name="common_ui_icon_size_small">16dp</dimen>
+    <dimen name="common_ui_element_no_width">0dp</dimen>
+    <dimen name="common_ui_element_min_height">48dp</dimen>
+    <dimen name="common_ui_dialog_radius">10dp</dimen>
 </resources>
