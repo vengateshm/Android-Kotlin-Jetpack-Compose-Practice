@@ -79,6 +79,9 @@ dependencies {
     implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
     implementation("com.squareup.moshi:moshi-adapters:1.15.1")
 
+    implementation(libs.kotlindl.tensorflow)
+    implementation(libs.kotlin.csv.jvm)
+
     testImplementation(libs.junit)
     testImplementation(libs.junit.jupiter.api)
     testImplementation(libs.junit.jupiter.params)
