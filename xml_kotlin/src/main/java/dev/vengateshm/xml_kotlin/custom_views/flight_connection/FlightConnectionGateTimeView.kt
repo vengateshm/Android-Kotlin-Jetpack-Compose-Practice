@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Group
 import androidx.core.content.ContextCompat
+import androidx.core.view.setPadding
 import dev.vengateshm.xml_kotlin.R
 import dev.vengateshm.xml_kotlin.utils.bindOrHideWhenNull
 
@@ -37,6 +38,7 @@ class FlightConnectionGateTimeView @JvmOverloads constructor(
 
     init {
         inflate(context, R.layout.common_ui_view_flight_connection_gate_time, this)
+        setPadding(resources.getDimensionPixelSize(R.dimen.common_ui_spacing_md))
         viewConnectionTimeContainer = findViewById(R.id.common_ui_flightconnection_time_container)
         textViewConnectionTime = findViewById(R.id.common_ui_flightconnection_time_text)
         imageViewLanding = findViewById(R.id.common_ui_flightconnection_landing_imageview)
