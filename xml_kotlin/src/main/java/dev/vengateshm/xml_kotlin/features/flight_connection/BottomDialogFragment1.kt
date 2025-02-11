@@ -3,8 +3,7 @@ package dev.vengateshm.xml_kotlin.features.flight_connection
 import android.app.Dialog
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
-import androidx.appcompat.widget.AppCompatImageView
+import android.widget.Button
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
@@ -16,16 +15,12 @@ import com.google.android.material.shape.ShapeAppearanceModel
 import dev.vengateshm.xml_kotlin.R
 import dev.vengateshm.xml_kotlin.base.BaseBottomSheetDialogFragment
 
-class ConnectionTimeInfoFragment : BaseBottomSheetDialogFragment() {
-    override val layoutResourceId = R.layout.fragment_connection_time_info
+class BottomDialogFragment1 : BaseBottomSheetDialogFragment() {
+    override val layoutResourceId = R.layout.fragment_bottom_dialog_1
 
     private val viewModel by lazy {
         obtainViewModel {
-            ConnectionTimeInfoViewModel(
-                connectionTime = arguments?.let {
-                    ConnectionTimeInfoFragmentDestination.getConnectionTimeData(it)
-                },
-            )
+            BottomDialogFragment1ViewModel()
         }
     }
 
@@ -38,44 +33,34 @@ class ConnectionTimeInfoFragment : BaseBottomSheetDialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        configureNavigationListener(viewModel.navigationLiveData)
         configureUIListeners(view)
         observeViewModel(view)
     }
 
     private fun configureUIListeners(view: View) {
-        view.findViewById<AppCompatImageView>(R.id.ivClose).apply {
+        view.findViewById<Button>(R.id.btnOk).apply {
             setOnClickListener {
-                viewModel.dismiss()
+                viewModel.onOkClick()
             }
         }
-        view.findViewById<TextView>(R.id.tvHeader).apply {
+        view.findViewById<Button>(R.id.btnCancel).apply {
             setOnClickListener {
-                viewModel.onHeaderClick()
+                viewModel.dismiss()
             }
         }
     }
 
     private fun observeViewModel(view: View) {
         viewModel.apply {
-            connectionTimeData.observe(viewLifecycleOwner) {
-                it ?: return@observe
-                view.findViewById<TextView>(R.id.tvHeader).apply {
-                    text = it.header
-                }
-                view.findViewById<TextView>(R.id.tvBody).apply {
-                    text = it.body
-                }
-            }
             dismiss.observe(viewLifecycleOwner) {
                 if (it == true) {
                     dismiss()
                 }
             }
-        }
-        sharedViewModel1.okClick.observe(viewLifecycleOwner) {
-            if (it == true) {
-                viewModel.dismiss()
+            okClick.observe(viewLifecycleOwner) {
+                if (it == true) {
+                    sharedViewModel1.setOkClick(true)
+                }
             }
         }
     }

@@ -14,4 +14,9 @@
         android:name="dev.vengateshm.xml_kotlin.features.flight_connection.ConnectionTimeInfoFragment"
         android:label="ConnectionInfoFragment" />
 
+    <dialog
+        android:id="@+id/bottomDialogFragment1"
+        android:name="dev.vengateshm.xml_kotlin.features.flight_connection.BottomDialogFragment1"
+        android:label="BottomDialogFragment1" />
+
 </navigation>
