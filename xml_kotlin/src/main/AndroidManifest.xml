@@ -18,5 +18,8 @@
         <activity
             android:name=".memory_leak.A3"
             android:exported="true" />
+        <activity
+            android:name=".window.WindowInsetsActivity"
+            android:exported="true" />
     </application>
 </manifest>
