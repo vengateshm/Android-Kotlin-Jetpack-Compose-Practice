@@ -324,6 +324,7 @@ arrow-stack = { module = "io.arrow-kt:arrow-stack", version.ref = "arrowStack" }
 arrow-kt-arrow-core = { module = "io.arrow-kt:arrow-core" }
 arrow-fx-coroutines = { module = "io.arrow-kt:arrow-fx-coroutines", version.ref = "arrowCore" }
 arrow-optics = { module = "io.arrow-kt:arrow-optics", version.ref = "arrowCore" }
+arrow-resilience = { module = "io.arrow-kt:arrow-resilience", version.ref = "arrowCore" }
 
 #Klutter
 klutter-core = { module = "uy.kohesive.klutter:klutter-core", version.ref = "klutterCore" }
