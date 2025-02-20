@@ -56,6 +56,9 @@ class FlightConnectionGateTimeFragment : BaseFragment() {
             flightConnectionGateTimeDataNoWalkTime.observe(viewLifecycleOwner) {
                 binding.flightConnectionGateTimeViewNoWalkTime.setData(it)
             }
+            timeBlockData.observe(viewLifecycleOwner) {
+                binding.timeBlockView.setData(it)
+            }
         }
     }
 

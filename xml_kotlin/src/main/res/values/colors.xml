@@ -4,4 +4,16 @@
     <color name="common_ui_black">#000000</color>
     <color name="common_ui_white">#FFFFFF</color>
     <color name="common_ui_alert_yellow">#FFC658</color>
+
+    <color name="colorA">#FF5733</color>
+    <color name="colorB">#33FF57</color>
+    <color name="colorC">#3357FF</color>
+    <color name="border_color">#1B8C70</color>
+
+    <color name="time_state_bg_a">#F4F8FE</color>
+    <color name="time_state_bg_b">#FFFAEE</color>
+    <color name="time_state_pulse_state_a_1">#C9DBFC</color>
+    <color name="time_state_pulse_state_a_2">#E8EFFF</color>
+    <color name="time_state_pulse_state_b_1">#FFEEC5</color>
+    <color name="time_state_pulse_state_b_2">#FFF6E2</color>
 </resources>

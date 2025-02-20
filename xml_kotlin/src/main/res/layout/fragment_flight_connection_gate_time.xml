@@ -11,24 +11,35 @@
         <dev.vengateshm.xml_kotlin.custom_views.flight_connection.FlightConnectionGateTimeView
             android:id="@+id/flightConnectionGateTimeViewComfortable"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:visibility="visible" />
 
         <dev.vengateshm.xml_kotlin.custom_views.flight_connection.FlightConnectionGateTimeView
             android:id="@+id/flightConnectionGateTimeViewTight"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_height="wrap_content" />
+            android:visibility="gone" />
 
         <dev.vengateshm.xml_kotlin.custom_views.flight_connection.FlightConnectionGateTimeView
             android:id="@+id/flightConnectionGateTimeViewNoTime"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_height="wrap_content" />
+            android:visibility="gone" />
 
         <dev.vengateshm.xml_kotlin.custom_views.flight_connection.FlightConnectionGateTimeView
             android:id="@+id/flightConnectionGateTimeViewNoWalkTime"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_height="wrap_content" />
+            android:visibility="gone" />
+
+        <dev.vengateshm.xml_kotlin.custom_views.time_block.TimeBlockView
+            android:id="@+id/timeBlockView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="16dp" />
     </LinearLayout>
 </ScrollView>

@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import dev.vengateshm.xml_kotlin.R
 import dev.vengateshm.xml_kotlin.custom_views.flight_connection.ConundrumIconType
 import dev.vengateshm.xml_kotlin.custom_views.flight_connection.FlightConnectionGateTimeData
+import dev.vengateshm.xml_kotlin.custom_views.time_block.TimeBlockData
+import dev.vengateshm.xml_kotlin.custom_views.time_block.TimeState
 import dev.vengateshm.xml_kotlin.utils.navigation.NavigationViewModel
 
 class FlightConnectionGateTimeFragmentViewModel : NavigationViewModel() {
@@ -22,6 +24,10 @@ class FlightConnectionGateTimeFragmentViewModel : NavigationViewModel() {
     private val _flightConnectionGateTimeDataNoWalkTime =
         MutableLiveData<FlightConnectionGateTimeData>()
     val flightConnectionGateTimeDataNoWalkTime = _flightConnectionGateTimeDataNoWalkTime
+
+    private val _timeBlockData =
+        MutableLiveData<TimeBlockData>()
+    val timeBlockData = _timeBlockData
 
     init {
         _flightConnectionGateTimeDataComfortable.value = FlightConnectionGateTimeData(
@@ -88,6 +94,13 @@ class FlightConnectionGateTimeFragmentViewModel : NavigationViewModel() {
             departureTerminalText = "Terminal 1,\nConcourse B",
             conundrumText = "",
             conundrumIconType = ConundrumIconType.NONE,
+        )
+        _timeBlockData.value = TimeBlockData(
+            headerText = "Boarding",
+            contentText = "Starts soon",
+            flashCount = 4,
+            timeState = TimeState.A,
+            doAnimateView = true,
         )
     }
 
