@@ -42,6 +42,9 @@ fun main() {
             }
             println("coroutine done")
         }
+        scope.launch {
+            delay(500)
+        }
         job.join()
         println("main done")
     }
