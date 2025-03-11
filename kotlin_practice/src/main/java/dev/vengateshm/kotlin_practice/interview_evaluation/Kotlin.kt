@@ -54,6 +54,10 @@ fun main() {
     }.also {
         it.build()
     }
+
+    val point = Point(10, 20)
+    val (x, _) = point
+    println(x)
 }
 
 data class Person(val firstName: String, val lastName: String, val age: Int)
@@ -141,4 +145,9 @@ fun robot(block: Robot.() -> Unit): Robot {
     val robot = Robot()
     robot.apply(block)
     return robot
+}
+
+class Point(val x: Int, val y: Int) {
+    operator fun component1() = x
+    operator fun component2() = y
 }
