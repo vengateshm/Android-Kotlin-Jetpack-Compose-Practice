@@ -2,6 +2,7 @@ package dev.vengateshm.xml_kotlin.lifecycle.livedata
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.liveData
 import androidx.lifecycle.switchMap
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +21,26 @@ class LiveDataViewModel : ViewModel() {
             emit(data)
         }
     }
+
+    val numbers: LiveData<Int> = liveData {
+        emit(1)
+        delay(1000)
+        emit(1)
+        delay(1000)
+        emit(1)
+        delay(1000)
+        emit(2)
+        delay(1000)
+        emit(3)
+        delay(1000)
+        emit(3)
+        delay(1000)
+        emit(1)
+        delay(1000)
+        emit(2)
+        delay(1000)
+        emit(5)
+    }.distinctUntilChanged()
 }
 
 class UserRepository {

@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 class LiveDataFragment : Fragment() {
 
     private lateinit var textView: TextView
+    private lateinit var textView1: TextView
 
     private val viewModel: LiveDataViewModel by viewModels()
 
@@ -44,6 +45,19 @@ class LiveDataFragment : Fragment() {
                     textView = this
                 },
             )
+            it.addView(
+                textView(container.context) {
+                    layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                    )
+                    textSize = 18f
+                    gravity = Gravity.CENTER
+                    setTextColor(Color.GRAY)
+                }.apply {
+                    textView1 = this
+                },
+            )
         }
         return root
     }
@@ -53,6 +67,9 @@ class LiveDataFragment : Fragment() {
 
         viewModel.userData.observe(viewLifecycleOwner) {
             textView.text = it.orEmpty()
+        }
+        viewModel.numbers.observe(viewLifecycleOwner) {
+            textView1.text = it.toString()
         }
     }
 }
