@@ -13,6 +13,8 @@ fun main() {
     println(isBalanced4("1234"))
     println(isBalanced5("3234"))
     println(isBalanced5("1234"))
+    println(isBalanced6("3234"))
+    println(isBalanced6("1234"))
 }
 
 fun Int.isEven() = this % 2 == 0
@@ -62,4 +64,16 @@ fun isBalanced4(str: String): Boolean {
 fun isBalanced5(str: String): Boolean {
     val partitions = str.map { it - '0' }.withIndex().partition { it.index.isEven() }
     return partitions.first.sumOf { it.value } == partitions.second.sumOf { it.value }
+}
+
+fun isBalanced6(str: String): Boolean {
+    var sign = 1
+    var i = 0
+    var s = 0
+    while (i < str.length) {
+        s += sign * (str[i] - '0')
+        sign *= -1
+        i++
+    }
+    return s == 0
 }
