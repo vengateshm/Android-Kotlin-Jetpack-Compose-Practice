@@ -11,7 +11,8 @@ fun main() {
     node2.next = node3
     node3.next = node4
     node4.next = node2
-    println(hasCycle(node1))
+//    println(hasCycle(node1))
+    println(hasCycleFindFirstNode(node1))
 }
 
 //Hare & Tortoise Algorithm
@@ -28,4 +29,24 @@ fun hasCycle(head: LinkedListNode?): Boolean {
     }
 
     return false
+}
+
+fun hasCycleFindFirstNode(head: LinkedListNode?): LinkedListNode? {
+    var slow = head
+    var fast = head
+
+    while (fast != null && fast.next != null) {
+        fast = fast.next?.next
+        slow = slow?.next
+        if (slow == fast) {
+            slow = head
+            while (slow != fast) {
+                slow = slow?.next
+                fast = fast?.next
+            }
+            return slow
+        }
+    }
+
+    return null
 }
