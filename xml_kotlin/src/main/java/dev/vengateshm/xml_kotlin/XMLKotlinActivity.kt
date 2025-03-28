@@ -1,11 +1,18 @@
 package dev.vengateshm.xml_kotlin
 
+import android.os.Build
 import android.os.Bundle
+import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
+import androidx.lifecycle.viewModelScope
+import dev.vengateshm.xml_kotlin.utils.HomeScreenInitializer
 
 class XMLKotlinActivity : AppCompatActivity() {
+
+    private val xmlKotlinActivityViewModel: XMLKotlinActivityViewModel by viewModels()
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_xml_kotlin)
@@ -16,14 +23,13 @@ class XMLKotlinActivity : AppCompatActivity() {
                 replace<TabLayoutViewPagerFragment>(R.id.fragmentContainer)
             }
         }*/
-        supportFragmentManager.commit {
-            setReorderingAllowed(true)
-//            replace<HapticsFragment>(R.id.fragmentContainer)
-//            replace<FragmentWithCompose>(R.id.fragmentContainer)
-//            replace<NavHostFragmentHolder>(R.id.fragmentContainer)
-//            replace<CoroutinesCancellationFragment>(R.id.fragmentContainer)
-            replace<MyFragment>(R.id.fragmentContainer)
-        }
+
+        HomeScreenInitializer()
+            .initialize(
+                lifecycle,
+                this,
+                xmlKotlinActivityViewModel.viewModelScope,
+            )
     }
 
     override fun onDestroy() {

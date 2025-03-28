@@ -70,6 +70,8 @@ dependencies {
 
     implementation(libs.gson)
 
+    implementation(libs.androidx.preference.ktx)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
