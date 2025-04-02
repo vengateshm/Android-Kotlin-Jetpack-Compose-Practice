@@ -16,6 +16,7 @@ class LiveDataFragment : Fragment() {
 
     private lateinit var textView: TextView
     private lateinit var textView1: TextView
+    private lateinit var textView2: TextView
 
     private val viewModel: LiveDataViewModel by viewModels()
 
@@ -58,6 +59,19 @@ class LiveDataFragment : Fragment() {
                     textView1 = this
                 },
             )
+            it.addView(
+                textView(container.context) {
+                    layoutParams = LinearLayout.LayoutParams(
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                    )
+                    textSize = 18f
+                    gravity = Gravity.CENTER
+                    setTextColor(Color.GRAY)
+                }.apply {
+                    textView2 = this
+                },
+            )
         }
         return root
     }
@@ -70,6 +84,11 @@ class LiveDataFragment : Fragment() {
         }
         viewModel.numbers.observe(viewLifecycleOwner) {
             textView1.text = it.toString()
+        }
+        viewModel.combinedLiveData.observe(viewLifecycleOwner) { combinedData ->
+            combinedData?.let {
+                textView2.text = "User: ${it.user}, Orders: ${it.orders}, Address: ${it.address}"
+            }
         }
     }
 }

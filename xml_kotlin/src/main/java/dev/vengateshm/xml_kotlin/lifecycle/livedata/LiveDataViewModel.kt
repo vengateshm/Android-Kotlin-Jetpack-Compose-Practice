@@ -1,6 +1,7 @@
 package dev.vengateshm.xml_kotlin.lifecycle.livedata
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.liveData
@@ -41,6 +42,18 @@ class LiveDataViewModel : ViewModel() {
         delay(1000)
         emit(5)
     }.distinctUntilChanged()
+
+    private val _userLiveData = MutableLiveData<User>()
+    private val _ordersLiveData = MutableLiveData<Orders>()
+    private val _addressLiveData = MutableLiveData<Address>()
+
+    val combinedLiveData = CombinedLiveData(_userLiveData, _ordersLiveData, _addressLiveData)
+
+    init {
+        _userLiveData.value = User(1, "John Doe")
+        _ordersLiveData.value = Orders(101, 1, 299.99)
+        _addressLiveData.value = Address(1, "New York", "USA")
+    }
 }
 
 class UserRepository {
