@@ -16,6 +16,7 @@ composeBetaVersion = "1.7.7"
 constraintlayout = "2.2.0"
 constraintlayoutCompose = "1.1.0"
 coreSplashscreen = "1.1.0-rc01"
+coreTesting = "2.2.0"
 datastorePreferences = "1.1.2"
 composeMaterialDialogs = "0.8.1-rc"
 fig = "0.0.2"
@@ -119,6 +120,7 @@ androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-fragment-compose = { module = "androidx.fragment:fragment-compose", version.ref = "fragment-compose" }
 androidx-palette-ktx = { module = "androidx.palette:palette-ktx", version.ref = "paletteKtx" }
+androidx-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
 
 #Window
 androidx-window = { module = "androidx.window:window", version.ref = "window" }

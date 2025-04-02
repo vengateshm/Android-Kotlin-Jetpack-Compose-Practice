@@ -41,6 +41,7 @@ object LastSyncDate : DefaultLifecycleObserver {
     fun clear() {
         lastSyncDate = null
         lastSyncedDateLiveData.value = null
+//        lastSyncedDateLiveData.postValue(null)
         sharedPreferences = null
     }
 
@@ -60,6 +61,11 @@ object LastSyncDate : DefaultLifecycleObserver {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onDestroy(owner: LifecycleOwner) {
         super.onDestroy(owner)
+        saveLastSyncDateTime()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun saveLastSyncDateTime() {
         sharedPreferences?.edit {
             lastSyncDate?.let {
                 putString(
