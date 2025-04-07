@@ -21,5 +21,8 @@
         <activity
             android:name=".window.WindowInsetsActivity"
             android:exported="true" />
+        <activity
+            android:name="dev.vengateshm.xml_kotlin.multi_module.MultiModuleMainActivity"
+            android:exported="true" />
     </application>
 </manifest>

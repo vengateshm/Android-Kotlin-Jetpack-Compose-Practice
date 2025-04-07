@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/multi_module_main_graph"
+    app:startDestination="@id/multiModuleMainLandingFragment">
+
+    <fragment
+        android:id="@+id/multiModuleMainLandingFragment"
+        android:name="dev.vengateshm.xml_kotlin.multi_module.MultiModuleMainLandingFragment"
+        android:label="MultiModuleMainLandingFragment" />
+
+    <include app:graph="@navigation/booking_screen_main_navigation" />
+    <include app:graph="@navigation/home_screen_main_navigation" />
+</navigation>

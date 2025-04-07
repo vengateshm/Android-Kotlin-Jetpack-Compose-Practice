@@ -1,10 +1,10 @@
 package dev.vengateshm.xml_kotlin.features.flight_connection
 
 import android.os.Bundle
+import dev.vengateshm.appcore.utility.getParcelableSafely
+import dev.vengateshm.commonui.navigation.NavigationArguments
+import dev.vengateshm.commonui.navigation.NavigationDestination
 import dev.vengateshm.xml_kotlin.R
-import dev.vengateshm.xml_kotlin.utils.getParcelableSafely
-import dev.vengateshm.xml_kotlin.utils.navigation.NavigationArguments
-import dev.vengateshm.xml_kotlin.utils.navigation.NavigationDestination
 
 class ConnectionTimeInfoFragmentDestination(
     connectionTimeData: ConnectionTimeData,

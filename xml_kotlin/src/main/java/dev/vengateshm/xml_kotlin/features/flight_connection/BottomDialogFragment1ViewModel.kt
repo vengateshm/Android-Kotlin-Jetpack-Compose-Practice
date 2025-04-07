@@ -1,8 +1,8 @@
 package dev.vengateshm.xml_kotlin.features.flight_connection
 
 import androidx.lifecycle.LiveData
-import dev.vengateshm.xml_kotlin.utils.navigation.NavigationViewModel
-import dev.vengateshm.xml_kotlin.utils.navigation.SingleEmissionMutableLiveData
+import dev.vengateshm.appcore.SingleEmissionMutableLiveData
+import dev.vengateshm.commonui.navigation.NavigationViewModel
 
 class BottomDialogFragment1ViewModel : NavigationViewModel() {
     private val _dismiss = SingleEmissionMutableLiveData<Boolean>()

@@ -1,12 +1,12 @@
 package dev.vengateshm.xml_kotlin.features.flight_connection
 
 import androidx.lifecycle.MutableLiveData
+import dev.vengateshm.commonui.navigation.NavigationViewModel
 import dev.vengateshm.xml_kotlin.R
 import dev.vengateshm.xml_kotlin.custom_views.flight_connection.ConundrumIconType
 import dev.vengateshm.xml_kotlin.custom_views.flight_connection.FlightConnectionGateTimeData
 import dev.vengateshm.xml_kotlin.custom_views.time_block.TimeBlockData
 import dev.vengateshm.xml_kotlin.custom_views.time_block.TimeState
-import dev.vengateshm.xml_kotlin.utils.navigation.NavigationViewModel
 
 class FlightConnectionGateTimeFragmentViewModel : NavigationViewModel() {
 

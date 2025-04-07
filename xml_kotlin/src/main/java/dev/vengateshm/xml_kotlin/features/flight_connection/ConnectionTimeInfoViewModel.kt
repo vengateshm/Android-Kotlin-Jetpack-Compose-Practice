@@ -2,8 +2,8 @@ package dev.vengateshm.xml_kotlin.features.flight_connection
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import dev.vengateshm.xml_kotlin.utils.navigation.NavigationViewModel
-import dev.vengateshm.xml_kotlin.utils.navigation.SingleEmissionMutableLiveData
+import dev.vengateshm.appcore.SingleEmissionMutableLiveData
+import dev.vengateshm.commonui.navigation.NavigationViewModel
 
 class ConnectionTimeInfoViewModel(
     private val connectionTime: ConnectionTimeData?,

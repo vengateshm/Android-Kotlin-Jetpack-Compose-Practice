@@ -13,8 +13,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.shape.CornerFamily
 import com.google.android.material.shape.MaterialShapeDrawable
 import com.google.android.material.shape.ShapeAppearanceModel
+import dev.vengateshm.commonui.base.BaseBottomSheetDialogFragment
 import dev.vengateshm.xml_kotlin.R
-import dev.vengateshm.xml_kotlin.base.BaseBottomSheetDialogFragment
 
 class ConnectionTimeInfoFragment : BaseBottomSheetDialogFragment() {
     override val layoutResourceId = R.layout.fragment_connection_time_info
