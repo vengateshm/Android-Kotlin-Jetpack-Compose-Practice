@@ -1,12 +1,12 @@
 package dev.vengateshm.compose_material3.custom_ui.flight_block_ui
 
 import androidx.compose.ui.graphics.Color
+import dev.vengateshm.appcore.utility.SingleString
+import dev.vengateshm.appcore.utility.asSingleString
 import dev.vengateshm.compose_material3.R
 import dev.vengateshm.compose_material3.custom_ui.flight_block_ui.ui_components.FlightStatusBadgeData
 import dev.vengateshm.compose_material3.utils.HR_MIN_FORMAT
 import dev.vengateshm.compose_material3.utils.MONTH_DAY_NO_YEAR
-import dev.vengateshm.compose_material3.utils.SingleString
-import dev.vengateshm.compose_material3.utils.asSingleString
 import dev.vengateshm.compose_material3.utils.parseDateTime
 
 class FlightBlockWithProgressViewModel {
@@ -106,16 +106,16 @@ class FlightBlockWithProgressViewModel {
             departureCity = data.departureCity,
             arrivalCity = data.arrivalCity,
             stopDescription = data.stopDescription,
-            operatedBy = data.operatedBy
+            operatedBy = data.operatedBy,
         )
     }
 
     private fun getTimeLeftAndProgressAndTotalTime(
-        data: FlightBlockData
+        data: FlightBlockData,
     ): Triple<SingleString?, Float?, String> {
         val flightProgressDataWithRemainingTime =
             FlightBlockUtils.getFlightProgressWithJourneyTotalTimeAndRemainingTime(
-                data.departureDateTimeUTC, data.arrivalDateTimeUTC
+                data.departureDateTimeUTC, data.arrivalDateTimeUTC,
             )
         val flightJourneyCoveredPercentage = flightProgressDataWithRemainingTime.second
         val remainingTimeToLand = flightProgressDataWithRemainingTime.third
@@ -124,7 +124,7 @@ class FlightBlockWithProgressViewModel {
                 Triple(
                     R.string.cmaterial3_remainingtime_left_label.asSingleString(remainingTimeToLand),
                     flightJourneyCoveredPercentage / 100f,
-                    ""
+                    "",
                 )
             }
 
@@ -147,7 +147,7 @@ class FlightBlockWithProgressViewModel {
             FlightStatusBadgeData(
                 statusText = it.first.asSingleString(),
                 backgroundColor = it.second,
-                textColor = it.third
+                textColor = it.third,
             )
         }
 
@@ -155,63 +155,63 @@ class FlightBlockWithProgressViewModel {
         return when (flightStatus) {
             FlightStatus.ON_TIME -> Triple(
                 R.string.cmaterial3_flight_status_ontime, UiBadgeGreen,
-                UiWhite
+                UiWhite,
             )
 
             FlightStatus.DEPARTED -> Triple(
                 R.string.cmaterial3_flight_status_departed, UiBadgeGreen,
-                UiWhite
+                UiWhite,
             )
 
             FlightStatus.IN_FLIGHT -> Triple(
                 R.string.cmaterial3_flight_status_inflight, UiBadgeGreen,
-                UiWhite
+                UiWhite,
             )
 
             FlightStatus.ARRIVED -> Triple(
                 R.string.cmaterial3_flight_status_arrived, UiBadgeGreen,
-                UiWhite
+                UiWhite,
             )
 
             FlightStatus.LANDED -> Triple(
                 R.string.cmaterial3_flight_status_landed, UiBadgeGreen,
-                UiWhite
+                UiWhite,
             )
 
             FlightStatus.DELAYED -> Triple(
                 R.string.cmaterial3_flight_status_delayed,
                 UiBadgeYellow,
-                UiBlack
+                UiBlack,
             )
 
             FlightStatus.CANCELED -> Triple(
                 R.string.cmaterial3_flight_status_canceled,
                 UiBadgeRed,
-                UiWhite
+                UiWhite,
             )
 
             FlightStatus.DIVERTED -> Triple(
                 R.string.cmaterial3_flight_status_diverted,
                 UiBadgeRed,
-                UiWhite
+                UiWhite,
             )
 
             FlightStatus.RETURN -> Triple(
                 R.string.cmaterial3_flight_status_return,
                 UiBadgeRed,
-                UiWhite
+                UiWhite,
             )
 
             FlightStatus.EARLY -> Triple(
                 R.string.cmaterial3_flight_status_early,
                 UiBadgeGreen,
-                UiWhite
+                UiWhite,
             )
 
             else -> Triple(
                 R.string.cmaterial3_flight_status_not_available,
                 UiBlack,
-                UiWhite
+                UiWhite,
             )
         }
     }

@@ -13,26 +13,26 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
+import dev.vengateshm.appcore.utility.StringWrapper
+import dev.vengateshm.appcore.utility.asStringWrapper
 import dev.vengateshm.compose_material3.custom_ui.flight_block_ui.UiBadgeGreen
 import dev.vengateshm.compose_material3.custom_ui.flight_block_ui.UiWhite
-import dev.vengateshm.compose_material3.utils.StringWrapper
-import dev.vengateshm.compose_material3.utils.asStringWrapper
 
 @Composable
 fun FlightStatusBadge(
     modifier: Modifier = Modifier,
-    flightStatusBadgeData: FlightStatusBadgeData
+    flightStatusBadgeData: FlightStatusBadgeData,
 ) {
     val context = LocalContext.current
     Card(
         modifier = modifier,
         shape = RoundedCornerShape(4.dp),
-        colors = CardDefaults.cardColors(containerColor = flightStatusBadgeData.backgroundColor)
+        colors = CardDefaults.cardColors(containerColor = flightStatusBadgeData.backgroundColor),
     ) {
         Text(
             modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
             text = flightStatusBadgeData.statusText.getFormattedString(context),
-            color = flightStatusBadgeData.textColor
+            color = flightStatusBadgeData.textColor,
         )
     }
 }
@@ -40,14 +40,14 @@ fun FlightStatusBadge(
 data class FlightStatusBadgeData(
     val statusText: StringWrapper = StringWrapper.EMPTY,
     val backgroundColor: Color = UiBadgeGreen,
-    val textColor: Color = UiWhite
+    val textColor: Color = UiWhite,
 )
 
 @Preview
 @Composable
 private fun FlightStatusBadgePreview(@PreviewParameter(FlightStatusBadgePreviewParameterProvider::class) flightStatusBadgeData: FlightStatusBadgeData) {
     FlightStatusBadge(
-        flightStatusBadgeData = flightStatusBadgeData
+        flightStatusBadgeData = flightStatusBadgeData,
     )
 }
 

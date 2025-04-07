@@ -1,4 +1,4 @@
-package dev.vengateshm.compose_material3.utils
+package dev.vengateshm.appcore.utility
 
 import android.content.Context
 import android.view.View
@@ -34,7 +34,7 @@ data class BasicString(val stringValue: String) : StringWrapper() {
  */
 data class SingleString(
     @StringRes val stringId: Int,
-    val arguments: Array<out Any> = arrayOf()
+    val arguments: Array<out Any> = arrayOf(),
 ) : StringWrapper() {
     override fun getFormattedString(context: Context): String =
         if (arguments.isEmpty())
@@ -67,7 +67,7 @@ data class SingleString(
 data class PluralString(
     @PluralsRes val pluralId: Int,
     val count: Int,
-    val arguments: Array<out Any> = arrayOf()
+    val arguments: Array<out Any> = arrayOf(),
 ) : StringWrapper() {
     override fun getFormattedString(context: Context): String =
         if (arguments.isEmpty())
@@ -76,7 +76,7 @@ data class PluralString(
             context.resources.getQuantityString(
                 pluralId,
                 count,
-                *checkArguments(context, arguments)
+                *checkArguments(context, arguments),
             )
 
     override fun equals(other: Any?): Boolean {

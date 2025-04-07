@@ -1,8 +1,8 @@
 package dev.vengateshm.compose_material3.custom_ui.flight_block_ui
 
+import dev.vengateshm.appcore.utility.SingleString
+import dev.vengateshm.appcore.utility.StringWrapper
 import dev.vengateshm.compose_material3.custom_ui.flight_block_ui.ui_components.FlightStatusBadgeData
-import dev.vengateshm.compose_material3.utils.SingleString
-import dev.vengateshm.compose_material3.utils.StringWrapper
 
 data class FlightBlockUiData(
     val flightNumber: String,
