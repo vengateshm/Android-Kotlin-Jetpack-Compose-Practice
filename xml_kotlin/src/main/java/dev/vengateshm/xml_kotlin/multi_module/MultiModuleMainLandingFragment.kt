@@ -35,10 +35,14 @@ class MultiModuleMainLandingFragment : Fragment() {
 
             }
         }
-
         view.findViewById<Button>(R.id.btnBooking).apply {
             setOnClickListener {
                 mainViewModel.navigateToBooking()
+            }
+        }
+        view.findViewById<Button>(R.id.btnBookingHistory).apply {
+            setOnClickListener {
+                mainViewModel.navigateToBookingHistory()
             }
         }
     }

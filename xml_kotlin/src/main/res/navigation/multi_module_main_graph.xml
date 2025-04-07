@@ -10,5 +10,6 @@
         android:label="MultiModuleMainLandingFragment" />
 
     <include app:graph="@navigation/booking_screen_main_navigation" />
+    <include app:graph="@navigation/booking_history_destination" />
     <include app:graph="@navigation/home_screen_main_navigation" />
 </navigation>

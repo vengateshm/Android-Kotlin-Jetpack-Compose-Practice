@@ -1,7 +1,6 @@
 package dev.vengateshm.booking.comm
 
 import android.content.Context
-import android.util.Log
 import androidx.navigation.NavController
 import dev.vengateshm.appcore.comm.CommData
 import dev.vengateshm.appcore.comm.CommPath
@@ -13,6 +12,7 @@ import dev.vengateshm.booking.model.Booking
 import dev.vengateshm.booking.repository.BookingHistoryRepository
 import dev.vengateshm.booking.repository.BookingRepository
 import dev.vengateshm.booking.ui.BookingDestination
+import dev.vengateshm.booking.ui.BookingHistoryDestination
 
 class BookingFacade(private val context: Context) : CommProcessor {
 
@@ -27,12 +27,14 @@ class BookingFacade(private val context: Context) : CommProcessor {
         if (data.originatePath == CommPath.MAIN && code == BookingRequestCode.BOOKING.name) {
             (data.data as? Booking)?.let {
                 val navEvent = BookingDestination(booking = it).buildEvent()
-                Log.d(
-                    "NavDebug",
-                    "Current destination: ${navController.currentDestination?.label} (${navController.currentDestination?.id})",
-                )
                 navController.navigate(navEvent.navId, navEvent.argumentsBundle())
             }
+            return
+        }
+        if (data.originatePath == CommPath.MAIN && code == BookingRequestCode.BOOKING_HISTORY.name) {
+            val navEvent = BookingHistoryDestination().buildEvent()
+            navController.navigate(navEvent.navId, navEvent.argumentsBundle())
+            return
         }
     }
 

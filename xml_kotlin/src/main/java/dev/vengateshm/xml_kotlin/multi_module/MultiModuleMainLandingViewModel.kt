@@ -24,6 +24,17 @@ class MultiModuleMainLandingViewModel : ViewModel() {
         )
     }
 
+    fun navigateToBookingHistory() {
+        // Set value to get data / navigate
+        _externalComm.value = CommData(
+            originatePath = CommPath.MAIN,
+            destinationPath = CommPath.BOOKING,
+            requestCode = BookingRequestCode.BOOKING_HISTORY.name,
+            requestType = CommType.NAVIGATION,
+            data = null,
+        )
+    }
+
     // Handle result of GET_DATA
     fun handleCommResult(data: CommData?) {
         data?.run {
