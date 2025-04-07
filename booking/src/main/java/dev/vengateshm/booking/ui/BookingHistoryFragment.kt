@@ -4,13 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import dev.vengateshm.booking.R
+import dev.vengateshm.booking.repository.BookingHistoryRepository
 import dev.vengateshm.commonui.base.BaseFragment
 
 class BookingHistoryFragment : BaseFragment() {
     private val viewModel: BookingHistoryViewModel by lazy {
         obtainViewModel {
-            BookingHistoryViewModel()
+            BookingHistoryViewModel(
+                BookingHistoryRepository.create(requireContext()),
+            )
         }
     }
 
@@ -28,6 +32,10 @@ class BookingHistoryFragment : BaseFragment() {
     }
 
     private fun observeViewModel(view: View) {
-
+        viewModel.apply {
+            bookingHistory.observe(viewLifecycleOwner) {
+                view.findViewById<TextView>(R.id.bookingHistoryText).text = it.toString()
+            }
+        }
     }
 }
