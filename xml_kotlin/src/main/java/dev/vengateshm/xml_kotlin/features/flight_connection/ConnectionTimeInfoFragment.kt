@@ -69,7 +69,7 @@ class ConnectionTimeInfoFragment : BaseBottomSheetDialogFragment() {
             }
             dismiss.observe(viewLifecycleOwner) {
                 if (it == true) {
-                    dismiss()
+                    this@ConnectionTimeInfoFragment.dismiss()
                 }
             }
         }

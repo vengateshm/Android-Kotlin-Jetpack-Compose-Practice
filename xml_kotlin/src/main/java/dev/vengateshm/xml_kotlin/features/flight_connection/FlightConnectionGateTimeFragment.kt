@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import dev.vengateshm.xml_kotlin.base.BaseFragment
+import dev.vengateshm.commonui.base.BaseFragment
 import dev.vengateshm.xml_kotlin.databinding.FragmentFlightConnectionGateTimeBinding
 import dev.vengateshm.xml_kotlin.utils.getViewModel
 
