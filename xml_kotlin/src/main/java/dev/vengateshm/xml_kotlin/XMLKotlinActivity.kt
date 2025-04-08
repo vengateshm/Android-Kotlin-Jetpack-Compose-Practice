@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewModelScope
 import dev.vengateshm.xml_kotlin.utils.HomeScreenInitializer
 
@@ -17,19 +18,19 @@ class XMLKotlinActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_xml_kotlin)
 
-        /*if (savedInstanceState == null) {
-            supportFragmentManager.commit {
-                setReorderingAllowed(true)
-                replace<TabLayoutViewPagerFragment>(R.id.fragmentContainer)
-            }
-        }*/
-
         HomeScreenInitializer()
             .initialize(
                 lifecycle,
                 this,
                 xmlKotlinActivityViewModel.viewModelScope,
             )
+
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, Fragment())
+                .commit()
+        }
     }
 
     override fun onDestroy() {

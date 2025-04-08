@@ -15,6 +15,12 @@ dependencyResolutionManagement {
     }
 }
 
+//buildCache {
+//    local {
+//        isEnabled = true
+//    }
+//}
+
 rootProject.name = "AndroidKotlinComposePractice"
 include(":app")
 include(":compose_material3")
@@ -31,3 +37,6 @@ include(":xml_kotlin")
 include(":feature:auth")
 include(":feature:home")
 include(":feature:common")
+include(":home")
+include(":booking")
+include(":commonui")
