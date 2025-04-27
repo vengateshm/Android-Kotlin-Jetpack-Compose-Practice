@@ -11,7 +11,6 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.draganddrop.dragAndDropSource
 import androidx.compose.foundation.draganddrop.dragAndDropTarget
-import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -61,14 +60,14 @@ fun DragAndDropSample(modifier: Modifier = Modifier) {
                                     return true
                                 }
                             }
-                        }
+                        },
                     ),
-                contentAlignment = Alignment.Center
+                contentAlignment = Alignment.Center,
             ) {
                 this@Column.AnimatedVisibility(
                     visible = dragBoxIndex.intValue == index,
                     enter = scaleIn() + fadeIn(),
-                    exit = scaleOut() + fadeOut()
+                    exit = scaleOut() + fadeOut(),
                 ) {
                     Text(
                         text = "Drag me!",
@@ -79,21 +78,16 @@ fun DragAndDropSample(modifier: Modifier = Modifier) {
                             .dragAndDropSource(
                                 drawDragDecoration = {
                                     drawRect(color = Color.Red.copy(alpha = 0.4f))
-                                }
-                            ) {
-                                detectTapGestures(
-                                    onLongPress = { offset ->
-                                        startTransfer(
-                                            transferData = DragAndDropTransferData(
-                                                clipData = ClipData.newPlainText(
-                                                    "text",
-                                                    "Drag me!"
-                                                )
-                                            )
-                                        )
-                                    }
-                                )
-                            }
+                                },
+                                transferData = { offset ->
+                                    DragAndDropTransferData(
+                                        clipData = ClipData.newPlainText(
+                                            "text",
+                                            "Drag me!",
+                                        ),
+                                    )
+                                },
+                            ),
                     )
                 }
             }

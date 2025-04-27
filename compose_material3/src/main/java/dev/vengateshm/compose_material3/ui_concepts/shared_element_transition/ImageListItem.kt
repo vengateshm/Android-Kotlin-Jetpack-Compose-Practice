@@ -29,25 +29,26 @@ import coil.compose.AsyncImage
 fun SharedTransitionScope.ImageListItem(
     data: ImageData,
     onImageClick: (Int) -> Unit,
-    animatedVisibilityScope: AnimatedVisibilityScope
+    animatedVisibilityScope: AnimatedVisibilityScope,
 ) {
-    Row(modifier = Modifier
-        .fillMaxWidth()
-        .clip(shape = RoundedCornerShape(size = 12.dp))
-        .clickable { onImageClick(data.id) }
-        .padding(8.dp)
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clip(shape = RoundedCornerShape(size = 12.dp))
+            .clickable { onImageClick(data.id) }
+            .padding(8.dp),
     ) {
         AsyncImage(
             modifier = Modifier
                 .sharedElement(
-                    state = rememberSharedContentState(key = "image-${data.id}"),
-                    animatedVisibilityScope = animatedVisibilityScope
+                    sharedContentState = rememberSharedContentState(key = "image-${data.id}"),
+                    animatedVisibilityScope = animatedVisibilityScope,
                 )
                 .size(80.dp)
                 .clip(shape = RoundedCornerShape(size = 12.dp)),
             model = data.photo,
             contentDescription = "Image ${data.id}",
-            contentScale = ContentScale.Crop
+            contentScale = ContentScale.Crop,
         )
         Spacer(modifier = Modifier.width(8.dp))
         Column(modifier = Modifier.weight(1f)) {
@@ -56,13 +57,13 @@ fun SharedTransitionScope.ImageListItem(
                 fontSize = MaterialTheme.typography.titleLarge.fontSize,
                 fontWeight = FontWeight.Medium,
                 maxLines = 2,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Ellipsis,
             )
             Text(
                 modifier = Modifier
                     .sharedBounds(
                         sharedContentState = rememberSharedContentState(key = "author-${data.id}"),
-                        animatedVisibilityScope = animatedVisibilityScope
+                        animatedVisibilityScope = animatedVisibilityScope,
                     )
                     .alpha(0.5f),
                 text = data.author,
