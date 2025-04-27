@@ -21,12 +21,14 @@ import androidx.compose.material3.adaptive.layout.ListDetailPaneScaffold
 import androidx.compose.material3.adaptive.layout.ListDetailPaneScaffoldRole
 import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.Saver
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.launch
 import kotlinx.parcelize.Parcelize
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
@@ -37,9 +39,10 @@ fun ListDetailAdaptiveSample(modifier: Modifier = Modifier) {
     }*/
 
     val navigator = rememberListDetailPaneScaffoldNavigator<ProgrammingLanguage>()
+    val scope = rememberCoroutineScope()
 
     BackHandler(enabled = navigator.canNavigateBack()) {
-        navigator.navigateBack()
+        scope.launch { navigator.navigateBack() }
     }
 
     ListDetailPaneScaffold(
@@ -50,8 +53,11 @@ fun ListDetailAdaptiveSample(modifier: Modifier = Modifier) {
                 ProgrammingLanguageList(
                     onClick = {
                         //selectedItem = it
-                        navigator.navigateTo(ListDetailPaneScaffoldRole.Detail, it)
-                    })
+                        scope.launch {
+                            navigator.navigateTo(ListDetailPaneScaffoldRole.Detail, it)
+                        }
+                    },
+                )
             }
         },
         detailPane = {
@@ -59,7 +65,7 @@ fun ListDetailAdaptiveSample(modifier: Modifier = Modifier) {
                 /*selectedItem?.run {
                     Detail(programmingLanguage = this)
                 }*/
-                navigator.currentDestination?.content?.run {
+                navigator.currentDestination?.contentKey?.run {
                     Detail(programmingLanguage = this)
                 }
             }
@@ -68,7 +74,8 @@ fun ListDetailAdaptiveSample(modifier: Modifier = Modifier) {
             AnimatedPane(modifier = Modifier) {
                 Text(text = "Extra Pane")
             }
-        })
+        },
+    )
 }
 
 @Composable
@@ -89,7 +96,7 @@ fun ProgrammingLanguageList(onClick: (ProgrammingLanguage) -> Unit) {
                             onClick(item)
                         },
                     text = item.name,
-                    fontSize = 24.sp
+                    fontSize = 24.sp,
                 )
             }
         }
@@ -101,7 +108,7 @@ fun Detail(programmingLanguage: ProgrammingLanguage) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
     ) {
         Text(text = programmingLanguage.icon, fontSize = 32.sp)
         Spacer(modifier = Modifier.height(height = 16.dp))
@@ -135,7 +142,7 @@ data class ProgrammingLanguage(
                 ProgrammingLanguage(17, "HTML/CSS", "\uD83C\uDF10"),
                 ProgrammingLanguage(18, "SQL", "\uD83D\uDCCA"),
                 ProgrammingLanguage(19, "Assembly", "\u2699"),
-                ProgrammingLanguage(20, "Shell Scripting", "\uD83D\uDC1A")
+                ProgrammingLanguage(20, "Shell Scripting", "\uD83D\uDC1A"),
             )
 
             return languages
@@ -147,7 +154,7 @@ data class ProgrammingLanguage(
                     mapOf(
                         "id" to item.id,
                         "name" to item.name,
-                        "icon" to item.icon
+                        "icon" to item.icon,
                     )
                 }
             },
@@ -155,9 +162,9 @@ data class ProgrammingLanguage(
                 ProgrammingLanguage(
                     id = map["id"] as Int,
                     name = map["name"] as String,
-                    icon = map["icon"] as String
+                    icon = map["icon"] as String,
                 )
-            }
+            },
         )
     }
 }
