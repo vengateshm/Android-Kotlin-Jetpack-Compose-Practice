@@ -9,6 +9,7 @@ class Order {
     private List<OrderItem> items;
     private double totalValue;
     private LocalDateTime orderDateTime; // Added order placement timestamp
+    private Customer customer;
 
     public Order(String orderId, List<OrderItem> items) {
         this.orderId = orderId;
@@ -19,6 +20,12 @@ class Order {
         this.items = items;
         this.totalValue = totalValue;
         this.orderDateTime = orderDateTime;
+    }
+
+    public Order(String orderId, List<OrderItem> items, Customer customer) {
+        this.orderId = orderId;
+        this.items = items;
+        this.customer = customer;
     }
 
     public String getOrderId() {
@@ -53,16 +60,24 @@ class Order {
         this.orderDateTime = orderDateTime;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return Double.compare(getTotalValue(), order.getTotalValue()) == 0 && Objects.equals(getOrderId(), order.getOrderId()) && Objects.equals(getItems(), order.getItems()) && Objects.equals(getOrderDateTime(), order.getOrderDateTime());
+        return Double.compare(getTotalValue(), order.getTotalValue()) == 0 && Objects.equals(getOrderId(), order.getOrderId()) && Objects.equals(getItems(), order.getItems()) && Objects.equals(getOrderDateTime(), order.getOrderDateTime()) && Objects.equals(getCustomer(), order.getCustomer());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getOrderId(), getItems(), getTotalValue(), getOrderDateTime());
+        return Objects.hash(getOrderId(), getItems(), getTotalValue(), getOrderDateTime(), getCustomer());
     }
 
     @Override
@@ -72,6 +87,7 @@ class Order {
                 ", items=" + items +
                 ", totalValue=" + totalValue +
                 ", orderDateTime=" + orderDateTime +
+                ", customer=" + customer +
                 '}';
     }
 }

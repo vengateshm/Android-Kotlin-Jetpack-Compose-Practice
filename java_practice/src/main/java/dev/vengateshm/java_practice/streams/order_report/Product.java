@@ -8,6 +8,7 @@ class Product {
     private String name;
     private String category;
     private boolean isOutOfStock;
+    private double price;
 
     public Product(String productId) {
         this.productId = productId;
@@ -18,6 +19,14 @@ class Product {
         this.name = name;
         this.category = category;
         this.isOutOfStock = isOutOfStock;
+    }
+
+    public Product(String productId, String name, String category, boolean isOutOfStock, double price) {
+        this.productId = productId;
+        this.name = name;
+        this.category = category;
+        this.isOutOfStock = isOutOfStock;
+        this.price = price;
     }
 
     public String getName() {
@@ -36,16 +45,24 @@ class Product {
         return productId;
     }
 
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return isOutOfStock() == product.isOutOfStock() && Objects.equals(getProductId(), product.getProductId()) && Objects.equals(getName(), product.getName()) && Objects.equals(getCategory(), product.getCategory());
+        return isOutOfStock() == product.isOutOfStock() && Double.compare(getPrice(), product.getPrice()) == 0 && Objects.equals(getProductId(), product.getProductId()) && Objects.equals(getName(), product.getName()) && Objects.equals(getCategory(), product.getCategory());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getProductId(), getName(), getCategory(), isOutOfStock());
+        return Objects.hash(getProductId(), getName(), getCategory(), isOutOfStock(), getPrice());
     }
 
     @Override
@@ -55,6 +72,7 @@ class Product {
                 ", name='" + name + '\'' +
                 ", category='" + category + '\'' +
                 ", isOutOfStock=" + isOutOfStock +
+                ", price=" + price +
                 '}';
     }
 }
