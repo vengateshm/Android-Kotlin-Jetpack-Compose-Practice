@@ -229,11 +229,17 @@ dependencies {
     kapt(libs.androidx.hilt.compiler)
 
     implementation(libs.androidx.palette.ktx)
+
+    implementation(libs.androidx.constraintlayout.compose)
+
     testImplementation(libs.junit)
     testImplementation(libs.koin.test)
     testImplementation(libs.koin.test.junit4)
     testImplementation(libs.bundles.kotest)
     testImplementation(libs.mockk)
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.turbine)
+    testImplementation(libs.truth)
 
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
@@ -246,6 +252,7 @@ dependencies {
     androidTestImplementation(libs.mockk.android)
     androidTestImplementation(libs.androidx.navigation.testing)
     androidTestImplementation(libs.bundles.kotest)
+    androidTestImplementation(libs.kotlinx.coroutines.test)
 }
 
 // Uncomment when running tests with JUnit5
