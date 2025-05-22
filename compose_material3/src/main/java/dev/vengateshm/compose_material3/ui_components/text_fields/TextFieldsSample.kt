@@ -10,15 +10,23 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.text.TextAutoSize
 import androidx.compose.foundation.text.input.InputTransformation
+import androidx.compose.foundation.text.input.OutputTransformation
+import androidx.compose.foundation.text.input.TextFieldBuffer
 import androidx.compose.foundation.text.input.TextFieldLineLimits
 import androidx.compose.foundation.text.input.TextObfuscationMode
+import androidx.compose.foundation.text.input.insert
 import androidx.compose.foundation.text.input.maxLength
 import androidx.compose.foundation.text.input.rememberTextFieldState
+import androidx.compose.foundation.text.input.then
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
@@ -36,6 +44,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.autofill.ContentType
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalAutofillManager
 import androidx.compose.ui.semantics.contentType
@@ -44,6 +53,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.text.isDigitsOnly
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -168,7 +178,10 @@ fun LoginSample(
 }
 
 @Composable
-fun OtpSample(modifier: Modifier = Modifier) {
+fun OtpSample(
+    modifier: Modifier = Modifier,
+    onOtpVerified: () -> Unit,
+) {
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -204,9 +217,14 @@ fun OtpSample(modifier: Modifier = Modifier) {
                 contentType = ContentType.SmsOtpCode
             },
         )
+        Spacer(modifier = Modifier.height(32.dp))
+        Button(
+            onClick = onOtpVerified,
+        ) {
+            Text(text = "Verify otp")
+        }
     }
 }
-
 
 @Composable
 fun Digit(
@@ -228,6 +246,57 @@ fun Digit(
 }
 
 @Composable
+fun HomeSample(modifier: Modifier = Modifier) {
+    var textState = rememberTextFieldState()
+    var phoneNumberState = rememberTextFieldState()
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+    ) {
+        Box(
+            modifier = Modifier
+                .size(200.dp)
+                .clip(CircleShape)
+                .border(1.dp, Color.DarkGray, CircleShape)
+                .background(Color.LightGray)
+                .padding(16.dp),
+        ) {
+            BasicText(
+                text = textState.text.toString(),
+                autoSize = TextAutoSize.StepBased(),
+            )
+        }
+        Spacer(modifier = Modifier.height(32.dp))
+        OutlinedTextField(
+            state = textState,
+            lineLimits = TextFieldLineLimits.SingleLine,
+            placeholder = { Text("Description") },
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        OutlinedTextField(
+            state = phoneNumberState,
+            lineLimits = TextFieldLineLimits.SingleLine,
+            placeholder = { Text("Phone Number") },
+            inputTransformation = InputTransformation.maxLength(10).then {
+                if (!asCharSequence().isDigitsOnly()) {
+                    revertAllChanges()
+                }
+            },
+            outputTransformation = PhoneNumberTransformation,
+        )
+    }
+}
+
+object PhoneNumberTransformation : OutputTransformation {
+    override fun TextFieldBuffer.transformOutput() {
+        if (length > 0) insert(0, "(")
+        if (length > 4) insert(4, ")")
+        if (length > 8) insert(8, "-")
+    }
+}
+
+@Composable
 fun TextFieldsSample(modifier: Modifier = Modifier) {
     val navController = rememberNavController()
     NavHost(
@@ -245,7 +314,18 @@ fun TextFieldsSample(modifier: Modifier = Modifier) {
             }
         }
         composable("otp") {
-            OtpSample()
+            OtpSample {
+                navController.navigate("home")
+            }
+        }
+        composable("home") {
+            HomeSample()
         }
     }
+}
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+private fun HomeSamplePreview() {
+    HomeSample()
 }
