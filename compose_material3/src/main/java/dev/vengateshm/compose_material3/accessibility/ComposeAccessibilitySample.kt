@@ -33,6 +33,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.error
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.isTraversalGroup
@@ -131,6 +132,12 @@ fun InteractiveElementsSample(modifier: Modifier = Modifier) {
             }
         }
         FavoriteToggle()
+        Error(
+            errorText = "Fields cannot be empty",
+            modifier = Modifier.semantics {
+                error("Please add both email and password")
+            },
+        )
     }
 }
 
@@ -154,6 +161,20 @@ fun FavoriteToggle(modifier: Modifier = Modifier) {
         Text("Favorite")
         Icon(Icons.Default.Favorite, contentDescription = null)
     }
+}
+
+
+@Composable
+fun Error(
+    errorText: String,
+    modifier: Modifier = Modifier,
+) {
+    Text(
+        text = errorText,
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.error,
+        modifier = modifier.padding(16.dp),
+    )
 }
 
 @Composable
