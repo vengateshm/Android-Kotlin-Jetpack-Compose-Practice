@@ -19,11 +19,13 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Archive
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Contacts
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.People
 import androidx.compose.material.icons.filled.Snooze
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.outlined.Lock
+import androidx.compose.material3.ButtonGroup
 import androidx.compose.material3.CircularWavyProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.FilledIconButton
@@ -31,7 +33,9 @@ import androidx.compose.material3.FloatingActionButtonMenu
 import androidx.compose.material3.FloatingActionButtonMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.MaterialExpressiveTheme
 import androidx.compose.material3.MaterialShapes
+import androidx.compose.material3.MotionScheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.ToggleFloatingActionButton
 import androidx.compose.material3.animateFloatingActionButton
@@ -236,4 +240,58 @@ fun FABButtonMenuSample(modifier: Modifier = Modifier) {
 @Composable
 private fun FABButtonMenuSamplePreview() {
     FABButtonMenuSample()
+}
+
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
+@Composable
+fun ButtonGroupSample(modifier: Modifier = Modifier) {
+    ButtonGroup(
+        overflowIndicator = { menuState ->
+            FilledIconButton(
+                onClick = {
+                    if (menuState.isExpanded) {
+                        menuState.dismiss()
+                    } else {
+                        menuState.show()
+                    }
+                },
+            ) {
+                Icon(
+                    imageVector = Icons.Filled.MoreVert,
+                    contentDescription = "More icon",
+                )
+            }
+        },
+    ) {
+        repeat(10) { i ->
+            clickableItem(onClick = {}, label = "$i")
+        }
+    }
+}
+
+@Preview(showSystemUi = true, showBackground = true)
+@Composable
+private fun ButtonGroupSamplePreviewPortrait() {
+    ButtonGroupSample()
+}
+
+@Preview(
+    name = "Tablet Landscape",
+    device = "spec:width=800dp,height=480dp,orientation=landscape",
+    showSystemUi = true,
+)
+@Composable
+private fun ButtonGroupSamplePreviewLandscape() {
+    ButtonGroupSample()
+}
+
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
+@Preview(showSystemUi = true, showBackground = true)
+@Composable
+private fun Material3ExpressiveThemePreview() {
+    MaterialExpressiveTheme(
+        motionScheme = MotionScheme.standard(),
+    ) {
+        FABButtonMenuSample()
+    }
 }
