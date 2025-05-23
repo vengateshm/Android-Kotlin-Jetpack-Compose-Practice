@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.CircleShape
@@ -34,9 +35,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.semantics.CollectionInfo
+import androidx.compose.ui.semantics.CollectionItemInfo
 import androidx.compose.ui.semantics.ProgressBarRangeInfo
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.collectionInfo
+import androidx.compose.ui.semantics.collectionItemInfo
 import androidx.compose.ui.semantics.error
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.hideFromAccessibility
@@ -286,4 +291,35 @@ fun ArticleBody(
 @Composable
 private fun InteractiveElementsSamplePreview() {
     InteractiveElementsSample()
+}
+
+@Composable
+fun MilkyWayListSample(modifier: Modifier = Modifier) {
+    val milkyWay =
+        listOf("Sun", "Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune")
+    LazyColumn(
+        modifier = modifier
+            .safeContentPadding()
+            .fillMaxSize()
+            .semantics {
+                collectionInfo = CollectionInfo(
+                    rowCount = milkyWay.count(),
+                    columnCount = 1,
+                )
+            },
+    ) {
+        milkyWay.forEachIndexed { index, text ->
+            item {
+                Text(
+                    text = text,
+                    modifier = Modifier.semantics {
+                        collectionItemInfo = CollectionItemInfo(
+                            rowIndex = index,
+                            0, 0, 0,
+                        )
+                    },
+                )
+            }
+        }
+    }
 }
