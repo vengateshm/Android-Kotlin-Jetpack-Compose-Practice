@@ -37,6 +37,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.semantics.CollectionInfo
 import androidx.compose.ui.semantics.CollectionItemInfo
+import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.ProgressBarRangeInfo
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -46,6 +47,7 @@ import androidx.compose.ui.semantics.error
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.isTraversalGroup
+import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.progressBarRangeInfo
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
@@ -158,6 +160,18 @@ fun InteractiveElementsSample(modifier: Modifier = Modifier) {
                         range = 0f..1f,
                     )
                 },
+        )
+        Text(
+            text = "You have a new message",
+            modifier = Modifier.semantics {
+                liveRegion = LiveRegionMode.Polite
+            },
+        )
+        Text(
+            text = "Emergency alert incoming",
+            modifier = Modifier.semantics {
+                liveRegion = LiveRegionMode.Assertive
+            },
         )
     }
 }
