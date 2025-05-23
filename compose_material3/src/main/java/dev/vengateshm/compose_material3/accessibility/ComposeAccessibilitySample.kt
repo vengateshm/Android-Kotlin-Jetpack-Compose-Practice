@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
@@ -21,22 +22,26 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.OpenWith
 import androidx.compose.material3.Icon
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.semantics.ProgressBarRangeInfo
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.error
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.isTraversalGroup
+import androidx.compose.ui.semantics.progressBarRangeInfo
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
@@ -138,6 +143,17 @@ fun InteractiveElementsSample(modifier: Modifier = Modifier) {
                 error("Please add both email and password")
             },
         )
+        var progress by remember { mutableFloatStateOf(0.7f) }
+        ProgressInfoBar(
+            progress = { progress },
+            modifier = Modifier
+                .semantics {
+                    progressBarRangeInfo = ProgressBarRangeInfo(
+                        current = progress,
+                        range = 0f..1f,
+                    )
+                },
+        )
     }
 }
 
@@ -174,6 +190,14 @@ fun Error(
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.error,
         modifier = modifier.padding(16.dp),
+    )
+}
+
+@Composable
+fun ProgressInfoBar(progress: () -> Float, modifier: Modifier = Modifier) {
+    LinearProgressIndicator(
+        progress = progress,
+        modifier = modifier.fillMaxWidth(),
     )
 }
 
