@@ -259,6 +259,7 @@ dependencies {
     implementation(projects.composeMaterial3)
     implementation(projects.glanceAppWidget)
     implementation(projects.xmlKotlin)
+    implementation(projects.navigation3Sample)
 
     testImplementation(libs.junit)
     testImplementation(libs.androidx.room.testing)

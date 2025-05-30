@@ -110,6 +110,9 @@ appSearch = "1.1.0-rc01"
 googleId = "1.1.1"
 kotlindlTensorflow = "0.5.2"
 kotlinCsvJvm = "1.9.0"
+nav3Core = "1.0.0-alpha02"
+lifecycleViewmodelNav3 = "1.0.0-alpha01"
+kotlinxSerializationCore = "1.8.1"
 
 [libraries]
 #Android
@@ -130,6 +133,14 @@ androidx-navigation-runtime = { module = "androidx.navigation:navigation-runtime
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-testing = { module = "androidx.navigation:navigation-testing", version.ref = "navigationFragmentKtx" }
+
+# Core Navigation 3 libraries
+androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "nav3Core" }
+androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "nav3Core" }
+
+# Optional add-on libraries
+androidx-lifecycle-viewmodel-navigation3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycleViewmodelNav3" }
+kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
 
 #Camera
 androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "camera2" }
