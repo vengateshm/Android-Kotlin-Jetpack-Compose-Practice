@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "dev.vengateshm.xml_kotlin"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 23

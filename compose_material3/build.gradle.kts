@@ -22,7 +22,7 @@ plugins {
 
 android {
     namespace = "dev.vengateshm.compose_material3"
-    compileSdk = 35
+    compileSdk = 36
 
     val file = rootProject.file("local.properties")
     val properties = Properties()

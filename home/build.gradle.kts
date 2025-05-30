@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "dev.vengateshm.home"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         minSdk = 23

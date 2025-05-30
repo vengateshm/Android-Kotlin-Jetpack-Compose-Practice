@@ -32,7 +32,7 @@ plugins {
 
 android {
     namespace = "dev.vengateshm.android_kotlin_compose_practice"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "dev.vengateshm.android_kotlin_compose_practice"

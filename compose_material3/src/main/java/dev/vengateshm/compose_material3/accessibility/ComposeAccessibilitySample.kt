@@ -91,7 +91,7 @@ fun TraversalOrderSample(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun InteractiveElementsSample(modifier: Modifier = Modifier) {
+fun AccessibilitySamples(modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
             .safeContentPadding()
@@ -304,7 +304,7 @@ fun ArticleBody(
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 private fun InteractiveElementsSamplePreview() {
-    InteractiveElementsSample()
+    AccessibilitySamples()
 }
 
 @Composable
