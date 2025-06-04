@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -32,6 +34,7 @@ import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.FloatingActionButtonMenu
 import androidx.compose.material3.FloatingActionButtonMenuItem
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialExpressiveTheme
 import androidx.compose.material3.MaterialShapes
@@ -95,6 +98,7 @@ fun Material3ExpressiveSample(modifier: Modifier = Modifier) {
                 contentDescription = "Favorite Icon",
             )
         }
+        Text(text = "Circular Wavy Progress Indicator")
         CircularWavyProgressIndicator()
         val shapes = remember {
             listOf(
@@ -113,6 +117,7 @@ fun Material3ExpressiveSample(modifier: Modifier = Modifier) {
                 MaterialShapes.Gem,
             )
         }
+        Text(text = "Custom shapes")
         FlowRow(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -120,28 +125,32 @@ fun Material3ExpressiveSample(modifier: Modifier = Modifier) {
             shapes.forEach {
                 Box(
                     modifier = Modifier
-                        .size(24.dp)
+                        .size(48.dp)
                         .clip(shape = it.toShape())
-                        .background(Color.Gray),
+                        .background(color = Color(0xFFE0B0FF)),
                 )
             }
         }
-
+        Text(text = "A fancy badge using custom shape")
         Box(contentAlignment = Alignment.Center) {
             Box(
                 modifier = Modifier
                     .size(100.dp)
                     .clip(shape = MaterialShapes.Gem.toShape())
-                    .background(Color(0xFFEE2424)),
+                    .background(Color(0xFFA224F3)),
             )
             Box(
                 modifier = Modifier
                     .size(92.dp)
                     .clip(shape = MaterialShapes.Gem.toShape())
-                    .background(Color(0xFFEA9797)),
+                    .background(Color(0xFFE0B0FF)),
             )
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Text(text = "Level 10")
+                Text(
+                    text = "Level 10",
+                    color = Color(0xFFA224F3),
+                )
+                Spacer(Modifier.height(8.dp))
                 Icon(
                     Icons.Outlined.CheckCircle,
                     contentDescription = "Favorite Icon",
@@ -245,26 +254,40 @@ private fun FABButtonMenuSamplePreview() {
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun ButtonGroupSample(modifier: Modifier = Modifier) {
-    ButtonGroup(
-        overflowIndicator = { menuState ->
-            FilledIconButton(
-                onClick = {
-                    if (menuState.isExpanded) {
-                        menuState.dismiss()
-                    } else {
-                        menuState.show()
-                    }
-                },
-            ) {
-                Icon(
-                    imageVector = Icons.Filled.MoreVert,
-                    contentDescription = "More icon",
-                )
+    val options = listOf(
+        "Work",
+        "Restaurant",
+        "Home",
+        "Park",
+        "School",
+        "Gym",
+        "Shop",
+        "Theatre",
+    )
+    Column(modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(text = "ButtonGroup")
+        Spacer(modifier = Modifier.height(8.dp))
+        ButtonGroup(
+            overflowIndicator = { menuState ->
+                IconButton(
+                    onClick = {
+                        if (menuState.isExpanded) {
+                            menuState.dismiss()
+                        } else {
+                            menuState.show()
+                        }
+                    },
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.MoreVert,
+                        contentDescription = "More icon",
+                    )
+                }
+            },
+        ) {
+            options.forEach { option ->
+                clickableItem(onClick = {}, label = option)
             }
-        },
-    ) {
-        repeat(10) { i ->
-            clickableItem(onClick = {}, label = "$i")
         }
     }
 }
