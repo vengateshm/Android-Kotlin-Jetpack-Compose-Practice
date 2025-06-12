@@ -27,27 +27,74 @@ class ChatViewModel : ViewModel() {
     }
 
     private fun loadSampleMessages() {
+        val now = System.currentTimeMillis()
+        val oneDayAgo = now - (24 * 60 * 60 * 1000)
+        val twoDaysAgo = now - (2 * 24 * 60 * 60 * 1000)
+        val oneWeekAgo = now - (7 * 24 * 60 * 60 * 1000)
+
         _messages.value = listOf(
+            ChatMessage(
+                message = "Hey, how was your weekend?",
+                senderId = otherUser.id,
+                senderName = otherUser.name,
+                isCurrentUser = false,
+                timestamp = oneWeekAgo,
+            ),
+            ChatMessage(
+                message = "It was great! Went hiking with friends.",
+                senderId = currentUser.id,
+                senderName = currentUser.name,
+                isCurrentUser = true,
+                timestamp = oneWeekAgo + 300000,
+            ),
+            ChatMessage(
+                message = "That sounds amazing! I love hiking too.",
+                senderId = otherUser.id,
+                senderName = otherUser.name,
+                isCurrentUser = false,
+                timestamp = twoDaysAgo,
+            ),
+            ChatMessage(
+                message = "We should go together sometime!",
+                senderId = currentUser.id,
+                senderName = currentUser.name,
+                isCurrentUser = true,
+                timestamp = twoDaysAgo + 600000,
+            ),
+            ChatMessage(
+                message = "Good morning! How are you feeling today?",
+                senderId = otherUser.id,
+                senderName = otherUser.name,
+                isCurrentUser = false,
+                timestamp = oneDayAgo,
+            ),
+            ChatMessage(
+                message = "Morning! Feeling great, thanks for asking!",
+                senderId = currentUser.id,
+                senderName = currentUser.name,
+                isCurrentUser = true,
+                timestamp = oneDayAgo + 900000,
+            ),
             ChatMessage(
                 message = "Hello! How are you today?",
                 senderId = otherUser.id,
                 senderName = otherUser.name,
                 isCurrentUser = false,
-                timestamp = System.currentTimeMillis() - 3600000,
+                timestamp = now - 3600000,
             ),
             ChatMessage(
                 message = "I'm doing great, thanks for asking! How about you?",
                 senderId = currentUser.id,
                 senderName = currentUser.name,
                 isCurrentUser = true,
-                timestamp = System.currentTimeMillis() - 3000000,
+                timestamp = now - 3000000,
             ),
             ChatMessage(
                 message = "Wonderful! I have some exciting news to share.",
                 senderId = otherUser.id,
                 senderName = otherUser.name,
                 isCurrentUser = false,
-                timestamp = System.currentTimeMillis() - 1800000,
+                timestamp = now - 1800000,
             ),
         )
     }
