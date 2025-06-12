@@ -21,6 +21,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.RemoveCircle
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -46,76 +47,78 @@ fun ChatUiRichContent(
     val richContent = viewModel.richContent
     val listState = rememberLazyListState()
 
-    Column(
-        modifier = modifier
-            .fillMaxSize()
-            .background(Color(0xFFFDE7F3))
-            .contentReceiver {
-                viewModel.handleContent(it)
-            },
-    ) {
-        LazyColumn(
-            state = listState,
-            modifier = Modifier
-                .weight(1f)
-                .fillMaxWidth(),
-            contentPadding = PaddingValues(16.dp),
-            verticalArrangement = Arrangement.spacedBy(12.dp),
+    Scaffold {
+        Column(
+            modifier = modifier
+                .fillMaxSize()
+                .padding(it)
+                .background(Color.White)
+                .contentReceiver {
+                    viewModel.handleContent(it)
+                },
         ) {
-            items(messages) { message ->
-                ChatMessageBubble(
-                    message = message,
-                    modifier = Modifier.fillMaxWidth(),
-                )
-            }
-        }
-
-        if (richContent.isNotEmpty()) {
-            LazyRow(
+            LazyColumn(
+                state = listState,
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                    .weight(1f)
+                    .fillMaxWidth(),
+                contentPadding = PaddingValues(16.dp),
+                verticalArrangement = Arrangement.spacedBy(12.dp),
             ) {
-                items(richContent) { content ->
-                    Box(
-                        modifier = Modifier
-                            .size(80.dp)
-                            .clip(RoundedCornerShape(8.dp))
-                            .border(1.dp, Color(0xFFE0E0E0), RoundedCornerShape(8.dp)),
-                        contentAlignment = Alignment.TopEnd,
-                    ) {
-                        AsyncImage(
-                            model = content.uri,
-                            contentDescription = "Dropped image",
-                            modifier = Modifier.fillMaxSize(),
-                            contentScale = ContentScale.Crop,
-                        )
-                        IconButton(
+                items(messages) { message ->
+                    ChatMessageBubble(
+                        message = message,
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                }
+            }
+
+            if (richContent.isNotEmpty()) {
+                LazyRow(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    items(richContent) { content ->
+                        Box(
                             modifier = Modifier
-                                .align(Alignment.TopEnd)
-                                .padding(4.dp),
-                            onClick = { viewModel.removeRichContent(content) },
+                                .size(80.dp)
+                                .clip(RoundedCornerShape(8.dp))
+                                .border(1.dp, Color(0xFFE0E0E0), RoundedCornerShape(8.dp)),
+                            contentAlignment = Alignment.TopEnd,
                         ) {
-                            Icon(
-                                imageVector = Icons.Default.RemoveCircle,
-                                contentDescription = "Remove",
-                                tint = Color(0xFFE91E63),
+                            AsyncImage(
+                                model = content.uri,
+                                contentDescription = "Dropped image",
+                                modifier = Modifier.fillMaxSize(),
+                                contentScale = ContentScale.Crop,
                             )
+                            IconButton(
+                                modifier = Modifier
+                                    .align(Alignment.TopEnd),
+                                onClick = { viewModel.removeRichContent(content) },
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.RemoveCircle,
+                                    contentDescription = "Remove",
+                                    tint = Color(0xFF057305),
+                                )
+                            }
                         }
                     }
                 }
             }
-        }
 
-        ChatInputField(
-            value = messageText,
-            onValueChange = viewModel::updateMessageText,
-            onSendMessage = { viewModel.sendMessage() },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-        )
+            ChatInputField(
+                value = messageText,
+                onValueChange = viewModel::updateMessageText,
+                onSendMessage = { viewModel.sendMessage() },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+            )
+        }
     }
 }
 
