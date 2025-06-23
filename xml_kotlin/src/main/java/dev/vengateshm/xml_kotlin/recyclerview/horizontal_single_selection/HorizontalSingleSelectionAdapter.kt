@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import dev.vengateshm.xml_kotlin.databinding.HorizontalSingleSelectionBinding
+import dev.vengateshm.xml_kotlin.databinding.HorizontalSingleSelectionItemBinding
 
 class HorizontalSingleSelectionAdapter(
     private val onItemClicked: (Item) -> Unit,
@@ -16,7 +16,7 @@ class HorizontalSingleSelectionAdapter(
         parent: ViewGroup,
         viewType: Int,
     ): ItemViewHolder {
-        val binding = HorizontalSingleSelectionBinding.inflate(
+        val binding = HorizontalSingleSelectionItemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false,
@@ -32,7 +32,7 @@ class HorizontalSingleSelectionAdapter(
     }
 
     class ItemViewHolder(
-        private val binding: HorizontalSingleSelectionBinding,
+        private val binding: HorizontalSingleSelectionItemBinding,
         private val onItemClicked: (Item) -> Unit,
     ) :
         RecyclerView.ViewHolder(binding.root) {
@@ -46,7 +46,10 @@ class HorizontalSingleSelectionAdapter(
             rotateText(binding.textView, item.isSelected)
         }
 
-        private fun animateItem(binding: HorizontalSingleSelectionBinding, isSelected: Boolean) {
+        private fun animateItem(
+            binding: HorizontalSingleSelectionItemBinding,
+            isSelected: Boolean,
+        ) {
             val targetHeight = if (isSelected) 200 else 175
             val targetWidth = if (isSelected) 200 else 50
 
