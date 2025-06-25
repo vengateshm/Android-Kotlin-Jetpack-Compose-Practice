@@ -370,6 +370,10 @@
         <activity
             android:name="dev.vengateshm.navigation3_sample.Navigation3MainActivity"
             android:exported="true" />
+        <activity
+            android:name="dev.vengateshm.xml_kotlin.toolbar_menu.ToolbarMenuActivity"
+            android:theme="@style/Theme.ComposePractice.NoActionBar"
+            android:exported="true" />
         <!-- Register AlarmReceiver -->
         <receiver
             android:name=".doze_mode_test.AlarmReceiver"
