@@ -56,16 +56,16 @@ class ToolbarMenuActivity : AppCompatActivity() {
     if (!image.isNullOrEmpty()) {
       imageView?.apply {
         setImageBitmap(decodeBase64Image(image))
-        visibility = View.GONE
-      }
-    }
-    if (!initials.isNullOrEmpty()) {
-      textView?.apply {
-        view.setBackgroundResource(R.drawable.initials_bg)
-        text = initials
         visibility = View.VISIBLE
       }
     }
+//    if (!initials.isNullOrEmpty()) {
+//      textView?.apply {
+//        view.setBackgroundResource(R.drawable.initials_bg)
+//        text = initials
+//        visibility = View.VISIBLE
+//      }
+//    }
   }
 
   override fun onCreateOptionsMenu(menu: Menu?): Boolean {
