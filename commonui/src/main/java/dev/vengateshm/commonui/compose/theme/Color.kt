@@ -15,3 +15,4 @@ val VengeanceGrey = Color(0xffdedede)
 val Transparent = Color(0x00FFFFFF)
 
 val MediumBlue50 = Color(0xff93b7f8)
+val MediumTonalGrey = Color(0xffd7d7d4)
