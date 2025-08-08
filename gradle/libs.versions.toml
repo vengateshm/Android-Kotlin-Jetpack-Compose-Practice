@@ -117,6 +117,7 @@ nav3Material = "1.0.0-SNAPSHOT"
 androidxTestRunner = "1.7.0"
 androidxTestRules = "1.7.0"
 hiltAndroidTesting = "2.57"
+spotless = "7.2.1"
 
 [libraries]
 #Android
@@ -456,4 +457,4 @@ devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 composeInvestigator = { id = "land.sungbin.composeinvestigator", version.ref = "composeInvestigator" }
 compose-plugin = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 openApi-generator = { id = "org.openapi.generator", version.ref = "openApi" }
-spotless = "com.diffplug.spotless:6.25.0"
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
