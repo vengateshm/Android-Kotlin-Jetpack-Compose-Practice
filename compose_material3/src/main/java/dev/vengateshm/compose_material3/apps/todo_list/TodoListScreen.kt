@@ -22,29 +22,26 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
 fun TodoListScreen() {
   val context = LocalContext.current
   val focusManager = LocalFocusManager.current
-  val todos = readData(context)
-  var todoText by remember { mutableStateOf("") }
-  var clickedTodoIndex by remember { mutableIntStateOf(-1) }
-  var clickedTodoText by remember { mutableStateOf("") }
-  var showEditDialog by remember { mutableStateOf(false) }
-  var showDeleteDialog by remember { mutableStateOf(false) }
-  var showDetailDialog by remember { mutableStateOf(false) }
+
+  val fileRepository = remember { FileRepositoryImpl(context = context) }
+  val todoListRepository = remember { TodoListRepositoryImpl(fileRepository = fileRepository) }
+  val viewModelFactory = remember { TodoListViewModelFactory(todoListRepository) }
+  val viewModel: TodoListViewModel = viewModel(factory = viewModelFactory)
+
+  val todos = viewModel.todos
 
   Column(
     modifier = Modifier
@@ -58,18 +55,16 @@ fun TodoListScreen() {
       verticalAlignment = Alignment.CenterVertically,
     ) {
       TextField(
-        value = todoText,
-        onValueChange = { todoText = it },
+        value = viewModel.todoText,
+        onValueChange = { viewModel.todoText = it },
         modifier = Modifier.weight(1f),
         placeholder = { Text("Enter todo") },
       )
       Spacer(modifier = Modifier.width(8.dp))
       Button(
         onClick = {
-          if (todoText.isNotBlank()) {
-            todos.add(todoText)
-            writeData(items = todos, context = context)
-            todoText = ""
+          if (viewModel.todoText.isNotBlank()) {
+            viewModel.addTodo()
             focusManager.clearFocus()
           } else {
             Toast.makeText(context, "Please enter a todo", Toast.LENGTH_SHORT).show()
@@ -91,17 +86,21 @@ fun TodoListScreen() {
             text = todo,
             modifier = Modifier
               .clickable {
-                clickedTodoIndex = index
-                clickedTodoText = todo
-                showDetailDialog = true
+                viewModel.apply {
+                  showDetailDialog = true
+                  clickedTodoIndex = index
+                  clickedTodoText = todo
+                }
               }
               .weight(1f),
           )
           IconButton(
             onClick = {
-              showEditDialog = true
-              clickedTodoIndex = index
-              clickedTodoText = todo
+              viewModel.apply {
+                showEditDialog = true
+                clickedTodoIndex = index
+                clickedTodoText = todo
+              }
             },
           ) {
             Icon(
@@ -111,9 +110,11 @@ fun TodoListScreen() {
           }
           IconButton(
             onClick = {
-              showDeleteDialog = true
-              clickedTodoIndex = index
-              clickedTodoText = todo
+              viewModel.apply {
+                showDeleteDialog = true
+                clickedTodoIndex = index
+                clickedTodoText = todo
+              }
             },
           ) {
             Icon(
@@ -125,22 +126,21 @@ fun TodoListScreen() {
       }
     }
   }
-  if (showEditDialog) {
+  if (viewModel.showEditDialog) {
     AlertDialog(
-      onDismissRequest = { showEditDialog = false },
+      onDismissRequest = { viewModel.showEditDialog = false },
       title = { Text(text = "Do you want to update this todo?") },
       text = {
         TextField(
-          value = clickedTodoText,
-          onValueChange = { clickedTodoText = it },
+          value = viewModel.clickedTodoText,
+          onValueChange = { viewModel.clickedTodoText = it },
         )
       },
       confirmButton = {
         Button(
           onClick = {
-            showEditDialog = false
-            todos[clickedTodoIndex] = clickedTodoText
-            writeData(todos, context)
+            viewModel.showEditDialog = false
+            viewModel.editTodo()
             Toast.makeText(context, "Todo updated", Toast.LENGTH_SHORT).show()
           },
         ) {
@@ -150,7 +150,7 @@ fun TodoListScreen() {
       dismissButton = {
         Button(
           onClick = {
-            showEditDialog = false
+            viewModel.showEditDialog = false
           },
         ) {
           Text(text = "Cancel")
@@ -158,17 +158,18 @@ fun TodoListScreen() {
       },
     )
   }
-  if (showDeleteDialog) {
+  if (viewModel.showDeleteDialog) {
     AlertDialog(
-      onDismissRequest = { showDeleteDialog = false },
+      onDismissRequest = { viewModel.showDeleteDialog = false },
       title = { Text(text = "Do you want to delete this todo?") },
-      text = { Text(text = todos[clickedTodoIndex]) },
+      text = { Text(text = todos[viewModel.clickedTodoIndex]) },
       confirmButton = {
         Button(
           onClick = {
-            showDeleteDialog = false
-            todos.removeAt(clickedTodoIndex)
-            writeData(todos, context)
+            viewModel.apply {
+              removeTodo(clickedTodoIndex)
+              showDeleteDialog = false
+            }
             Toast.makeText(context, "Todo deleted", Toast.LENGTH_SHORT).show()
           },
         ) {
@@ -178,7 +179,7 @@ fun TodoListScreen() {
       dismissButton = {
         Button(
           onClick = {
-            showDeleteDialog = false
+            viewModel.showDeleteDialog = false
           },
         ) {
           Text(text = "Cancel")
@@ -186,13 +187,13 @@ fun TodoListScreen() {
       },
     )
   }
-  if (showDetailDialog) {
+  if (viewModel.showDetailDialog) {
     AlertDialog(
-      onDismissRequest = { showDetailDialog = false },
-      text = { Text(text = todos[clickedTodoIndex]) },
+      onDismissRequest = { viewModel.showDetailDialog = false },
+      text = { Text(text = todos[viewModel.clickedTodoIndex]) },
       confirmButton = {
         Button(
-          onClick = { showDetailDialog = false },
+          onClick = { viewModel.showDetailDialog = false },
         ) {
           Text("Ok")
         }
