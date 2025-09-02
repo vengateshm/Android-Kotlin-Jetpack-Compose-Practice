@@ -30,74 +30,75 @@ class WearOSMainActivity : ComponentActivity() {
     super.onCreate(savedInstanceState)
 
     setContent {
-      WearApp()
+      WearAppTheme {
+//        WearApp()
+        CustomListTransformation()
+      }
     }
   }
 }
 
 @Composable
 fun WearApp(modifier: Modifier = Modifier) {
-  WearAppTheme {
-    AppScaffold {
-      val listState = rememberTransformingLazyColumnState()
-      val transformationSpec = rememberTransformationSpec()
-      ScreenScaffold(
-        scrollState = listState,
-        contentPadding = rememberResponsiveColumnPadding(
-          first = ColumnItemType.IconButton,
-          last = ColumnItemType.Button,
-        ),
-        edgeButton = {
-          EdgeButton(
-            onClick = { /* ... */ },
-            buttonSize = EdgeButtonSize.Medium,
-          ) {
-            Text("More")
-          }
-        },
-      ) { contentPadding ->
-        TransformingLazyColumn(
-          state = listState,
-          contentPadding = contentPadding,
+  AppScaffold {
+    val listState = rememberTransformingLazyColumnState()
+    val transformationSpec = rememberTransformationSpec()
+    ScreenScaffold(
+      scrollState = listState,
+      contentPadding = rememberResponsiveColumnPadding(
+        first = ColumnItemType.IconButton,
+        last = ColumnItemType.Button,
+      ),
+      edgeButton = {
+        EdgeButton(
+          onClick = {  },
+          buttonSize = EdgeButtonSize.Medium,
         ) {
-          item {
-            IconButtonExample()
-          }
-          item {
-            TextExample(
-              modifier =
-                Modifier
-                  .fillMaxWidth()
-                  .transformedHeight(this, transformationSpec),
-            )
-          }
-          item {
-            CardExample(
-              modifier =
-                Modifier
-                  .fillMaxWidth()
-                  .transformedHeight(this, transformationSpec),
-            )
-          }
-          item {
-            ChipExample(
-              modifier =
-                Modifier
-                  .fillMaxWidth()
-                  .transformedHeight(this, transformationSpec),
-            )
-          }
-          item {
-            SwitchChipExample(
-              modifier =
-                Modifier
-                  .fillMaxWidth()
-                  .transformedHeight(this, transformationSpec),
-            )
-          }
-          item {
-            ButtonGroupSample()
-          }
+          Text("More")
+        }
+      },
+    ) { contentPadding ->
+      TransformingLazyColumn(
+        state = listState,
+        contentPadding = contentPadding,
+      ) {
+        item {
+          IconButtonExample()
+        }
+        item {
+          TextExample(
+            modifier =
+              Modifier
+                .fillMaxWidth()
+                .transformedHeight(this, transformationSpec),
+          )
+        }
+        item {
+          CardExample(
+            modifier =
+              Modifier
+                .fillMaxWidth()
+                .transformedHeight(this, transformationSpec),
+          )
+        }
+        item {
+          ChipExample(
+            modifier =
+              Modifier
+                .fillMaxWidth()
+                .transformedHeight(this, transformationSpec),
+          )
+        }
+        item {
+          SwitchChipExample(
+            modifier =
+              Modifier
+                .fillMaxWidth()
+                .transformedHeight(this, transformationSpec),
+          )
+        }
+        item {
+          ButtonGroupSample()
         }
       }
     }
