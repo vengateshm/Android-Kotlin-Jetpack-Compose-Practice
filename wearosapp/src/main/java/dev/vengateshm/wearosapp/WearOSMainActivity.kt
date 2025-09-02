@@ -95,6 +95,9 @@ fun WearApp(modifier: Modifier = Modifier) {
                   .transformedHeight(this, transformationSpec),
             )
           }
+          item {
+            ButtonGroupSample()
+          }
         }
       }
     }
