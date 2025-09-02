@@ -118,6 +118,11 @@ androidxTestRunner = "1.7.0"
 androidxTestRules = "1.7.0"
 hiltAndroidTesting = "2.57"
 spotless = "7.2.1"
+playServicesWearable = "19.0.0"
+androidx-wear-compose-material3 = "1.5.0"
+androidx-wear-compose = "1.5.0"
+horologist = "0.7.15"
+compose-wear-ui-tooling = "1.5.0"
 
 [libraries]
 #Android
@@ -436,6 +441,13 @@ tensorflow-lite-task-vision = { module = "org.tensorflow:tensorflow-lite-task-vi
 
 kotlindl-tensorflow = { module = "org.jetbrains.kotlinx:kotlin-deeplearning-tensorflow", version.ref = "kotlindlTensorflow" }
 kotlin-csv-jvm = { module = "com.github.doyaaaaaken:kotlin-csv-jvm", version.ref = "kotlinCsvJvm" }
+
+#Wear
+androidx-compose-wear-ui-tooling = { module = "androidx.wear.compose:compose-ui-tooling", version.ref = "compose-wear-ui-tooling" }
+play-services-wearable = { group = "com.google.android.gms", name = "play-services-wearable", version.ref = "playServicesWearable" }
+wear-compose-foundation = { module = "androidx.wear.compose:compose-foundation", version.ref = "androidx-wear-compose" }
+wear-compose-material = { module = "androidx.wear.compose:compose-material3", version.ref = "androidx-wear-compose-material3" }
+horologist-compose-layout = { module = "com.google.android.horologist:horologist-compose-layout", version.ref = "horologist" }
 
 [bundles]
 compose = ["androidx-compose-ui", "androidx-compose-ui-graphics", "androidx-compose-foundation", "androidx-compose-animation", "androidx-compose-runtime", "androidx-compose-foundation-layout", "androidx-compose-ui-tooling", "androidx-compose-ui-tooling-preview"]
