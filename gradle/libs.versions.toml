@@ -123,6 +123,8 @@ androidx-wear-compose-material3 = "1.5.0"
 androidx-wear-compose = "1.5.0"
 horologist = "0.7.15"
 compose-wear-ui-tooling = "1.5.0"
+animationGraphics = "1.9.1"
+coil3 = "3.3.0"
 
 [libraries]
 #Android
@@ -306,6 +308,8 @@ landscapist-glide = { module = "com.github.skydoves:landscapist-glide", version.
 #Coil
 coil = { module = "io.coil-kt:coil", version.ref = "coil" }
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
+coil3-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil3" }
+coil3-compose-svg = { module = "io.coil-kt.coil3:coil-svg", version.ref = "coil3" }
 
 #Kotlinx serialization
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
@@ -448,6 +452,7 @@ play-services-wearable = { group = "com.google.android.gms", name = "play-servic
 wear-compose-foundation = { module = "androidx.wear.compose:compose-foundation", version.ref = "androidx-wear-compose" }
 wear-compose-material = { module = "androidx.wear.compose:compose-material3", version.ref = "androidx-wear-compose-material3" }
 horologist-compose-layout = { module = "com.google.android.horologist:horologist-compose-layout", version.ref = "horologist" }
+androidx-compose-animation-graphics = { group = "androidx.compose.animation", name = "animation-graphics", version.ref = "animationGraphics" }
 
 [bundles]
 compose = ["androidx-compose-ui", "androidx-compose-ui-graphics", "androidx-compose-foundation", "androidx-compose-animation", "androidx-compose-runtime", "androidx-compose-foundation-layout", "androidx-compose-ui-tooling", "androidx-compose-ui-tooling-preview"]
