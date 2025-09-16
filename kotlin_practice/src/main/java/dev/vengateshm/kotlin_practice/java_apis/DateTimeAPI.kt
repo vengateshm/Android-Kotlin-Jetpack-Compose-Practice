@@ -5,6 +5,7 @@ import java.time.LocalDateTime
 import java.time.ZoneId
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 
 fun main() {
   // Immutability
@@ -29,4 +30,34 @@ fun main() {
   println("UTC: ${utc.format(formatter)}")
   println("IST: ${ist.format(formatter)}")
   println("PST: ${pst.format(formatter)}")
+
+  val dateStr = listOf("2025-03-15", "15-03-2025", "03/15/2025", "15/03/2025", "2025--15-03")
+  for (date in dateStr) {
+    try {
+      val parsedDate = parseFlexibleDate(date)
+      println("Parsed Date: $parsedDate")
+    } catch (e: Exception) {
+      println("Error parsing date: $date")
+    }
+  }
+}
+
+@Throws(IllegalArgumentException::class)
+fun parseFlexibleDate(date: String): LocalDate {
+  val formatters = arrayOf(
+    DateTimeFormatter.ISO_LOCAL_DATE,
+    DateTimeFormatter.ofPattern("dd-MM-yyyy"),
+    DateTimeFormatter.ofPattern("MM/dd/yyyy"),
+    DateTimeFormatter.ofPattern("dd/MM/yyyy"),
+  )
+
+  for (formatter in formatters) {
+    try {
+      return LocalDate.parse(date, formatter)
+    } catch (e: DateTimeParseException) {
+
+    }
+  }
+
+  throw IllegalArgumentException("Unable to parse date: $date")
 }
