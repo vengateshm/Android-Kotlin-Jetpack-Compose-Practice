@@ -235,8 +235,7 @@ dependencies {
 
   implementation(libs.lottie.compose)
 
-  implementation(libs.coil3.compose)
-  implementation(libs.coil3.compose.svg)
+  implementation(libs.bundles.coil3)
 
   testImplementation(libs.junit)
   testImplementation(libs.koin.test)
