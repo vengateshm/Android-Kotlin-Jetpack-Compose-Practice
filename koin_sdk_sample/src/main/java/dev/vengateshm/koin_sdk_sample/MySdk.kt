@@ -18,7 +18,7 @@ object MySdk {
     MySdkKoinContext.koin.loadModules(listOf(contextModule, sdkModules))
 
     // Create a component to hold our SDK's root dependencies
-    sdkKoinComponent = SdkKoinComponent()
+    sdkKoinComponent = object : SdkKoinComponent {}
   }
 
   fun doSomething() {
