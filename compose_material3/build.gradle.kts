@@ -204,6 +204,7 @@ dependencies {
   implementation(projects.feature.common)
   implementation(projects.feature.auth)
   implementation(projects.feature.home)
+  implementation(projects.koinSdkSample)
 
   implementation(libs.jsoup)
 
