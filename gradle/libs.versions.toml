@@ -311,6 +311,7 @@ coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 coil3-compose = { module = "io.coil-kt.coil3:coil-compose", version.ref = "coil3" }
 coil3-compose-svg = { module = "io.coil-kt.coil3:coil-svg", version.ref = "coil3" }
 coil3-compose-gif = { module = "io.coil-kt.coil3:coil-gif", version.ref = "coil3" }
+coil3-compose-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coil3" }
 
 #Kotlinx serialization
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
@@ -460,7 +461,7 @@ compose = ["androidx-compose-ui", "androidx-compose-ui-graphics", "androidx-comp
 compose-beta = ["androidx-compose-beta-ui", "androidx-compose-beta-foundation", "androidx-compose-beta-animation", "androidx-compose-beta-runtime", "androidx-compose-beta-foundation-layout", "androidx-compose-beta-ui-tooling", "androidx-compose-beta-ui-tooling-preview"]
 ktor-client = ["ktor-client-android", "ktor-client-content-negotiation", "ktor-client-core", "ktor-client-logging", "ktor-serialization-kotlinx-json", "ktor-client-mock"]
 kotest = ["kotest-runner", "kotest-assertions", "kotest-property"]
-coil3 = ["coil3-compose", "coil3-compose-svg", "coil3-compose-gif"]
+coil3 = ["coil3-compose", "coil3-compose-svg", "coil3-compose-gif", "coil3-compose-okhttp"]
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
