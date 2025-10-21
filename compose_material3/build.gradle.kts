@@ -238,6 +238,8 @@ dependencies {
 
   implementation(libs.bundles.coil3)
 
+  implementation(libs.androidx.work.runtime.ktx)
+
   testImplementation(libs.junit)
   testImplementation(libs.koin.test)
   testImplementation(libs.koin.test.junit4)
