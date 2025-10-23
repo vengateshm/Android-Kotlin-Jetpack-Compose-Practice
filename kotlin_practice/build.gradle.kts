@@ -86,6 +86,9 @@ dependencies {
   implementation(libs.kotlindl.tensorflow)
   implementation(libs.kotlin.csv.jvm)
 
+  implementation(libs.dataframe)
+  implementation(libs.dataframe.csv)
+
   testImplementation(libs.junit)
   testImplementation(libs.junit.jupiter.api)
   testImplementation(libs.junit.jupiter.params)

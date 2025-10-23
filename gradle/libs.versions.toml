@@ -17,6 +17,7 @@ constraintlayout = "2.2.1"
 constraintlayoutCompose = "1.1.1"
 coreSplashscreen = "1.1.0-rc01"
 coreTesting = "2.2.0"
+dataframe = "1.0.0-Beta3"
 datastorePreferences = "1.1.2"
 composeMaterialDialogs = "0.9.0"
 fig = "0.0.2"
@@ -152,6 +153,8 @@ androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", vers
 androidx-material3-navigation3 = { group = "androidx.compose.material3.adaptive", name = "adaptive-navigation3", version.ref = "nav3Material" }
 # Optional add-on libraries
 androidx-lifecycle-viewmodel-navigation3 = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version.ref = "lifecycleViewmodelNav3" }
+dataframe = { module = "org.jetbrains.kotlinx:dataframe", version.ref = "dataframe" }
+dataframe-csv = { module = "org.jetbrains.kotlinx:dataframe-csv", version.ref = "dataframe" }
 kotlinx-serialization-core = { module = "org.jetbrains.kotlinx:kotlinx-serialization-core", version.ref = "kotlinxSerializationCore" }
 
 #Camera
