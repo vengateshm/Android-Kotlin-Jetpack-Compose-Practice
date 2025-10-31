@@ -240,6 +240,8 @@ dependencies {
 
   implementation(libs.androidx.work.runtime.ktx)
 
+  implementation(libs.kotlinx.collections.immutable)
+
   testImplementation(libs.junit)
   testImplementation(libs.koin.test)
   testImplementation(libs.koin.test.junit4)
