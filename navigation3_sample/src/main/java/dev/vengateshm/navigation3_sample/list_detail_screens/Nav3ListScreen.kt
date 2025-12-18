@@ -1,9 +1,11 @@
 package dev.vengateshm.navigation3_sample.list_detail_screens
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Button
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -15,20 +17,24 @@ import androidx.compose.ui.unit.dp
 fun Nav3ListScreen(
   modifier: Modifier = Modifier,
   onNavigateToDetail: (String) -> Unit,
+  onNavigateToSettings: () -> Unit = {},
 ) {
-  LazyColumn(
-    modifier = Modifier.fillMaxSize(),
-    contentPadding = PaddingValues(16.dp),
-  ) {
-    items(100) {
-      ListItem(
-        modifier = Modifier.clickable {
-          onNavigateToDetail("Item $it")
-        },
-        headlineContent = {
-          Text(text = "Item $it")
-        },
-      )
+  Column(modifier = Modifier.fillMaxSize()) {
+    Button(onClick = onNavigateToSettings) { Text("Settings") }
+    LazyColumn(
+      modifier = Modifier.fillMaxSize(),
+      contentPadding = PaddingValues(16.dp),
+    ) {
+      items(100) {
+        ListItem(
+          modifier = Modifier.clickable {
+            onNavigateToDetail("Item $it")
+          },
+          headlineContent = {
+            Text(text = "Item $it")
+          },
+        )
+      }
     }
   }
 }

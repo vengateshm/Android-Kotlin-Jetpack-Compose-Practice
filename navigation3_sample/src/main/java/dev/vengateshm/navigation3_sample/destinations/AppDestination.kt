@@ -6,6 +6,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 sealed interface AppDestination : NavKey {
   @Serializable
+  data object WelcomeDestination : NavKey
+
+  @Serializable
   data object Nav3List : NavKey
 
   @Serializable
@@ -13,4 +16,10 @@ sealed interface AppDestination : NavKey {
 
   @Serializable
   data class BottomSheetDestination(val data: String) : NavKey
+
+  @Serializable
+  data object MainDestination : NavKey
+
+  @Serializable
+  data object SettingsDestination : NavKey
 }
