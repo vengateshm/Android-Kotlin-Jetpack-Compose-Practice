@@ -95,7 +95,7 @@ dependencies {
   testRuntimeOnly(libs.junit.jupiter.engine)
 
   testImplementation(libs.mockk)
-
+  testImplementation(libs.kotlinx.coroutines.test)
   testImplementation(libs.kotlin.test)
   testImplementation("net.jqwik:jqwik:1.9.0")
   testImplementation("io.strikt:strikt-core:0.34.0")
