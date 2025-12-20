@@ -22,4 +22,10 @@ sealed interface AppDestination : NavKey {
 
   @Serializable
   data object SettingsDestination : NavKey
+
+  @Serializable
+  data object NavigateWithResultScreen1 : NavKey
+
+  @Serializable
+  data object ChangeSettingsDestination : NavKey
 }
