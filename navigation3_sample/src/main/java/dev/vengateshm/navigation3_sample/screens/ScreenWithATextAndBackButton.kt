@@ -1,5 +1,6 @@
-package dev.vengateshm.navigation3_sample.nested_navigation
+package dev.vengateshm.navigation3_sample.screens
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.icons.Icons
@@ -11,23 +12,26 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsScreen(
+fun ScreenWithATextAndBackButton(
+  title: String,
+  text: String,
+  onBackClick: () -> Unit,
   modifier: Modifier = Modifier,
-  onNavigateBack: () -> Unit,
 ) {
   Scaffold(
-    modifier = Modifier.fillMaxSize(),
+    modifier = modifier.fillMaxSize(),
     topBar = {
       TopAppBar(
         title = {
-          Text(text = "Settings")
+          Text(text = title)
         },
         navigationIcon = {
-          IconButton(onClick = onNavigateBack) {
+          IconButton(onClick = onBackClick) {
             Icon(
               imageVector = Icons.AutoMirrored.Filled.ArrowBack,
               contentDescription = "ArrowBack",
@@ -37,8 +41,12 @@ fun SettingsScreen(
       )
     },
   ) {
-    Column(modifier = Modifier.fillMaxSize()) {
-      Text(text = "Settings")
+    Column(
+      modifier = Modifier.fillMaxSize(),
+      horizontalAlignment = Alignment.CenterHorizontally,
+      verticalArrangement = Arrangement.Center,
+    ) {
+      Text(text = text)
     }
   }
 }

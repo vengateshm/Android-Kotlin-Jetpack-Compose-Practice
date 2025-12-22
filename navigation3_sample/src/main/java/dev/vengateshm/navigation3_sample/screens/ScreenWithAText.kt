@@ -1,27 +1,34 @@
-package dev.vengateshm.navigation3_sample.nested_navigation
+package dev.vengateshm.navigation3_sample.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WelcomeScreen(
+fun ScreenWithAText(
+  text: String,
   modifier: Modifier = Modifier,
-  onNavigateToHome: () -> Unit,
 ) {
   Column(
-    modifier = Modifier.fillMaxSize(),
+    modifier = modifier.fillMaxSize(),
     horizontalAlignment = Alignment.CenterHorizontally,
     verticalArrangement = Arrangement.Center,
   ) {
-    Text(text = "Welcome!")
-    Button(onClick = onNavigateToHome) {
-      Text(text = "Go")
-    }
+    Text(text = text)
   }
+}
+
+@Preview
+@Composable
+private fun ScreenWithATextPreview() {
+  ScreenWithAText(
+    text = "Text",
+  )
 }

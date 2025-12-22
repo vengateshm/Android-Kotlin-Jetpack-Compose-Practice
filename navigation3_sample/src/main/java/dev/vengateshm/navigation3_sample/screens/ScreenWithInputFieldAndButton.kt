@@ -1,4 +1,4 @@
-package dev.vengateshm.navigation3_sample.navigate_with_result
+package dev.vengateshm.navigation3_sample.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -16,16 +16,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun ChangeSettingsScreen(
-  resultStore: ResultStore,
-  onSave: () -> Unit,
+fun ScreenWithInputFieldAndButton(
+  buttonText: String,
+  onClick: (String) -> Unit,
   modifier: Modifier = Modifier,
 ) {
 
   var text by remember { mutableStateOf("") }
 
   Column(
-    modifier = Modifier.fillMaxSize(),
+    modifier = modifier.fillMaxSize(),
     horizontalAlignment = Alignment.CenterHorizontally,
     verticalArrangement = Arrangement.Center,
   ) {
@@ -36,11 +36,10 @@ fun ChangeSettingsScreen(
     )
     Button(
       onClick = {
-        resultStore.setResult("main_setting", text)
-        onSave()
+        onClick(text)
       },
     ) {
-      Text(text = "Save")
+      Text(text = buttonText)
     }
   }
 }

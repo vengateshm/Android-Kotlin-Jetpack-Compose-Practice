@@ -1,16 +1,18 @@
 package dev.vengateshm.navigation3_sample.navigate_with_result
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.togetherWith
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import dev.vengateshm.navigation3_sample.destinations.AppDestination
+import dev.vengateshm.navigation3_sample.screens.ScreenWithAButton
+import dev.vengateshm.navigation3_sample.screens.ScreenWithInputFieldAndButton
 
 @Composable
 fun NavigateWithResultRoot(modifier: Modifier = Modifier) {
@@ -22,27 +24,34 @@ fun NavigateWithResultRoot(modifier: Modifier = Modifier) {
     entryProvider = entryProvider {
       entry<AppDestination.NavigateWithResultScreen1> {
         val result = resultStore.getResult<String>("main_setting") ?: "Default"
-        Box(
-          modifier = Modifier.fillMaxSize(),
-          contentAlignment = Alignment.Center,
-        ) {
-          Button(
-            onClick = {
-              backStack.add(AppDestination.ChangeSettingsDestination)
-            },
-          ) {
-            Text("Current setting: $result")
-          }
-        }
+        ScreenWithAButton(
+          text = "Current setting: $result",
+          onClick = {
+            backStack.add(AppDestination.SettingsDestination)
+          },
+        )
       }
-      entry<AppDestination.ChangeSettingsDestination> {
-        ChangeSettingsScreen(
-          resultStore = resultStore,
-          onSave = {
+      entry<AppDestination.SettingsDestination> {
+        ScreenWithInputFieldAndButton(
+          buttonText = "Save",
+          onClick = {
+            resultStore.setResult("main_setting", it)
             backStack.removeLastOrNull()
           },
         )
       }
+    },
+    transitionSpec = {
+      slideInHorizontally { it } + fadeIn() togetherWith
+          slideOutHorizontally { -it } + fadeOut()
+    },
+    popTransitionSpec = {
+      slideInHorizontally { -it } + fadeIn() togetherWith
+          slideOutHorizontally { it } + fadeOut()
+    },
+    predictivePopTransitionSpec = {
+      slideInHorizontally { -it } + fadeIn() togetherWith
+          slideOutHorizontally { it } + fadeOut()
     },
   )
 }

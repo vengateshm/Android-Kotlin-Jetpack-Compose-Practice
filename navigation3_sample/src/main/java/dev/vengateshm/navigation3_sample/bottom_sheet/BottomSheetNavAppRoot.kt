@@ -9,11 +9,11 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import dev.vengateshm.navigation3_sample.destinations.AppDestination
-import dev.vengateshm.navigation3_sample.list_detail_screens.Nav3ListScreen
+import dev.vengateshm.navigation3_sample.screens.ListScreen
 
 @Composable
-fun BottomNavAppRoot(modifier: Modifier = Modifier) {
-  val navBackStack = rememberNavBackStack(AppDestination.Nav3List)
+fun BottomSheetNavAppRoot(modifier: Modifier = Modifier) {
+  val navBackStack = rememberNavBackStack(AppDestination.ListDestination)
   val bottomSheetSceneStrategy = remember { BottomSheetSceneStrategy<NavKey>() }
 
   NavDisplay(
@@ -22,9 +22,9 @@ fun BottomNavAppRoot(modifier: Modifier = Modifier) {
     sceneStrategy = bottomSheetSceneStrategy,
     onBack = { navBackStack.removeLastOrNull() },
     entryProvider = entryProvider {
-      entry<AppDestination.Nav3List> {
-        Nav3ListScreen(
-          onNavigateToDetail = {
+      entry<AppDestination.ListDestination> {
+        ListScreen(
+          onItemClick = {
             navBackStack.add(AppDestination.BottomSheetDestination(it))
           },
         )

@@ -1,38 +1,63 @@
 package dev.vengateshm.navigation3_sample.nested_navigation
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import dev.vengateshm.navigation3_sample.destinations.AppDestination
-import dev.vengateshm.navigation3_sample.list_detail_screens.Nav3DetailScreen
-import dev.vengateshm.navigation3_sample.list_detail_screens.Nav3ListScreen
+import dev.vengateshm.navigation3_sample.screens.ListScreen
+import dev.vengateshm.navigation3_sample.screens.ScreenWithAText
 
 @Composable
 fun MainScreen(
   modifier: Modifier = Modifier,
   onNavigateToSettings: () -> Unit,
 ) {
-  val navBackStack = rememberNavBackStack(AppDestination.Nav3List)
+  val navBackStack = rememberNavBackStack(AppDestination.ListDestination)
 
   NavDisplay(
-    modifier = Modifier.fillMaxSize(),
+    modifier = modifier.fillMaxSize(),
     backStack = navBackStack,
     onBack = { navBackStack.removeLastOrNull() },
     entryProvider = entryProvider {
-      entry<AppDestination.Nav3List> {
-        Nav3ListScreen(
-          onNavigateToDetail = {
-            navBackStack.add(AppDestination.Nav3Detail(it))
-          },
-          onNavigateToSettings = onNavigateToSettings,
-        )
+      entry<AppDestination.ListDestination> {
+        Column(
+          modifier = Modifier.fillMaxSize(),
+          horizontalAlignment = Alignment.CenterHorizontally,
+          verticalArrangement = Arrangement.Center,
+        ) {
+          Button(
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {
+              onNavigateToSettings()
+            },
+          ) {
+            Text("Settings")
+          }
+
+          Spacer(modifier = Modifier.height(48.dp))
+
+          ListScreen(
+            onItemClick = {
+              navBackStack.add(AppDestination.DetailDestination(it))
+            },
+          )
+        }
       }
-      entry<AppDestination.Nav3Detail> {
-        Nav3DetailScreen(
-          data = it.data,
+      entry<AppDestination.DetailDestination> {
+        ScreenWithAText(
+          text = it.data,
         )
       }
     },

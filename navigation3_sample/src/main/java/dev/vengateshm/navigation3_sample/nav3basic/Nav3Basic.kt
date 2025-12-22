@@ -1,24 +1,20 @@
-package dev.vengateshm.navigation3_sample
+package dev.vengateshm.navigation3_sample.nav3basic
 
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.animation.togetherWith
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation3.runtime.EntryProviderScope
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
+import dev.vengateshm.navigation3_sample.destinations.AppDestination
+import dev.vengateshm.navigation3_sample.screens.ScreenWithAButton
+import dev.vengateshm.navigation3_sample.screens.ScreenWithAText
 
 @Composable
 fun Nav3Basic(modifier: Modifier = Modifier) {
@@ -35,7 +31,7 @@ fun Nav3Basic(modifier: Modifier = Modifier) {
     },
     entryProvider = entryProvider {
       homeEntry(backStack)
-      entry<Screen.Details>(
+      entry<AppDestination.DetailDestination>(
         metadata = NavDisplay.transitionSpec {
           slideInHorizontally { it } togetherWith slideOutHorizontally { -it }
         } + NavDisplay.popTransitionSpec {
@@ -44,34 +40,21 @@ fun Nav3Basic(modifier: Modifier = Modifier) {
           slideInVertically { it } togetherWith slideOutVertically { it }
         },
       ) { key ->
-        Box(
-          modifier = Modifier.fillMaxSize(),
-          contentAlignment = Alignment.Center,
-        ) {
-          Text(text = "Details Screen ${key.id}")
-        }
+        ScreenWithAText(
+          text = "Details Screen ${key.data}",
+        )
       }
     },
   )
 }
 
-class Nav3BasicViewModel : ViewModel() {
-  val backStack = mutableStateListOf<Screen>(Screen.Home)
-}
-
-private fun EntryProviderScope<Screen>.homeEntry(backStack: SnapshotStateList<Screen>) {
-  entry<Screen.Home> {
-    Box(
-      modifier = Modifier.fillMaxSize(),
-      contentAlignment = Alignment.Center,
-    ) {
-      Button(
-        onClick = {
-          backStack.add(Screen.Details("123"))
-        },
-      ) {
-        Text(text = "Go To Details")
-      }
-    }
+private fun EntryProviderScope<AppDestination>.homeEntry(backStack: SnapshotStateList<AppDestination>) {
+  entry<AppDestination.HomeDestination> {
+    ScreenWithAButton(
+      text = "Go To Details",
+      onClick = {
+        backStack.add(AppDestination.DetailDestination("123"))
+      },
+    )
   }
 }
