@@ -51,7 +51,7 @@ fun Nav3Basic(modifier: Modifier = Modifier) {
 private fun EntryProviderScope<AppDestination>.homeEntry(backStack: SnapshotStateList<AppDestination>) {
   entry<AppDestination.HomeDestination> {
     ScreenWithAButton(
-      text = "Go To Details",
+      buttonText = "Go To Details",
       onClick = {
         backStack.add(AppDestination.DetailDestination("123"))
       },

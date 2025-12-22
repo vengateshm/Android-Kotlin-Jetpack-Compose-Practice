@@ -52,7 +52,7 @@ fun BottomNavRoot(modifier: Modifier = Modifier) {
       entryProvider = entryProvider {
         entry<AppDestination.HomeDestination> {
           ScreenWithAButton(
-            text = "Go to Detail 1",
+            buttonText = "Go to Detail 1",
             onClick = {
               backStack.add(AppDestination.DetailDestination2)
             },
@@ -61,7 +61,7 @@ fun BottomNavRoot(modifier: Modifier = Modifier) {
         }
         entry<AppDestination.ProfileDestination> {
           ScreenWithAButton(
-            text = "Go to Detail 2",
+            buttonText = "Go to Detail 2",
             onClick = {
               backStack.add(AppDestination.DetailDestination3)
             },

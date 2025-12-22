@@ -11,7 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun ScreenWithAButton(
-  text: String,
+  buttonText: String,
   onClick: () -> Unit,
   modifier: Modifier = Modifier,
 ) {
@@ -20,7 +20,7 @@ fun ScreenWithAButton(
     contentAlignment = Alignment.Center,
   ) {
     Button(onClick = onClick) {
-      Text(text = text)
+      Text(text = buttonText)
     }
   }
 }
@@ -29,7 +29,7 @@ fun ScreenWithAButton(
 @Composable
 private fun ScreenWithAButtonPreview() {
   ScreenWithAButton(
-    text = "Text",
+    buttonText = "Text",
     onClick = {},
   )
 }

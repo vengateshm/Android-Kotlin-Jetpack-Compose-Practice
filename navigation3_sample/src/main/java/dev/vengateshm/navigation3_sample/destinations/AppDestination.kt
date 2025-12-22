@@ -5,7 +5,6 @@ import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation3.runtime.NavKey
-import dev.vengateshm.navigation3_sample.destinations.BottomNavItem
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -38,7 +37,7 @@ sealed interface AppDestination : NavKey {
   data object NavigateWithResultScreen1 : AppDestination, NavKey
 
   @Serializable
-  data object HomeDestination: AppDestination, NavKey, BottomNavItem {
+  data object HomeDestination : AppDestination, NavKey, BottomNavItem {
     override val icon: ImageVector = Icons.Filled.Home
     override val title: String = "Home"
   }

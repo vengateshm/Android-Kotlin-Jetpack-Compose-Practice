@@ -25,7 +25,7 @@ fun NavigateWithResultRoot(modifier: Modifier = Modifier) {
       entry<AppDestination.NavigateWithResultScreen1> {
         val result = resultStore.getResult<String>("main_setting") ?: "Default"
         ScreenWithAButton(
-          text = "Current setting: $result",
+          buttonText = "Current setting: $result",
           onClick = {
             backStack.add(AppDestination.SettingsDestination)
           },
