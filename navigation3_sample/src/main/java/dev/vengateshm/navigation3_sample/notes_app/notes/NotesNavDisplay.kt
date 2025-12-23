@@ -10,7 +10,9 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
 import androidx.savedstate.serialization.SavedStateConfiguration
+import dev.vengateshm.navigation3_sample.notes_app.MyListDetailSceneStrategy
 import dev.vengateshm.navigation3_sample.notes_app.NotesAppRoute
+import dev.vengateshm.navigation3_sample.notes_app.rememberMyListDetailSceneStrategy
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.polymorphic
 
@@ -39,19 +41,24 @@ fun NotesNavDisplay(
   NavDisplay(
     modifier = modifier,
     backStack = notesBackstack,
+    sceneStrategy = rememberMyListDetailSceneStrategy(),
     entryDecorators = listOf(
       rememberSaveableStateHolderNavEntryDecorator(),
       rememberViewModelStoreNavEntryDecorator(),
     ),
     entryProvider = entryProvider {
-      entry<NotesAppRoute.Notes.NoteList> {
+      entry<NotesAppRoute.Notes.NoteList>(
+        metadata = MyListDetailSceneStrategy.listPane(),
+      ) {
         NoteListScreen(
           onNoteClick = {
             notesBackstack.add(NotesAppRoute.Notes.NoteDetail(id = it))
           },
         )
       }
-      entry<NotesAppRoute.Notes.NoteDetail> {
+      entry<NotesAppRoute.Notes.NoteDetail>(
+        metadata = MyListDetailSceneStrategy.detailPane(),
+      ) {
         NoteDetailsScreen(viewModel = viewModel(factory = NoteDetailViewModel.Factory(key = it)))
       }
     },
