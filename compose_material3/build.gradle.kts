@@ -106,6 +106,7 @@ dependencies {
   implementation(libs.bundles.compose.beta)
   implementation(libs.androidx.fragment.compose)
   implementation(libs.androidx.compose.animation.graphics)
+  implementation("androidx.compose.runtime:runtime-retain:1.10.0")
 
   // Compose testing
   // Test rules and transitive dependencies:
@@ -241,6 +242,11 @@ dependencies {
   implementation(libs.androidx.work.runtime.ktx)
 
   implementation(libs.kotlinx.collections.immutable)
+
+  // Media3
+  implementation(libs.androidx.media3.ui)
+  implementation(libs.androidx.media3.exoplayer)
+  implementation(libs.androidx.media3.exoplayer.hls)
 
   testImplementation(libs.junit)
   testImplementation(libs.koin.test)
