@@ -1,59 +1,63 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
+  id("com.android.library")
+  id("org.jetbrains.kotlin.android")
+  alias(libs.plugins.devtools.ksp)
+  alias(libs.plugins.dagger.hilt)
 }
 
 android {
-    namespace = "dev.vengateshm.samples_common"
-    compileSdk = 36
+  namespace = "dev.vengateshm.samples_common"
+  compileSdk = 36
 
-    defaultConfig {
-        minSdk = 23
-        targetSdk = 34
+  defaultConfig {
+    minSdk = 23
+    targetSdk = 34
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
+    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+  }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro",
-            )
-        }
+  buildTypes {
+    release {
+      isMinifyEnabled = false
+      proguardFiles(
+        getDefaultProguardFile("proguard-android-optimize.txt"),
+        "proguard-rules.pro",
+      )
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+  }
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+  }
+  kotlin {
+    compilerOptions {
+      jvmTarget.set(JvmTarget.JVM_17)
     }
-    kotlinOptions {
-        jvmTarget = "17"
-    }
+  }
 }
 
 dependencies {
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
+  implementation(libs.androidx.core.ktx)
+  implementation(libs.androidx.appcompat)
+  implementation(libs.material)
 
-    implementation(libs.androidx.navigation.fragment.ktx)
-    implementation(libs.androidx.navigation.ui.ktx)
+  implementation(libs.androidx.navigation.fragment.ktx)
+  implementation(libs.androidx.navigation.ui.ktx)
 
-    // Coil - Image loading
-    api(libs.coil)
-    api(libs.coil.compose)
+  // Coil - Image loading
+  api(libs.coil)
+  api(libs.coil.compose)
 
-    api(libs.androidx.datastore.preferences)
+  api(libs.androidx.datastore.preferences)
 
-    // Dagger - Hilt
-    api(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
-    kapt(libs.androidx.hilt.compiler)
+  // Dagger - Hilt
+  api(libs.hilt.android)
+  ksp(libs.hilt.android.compiler)
+  ksp(libs.androidx.hilt.compiler)
 
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+  testImplementation(libs.junit)
+  androidTestImplementation(libs.ext.junit)
+  androidTestImplementation(libs.espresso.core)
 }

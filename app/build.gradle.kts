@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -18,14 +19,13 @@ println("App Version Name: $vName")
 plugins {
   id("com.android.application")
   id("kotlin-android")
-  kotlin("kapt")
-  id("com.google.protobuf") version "0.9.4"
+  id("com.google.protobuf") version "0.9.6"
   id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
-  id("dagger.hilt.android.plugin")
   id("kotlinx-serialization")
   id("com.google.gms.google-services")
   id("com.apollographql.apollo3") version libs.versions.apolloRuntime.get()
-  id("com.google.devtools.ksp")
+  alias(libs.plugins.devtools.ksp)
+  alias(libs.plugins.dagger.hilt)
 //    id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
   alias(libs.plugins.compose.plugin)
 }
@@ -95,8 +95,10 @@ android {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
   }
-  kotlinOptions {
-    jvmTarget = "17"
+  kotlin {
+    compilerOptions {
+      jvmTarget.set(JvmTarget.JVM_17)
+    }
   }
   packaging {
     resources {
@@ -196,8 +198,8 @@ dependencies {
 
   // Dagger - Hilt
   implementation(libs.hilt.android)
-  kapt(libs.hilt.android.compiler)
-  kapt(libs.androidx.hilt.compiler)
+  ksp(libs.hilt.android.compiler)
+  ksp(libs.androidx.hilt.compiler)
 
   implementation(libs.androidx.hilt.navigation.compose)
   implementation(libs.androidx.navigation.compose)
@@ -223,7 +225,9 @@ dependencies {
 
   implementation(libs.firebase.messaging)
   implementation(libs.firebase.auth)
-  implementation(libs.firebase.firestore)
+  implementation(libs.firebase.firestore) {
+    exclude(group = "com.google.firebase", module = "protolite-well-known-types")
+  }
   implementation(libs.firebase.database)
   implementation(libs.firebase.messaging)
 
@@ -305,10 +309,6 @@ apollo {
     packageName.set("dev.vengateshm.android_kotlin_compose_practice")
   }
 //    ./gradlew :app:downloadApolloSchema --endpoint="https://rickandmortyapi.com/graphql" --schema="app/src/main/graphql/rickandmortyapi/schema.graphqls"
-}
-
-kapt {
-  correctErrorTypes = true
 }
 
 /*

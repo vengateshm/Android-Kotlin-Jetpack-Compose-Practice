@@ -1,4 +1,5 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.io.FileInputStream
 import java.util.Properties
@@ -14,10 +15,10 @@ plugins {
   kotlin("plugin.serialization") version libs.versions.kotlin.get()
 //    alias(libs.plugins.composeInvestigator)
   alias(libs.plugins.compose.plugin)
-  id("com.google.devtools.ksp")
   alias(libs.plugins.openApi.generator)
+  alias(libs.plugins.devtools.ksp)
+  alias(libs.plugins.dagger.hilt)
   kotlin("kapt")
-  id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -73,8 +74,10 @@ android {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
   }
-  kotlinOptions {
-    jvmTarget = "17"
+  kotlin {
+    compilerOptions {
+      jvmTarget.set(JvmTarget.JVM_17)
+    }
   }
   packaging {
     resources {
@@ -194,6 +197,7 @@ dependencies {
   implementation(libs.tensorflow.lite.task.vision)
   implementation(libs.tensorflow.lite.gpu.delegate.plugin)
   implementation(libs.tensorflow.lite.gpu)
+  implementation(libs.tensorflow.lite.api)
 
   // Paging
   implementation(libs.androidx.paging.runtime.ktx)
@@ -228,8 +232,8 @@ dependencies {
 
   // Dagger - Hilt
   implementation(libs.hilt.android)
-  kapt(libs.hilt.android.compiler)
-  kapt(libs.androidx.hilt.compiler)
+  ksp(libs.hilt.android.compiler)
+  ksp(libs.androidx.hilt.compiler)
 
   implementation(libs.androidx.palette.ktx)
 
