@@ -39,4 +39,6 @@
     <string name="inactive_travel_mode_month_and_day">%1$d month %2$d day</string>
     <string name="inactive_travel_mode_days">%1$d days</string>
     <string name="inactive_travel_mode_day">%1$d day</string>
+    <string name="web_client_id"></string>
+    <string name="cmaterial3_welcome">Bienvenue</string>
 </resources>

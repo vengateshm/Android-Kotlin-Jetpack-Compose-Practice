@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.LocaleManager
 import android.os.Build
 import android.os.LocaleList
+import androidx.activity.compose.LocalActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,7 +21,7 @@ import dev.vengateshm.compose_material3.R
 
 @Composable
 fun MultiLanguageSample(modifier: Modifier = Modifier) {
-    val activity = LocalContext.current as? Activity
+    val activity = LocalActivity.current
     Scaffold {
         Column(
             modifier = Modifier

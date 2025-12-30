@@ -18,7 +18,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun GoogleSheetsRemoteConfigSample(modifier: Modifier = Modifier) {
-    val fig = remember { Fig() }
+    val fig = remember { Fig(sheetUrl = "https://docs.google.com/spreadsheets/d/1kPuYwzfbnbF6vCW1s3Rw3geFiUqQGlq4OM5V78aoT0w/edit?usp=sharing") }
     val scope = rememberCoroutineScope()
 
     var wish by remember { mutableStateOf("") }
@@ -31,8 +31,8 @@ fun GoogleSheetsRemoteConfigSample(modifier: Modifier = Modifier) {
         Text(text = wish)
         Button(onClick = {
             scope.launch {
-                fig.init(sheetUrl = "https://docs.google.com/spreadsheets/d/1kPuYwzfbnbF6vCW1s3Rw3geFiUqQGlq4OM5V78aoT0w/edit?usp=sharing")
-                wish = fig.getValue("wish", "") ?: ""
+                fig.load()
+                wish = fig.getString("wish", "") ?: ""
             }
         }) {
             Text(text = "Get Value")

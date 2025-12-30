@@ -9,8 +9,8 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.messaging.ktx.messaging
+import com.google.firebase.Firebase
+import com.google.firebase.messaging.messaging
 import dev.vengateshm.android_kotlin_compose_practice.localization_app.LocaleContextWrapper
 import dev.vengateshm.android_kotlin_compose_practice.shared_preferences_delegates.stringPrefs
 import dev.vengateshm.android_kotlin_compose_practice.utils.requestPostNotificationsPermission
