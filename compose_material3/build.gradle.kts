@@ -93,7 +93,7 @@ android {
 
 tasks.withType<KotlinCompile>().configureEach {
   compilerOptions {
-    freeCompilerArgs.add("-Xcontext-receivers")
+//    freeCompilerArgs.add("-Xcontext-receivers")
   }
 }
 
