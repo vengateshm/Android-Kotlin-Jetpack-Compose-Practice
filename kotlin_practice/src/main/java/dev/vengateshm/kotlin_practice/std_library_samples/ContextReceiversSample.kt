@@ -6,10 +6,10 @@ fun main() {
 
 
 class Logger {
-    context(BaseRepository)
-    fun log(msg: String) {
-        println(msg)
-    }
+  //    context(BaseRepository)
+  fun log(msg: String) {
+    println(msg)
+  }
 }
 
 interface BaseRepository {
@@ -21,22 +21,22 @@ interface BaseViewModel {
 }
 
 class MyRepository : BaseRepository {
-    private val logger = Logger()
-    fun getData() {
-        logger.log("")
-    }
+  private val logger = Logger()
+  fun getData() {
+    logger.log("")
+  }
 }
 
 class MyViewModel : BaseViewModel {
-    private val logger = Logger()
-    fun getData() {
-        // logger.log("") Error
-    }
+  private val logger = Logger()
+  fun getData() {
+    // logger.log("") Error
+  }
 }
 
 class MyView {
-    private val logger = Logger()
-    fun showData() {
-         //logger.log("") Error
-    }
+  private val logger = Logger()
+  fun showData() {
+    //logger.log("") Error
+  }
 }

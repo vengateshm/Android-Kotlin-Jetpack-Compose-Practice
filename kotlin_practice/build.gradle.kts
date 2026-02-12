@@ -23,11 +23,12 @@ java {
 
 tasks.withType<KotlinCompile>().configureEach {
   compilerOptions {
-    freeCompilerArgs.add("-Xcontext-receivers")
+//    freeCompilerArgs.add("-Xcontext-receivers")
     freeCompilerArgs.add("-Xwhen-guards")
     freeCompilerArgs.add("-Xnon-local-break-continue")
     freeCompilerArgs.add("-Xmulti-dollar-interpolation")
     freeCompilerArgs.add("-Xcontext-sensitive-resolution")
+    freeCompilerArgs.add("-Xdata-flow-based-exhaustiveness")
   }
 }
 
@@ -39,6 +40,7 @@ kotlin {
   compilerOptions {
     freeCompilerArgs.add("-Xdebug") // Don't use in release builds
     freeCompilerArgs.add("-Xcontext-sensitive-resolution")
+    freeCompilerArgs.add("-Xdata-flow-based-exhaustiveness")
   }
 }
 
@@ -50,6 +52,7 @@ tasks.withType<KotlinCompile>().configureEach {
 
 dependencies {
   implementation(libs.kotlinx.coroutines.core)
+  implementation(libs.kotlinx.coroutines.android)
   implementation(libs.kotlinx.collections.immutable)
   implementation(platform(libs.arrow.stack))
   implementation(libs.arrow.kt.arrow.core)
