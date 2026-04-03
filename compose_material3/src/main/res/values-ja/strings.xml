@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cmaterial3_stay_with_your_friends">友人や家族とのつながりを保ちましょう</string>
+    <string name="cmaterial3_secure_private_messaging">安全でプライベートなメッセージング</string>
+    <string name="cmaterial3_get_started">さあ始めましょう</string>
+    <string name="cmaterial3_add_story">ストーリーを追加</string>
+    <string name="cmaterial3_online">オンライン</string>
+    <string name="cmaterial3_type_message">メッセージを入力してください</string>
+
+
+    <string name="cmaterial3_flight_status_ontime">時間通りに</string>
+    <string name="cmaterial3_flight_status_departed">出発</string>
+    <string name="cmaterial3_flight_status_delayed">遅延</string>
+    <string name="cmaterial3_flight_status_canceled">キャンセル</string>
+    <string name="cmaterial3_flight_status_diverted">迂回</string>
+    <string name="cmaterial3_flight_status_return">戻る</string>
+    <string name="cmaterial3_flight_status_early">早い</string>
+    <string name="cmaterial3_flight_status_inflight">飛行中</string>
+    <string name="cmaterial3_flight_status_landed">着陸しました</string>
+    <string name="cmaterial3_flight_status_arrived">到着した</string>
+    <string name="cmaterial3_flight_status_not_available">利用不可</string>
+    <string name="cmaterial3_scheduled_text">予定</string>
+    <string name="cmaterial3_estimated_text">推定</string>
+    <string name="cmaterial3_actual_text">実際の</string>
+    <string name="cmaterial3_canceled_text">キャンセル</string>
+    <string name="cmaterial3_empty_text"></string>
+    <string name="cmaterial3_remainingtime_left_label">残り%1$s</string>
+    <string name="cmaterial3_scheduled_label">予定\n%1$s</string>
+    <string name="close">近い</string>
+
+    <plurals name="cmaterial3_no_of_stops">
+        <item quantity="one">%d stop</item>
+        <item quantity="other">%d stops</item>
+    </plurals>
+
+    <string name="inactive_travel_mode_months_and_days">%1$dヶ月 %2$d日</string>
+    <string name="inactive_travel_mode_months_and_day">%1$dヶ月 %2$d日</string>
+    <string name="inactive_travel_mode_month_and_days">%1$d 月 %2$d 日</string>
+    <string name="inactive_travel_mode_month_and_day">%1$d 月 %2$d 日</string>
+    <string name="inactive_travel_mode_days">%1$d日</string>
+    <string name="inactive_travel_mode_day">%1$日</string>
+
+    <string name="cmaterial3_welcome">いらっしゃいませ</string>
+    <string name="web_client_id">177179055476-69ekf78oufav9rbeakat3q815v7ipslc.apps.googleusercontent.com</string>
+</resources>

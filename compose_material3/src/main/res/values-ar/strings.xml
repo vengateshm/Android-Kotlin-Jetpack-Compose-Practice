@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cmaterial3_stay_with_your_friends">ابقَ على اتصال مع أصدقائك وعائلتك</string>
+    <string name="cmaterial3_secure_private_messaging">مراسلة آمنة وخاصة</string>
+    <string name="cmaterial3_get_started">ابدأ الآن</string>
+    <string name="cmaterial3_add_story">أضف قصة</string>
+    <string name="cmaterial3_online">متصل</string>
+    <string name="cmaterial3_type_message">اكتب رسالة</string>
+
+
+    <string name="cmaterial3_flight_status_ontime">في الوقت المحدد</string>
+    <string name="cmaterial3_flight_status_departed">رحل</string>
+    <string name="cmaterial3_flight_status_delayed">تأخير</string>
+    <string name="cmaterial3_flight_status_canceled">تم الإلغاء</string>
+    <string name="cmaterial3_flight_status_diverted">تم تحويل مسارها</string>
+    <string name="cmaterial3_flight_status_return">يعود</string>
+    <string name="cmaterial3_flight_status_early">مبكر</string>
+    <string name="cmaterial3_flight_status_inflight">أثناء الطيران</string>
+    <string name="cmaterial3_flight_status_landed">هبطت</string>
+    <string name="cmaterial3_flight_status_arrived">وصل</string>
+    <string name="cmaterial3_flight_status_not_available">غير متوفر</string>
+    <string name="cmaterial3_scheduled_text">مُجدول</string>
+    <string name="cmaterial3_estimated_text">مُقدَّر</string>
+    <string name="cmaterial3_actual_text">فِعلي</string>
+    <string name="cmaterial3_canceled_text">تم الإلغاء</string>
+    <string name="cmaterial3_empty_text"></string>
+    <string name="cmaterial3_remainingtime_left_label">متبقي 1 دولار</string>
+    <string name="cmaterial3_scheduled_label">مُجدول\n%1$s</string>
+    <string name="close">يغلق</string>
+
+    <plurals name="cmaterial3_no_of_stops">
+        <item quantity="one">%d stop</item>
+        <item quantity="other">%d stops</item>
+    </plurals>
+
+    <string name="inactive_travel_mode_months_and_days">%1$d أشهر %2$d أيام</string>
+    <string name="inactive_travel_mode_months_and_day">1$d أشهر 2$d يوم</string>
+    <string name="inactive_travel_mode_month_and_days">شهر %1$d أيام %2$d</string>
+    <string name="inactive_travel_mode_month_and_day">الشهر %1$d اليوم %2$d</string>
+    <string name="inactive_travel_mode_days">أيام %1$d</string>
+    <string name="inactive_travel_mode_day">يوم واحد</string>
+
+    <string name="cmaterial3_welcome">مرحباً</string>
+    <string name="web_client_id">177179055476-69ekf78oufav9rbeakat3q815v7ipslc.apps.googleusercontent.com</string>
+</resources>

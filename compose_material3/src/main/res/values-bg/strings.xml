@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cmaterial3_stay_with_your_friends">Останете свързани с приятелите и семейството си</string>
+    <string name="cmaterial3_secure_private_messaging">Сигурни, лични съобщения</string>
+    <string name="cmaterial3_get_started">Започнете</string>
+    <string name="cmaterial3_add_story">Добавяне на история</string>
+    <string name="cmaterial3_online">Онлайн</string>
+    <string name="cmaterial3_type_message">Въведете съобщение</string>
+
+
+    <string name="cmaterial3_flight_status_ontime">Навреме</string>
+    <string name="cmaterial3_flight_status_departed">Заминал</string>
+    <string name="cmaterial3_flight_status_delayed">Закъсняло</string>
+    <string name="cmaterial3_flight_status_canceled">Отменено</string>
+    <string name="cmaterial3_flight_status_diverted">Отклонено</string>
+    <string name="cmaterial3_flight_status_return">Връщане</string>
+    <string name="cmaterial3_flight_status_early">Рано</string>
+    <string name="cmaterial3_flight_status_inflight">В полет</string>
+    <string name="cmaterial3_flight_status_landed">Кацна</string>
+    <string name="cmaterial3_flight_status_arrived">Пристигнал</string>
+    <string name="cmaterial3_flight_status_not_available">Не е налично</string>
+    <string name="cmaterial3_scheduled_text">Планирано</string>
+    <string name="cmaterial3_estimated_text">Очаквано</string>
+    <string name="cmaterial3_actual_text">Действително</string>
+    <string name="cmaterial3_canceled_text">Отменено</string>
+    <string name="cmaterial3_empty_text"></string>
+    <string name="cmaterial3_remainingtime_left_label">Остават %1$s</string>
+    <string name="cmaterial3_scheduled_label">Планирано\n%1$s</string>
+    <string name="close">Затвори</string>
+
+    <plurals name="cmaterial3_no_of_stops">
+        <item quantity="one">%d stop</item>
+        <item quantity="other">%d stops</item>
+    </plurals>
+
+    <string name="inactive_travel_mode_months_and_days">%1$d месеца %2$d дни</string>
+    <string name="inactive_travel_mode_months_and_day">%1$d месеца %2$d ден</string>
+    <string name="inactive_travel_mode_month_and_days">%1$d месец %2$d дни</string>
+    <string name="inactive_travel_mode_month_and_day">%1$d месец %2$d ден</string>
+    <string name="inactive_travel_mode_days">%1$d дни</string>
+    <string name="inactive_travel_mode_day">%1$d ден</string>
+
+    <string name="cmaterial3_welcome">Добре дошли</string>
+    <string name="web_client_id">177179055476-69ekf78oufav9rbeakat3q815v7ipslc.apps.googleusercontent.com</string>
+</resources>

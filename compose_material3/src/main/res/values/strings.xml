@@ -39,6 +39,7 @@
     <string name="inactive_travel_mode_month_and_day">%1$d month %2$d day</string>
     <string name="inactive_travel_mode_days">%1$d days</string>
     <string name="inactive_travel_mode_day">%1$d day</string>
-    <string name="web_client_id"></string>
-    <string name="cmaterial3_welcome">Bienvenue</string>
+
+    <string name="cmaterial3_welcome">Welcome</string>
+    <string name="web_client_id">177179055476-69ekf78oufav9rbeakat3q815v7ipslc.apps.googleusercontent.com</string>
 </resources>

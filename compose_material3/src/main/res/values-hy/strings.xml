@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cmaterial3_stay_with_your_friends">Մնացեք կապի մեջ ձեր ընկերների և ընտանիքի հետ</string>
+    <string name="cmaterial3_secure_private_messaging">Անվտանգ, անձնական հաղորդագրություններ</string>
+    <string name="cmaterial3_get_started">Սկսել</string>
+    <string name="cmaterial3_add_story">Ավելացնել պատմություն</string>
+    <string name="cmaterial3_online">Առցանց</string>
+    <string name="cmaterial3_type_message">Մուտքագրեք հաղորդագրությունը</string>
+
+
+    <string name="cmaterial3_flight_status_ontime">Ժամանակին</string>
+    <string name="cmaterial3_flight_status_departed">Մեկնած</string>
+    <string name="cmaterial3_flight_status_delayed">Հետաձգված</string>
+    <string name="cmaterial3_flight_status_canceled">Չեղարկված է</string>
+    <string name="cmaterial3_flight_status_diverted">Շեղված</string>
+    <string name="cmaterial3_flight_status_return">Վերադարձ</string>
+    <string name="cmaterial3_flight_status_early">Վաղ</string>
+    <string name="cmaterial3_flight_status_inflight">Թռիչքի մեջ</string>
+    <string name="cmaterial3_flight_status_landed">Վայրէջք կատարեց</string>
+    <string name="cmaterial3_flight_status_arrived">Ժամանել է</string>
+    <string name="cmaterial3_flight_status_not_available">Հասանելի չէ</string>
+    <string name="cmaterial3_scheduled_text">Պլանավորված է</string>
+    <string name="cmaterial3_estimated_text">Մոտավոր</string>
+    <string name="cmaterial3_actual_text">Իրական</string>
+    <string name="cmaterial3_canceled_text">Չեղարկված է</string>
+    <string name="cmaterial3_empty_text"></string>
+    <string name="cmaterial3_remainingtime_left_label">Մնացել է %1$s</string>
+    <string name="cmaterial3_scheduled_label">Պլանավորված է\n%1$s</string>
+    <string name="close">Փակել</string>
+
+    <plurals name="cmaterial3_no_of_stops">
+        <item quantity="one">%d stop</item>
+        <item quantity="other">%d stops</item>
+    </plurals>
+
+    <string name="inactive_travel_mode_months_and_days">%1$d ամիս %2$d օր</string>
+    <string name="inactive_travel_mode_months_and_day">%1$d ամիս %2$d օր</string>
+    <string name="inactive_travel_mode_month_and_days">%1$d ամիս %2$d օր</string>
+    <string name="inactive_travel_mode_month_and_day">%1$d ամիս %2$d օր</string>
+    <string name="inactive_travel_mode_days">%1$d օր</string>
+    <string name="inactive_travel_mode_day">%1$d օր</string>
+
+    <string name="cmaterial3_welcome">Բարի գալուստ</string>
+    <string name="web_client_id">177179055476-69ekf78oufav9rbeakat3q815v7ipslc.apps.googleusercontent.com</string>
+</resources>
