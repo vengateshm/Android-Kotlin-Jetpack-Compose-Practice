@@ -41,7 +41,7 @@ fun NotesNavDisplay(
   NavDisplay(
     modifier = modifier,
     backStack = notesBackstack,
-    sceneStrategy = rememberMyListDetailSceneStrategy(),
+    sceneStrategies = listOf(rememberMyListDetailSceneStrategy()),
     entryDecorators = listOf(
       rememberSaveableStateHolderNavEntryDecorator(),
       rememberViewModelStoreNavEntryDecorator(),

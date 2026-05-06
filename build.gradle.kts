@@ -6,7 +6,6 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
   alias(libs.plugins.android.application) apply false
   alias(libs.plugins.android.library) apply false
-  alias(libs.plugins.jetbrains.kotlin.android) apply false
   alias(libs.plugins.jetbrains.kotlin.jvm) apply false
   alias(libs.plugins.jetbrains.kotlin.plugin.serialization) apply false
   alias(libs.plugins.devtools.ksp) apply false
@@ -18,7 +17,6 @@ plugins {
   alias(libs.plugins.compose.plugin) apply false
   alias(libs.plugins.openApi.generator) apply false
   alias(libs.plugins.spotless) apply false
-  kotlin("kapt") version "2.3.0" apply false
 }
 
 val ktlintVersion = libs.versions.ktlint.get()

@@ -21,7 +21,7 @@ fun ListDetailAppRoot(modifier: Modifier = Modifier) {
 
   NavDisplay(
     backStack = backStack,
-    sceneStrategy = listDetailSceneStrategy,
+    sceneStrategies = listOf(listDetailSceneStrategy),
     entryProvider = entryProvider {
       entry<AppDestination.ListDestination>(
         metadata = ListDetailSceneStrategy.listPane(
@@ -42,7 +42,7 @@ fun ListDetailAppRoot(modifier: Modifier = Modifier) {
         metadata = ListDetailSceneStrategy.detailPane(),
       ) {
         ScreenWithAText(
-          text = it.data
+          text = it.data,
         )
       }
     },

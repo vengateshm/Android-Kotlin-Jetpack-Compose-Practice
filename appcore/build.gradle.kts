@@ -1,19 +1,17 @@
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
-  id("com.android.library")
-  id("org.jetbrains.kotlin.android")
+  alias(libs.plugins.android.library)
   alias(libs.plugins.devtools.ksp)
   alias(libs.plugins.dagger.hilt)
 }
 
 android {
   namespace = "dev.vengateshm.samples_common"
-  compileSdk = 36
+  compileSdk = 37
 
   defaultConfig {
     minSdk = 23
-    targetSdk = 34
 
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }

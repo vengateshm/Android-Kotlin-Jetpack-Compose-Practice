@@ -2,7 +2,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
   id("com.android.library")
-  id("org.jetbrains.kotlin.android")
   id("kotlin-parcelize")
   id("kotlinx-serialization")
   kotlin("plugin.serialization") version libs.versions.kotlin.get()
@@ -12,7 +11,7 @@ plugins {
 
 android {
   namespace = "dev.vengateshm.xml_kotlin"
-  compileSdk = 36
+  compileSdk = 37
 
   defaultConfig {
     minSdk = 23

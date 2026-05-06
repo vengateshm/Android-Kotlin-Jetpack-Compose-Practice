@@ -1,6 +1,4 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.io.FileInputStream
 import java.util.Properties
 
@@ -8,22 +6,17 @@ val composeVersion: String by rootProject.extra
 val composeCompilerVersion: String by rootProject.extra
 
 plugins {
-  alias(libs.plugins.android.library)
-  alias(libs.plugins.jetbrains.kotlin.android)
-  id("kotlin-parcelize")
-  id("kotlinx-serialization")
-  kotlin("plugin.serialization") version libs.versions.kotlin.get()
-//    alias(libs.plugins.composeInvestigator)
-  alias(libs.plugins.compose.plugin)
-  alias(libs.plugins.openApi.generator)
+  id("com.android.library")
   alias(libs.plugins.devtools.ksp)
   alias(libs.plugins.dagger.hilt)
-  kotlin("kapt")
+  alias(libs.plugins.compose.plugin)
+  id("kotlin-parcelize")
+  id("kotlinx-serialization")
 }
 
 android {
   namespace = "dev.vengateshm.compose_material3"
-  compileSdk = 36
+  compileSdk = 37
 
   val file = rootProject.file("local.properties")
   val properties = Properties()
@@ -65,35 +58,17 @@ android {
         "proguard-rules.pro",
       )
     }
-    debug {
-      isMinifyEnabled = false
-      resValue("string", "api_url", "https://api.dev.example.com")
-    }
   }
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_17
     targetCompatibility = JavaVersion.VERSION_17
   }
   kotlin {
-    compilerOptions {
-      jvmTarget.set(JvmTarget.JVM_17)
-    }
+    jvmToolchain(17)
   }
-  packaging {
-    resources {
-      excludes += "/META-INF/{AL2.0,LGPL2.1}"
-      excludes += "/META-INF/LICENSE.md"
-      excludes += "/META-INF/LICENSE-notice.md"
-      excludes += "**/attach_hotspot_windows.dll"
-      excludes += "META-INF/licenses/ASM"
-    }
-  }
-  resourcePrefix = "cmaterial3_"
-}
-
-tasks.withType<KotlinCompile>().configureEach {
-  compilerOptions {
-//    freeCompilerArgs.add("-Xcontext-receivers")
+  buildFeatures {
+    compose = true
+    buildConfig = true
   }
 }
 
@@ -109,7 +84,7 @@ dependencies {
   implementation(libs.bundles.compose.beta)
   implementation(libs.androidx.fragment.compose)
   implementation(libs.androidx.compose.animation.graphics)
-  implementation("androidx.compose.runtime:runtime-retain:1.10.0")
+  implementation(libs.androidx.compose.runtime.retain)
 
   // Compose testing
   // Test rules and transitive dependencies:
@@ -178,9 +153,8 @@ dependencies {
   implementation(libs.koin.android)
   implementation(libs.koin.androidx.compose)
   // Koin Annotations
-  implementation(libs.koin.annotations)
-  // Koin Annotations KSP Compiler
-  ksp(libs.koin.ksp.compiler)
+  /*implementation(libs.koin.annotations)
+  ksp(libs.koin.ksp.compiler)*/
 
   implementation(libs.fig)
 
@@ -218,11 +192,11 @@ dependencies {
   implementation(libs.googleid)
 
   implementation(libs.androidx.appsearch)
-  kapt(libs.androidx.appsearch.compiler)
+  ksp(libs.androidx.appsearch.compiler)
   implementation(libs.androidx.appsearch.local.storage)
 
-  implementation("net.zetetic:android-database-sqlcipher:4.5.3")
-  implementation("androidx.sqlite:sqlite:2.4.0")
+  implementation(libs.android.database.sqlcipher)
+  implementation(libs.androidx.sqlite)
 
   implementation(libs.play.services.mlkit.smart.reply)
 
@@ -274,40 +248,3 @@ dependencies {
   androidTestImplementation(libs.bundles.kotest)
   androidTestImplementation(libs.kotlinx.coroutines.test)
 }
-
-// Uncomment when running tests with JUnit5
-/*
-tasks.withType<Test>().configureEach {
-    useJUnitPlatform()
-}*/
-
-openApiGenerate {
-  skipValidateSpec.set(true)
-  packageName.set("dev.vengateshm.compose_material3.openapi")
-  generatorName.set("kotlin")
-  generateApiTests.set(false)
-  generateModelTests.set(false)
-  library.set("jvm-retrofit2")
-  inputSpec.set("$rootDir/api.yml")
-  configOptions.set(
-    mapOf(
-      "serializationLibrary" to "gson",
-      "useCoroutines" to "true",
-    ),
-  )
-}
-
-// To access in app/module directory
-kotlin {
-  sourceSets {
-    main {
-      kotlin.srcDir("$rootDir/compose_material3/build/generate-resources/main/src")
-    }
-  }
-}
-
-// Generate openapi code while building
-/*
-tasks.withType<KotlinCompile>().configureEach {
-    dependsOn("openApiGenerate")
-}*/

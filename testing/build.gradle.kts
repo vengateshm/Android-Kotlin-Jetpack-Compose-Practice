@@ -1,16 +1,15 @@
+import org.gradle.kotlin.dsl.ksp
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
   alias(libs.plugins.android.library)
-  alias(libs.plugins.jetbrains.kotlin.android)
   id("com.google.devtools.ksp")
   id("dagger.hilt.android.plugin")
-  kotlin("kapt")
 }
 
 android {
   namespace = "dev.vengateshm.testing"
-  compileSdk = 36
+  compileSdk = 37
 
   defaultConfig {
     minSdk = 24
@@ -26,12 +25,12 @@ android {
     }
   }
   compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
   }
   kotlin {
     compilerOptions {
-      jvmTarget.set(JvmTarget.JVM_11)
+      jvmTarget.set(JvmTarget.JVM_17)
     }
   }
 }
@@ -49,8 +48,8 @@ dependencies {
 
   // Dagger - Hilt
   implementation(libs.hilt.android)
-  kapt(libs.hilt.android.compiler)
-  kapt(libs.androidx.hilt.compiler)
+  ksp(libs.hilt.android.compiler)
+  ksp(libs.androidx.hilt.compiler)
 
   testImplementation(libs.junit)
   androidTestImplementation(libs.ext.junit)
@@ -59,7 +58,7 @@ dependencies {
   androidTestImplementation(libs.androidx.test.runner)
   androidTestImplementation(libs.androidx.test.rules)
   androidTestImplementation(libs.hilt.android.testing)
-  kaptAndroidTest(libs.hilt.android.compiler)
+  kspAndroidTest(libs.hilt.android.compiler)
   androidTestImplementation(libs.kotlinx.coroutines.test)
   androidTestImplementation(libs.truth)
 }

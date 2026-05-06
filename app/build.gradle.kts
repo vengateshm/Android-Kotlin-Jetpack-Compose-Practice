@@ -18,12 +18,11 @@ println("App Version Name: $vName")
 
 plugins {
   id("com.android.application")
-  id("kotlin-android")
-  id("com.google.protobuf") version "0.9.6"
+  id("com.google.protobuf") version "0.10.0"
   id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
   id("kotlinx-serialization")
   id("com.google.gms.google-services")
-  id("com.apollographql.apollo3") version libs.versions.apolloRuntime.get()
+  id("com.apollographql.apollo") version libs.versions.apolloRuntime.get()
   alias(libs.plugins.devtools.ksp)
   alias(libs.plugins.dagger.hilt)
 //    id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
@@ -32,12 +31,12 @@ plugins {
 
 android {
   namespace = "dev.vengateshm.android_kotlin_compose_practice"
-  compileSdk = 36
+  compileSdk = 37
 
   defaultConfig {
     applicationId = "dev.vengateshm.android_kotlin_compose_practice"
     minSdk = 23
-    targetSdk = 34
+    targetSdk = 37
     versionCode = appVersionCode
     versionName = appVersionName
 
@@ -52,7 +51,7 @@ android {
         .format(DateTimeFormatter.ofPattern("dd-MMM-yyyy hh-mm-ss a"))
     val apkName = "AndroidKotlinComposePractice-$timeStamp"
     // val apkName = "$applicationId-$versionName"
-    project.setProperty("archivesBaseName", apkName)
+//    project.setProperty("archivesBaseName", apkName)
   }
 
   flavorDimensions += listOf("subscription_status"/* "style"*/)
@@ -71,6 +70,11 @@ android {
     create("red") {
         dimension = "style"
     }*/
+  }
+
+  buildFeatures {
+    buildConfig = true
+    resValues = true
   }
 
   buildTypes {

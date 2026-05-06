@@ -17,28 +17,28 @@ import dev.vengateshm.android_kotlin_compose_practice.utils.requestPostNotificat
 
 class MainActivity : ComponentActivity() {
 
-    var token by stringPrefs("token")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+  var token by stringPrefs("token")
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
 
-        requestPostNotificationsPermission()
-        installSplashScreen()
+    requestPostNotificationsPermission()
+    installSplashScreen()
 
-        Firebase.messaging.subscribeToTopic("News")
+    Firebase.messaging.subscribeToTopic("News")
 
-        setContent {
-            MaterialTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background,
-                ) {
+    setContent {
+      MaterialTheme {
+        Surface(
+          modifier = Modifier.fillMaxSize(),
+          color = MaterialTheme.colors.background,
+        ) {
 
-                }
-            }
         }
+      }
     }
+  }
 
-    override fun attachBaseContext(newBase: Context?) {
-        super.attachBaseContext(LocaleContextWrapper(newBase!!))
-    }
+  override fun attachBaseContext(newBase: Context?) {
+    super.attachBaseContext(LocaleContextWrapper(newBase!!))
+  }
 }

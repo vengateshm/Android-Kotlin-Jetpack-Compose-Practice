@@ -17,10 +17,10 @@ fun BottomSheetNavAppRoot(modifier: Modifier = Modifier) {
   val bottomSheetSceneStrategy = remember { BottomSheetSceneStrategy<NavKey>() }
 
   NavDisplay(
-    modifier = Modifier.fillMaxSize(),
     backStack = navBackStack,
-    sceneStrategy = bottomSheetSceneStrategy,
+    modifier = Modifier.fillMaxSize(),
     onBack = { navBackStack.removeLastOrNull() },
+    sceneStrategies = listOf(bottomSheetSceneStrategy),
     entryProvider = entryProvider {
       entry<AppDestination.ListDestination> {
         ListScreen(
