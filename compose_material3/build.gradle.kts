@@ -12,6 +12,7 @@ plugins {
   alias(libs.plugins.compose.plugin)
   id("kotlin-parcelize")
   id("kotlinx-serialization")
+  alias(libs.plugins.stability.analyzer)
 }
 
 android {

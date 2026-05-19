@@ -22,7 +22,7 @@ dataframe = "1.0.0-Beta5"
 datastorePreferences = "1.2.1"
 composeMaterialDialogs = "0.9.0"
 fig = "0.3.0"
-firebaseBom = "34.12.0"
+firebaseBom = "34.13.0"
 generativeai = "0.9.0"
 glanceAppwidget = "1.1.1"
 gson = "2.14.0"
@@ -496,3 +496,4 @@ compose-plugin = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "ko
 openApi-generator = { id = "org.openapi.generator", version.ref = "openApi" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 apollo-plugin = { id = "com.apollographql.apollo", version.ref = "apolloRuntime" }
+stability-analyzer = { id = "com.github.skydoves.compose.stability.analyzer", version = "0.7.4" }
